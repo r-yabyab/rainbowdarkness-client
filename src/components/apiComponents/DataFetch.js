@@ -8,7 +8,7 @@ export function DataFetch ({reducerValue, destroyer}) {
 
     useEffect(() => {
         const fetchRainbow = async () => {
-            const response = await fetch('/api/rainbows')
+            const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows')
             const json = await response.json()
 
             if (response.ok) {

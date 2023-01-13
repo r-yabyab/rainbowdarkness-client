@@ -78,8 +78,12 @@ const handleSubmit = async () => {
 
     const rainbow = {number}
 
+    // for local prod, use 
+    // /api/rainbows
+    // with proxy in package.json
+
     //fetch req to post new dats
-    const response = await fetch('api/rainbows', {
+    const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows', {
         method: 'POST',
         body: JSON.stringify(rainbow),                          // have to send number as json, not object
         headers: {

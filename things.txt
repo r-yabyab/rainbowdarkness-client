@@ -6,7 +6,9 @@ in ./package.json
 
 1/12/23
 - added npm install path to server.js for vercel deployment
-
+- removed
+  "proxy": "http://localhost:4000",
+      - for vercel deployment
 
 =========
 =========
