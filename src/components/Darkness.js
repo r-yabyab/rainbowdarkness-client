@@ -68,7 +68,7 @@ function Darkness() {
                             <li>Node</li>
                             <li>MongoDB atlas</li> */}
                             <p className=' text-left font-bold'>Powered By:</p>
-                            <p>React, Express, Node, MongoDB Atlas, Heroku</p>
+                            <p>React, Express, Node, MongoDB Atlas, Vercel</p>
 
 
                         </div>
