@@ -4,8 +4,10 @@ import {App} from './App';
 // import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HashRouter } from 'react-router-dom';
+import { inject } from '@vercel/analytics'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+inject()
 root.render(
       <HashRouter>
         <App />
