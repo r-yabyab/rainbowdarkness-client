@@ -26,7 +26,7 @@ function Darkness() {
 </div>
 <p className='text-black font-bold pt-4 select-none'>Public stats</p>
 
-                    <iframe className='  
+                    <iframe title='iframe_mongoDB' className='  
                     m-auto w-[600px] h-[600px] select-none'  
                     src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed"></iframe>
 
