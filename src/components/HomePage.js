@@ -1,16 +1,20 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
-import DarkLight from './DarkLight';
-import MoodRating from './MoodRating';
+import React, { useEffect } from 'react';
+// import Button from 'react-bootstrap/Button';
 import HookMood from './HookMood';
-import { DataFetch } from './DataFetch';
+// import DataPost from './apiComponents/DataPost';
 
 export function HomePage () {
+  
+  useEffect (() => {
+    document.title = 'Rainbow Darkness';
+  }, [])
 
   return(
   <>
+  
+  <link rel="shortcut icon" href="/a.png" />
         <div draggable="false" className='relative mt-[5em] text-center select-none'>
-            <p className='mb-4 text-lg'>Hours of sleep u got today</p>
+            <p className='mb-4 text-lg'>How happy are you today?</p>
           {/* <ul className='rating'>
             <li><button type="button" className="btn btn-outline-primary">0</button></li>
             <li><button type="button" className="btn btn-outline-primary">1</button></li>
@@ -27,19 +31,6 @@ export function HomePage () {
           <HookMood />
           
         </div>
-
-        <DataFetch />
-
-
-  
-        {/* <MoodRating /> */}
-
-
-        <div className='bodycontainer'>
-            {/* <MoodRating /> */}
-            
-        </div>
-
       </>
     )
   }

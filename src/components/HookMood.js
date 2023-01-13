@@ -1,6 +1,7 @@
-import { render } from '@testing-library/react';
-import React, { useEffect, useState, useCallback, useRef} from 'react';
+// import { render } from '@testing-library/react';
+import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
+import { DataFetch } from './apiComponents/DataFetch';
 
 function HookMood () {
 
@@ -19,59 +20,179 @@ function HookMood () {
     ]
     // for mapping numbers
     let [list, updateList] = useState(numberList);
-    // for displaying incrementers 
-    let [booleanState, setBooleanState] = useState(false)
-    // tracking score for storing
-    let [score, setScore] = useState(0);
+    // for displaying incrementers
+    let [booleanState, setBooleanState] = useState(false);
+    // tracking number for storing
+    let [number, setNumber] = useState('');
+    // for handleSubmit to DB
+    let [error, setError] = useState(null);
+    // for localStorage, true === can't submit
+    // used with setInterval && useEffect
+    let [destroyer, setDestroyer] = useState(false)
+    // refreshes api and timer
+    const [reducerValue, forceUpdate] = useReducer(x => x + 1, 0);
+    //for refreshing className on every click
 
     let selectHandler=(e)=>{
         let x = e.target.getAttribute("selectnums");
         updateList(list.filter(items=>items.num===x));                   //filter is method which defines (var)
-        setBooleanState(true)    
+        setBooleanState(true)
         // turns {num:} into Int
-        setScore(score = parseInt(x))
-        console.log(`selectHandler, score: ${score}`);        
+        setNumber(number = parseInt(x))
+        console.log(`selectHandler, number: ${number}`);
     }
 
-    // initializes setStates for ALL states
+    // initializes for states for refresh UI
     let clickHandlerOne = () => {
         updateList(numberList);
         setBooleanState(false);
-        setScore(null)
+        setNumber('')
+        forceUpdate()
+        console.log(reducerValue)
     }
-  
+
+
 //                                           ////////////////////////////
 //                                           ////////////////////////////
     //                                                               ////////////////////////////
     // need to make it a switch w/ decrement                                               ////////////////////////////
     const increment = () => {
-        setScore(score => score + 0.5);
-        console.log(`increment, score: ${score}`);
-        // only can be clicked once  
+        setNumber(number => number + 0.5);
+        console.log(`increment, number: ${number}`);
+        // only can be clicked once
         if (btnRef.current) {
             btnRef.current.setAttribute("disabled", "disabled")
-        }        
+        }
 };
 
     const decrement = () => {
-        setScore(score => score - 0.5);     
+        setNumber(number => number - 0.5);
         if (btnRef2.current) {
             btnRef2.current.setAttribute("disabled", "disabled")
         }
     }
-    //                                       //////////////////////////////////////////////////////////
-    //                                       //////////////////////////////////////////////////////////
-//                                       //////////////////////////////////////////////////////////
-//                                       //////////////////////////////////////////////////////////
+
+//
+// POST to DB
+const handleSubmit = async () => {
+
+    const rainbow = {number}
+
+    //fetch req to post new dats
+    const response = await fetch('api/rainbows', {
+        method: 'POST',
+        body: JSON.stringify(rainbow),                          // have to send number as json, not object
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+        setError(json.error)
+    }
+    if (response.ok) {
+        setError(null)
+        setNumber('')
+        updateList(numberList);
+        setBooleanState(false);
+        setDestroyer(true);
+        setStaticTime(Date.now())
+        forceUpdate()
+        // vvv WORKS ON CLIENTSIDE
+        //
+        // setInterval(() => {
+        //     setDestroyer(false);
+        //     window.localStorage.removeItem('_APP_timer')
+        // }, 5000);
+        //
+
+        // setInterval(() => {
+        //     setTimer(timer => timer - 1);
+        // }, 1000);
+        // console.log('new number added', json)
+
+        //82800000 = 23hours
+    }
+}
+
+
+//
+// LocalStorage
+//
+const [staticTime, setStaticTime] = useState(0)
+let [timeLeft, setTimeLeft] = useState(86400000)
+
+
+// getStorage
+    useEffect(() => {
+        const data = window.localStorage.getItem('_APP');
+        const dataTime = window.localStorage.getItem('_APP_timer');
+        // console.log('data', data)
+        if ( dataTime !== null ) setStaticTime(JSON.parse(dataTime));
+        if ( data !== null ) setDestroyer(JSON.parse(data));
+        // if ( staticTime == null ) setStaticTime(JSON.parse(dataTime));
+        // // console.log('date is: ', Date())
+        const currentTime = Date.now()
+        const timePassed = currentTime - dataTime
+        // 86400000 == 24hrs
+        // 10000 == 10secs
+        if (timePassed > 86400000) {
+            setDestroyer(false)
+            setStaticTime(null)    
+        }
+
+        // for printing countdown
+        const countdown = 86400000 - timePassed
+        console.log(timePassed)
+        setTimeLeft(countdown)
+    }, [])
+
+    useEffect(() => {
+        const dataTime = window.localStorage.getItem('_APP_timer');
+        const currentTime = Date.now()
+        const timePassed = currentTime - dataTime
+        const countdown = 86400000 - timePassed
+        setTimeLeft(countdown)
+    }, [reducerValue])
+
+// for timer
+// // // // // // // // // // // WORKS,
+// // // // // // // // // // // rerenders block components somehow even when not showing
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         setTimeLeft(x => x -1000)
+    //     }, 1000)
+    // },[])
+
+
+    // localStorage, prevents user from resubmitting via destroyer dependency
+    useEffect(() => {
+        // console.log(destroyer,'localstore')
+        window.localStorage.setItem('_APP', JSON.stringify(destroyer))
+        window.localStorage.setItem('_APP_timer', JSON.stringify(staticTime))
+    },[destroyer])  
+
+
+//
+// LocalStorage
+//
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 
 
     let btnRef = useRef();
     let btnRef2 = useRef();
 
-    const purpleButton =             (<div className="absolute right-[18%] top-[20%] inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group">
+    const purpleButton =             (<div value={number} onClick={handleSubmit} type="number"
+    className="absolute right-[18%] top-[20%] inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group">
     <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
     </span>
     <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">Submit</span>
     <span className="relative invisible">Submit</span>
@@ -82,20 +203,22 @@ function HookMood () {
     return (
         <>
             <div>
-                {list.map((x) => {
+                {list.map((x, index) => {
                 // displays row of numbers from array
                     return (
-                        <div className='relative text-center inline-flex p-0 ratingAnimation'>
+                        <div  className='relative text-center inline-flex p-0 ratingAnimation
+                         max-md:flex-row max-md:ml-8 max-md:mr-8
+                        ' key={index}>
                             <button
                                 className={booleanState ? "invisible" : "squares btn btn-outline-primary btn-lg"}
                                 selectnums={x.num}
                                 onClick={selectHandler}
-                                key={x.id}
+                                // key={index}
                             >
                         {x.num}
                             </button>
 
-                        <button className={booleanState ? "squares btn btn-outline-primary btn-lg ratingAnimation" : 'invisible'}>{score}</button>
+                        <button className={booleanState ? "squares btn btn-outline-primary btn-lg ratingAnimation" : 'invisible'}>{number}</button>
 
                             {/* <button removeNums={x.num} onClick={removeHandler}>x</button> */}
                         </div>
@@ -103,30 +226,58 @@ function HookMood () {
                 })}
             </div>
 
+            {destroyer ? <>
+                <div className='
+                        absolute right-[50%] translate-x-1/2  text-xl pointer-events-none
+                        md:top-[160%] md:animate-fade 
+                        max-md:top-[35px] max-md:tracking-wide max-md:bg-purple-200  max-md:pt-8 max-md:pb-8 max-md:pr-10 max-md:pl-10 max-md:bg-opacity-80  max-md:w-full
+                        [&>p]:m-0
+                        '>
+                    <p className='font-extrabold md:animate-bounce'>Thank you!</p>
+                    <p>Please come again in  </p>
+                    <div><span className={
+                        (
+                            // it only highlights every 2 clicks, can't figure out for every click
+                            // (reducerValue%2) > 0  && 
+                        "")}>{timeLeft}</span> milliseconds !!!</div>
+                    {/* <p>{staticTime} statictime </p> */}
+                    <p>or {parseFloat(timeLeft/(1000*60*60)).toFixed(1)} Hours</p>
+                </div>
+            </> : null}
+
 {/* Submit button */}
             <div>
                 {booleanState ?
+                    <>
                     <div>
-                        {purpleButton}
-                    </div>
+                        {/* <Button value={number} onClick={handleSubmit} type="number" variant='primary'>submit</Button> */}
+                    {/* if submitted, show message */}
+                            {destroyer ?
+                                null
+                                :
+                                <>
+                                    {purpleButton}
+                                    {error && { error }}</>
+                            }
+                        </div>
+                    </>
                     :
                     null}
             </div>
-
             {/* +- 0.5 buttons */}
             {booleanState === true &&
-                <div className='absolute ratingAnimation left-[50%] -translate-x-[49%] top-[52px]'>
+                <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[52px]'>
                     <Button ref={btnRef2} onClick={decrement} variant='outline-dark' size="lg">-0.5</Button>
-                    <Button ref={btnRef} onClick={increment} className='ml-28' variant='outline-dark' size="lg">+0.5</Button>
+                    <Button ref={btnRef} onClick={increment} className='' variant='outline-dark' size="lg">+0.5</Button>
                 </div>
             }
             <div className='absolute top-[123%] left-[50%] -translate-x-1/2 select-none'>
-                <button className={booleanState ? "block bg-green-500 rounded-full pl-4 pt-2 pb-2 pr-4 text-lg font-extrabold" : "invisible"} variant='success' size='sm' disabled>{score}</button>
+                <button className={booleanState ? "block border-2 border-black  rounded-full pl-4 pt-2 pb-2 pr-4 text-lg font-extrabold" : "invisible"} variant='success' size='sm' disabled>{number}</button>
             </div>
                 {/* sets booleanState to false ==> initializes ALL states */}
             <div>
                 <Button variant='outline-danger' className='mt-[80px] ratingAnimation p-3' onClick={clickHandlerOne}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" fill="currentColor" className="bi bi-wind" viewBox="0 0 16 16">
   <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
 </svg>
                 </Button>
@@ -154,17 +305,15 @@ function HookMood () {
                     </svg>
                 </div>
 
+
             </div>
 
-<div>
-    
-</div>
 
-
+<DataFetch reducerValue={reducerValue} destroyer={destroyer}/>
 
         </>
     )
-    
+
 }
 
 export default HookMood;

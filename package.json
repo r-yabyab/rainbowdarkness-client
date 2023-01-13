@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:4000",
   "homepage": "https://r-yabyab.github.io/rd1/",
   "name": "rainbow-darkness",
   "version": "0.1.0",

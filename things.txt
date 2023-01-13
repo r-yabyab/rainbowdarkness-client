@@ -1,0 +1,43 @@
+in ./package.json
+- added "proxy" for development ease shit
+
+/server
+- added npm install cors
+
+1/12/23
+- added npm install path to server.js for vercel deployment
+
+
+=========
+=========
+git add .
+
+git commit -m "Deployed website"
+
+git push
+
+=========
+=========
+
+$group aggregate
+[
+  {
+    '$group': {
+      '_id': '__v0', 
+      'totalEntries': {
+        '$count': {}
+      }, 
+      'avgPrice': {
+        '$avg': '$number'
+      }
+    }
+  }
+]
+// outputs total number of entries & avg number
+
+
+shit to put:
+- set timer after like 10 seconds
+    - Tips: don't know? Take a look at some questions from similar batteries
+    - click to show batteries
+  
