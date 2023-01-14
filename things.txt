@@ -12,6 +12,14 @@ in ./package.json
 
 =========
 =========
+for deploying
+
+npm run build
+
++
+
+for committing
+
 git add .
 
 git commit -m "Deployed website"
