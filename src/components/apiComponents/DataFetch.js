@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import RainbowDetails from "./RainbowDetails";
 
 
-export function DataFetch ({reducerValue, destroyer}) {
+export function DataFetch ({reducerValue, destroyer, books}) {
 
     const [rainbow, setRainbow] = useState(null)
 
@@ -23,9 +23,9 @@ export function DataFetch ({reducerValue, destroyer}) {
     return(
         <>
             <div className="
-        fixed bottom-[100px] mt-[5em] p-4 select-none text-xl rounded-3xl left-[70px] shadow-red-700 shadow-2xl bg-blue-300 md:hover:bg-[#C4B5FD] from-fuchsia-800
-        max-md:bottom-0 max-md:mb-4 max-md:left-[50%] max-md:-translate-x-1/2 max-md:w-full max-md:rounded-none max-md:text-center max-md:bg-black max-md:text-[#2563EB]
-        ">
+                fixed bottom-[100px] mt-[5em] p-4 select-none text-xl rounded-3xl left-[70px] shadow-red-700 shadow-2xl bg-blue-300 md:hover:bg-[#C4B5FD] from-fuchsia-800
+                max-md:bottom-0 max-md:mb-4 max-md:left-[50%] max-md:-translate-x-1/2 max-md:w-full max-md:rounded-none max-md:text-center max-md:bg-black max-md:text-[#2563EB]
+                ">
                 <p className="font-bold">Global Score</p>
                 <p>Daily: <span className="opacity-40">[WIP]</span></p>
 
@@ -49,6 +49,21 @@ export function DataFetch ({reducerValue, destroyer}) {
 
                     ))}</div>
                 </div>
+            </div>
+
+
+            <div className="
+                fixed bottom-[100px] mt-[5em] p-4 select-none text-xl rounded-3xl right-[70px] shadow-red-700 shadow-2xl bg-blue-300 md:hover:bg-[#C4B5FD] from-fuchsia-800
+                max-md:bottom-0 max-md:mb-4 max-md:left-[70%] max-md:-translate-x-1/2 max-md:rounded-none max-md:text-center max-md:bg-black max-md:text-[#2563EB]
+                ">
+                <p className="font-bold">Your score</p>
+                <div className=' bg-black text-white'>{books.map((book, index1) => (
+                <div key={index1} className=" space-x-2 flex">
+                    <p>{book.inputTime}:</p>
+                    <p className='font-bold ratingAnimationWhite border-green-500 pl-4 pr-4 pt-2 pb-2 border-2 text-green-400'>{book.inputNumber}</p>
+                </div>))}
+            </div>
+                
             </div>
         </>
     )

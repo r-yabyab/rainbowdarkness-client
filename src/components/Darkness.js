@@ -20,10 +20,10 @@ function Darkness() {
                 <div className='text-center ml-auto mr-auto'>
                     {/* <p className='text-black font-bold select-none'>Thank you for participating!</p> */}
                   
-<div className=' m-auto h-[200px] mt-4 bg-green-200 text-black animate-fade w-[600px] rounded-xl border-4 border-black shadow-2xl'>
+{/* <div className=' m-auto h-[200px] mt-4 bg-green-200 text-black animate-fade w-[600px] rounded-xl border-4 border-black shadow-2xl'>
     <p className='font-bold text-left pl-4 pt-4'>YOUR STATS</p>
     <p className='text-left p-4'>1, 2, 3, 4</p>
-</div>
+</div> */}
 <p className='text-black font-bold pt-4 select-none'>Public stats</p>
 
                     <iframe title='iframe_mongoDB' className='  
@@ -70,6 +70,18 @@ function Darkness() {
                             <p className=' text-left font-bold'>Powered By:</p>
                             <p>React, Express, Node, MongoDB Atlas, Vercel</p>
 
+
+                        </div>
+
+                        <div className=' bg-[#F5F5F4] border-2 [&>div]:text-gray-400 [&>p]:text-slate-400 border-slate-300 rounded-lg mt-20 p-4 max-w-[500px] text-left mb-[200px]'>
+                            <div className=' text-left font-bold pb-4'>Changelog:</div>
+                            <div>1.0.0 (January 13, 2023)</div>
+                            <p>Deployed client and server on Vercel</p>
+                            <div>______________</div>
+
+                            <div>1.0.1 (January 15, 2023)</div>
+                            <p>When user submits number, cache & display user's number/date </p>
+                            <div>______________</div>
 
                         </div>
 

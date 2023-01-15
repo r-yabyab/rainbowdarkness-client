@@ -10,6 +10,8 @@ in ./package.json
   "proxy": "http://localhost:4000",
       - for vercel deployment
 
+1/15/23
+- added npm install date-fns --save to /client
 =========
 =========
 for deploying
@@ -51,3 +53,9 @@ shit to put:
     - Tips: don't know? Take a look at some questions from similar batteries
     - click to show batteries
   
+
+  =====
+  =====
+
+  for hookMood's display localstorage data
+  ==> https://github.com/HamzaAnwar1998/LocalStorage-with-React-Hooks-BookList-App/blob/main/src/App.js

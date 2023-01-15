@@ -2,6 +2,17 @@
 import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import { DataFetch } from './apiComponents/DataFetch';
+import { format } from 'date-fns'
+import Darkness from './Darkness';
+
+const getDatafromLS = () => {
+    const moogleData = localStorage.getItem('_APP_moogle');
+    if (moogleData) {
+        return JSON.parse(moogleData)
+    } else {
+        return []
+    }
+}
 
 function HookMood () {
 
@@ -32,6 +43,23 @@ function HookMood () {
     // refreshes api and timer
     const [reducerValue, forceUpdate] = useReducer(x => x + 1, 0);
     //for refreshing className on every click
+    let [numberForStorage, setNumberForStorage] = useState('')
+    // let [dateForStorage, setDateForStorage] = useState('')
+
+    // const [books, setBooks] = useState(getDatafromLS())
+    const books = getDatafromLS()
+
+
+    // vvv doesn't work
+    // const [myLocalStorageData, setMyLocalStorageData] = useState({})
+    // let moogleReturn = () => {
+    //     let d = localStorage.key(0)
+    //     const data11 = localStorage.getItem('_APP_moogle')
+    //     setMyLocalStorageData(JSON.parse(data11))
+    //     console.log(data11)
+    // }
+
+
 
     let selectHandler=(e)=>{
         let x = e.target.getAttribute("selectnums");
@@ -51,6 +79,9 @@ function HookMood () {
         console.log(reducerValue)
     }
 
+    useEffect(() => {
+        setNumberForStorage(number)
+    },[number])
 
 //                                           ////////////////////////////
 //                                           ////////////////////////////
@@ -78,7 +109,7 @@ const handleSubmit = async () => {
 
     const rainbow = {number}
 
-    // for local prod, use 
+    // for local prod, use
     // /api/rainbows
     // with proxy in package.json
 
@@ -97,12 +128,28 @@ const handleSubmit = async () => {
     }
     if (response.ok) {
         setError(null)
-        setNumber('')
         updateList(numberList);
         setBooleanState(false);
         setDestroyer(true);
         setStaticTime(Date.now())
+        setNumber('')
         forceUpdate()
+
+        // gets data from submitbutton
+        const moogleNew = {
+            inputNumber:numberForStorage,
+            inputTime: format(new Date(),'E M/dd')
+        }
+        // if nothing saved at start, then save an empty array
+        if(window.localStorage.getItem('_APP_moogle') == null) {
+            window.localStorage.setItem('_APP_moogle', '[]')
+        }
+        // get old data and slap it to the new data
+            const moogleOld = JSON.parse(window.localStorage.getItem('_APP_moogle'))
+            moogleOld.push(moogleNew)
+            // save old + new data to localStorage
+            window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
+
         // vvv WORKS ON CLIENTSIDE
         //
         // setInterval(() => {
@@ -132,26 +179,29 @@ let [timeLeft, setTimeLeft] = useState(86400000)
     useEffect(() => {
         const data = window.localStorage.getItem('_APP');
         const dataTime = window.localStorage.getItem('_APP_timer');
-        // console.log('data', data)
+        // const dataNumber = window.localStorage.getItem('_APP_moogle')
+        // idk what below does, but it keeps the data stored in application
         if ( dataTime !== null ) setStaticTime(JSON.parse(dataTime));
         if ( data !== null ) setDestroyer(JSON.parse(data));
-        // if ( staticTime == null ) setStaticTime(JSON.parse(dataTime));
-        // // console.log('date is: ', Date())
+        // if ( dataNumber !== null) setNumberForStorage(JSON.parse(dataNumber));
+        // // if ( staticTime == null ) setStaticTime(JSON.parse(dataTime)); <<wrong
+        // when page loads, compare time atm to time submitted button.
         const currentTime = Date.now()
         const timePassed = currentTime - dataTime
-        // 86400000 == 24hrs
-        // 10000 == 10secs
+
         if (timePassed > 86400000) {
             setDestroyer(false)
-            setStaticTime(null)    
+            setStaticTime(null)
         }
-
+        // // 86400000 == 24hrs
+        // // 10000 == 10secs
         // for printing countdown
         const countdown = 86400000 - timePassed
         console.log(timePassed)
         setTimeLeft(countdown)
     }, [])
 
+    //displays timeLeft before submitting when click on button
     useEffect(() => {
         const dataTime = window.localStorage.getItem('_APP_timer');
         const currentTime = Date.now()
@@ -160,7 +210,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         setTimeLeft(countdown)
     }, [reducerValue])
 
-// for timer
+// // for timer
 // // // // // // // // // // // WORKS,
 // // // // // // // // // // // rerenders block components somehow even when not showing
     // useEffect(() => {
@@ -175,7 +225,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         // console.log(destroyer,'localstore')
         window.localStorage.setItem('_APP', JSON.stringify(destroyer))
         window.localStorage.setItem('_APP_timer', JSON.stringify(staticTime))
-    },[destroyer])  
+
+
+    },[destroyer])
 
 
 //
@@ -233,7 +285,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             {destroyer ? <>
                 <div className='
                         absolute right-[50%] translate-x-1/2  text-xl pointer-events-none
-                        md:top-[160%] md:animate-fade 
+                        md:top-[160%] md:animate-fade
                         max-md:top-[35px] max-md:tracking-wide max-md:bg-purple-200  max-md:pt-8 max-md:pb-8 max-md:pr-10 max-md:pl-10 max-md:bg-opacity-80  max-md:w-full
                         [&>p]:m-0
                         '>
@@ -242,7 +294,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     <div><span className={
                         (
                             // it only highlights every 2 clicks, can't figure out for every click
-                            // (reducerValue%2) > 0  && 
+                            // (reducerValue%2) > 0  &&
                         "")}>{timeLeft}</span> milliseconds !!!</div>
                     {/* <p>{staticTime} statictime </p> */}
                     <p>or {parseFloat(timeLeft/(1000*60*60)).toFixed(1)} Hours</p>
@@ -313,8 +365,16 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             </div>
 
 
-<DataFetch reducerValue={reducerValue} destroyer={destroyer}/>
 
+
+{/* 
+ */}
+
+
+
+{/*  */}
+
+<DataFetch reducerValue={reducerValue} destroyer={destroyer} books={books}/>
         </>
     )
 
