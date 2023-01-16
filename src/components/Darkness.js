@@ -36,7 +36,7 @@ function Darkness() {
                             <p className=' text-left font-bold'>Purpose:</p>
                             <div className=' text-left'>
                                 <p>Rainbow Darkness aims to gauge public mental status that is quick and anonymous.</p>
-                                <p>Compared to other mental health apps, we don't ask you to do dumb shit like imagine your perfect beach getaway or read about meditation techniques you'll never use. In here, U just press like 2 buttons</p>
+                                {/* <p>Compared to other mental health apps, we don't ask you to do dumb shit like imagine your perfect beach getaway or read about meditation techniques you'll never use. In here, U just press like 2 buttons</p> */}
                                 {/* <div className=' text-left mt-3'>We offer the following perks compared to other mental-health applications:</div>
                                 <ul className=' list-disc'>
                                     <li>Anonymity</li>

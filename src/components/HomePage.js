@@ -13,7 +13,10 @@ export function HomePage () {
   <>
   
   <link rel="shortcut icon" href="/a.png" />
-        <div draggable="false" className='relative mt-[5em] text-center select-none'>
+        <div draggable="false" className='
+        relative mt-[5em] text-center select-none
+        max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl
+        '>
             <p className='mb-4 text-lg'>How happy are you today?</p>
           {/* <ul className='rating'>
             <li><button type="button" className="btn btn-outline-primary">0</button></li>
