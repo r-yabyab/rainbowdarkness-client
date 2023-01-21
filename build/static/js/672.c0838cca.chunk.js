@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkrainbow_darkness=self.webpackChunkrainbow_darkness||[]).push([[672],{672:function(e,r,n){n.r(r);n(791);var t=n(184);r.default=function(e){var r=e.rainbow;return(0,t.jsx)(t.Fragment,{children:r&&r.map((function(e,r){return(0,t.jsx)("div",{className:" md:text-red-900 md:hover:text-purple-600",children:e.totalEntries},r)}))})}}}]);
+//# sourceMappingURL=672.c0838cca.chunk.js.map

@@ -1,7 +1,7 @@
 // import { render } from '@testing-library/react';
 import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
-import { DataFetch } from './apiComponents/DataFetch';
+import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
 import Darkness from './Darkness';
 
@@ -138,7 +138,7 @@ const handleSubmit = async () => {
         // gets data from submitbutton
         const moogleNew = {
             inputNumber:numberForStorage,
-            inputTime: format(new Date(),'E M/dd')
+            inputTime: format(new Date(),'MM/dd')
         }
         // if nothing saved at start, then save an empty array
         if(window.localStorage.getItem('_APP_moogle') == null) {
@@ -425,16 +425,9 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
             </div>
 
 
-
-
-{/*
- */}
-
-
-
-{/*  */}
-
+<div>
 <DataFetch reducerValue={reducerValue} destroyer={destroyer} books={books}/>
+</div>
         </>
     )
 

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkrainbow_darkness=self.webpackChunkrainbow_darkness||[]).push([[175],{175:function(e,r,n){n.r(r);n(791);var a=n(184);r.default=function(e){var r=e.rainbow;return(0,a.jsx)(a.Fragment,{children:r&&r.map((function(e,r){return(0,a.jsx)("div",{className:" text-green-400 md:hover:text-yellow-200",children:parseFloat(e.avgPrice).toFixed(2)},r)}))})}}}]);
+//# sourceMappingURL=175.6d83ac73.chunk.js.map

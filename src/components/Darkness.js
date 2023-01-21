@@ -80,7 +80,16 @@ function Darkness() {
                             <div>______________</div>
 
                             <div>1.0.1 (January 15, 2023)</div>
-                            <p>When user submits number, cache & display user's number/date </p>
+                            <p>When user submits number: Cache & display user's number/date </p>
+                            <div>______________</div>
+
+                            <div>1.0.2 (January 16, 2023)</div>
+                            <p>Mobile friendlier design </p>
+                            <div>______________</div>
+
+                            <div>1.0.3 (January 20, 2023)</div>
+                            <p>Added loading state when global score loads</p>
+                            <p>Removed day from score dates</p>
                             <div>______________</div>
 
                         </div>

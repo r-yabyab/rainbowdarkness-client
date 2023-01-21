@@ -52,10 +52,40 @@ shit to put:
 - set timer after like 10 seconds
     - Tips: don't know? Take a look at some questions from similar batteries
     - click to show batteries
-  
+- allow to put your own localstorage when you come from phone to desktop  
+
 
   =====
   =====
 
   for hookMood's display localstorage data
   ==> https://github.com/HamzaAnwar1998/LocalStorage-with-React-Hooks-BookList-App/blob/main/src/App.js
+
+
+
+
+
+=====+++++++
+=====+++++++   BACKUPS
+
+for /DataFetch
+avg score:
+                            {rainbow && rainbow.map((rainbow, index1) => (
+
+                            <div className=" text-green-400 md:hover:text-yellow-200" key={index1}>
+                                {/* <RainbowDetails key={rainbow._id} rainbow={rainbow} /> */}
+
+                                {parseFloat(rainbow.avgPrice).toFixed(2)}
+                            </div>
+
+                        ))}
+
+total entries:
+                        {rainbow && rainbow.map((rainbow, index) => (
+
+                        <div className=" md:text-red-900 md:hover:text-purple-600" key={index}>
+                            {/* <RainbowDetails key={rainbow._id} rainbow={rainbow} /> */}
+                            {rainbow.totalEntries}
+                        </div>
+
+                    ))}
