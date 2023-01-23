@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
-import Darkness from './Darkness';
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -275,7 +274,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 className={booleanState ?
                                     "invisible"
                                     :
-                                    "squares ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-outline-secondary btn-lg"}
+                                    "squares ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"}
                                 selectnums={x.num}
                                 onClick={selectHandler}
                                 // key={index}
@@ -284,7 +283,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             </button>
 
                         {/* after click, display chosen number */}
-                        <button className={booleanState ? "squares btn btn-secondary btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[50px]" : 'invisible'}>{number}</button>
+                        <button className={booleanState ? "squares btn btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[50px]" : 'invisible'}>{number}</button>
                             {/* <button removeNums={x.num} onClick={removeHandler}>x</button> */}
                         </div>
                     )
@@ -341,8 +340,8 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
 
             {destroyer ? <>
                 <div className='
-                        absolute right-[50%] translate-x-1/2  text-xl pointer-events-none
-                        md:top-[160%] md:animate-fade
+                        absolute right-[30%] translate-x-1/2  text-xl pointer-events-none
+                        md:top-[40%] md:animate-fade
                         max-md:top-[35px] max-md:tracking-wide max-md:bg-purple-200  max-md:pt-8 max-md:pb-8 max-md:pr-10 max-md:pl-10 max-md:bg-opacity-80  max-md:w-full
                         [&>p]:m-0
                         '>
@@ -382,12 +381,14 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
             {booleanState === true &&
                 <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[52px]
                 max-md:top-[100px] max-md:[&>Button]:p-10 max-md:space-x-[200px] max-md:absolute max-md:min-w-[20000px]'>
-                    <Button ref={btnRef2} onClick={decrement} variant='outline-danger' size="lg">-0.5</Button>
-                    <Button ref={btnRef} onClick={increment} className='' variant='outline-success' size="lg">+0.5</Button>
+                    <Button ref={btnRef2} onClick={decrement} variant='danger' size="lg">-0.5</Button>
+                    <Button ref={btnRef} onClick={increment} className='' variant='success' size="lg">+0.5</Button>
                 </div>
             }
 
-            <div className='absolute top-[123%] left-[50%] -translate-x-1/2 select-none'>
+            <div className='absolute left-[50%] -translate-x-1/2 select-none
+            md:top-[113%]
+            max-md:top-[116%]'>
                 <button className={booleanState ? "block border-2 border-black  rounded-full pl-4 pt-2 pb-2 pr-4 text-lg font-extrabold" : "invisible"} variant='success' size='sm' disabled>{number}</button>
             </div>
             {/* sets booleanState to false ==> initializes ALL states */}
@@ -425,9 +426,9 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
             </div>
 
 
-<div>
+
 <DataFetch reducerValue={reducerValue} destroyer={destroyer} books={books}/>
-</div>
+
         </>
     )
 

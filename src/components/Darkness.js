@@ -68,28 +68,38 @@ function Darkness() {
                             <li>Node</li>
                             <li>MongoDB atlas</li> */}
                             <p className=' text-left font-bold'>Powered By:</p>
-                            <p>React, Express, Node, MongoDB Atlas, Vercel</p>
+                            <p>React, Express, Node, MongoDB, Vercel</p>
 
 
                         </div>
 
                         <div className=' bg-[#F5F5F4] border-2 [&>div]:text-gray-400 [&>p]:text-slate-400 border-slate-300 rounded-lg mt-20 p-4 max-w-[500px] text-left mb-[200px]'>
                             <div className=' text-left font-bold pb-4'>Changelog:</div>
-                            <div>1.0.0 (January 13, 2023)</div>
-                            <p>Deployed client and server on Vercel</p>
+                        
+                            <div>1.0.4 (January 23, 2023)</div>
+                            <p>Added POST limit to database per IP; If you submit a number and clear your cache, subsequent submissions will be denied until the 24 hours is up. <i>When you submit, session data is temp stored for 24hr on the server (express-rate-limit).</i> Working to implement limit per device instead of IP. </p>
+                            <p>Changed logo</p>
+                            <p>Changed result layout</p>
+                            <p>Added help button on top right</p>
+                            <p>Broke score animation when you submit, now it only shows when you refresh, need to fix</p>
+                            <div>______________</div>
+                
+                            <div>1.0.3 (January 20, 2023)</div>
+                            <p>Added loading state when global score loads</p>
+                            <p>Removed day from score dates</p>
+                            <div>______________</div>
+
+
+                            <div>1.0.2 (January 16, 2023)</div>
+                            <p>Mobile friendlier design </p>
                             <div>______________</div>
 
                             <div>1.0.1 (January 15, 2023)</div>
                             <p>When user submits number: Cache & display user's number/date </p>
                             <div>______________</div>
 
-                            <div>1.0.2 (January 16, 2023)</div>
-                            <p>Mobile friendlier design </p>
-                            <div>______________</div>
-
-                            <div>1.0.3 (January 20, 2023)</div>
-                            <p>Added loading state when global score loads</p>
-                            <p>Removed day from score dates</p>
+                            <div>1.0.0 (January 13, 2023)</div>
+                            <p>Deployed client and server on Vercel</p>
                             <div>______________</div>
 
                         </div>

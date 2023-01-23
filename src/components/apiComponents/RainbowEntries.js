@@ -5,7 +5,7 @@ function RainbowEntries({ rainbow }) {
         <>
             {rainbow && rainbow.map((rainbow, index) => (
 
-                <div className=" md:text-red-900 md:hover:text-purple-600" key={index}>
+                <div className=" md:text-red-900 md:hover:text-purple-600 ratingAnimationYellow" key={index}>
                     {/* <RainbowDetails key={rainbow._id} rainbow={rainbow} /> */}
                     {rainbow.totalEntries}
                 </div>
