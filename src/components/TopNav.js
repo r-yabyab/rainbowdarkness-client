@@ -11,11 +11,11 @@ export function TopNav() {
     return (
         <>
             <div className='
-            navbar 
+            navbar  
             max-md:border-y-2 max-md:-mt-2 max-md:border-[#1D4ED8] max-md:h-[40px] max-md:bg-[#1D4ED8]
             justify-content-center select-none 
             ' draggable="false">
-                <ul className='
+                <ul className=' md:hidden
                 text-black [&>*]:font-semibold tracking-tight
                 max-md:absolute max-md:-left-[70px] max-md:top-0
                 '>
@@ -42,16 +42,18 @@ export function TopNav() {
                     {/* <Link className='no-underline bg-yellow-500 pt-4 pb-10 hover:bg-black hover:text-black' to="/darkness"><li>Darkness</li></Link> */}
                 </ul>
 
-
-         
+<div className='[&>*]:text-yellow-300 flex space-x-2 font-semibold text-xl max-md:hidden'>
+<Link to='/' className='no-underline'><div className='hover:text-white'>Rainbow</div></Link>
+<Link to='/darkness' className='no-underline'><div className=' hover:text-purple-300'>Darkness</div></Link>
+</div>    
 
             </div>
             <div className='absolute top-0 text-stone-100 
             max-md:w-[30px] max-md:ml-2'>
                 {/* top right sun */}
                 <Link to="/"><div className='flex'>
-                    <img src={logo} alt="logo" className='w-[100px] select-none' draggable="false" />
-                    <img src={logo} alt="logo" className='w-[100px] select-none max-md:hidden' draggable="false" />
+                    <img src={logo} alt="logo" className='w-[100px] select-none md:hidden' draggable="false" />
+                    <img src={logo} alt="logo" className='w-[100px] select-none md:hidden max-md:hidden' draggable="false" />
                 </div></Link>
 
        {/* <svg xmlns="http://www.w3.org/2000/svg" width="100" fill="currentColor" 

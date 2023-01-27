@@ -244,24 +244,24 @@ let [timeLeft, setTimeLeft] = useState(86400000)
     let btnRef = useRef();
     let btnRef2 = useRef();
 
-    const purpleButton =             (<div value={number} onClick={handleSubmit} type="number"
-    className="
-    absolute right-[18%] top-[20%] inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group
-    max-md:right-[50%] max-md:translate-x-1/2 max-md:invisible">
-    <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-    </span>
-    <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease
-    ">
-        Submit</span>
-    <span className="relative invisible">Submit</span>
-    </div>)
+    // const purpleButton =             (<div value={number} onClick={handleSubmit} type="number"
+    // className="
+    // absolute right-[18%] top-[20%] inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group
+    // max-md:right-[50%] max-md:translate-x-1/2 max-md:invisible">
+    // <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
+    // <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+    // </span>
+    // <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease
+    // ">
+    //     Submit</span>
+    // <span className="relative invisible">Submit</span>
+    // </div>)
 
 
 
     return (
         <>
-            <div className="max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center">
+            <div className=" max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center">
                 {/* {list.filter((item,index) => index < 9 ).map((x, index) => */}
                 {list.filter((item, index) => index < 9).map((x, index) => {
                 // displays row of numbers from array
@@ -274,7 +274,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 className={booleanState ?
                                     "invisible"
                                     :
-                                    "squares ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"}
+                                    " squares ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light bg-white btn-lg"}
                                 selectnums={x.num}
                                 onClick={selectHandler}
                                 // key={index}
@@ -358,13 +358,13 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
             </> : null}
 
 {/* Submit button */}
-            <div>
-                {booleanState ?
+            {/* <div> */}
+                {/* {booleanState ?
                     <>
-                    <div>
+                    <div> */}
                         {/* <Button value={number} onClick={handleSubmit} type="number" variant='primary'>submit</Button> */}
                     {/* if submitted, show message */}
-                            {destroyer ?
+                            {/* {destroyer ?
                                 null
                                 :
                                 <>
@@ -374,12 +374,12 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
                         </div>
                     </>
                     :
-                    null}
-            </div>
+                    null} */}
+            {/* </div> */}
             {/* +- 0.5 buttons */}
 
             {booleanState === true &&
-                <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[52px]
+                <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
                 max-md:top-[100px] max-md:[&>Button]:p-10 max-md:space-x-[200px] max-md:absolute max-md:min-w-[20000px]'>
                     <Button ref={btnRef2} onClick={decrement} variant='danger' size="lg">-0.5</Button>
                     <Button ref={btnRef} onClick={increment} className='' variant='success' size="lg">+0.5</Button>
@@ -391,13 +391,49 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
             max-md:top-[116%]'>
                 <button className={booleanState ? "block border-2 border-black  rounded-full pl-4 pt-2 pb-2 pr-4 text-lg font-extrabold" : "invisible"} variant='success' size='sm' disabled>{number}</button>
             </div>
-            {/* sets booleanState to false ==> initializes ALL states */}
-            <div>
-                <Button variant='outline-danger' className='mt-[80px] ratingAnimation p-3' onClick={clickHandlerOne}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" fill="currentColor" className="bi bi-wind" viewBox="0 0 16 16">
+            
+            {/* sets booleanState to false ==> initializes ALL states **resetButton */}
+            <div className='mt-[80px]'>
+                {/* <Button variant='outline-dark' className='mt-[80px] ratingAnimation p-3' onClick={clickHandlerOne}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="currentColor" className="bi bi-wind" viewBox="0 0 16 16">
                         <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z" />
                     </svg>
-                </Button>
+                </Button> */}
+                <button
+                    onClick={clickHandlerOne}
+                    className='
+                mr-[240px] pr-4 pl-4 pt-3 pb-3 text-xl font-bold border-black rounded-md
+               hover:text-white
+                '>
+                    {/* <i>R</i> */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
+  <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+</svg>
+                </button>
+
+                <div className='[&>*]:bg-black max-md:hidden [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[54%] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12'>
+                    <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
+                    value={number} onClick={handleSubmit} type="number"
+                        className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') || (destroyer ? 'opacity-30' : 'hover:text-yellow-200')}
+                    >
+                        Submit</button>{error && { error }}
+                </div> 
+
+                {/* {booleanState ?
+                    <>
+                            {destroyer ?
+                                null
+                                :
+                                <>
+                                                    <button className='bg-black font-bold tracking-wider absolute top-[50%] -translate-y-1/2 text-white pt-2 pb-2 pr-8 pl-8'>Submit</button>
+                                    {error && { error }}</>
+                            }
+                    </>
+                    :
+                    <button disabled="true" className='bg-black font-bold tracking-wider absolute top-[50%] -translate-y-1/2 text-white pt-2 pb-2 pr-8 pl-8'>Submit</button>
+                    
+                    } */}
             </div>
 
 {/* EMOJIS :p */}

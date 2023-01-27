@@ -75,9 +75,14 @@ function Darkness() {
 
                         <div className=' bg-[#F5F5F4] border-2 [&>div]:text-gray-400 [&>p]:text-slate-400 border-slate-300 rounded-lg mt-20 p-4 max-w-[500px] text-left mb-[200px]'>
                             <div className=' text-left font-bold pb-4'>Changelog:</div>
-                        
+
+                            <div>1.0.5 (January 27, 2023)</div>
+                            <p className='mb-0'>Simplified desktop UI</p>
+                            <li className='text-gray-400'>Changed color scheme, submit button, reset button, header size, font sizes/boldness</li>
+                            <div>______________</div>
+
                             <div>1.0.4 (January 23, 2023)</div>
-                            <p>Added POST limit to database per IP; If you submit a number and clear your cache, subsequent submissions will be denied until the 24 hours is up. <i>When you submit, session data is temp stored for 24hr on the server (express-rate-limit).</i> Working to implement limit per device instead of IP. </p>
+                            <p>Added POST limit to database per IP; If you submit a number and clear your cache, subsequent submissions will be denied until the 24 hours is up. Working to implement limit per device instead of IP. </p>
                             <p>Changed logo</p>
                             <p>Changed result layout</p>
                             <p>Added help button on top right</p>
@@ -105,9 +110,11 @@ function Darkness() {
                         </div>
 
                     </div>
-
+                    <div className='absolute bottom-10 left-[50%] -translate-x-1/2'>Got feedback? Please let me know!</div>
                 </div>
+           
             </div>
+
 
             <p className="bottomRightText">Time before next entry:</p>
 

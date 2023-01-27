@@ -31,8 +31,8 @@ useEffect (() => {
 
   return (
     <>
-      <div className='fixed h-full w-full bg-red-100' />
-    <div className={help ? "blur-2xl animate-spin" : ""}>
+      <div className='fixed h-full w-full bg-slate-100' />
+    <div className={help ? "blur-xl" : ""}>
       <TopNav />
 
       <Routes>
@@ -40,9 +40,9 @@ useEffect (() => {
         <Route path='/darkness' element={<Darkness />} />
       </Routes>
 
-      <svg xmlns="http://www.w3.org/2000/svg" width="80" fill="currentColor"
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor"
         onClick={helpHandler} ref={helpRef}
-        className="absolute top-0 right-0 text-gray-400 pt-[14px] mr-4 
+        className="absolute top-0 right-0 text-gray-400 pt-[8px] mr-2 
                 hover:cursor-pointer hover:text-white
                 "
         viewBox="0 0 16 16">

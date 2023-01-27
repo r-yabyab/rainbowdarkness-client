@@ -52,6 +52,10 @@
     animation: 1.5s 0s 1 fadeFromWhite;
 } 
 
+.ratingAnimationToBlack {
+    animation: 1.5s 0s 1 fadeToBlack;
+} 
+
 @keyframes fadeInCenter {
     0% {
         opacity: 30%;
@@ -88,6 +92,13 @@
  
      }
 100% { background-color: none; }
+}
+
+@keyframes fadeToBlack{
+    0% { background-color: none;
+ 
+     }
+100% { background-color: black; }
 }
 
 .squares {
