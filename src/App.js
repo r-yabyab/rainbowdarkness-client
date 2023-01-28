@@ -31,7 +31,7 @@ useEffect (() => {
 
   return (
     <>
-      <div className='fixed h-full w-full bg-slate-100' />
+      <div className='fixed h-full w-full bg-slate-800' />
     <div className={help ? "blur-xl" : ""}>
       <TopNav />
 
