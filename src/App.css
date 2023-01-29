@@ -13,6 +13,15 @@
     /* margin:-10px -10px -10px -10px; */
 }
 
+/*
+.squares {
+opacity:100%;
+}*/
+
+.squaresBackground {
+    background-image: linear-gradient(90deg, red, orange, lightgreen);
+}
+
 .navbar ul{
     padding-top:10px;
 }

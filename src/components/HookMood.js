@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
+import Gradient1 from '../photos/gradient1.png'
+import Scuffed from '../photos/scuffed-gradient.png'
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -261,35 +263,52 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
     return (
         <>
-            <div className=" max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center">
+                {/* <div className=' text-transparent text-xl bg-gradient-to-r from-purple-500 to-green-400 absolute w-full h-full bg-blend-multiply' /> */}
+                {/* <img className='absolute top-20 left-[50%] -translate-x-1/2 w-[534px]' src={Gradient1} alt='gradient' /> */}
+<img className={booleanState ? "hidden" : 'absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]'} src={Scuffed} alt='gradientlol' />
+
+            <div className="
+            
+            max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center">
                 {/* {list.filter((item,index) => index < 9 ).map((x, index) => */}
-                {list.filter((item, index) => index < 9).map((x, index) => {
-                // displays row of numbers from array
+                <div>
+
+                    {list.filter((item, index) => index < 9).map((x, index) => {
+                    // displays row of numbers from array
                     return (
-                        <div  className='relative md:text-center md:inline-flex md:p-0
-                         max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap
+                        
+                        <div className='
+                         
+                        relative md:text-center md:inline-flex md:p-0
+                         max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap 
                                 max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
                         ' key={index}>
+
                             <button
                                 className={booleanState ?
                                     "invisible"
                                     :
-                                    " squares ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light bg-white btn-lg"}
+                                    "squares bg-transparent ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"}
                                 selectnums={x.num}
                                 onClick={selectHandler}
-                                // key={index}
+                            // key={index}
                             >
-                        {x.num}
+
+
+                                {x.num}
+                                
                             </button>
 
-                        {/* after click, display chosen number */}
-                        <button className={booleanState ? "squares btn btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[50px]" : 'invisible'}>{number}</button>
+                            {/* after click, display chosen number */}
+                            <button className={booleanState ? "squares bg-transparent btn btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[50px]" : 'invisible'}>{number}</button>
                             {/* <button removeNums={x.num} onClick={removeHandler}>x</button> */}
+                            
                         </div>
                     )
                 })}
+                
+                </div>
             </div>
-
 {/* for displaying only 0 && 10 Buttons */}
             {/* <div className='absolute'>
                 {list.filter((item,index) => index == 0).map((x, index) => {
@@ -412,10 +431,20 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
 </svg>
                 </button>
 
+{/* submitButton Desktop */}
                 <div className='[&>*]:bg-black max-md:hidden [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[54%] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12'>
+                    {/* When click button: booleanState = true */}
+                    {/* localStorage: true */}
+                    {/* disabled = {false || true } |- true */}
+                    {/*  */}
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                     value={number} onClick={handleSubmit} type="number"
-                        className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') || (destroyer ? 'opacity-30' : 'hover:text-yellow-200')}
+                        // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
+                        // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
+                        className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300' : 'opacity-30'))}
+
+                        // className={(booleanState  destroyer) ? 'hover:text-yellow-300' : 'opacity-30'}
+                        // const disabledState = if booleanState
                     >
                         Submit</button>{error && { error }}
                 </div> 

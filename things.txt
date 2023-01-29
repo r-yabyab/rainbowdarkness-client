@@ -89,3 +89,41 @@ total entries:
                         </div>
 
                     ))}
+
+
+
+
+// this one works for the array
+ <div className=" max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center">
+                {/* {list.filter((item,index) => index < 9 ).map((x, index) => */}
+                {list.filter((item, index) => index < 9).map((x, index) => {
+                // displays row of numbers from array
+                    return (
+                        <div  className='relative md:text-center md:inline-flex md:p-0
+                         max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap
+                                max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
+                        ' key={index}>
+                            <button
+                                className={booleanState ?
+                                    "invisible"
+                                    :
+                                    " squares ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light bg-white btn-lg"}
+                                selectnums={x.num}
+                                onClick={selectHandler}
+                                // key={index}
+                            >
+                        {x.num}
+                            </button>
+
+                        {/* after click, display chosen number */}
+                        <button className={booleanState ? "squares btn btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[50px]" : 'invisible'}>{number}</button>
+                            {/* <button removeNums={x.num} onClick={removeHandler}>x</button> */}
+                        </div>
+                    )
+                })}
+            </div>
+
+
+
+///
+            font-extrabold text-transparent text-xl bg-gradient-to-r from-purple-500 to-green-400
