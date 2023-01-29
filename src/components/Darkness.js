@@ -33,7 +33,7 @@ function Darkness() {
 <p className='text-black font-bold pt-4 select-none'>Public stats</p>
 
                     <iframe title='iframe_mongoDB' className='  
-                    m-auto w-[600px] h-[600px] select-none'  
+                    m-auto w-[1000px] h-[800px] select-none'  
                     src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed"></iframe>
 
                     <div className=' animate-fade'>
@@ -89,6 +89,13 @@ function Darkness() {
   <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
 </svg>
                             </div> */}
+
+                            <div>1.0.7 (January 29, 2023)</div>
+                            <p className='mb-0'>Added new features to the Public Stats chart:</p>
+                            <li className='text-gray-400'>displays # of users as a separate line</li>
+                            <li className='text-gray-400'>updated labels</li>
+                            <p>Broke mobile button presses again (they double render on click)</p>
+                            <div>______________</div>
 
                             <div>1.0.6 (January 28, 2023)</div>
                             <p>Changed button colors</p>
