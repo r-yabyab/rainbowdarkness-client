@@ -3,6 +3,12 @@ import "../App.css"
 
 function Darkness() {
 
+    // const [expander, setExpander] = useState(false)
+
+    // const expandHandler = () => {
+    //     setExpander(!expander)
+    // }
+
     useEffect (() => {
         document.title = 'Stats';
       }, [])
@@ -75,6 +81,18 @@ function Darkness() {
 
                         <div className=' bg-[#F5F5F4] border-2 [&>div]:text-gray-400 [&>p]:text-slate-400 border-slate-300 rounded-lg mt-20 p-4 max-w-[500px] text-left mb-[200px]'>
                             <div className=' text-left font-bold pb-4'>Changelog:</div>
+
+                            {/* <div className=''>
+                            <svg 
+                            onClick={expandHandler}
+                            xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" className="absolute right-[26%] text-orange-400 hover:text-yellow-200" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+</svg>
+                            </div> */}
+
+                            <div>1.0.6 (January 28, 2023)</div>
+                            <p>Changed button colors</p>
+                            <div>______________</div>
 
                             <div>1.0.5 (January 27, 2023)</div>
                             <p className='mb-0'>Simplified desktop UI</p>

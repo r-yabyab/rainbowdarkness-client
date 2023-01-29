@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
-import Gradient1 from '../photos/gradient1.png'
+// import Gradient1 from '../photos/gradient1.png'
 import Scuffed from '../photos/scuffed-gradient.png'
 
 const getDatafromLS = () => {
@@ -265,7 +265,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         <>
                 {/* <div className=' text-transparent text-xl bg-gradient-to-r from-purple-500 to-green-400 absolute w-full h-full bg-blend-multiply' /> */}
                 {/* <img className='absolute top-20 left-[50%] -translate-x-1/2 w-[534px]' src={Gradient1} alt='gradient' /> */}
-<img className={booleanState ? "hidden" : 'absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]'} src={Scuffed} alt='gradientlol' />
+<img className={booleanState ? "hidden" : 'max-md:hidden absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]'} src={Scuffed} alt='gradientlol' />
 
             <div className="
             
@@ -288,7 +288,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 className={booleanState ?
                                     "invisible"
                                     :
-                                    "squares bg-transparent ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"}
+                                    "squares max-md:bg-white bg-transparent ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"}
                                 selectnums={x.num}
                                 onClick={selectHandler}
                             // key={index}
@@ -399,7 +399,7 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
 
             {booleanState === true &&
                 <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
-                max-md:top-[100px] max-md:[&>Button]:p-10 max-md:space-x-[200px] max-md:absolute max-md:min-w-[20000px]'>
+                max-md:top-[130px] max-md:[&>Button]:p-10 max-md:space-x-[200px] max-md:absolute max-md:min-w-[20000px]'>
                     <Button ref={btnRef2} onClick={decrement} variant='danger' size="lg">-0.5</Button>
                     <Button ref={btnRef} onClick={increment} className='' variant='success' size="lg">+0.5</Button>
                 </div>
