@@ -92,6 +92,7 @@ function Darkness() {
 
                             <div>1.0.6 (January 28, 2023)</div>
                             <p>Changed button colors</p>
+                            <p>Fixed submit button transparency logic</p>
                             <div>______________</div>
 
                             <div>1.0.5 (January 27, 2023)</div>

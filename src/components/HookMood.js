@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
-// import Gradient1 from '../photos/gradient1.png'
+import Gradient1 from '../photos/gradient1.png'
 import Scuffed from '../photos/scuffed-gradient.png'
 
 const getDatafromLS = () => {
@@ -268,17 +268,22 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 <img className={booleanState ? "hidden" : 'max-md:hidden absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]'} src={Scuffed} alt='gradientlol' />
 
             <div className="
-            
-            max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center">
+            max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center"
+            >
+
+                {/* vvvvvv for masking to image (mobile responsive as well) */}
+                {/* <div className={booleanState ? "max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center" : "mask max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center"}> */}
+
                 {/* {list.filter((item,index) => index < 9 ).map((x, index) => */}
-                <div>
+                {/* <div className='left-0 absolute'></div> */}
+                
 
                     {list.filter((item, index) => index < 9).map((x, index) => {
                     // displays row of numbers from array
                     return (
                         
                         <div className='
-                         
+                        
                         relative md:text-center md:inline-flex md:p-0
                          max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap 
                                 max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
@@ -288,7 +293,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 className={booleanState ?
                                     "invisible"
                                     :
-                                    "squares max-md:bg-white bg-transparent ratingAnimation md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"}
+                                    "squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"}
                                 selectnums={x.num}
                                 onClick={selectHandler}
                             // key={index}
@@ -300,14 +305,15 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             </button>
 
                             {/* after click, display chosen number */}
-                            <button className={booleanState ? "squares bg-transparent btn btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[50px]" : 'invisible'}>{number}</button>
+                            <button className={booleanState ? "squares bg-transparent btn text-black btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[50px]" : 'invisible'}>{number}</button>
                             {/* <button removeNums={x.num} onClick={removeHandler}>x</button> */}
                             
                         </div>
                     )
                 })}
                 
-                </div>
+
+                
             </div>
 {/* for displaying only 0 && 10 Buttons */}
             {/* <div className='absolute'>
@@ -346,7 +352,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 null
                                 :
                                 <>
-<div className={booleanState ? "absolute md:invisible top-[77%] left-[60%]" : "absolute invisible " }
+<div className={booleanState ? "absolute md:hidden top-[77%] left-[60%]" : "absolute hidden " }
 onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill="currentColor" className="bi hover:cursor-pointer bi-check-square-fill text-green-700 hover:text-green-300" viewBox="0 0 16 16">
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
 </svg></div></>
