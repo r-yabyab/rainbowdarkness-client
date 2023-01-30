@@ -95,6 +95,12 @@ function Darkness() {
                             <li className='text-gray-400'>displays # of users as a separate line</li>
                             <li className='text-gray-400'>updated labels</li>
                             <p>Updated help tooltip</p>
+                            <p>Added page indicator</p>
+                            <p>Added milestones</p>
+                            <p><span className='text-red-400'>MOVED TO NEW DOMAIN</span></p>
+                            <p className='-mt-5'><span className='text-red-400'>Personal scores (browser cache) have been reset for previous </span></p>
+                            <p className='-mt-5'><span className='text-red-400'>users.</span></p>
+                            {/* <p className='-mt-5'>Will add way for users to input previous scores</p> */}
                             <p>Mobile friendlier (buttons, header, help tooltip)</p>
 
                             <p>Broke mobile button presses again (they double render on click)</p>
@@ -137,6 +143,14 @@ function Darkness() {
                             <div>______________</div>
 
                         </div>
+
+                        <div className=' bg-black text-gray-300 rounded-lg mt-20 p-4 max-w-[500px] text-left mb-[200px]'>
+                            <p className=' text-left font-bold'>Milestones :)</p>
+                            <p>Reached 20 unique visitors in a week on 1/29/23 [20:08]</p>
+                            {/* <p> with ∼40% engagement</p> */}
+
+                        </div>
+
 
                     </div>
                     <div className='absolute bottom-10 left-[50%] -translate-x-1/2'>Got feedback? Please let me know!</div>
