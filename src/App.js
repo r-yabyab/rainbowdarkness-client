@@ -5,11 +5,13 @@ import { TopNav } from './components/TopNav';
 import { Routes, Route } from 'react-router-dom'
 import Darkness from './components/Darkness';
 import { BottomHeader } from './components/BottomHeader';
-import breeze from './photos/breeze.png'
+// import resetArrow from './photos/resetArrow.png'
+import GraphPic from './photos/graph-pic.png'
 
 export function App() {
 
   const [help, setHelp] = useState(false)
+  const [pageDetect, setPageDetect] = useState(false)
 
   const helpHandler = () => {
       setHelp(true)
@@ -33,7 +35,10 @@ useEffect (() => {
     <>
       <div className='fixed h-full w-full bg-slate-100' />
       <div className={help ? "blur-xl" : ""}>
-        <TopNav />
+       
+
+       
+        <TopNav pageDetect={pageDetect} setPageDetect={setPageDetect} />
 
         <Routes>
           <Route path='/' element={<HomePage />} />
@@ -42,7 +47,7 @@ useEffect (() => {
 
         <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor"
           onClick={helpHandler} ref={helpRef}
-          className="absolute top-0 right-0 text-gray-400 pt-[8px] mr-2 
+          className="absolute top-0 right-0 text-gray-400 animate-pulse pt-[8px] mr-2 
                 hover:cursor-pointer hover:text-white
                 "
           viewBox="0 0 16 16">
@@ -61,15 +66,45 @@ useEffect (() => {
       {/* Help icon */}
 
       {help ?
-        <div className='fixed select-none animate-fade bg-slate-400 left-[50%] -translate-x-1/2 top-[20%] h-[400px] w-[600px] shadow-inner shadow-zinc-600'>
-          <div className='pl-10 pt-10 text-3xl font-bold tracking-tight'>How To Play</div>
-          <div className='pl-10 pt-8 text-lg'>Pick a number and submit</div>
-          <img src={breeze} alt="resetButton" className='pl-10 pt-4' />
-          <div className='pl-10'>Press to change your number</div>
-          <div className='pl-10 pt-4 text-lg'>You can submit every 24 hours!</div>
+        <div className='
+        fixed select-none animate-fade bg-slate-400 left-[50%] -translate-x-1/2 top-[12%] h-[740px] w-[600px] shadow-inner shadow-zinc-600
+        max-md:w-[340px] max-md:h-[650px] max-md:pl-4 max-md:pr-4 max-md:top-[10%] max-md:
+        '>
+
+<div className='absolute right-4 max-md:right-4 md:top-4 max-md:top-4 md:hover:text-white '>
+<svg xmlns="http://www.w3.org/2000/svg" width="60" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
+  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+</svg>
+</div>
+
+          <div className='pl-10 pt-8 text-3xl font-bold tracking-tight max-md:pl-0 max-md:pt-6'>How To Play</div>
+          <div className='pl-10 pt-8 text-lg max-md:pl-0 max-md:pt-4 max-md:pb-6'>Choose a number based on how happy you are at the moment.</div>
+
+<div className='
+max-md:[&>p]:-mb-[3px] max-md:[&>p]:ml-4 
+md:ml-10
+  md:[&>p]:-mb-[3px] md:[&>p]:ml-4 
+'>
+  <div className='md:mt-6'>Trouble choosing a number? Consider the following:</div>
+<p>- My life conditions are not good.</p>
+<p>- My future is bleak.</p>
+<p>- I find my life to be purposeful.</p>
+<p>- I contribute effectively in society.</p>
+<p>- I am not satisfied with my life.</p>
+<p>- Usually, I am not able to control my</p>
+<p>feelings.</p>
+<div className='text-slate-500 text-sm pt-0'>From <i>Development and Standardization of Mental Health Battery for
+Visually Impaired (2018)</i></div>
+</div>
+
+<div className='md:text-center max-md:pt-6'>Don't forget to compare yourself with the chart. <span className='md:hidden'>It updates daily!</span></div>
+<div className='md:text-center max-md:hidden'>It updates daily!</div>
+<img className='md:pl-16 md:pr-16' src={GraphPic} />
         </div>
         :
         ""}
+
+
 
 
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
-import Gradient1 from '../photos/gradient1.png'
+// import Gradient1 from '../photos/gradient1.png'
 import Scuffed from '../photos/scuffed-gradient.png'
 
 const getDatafromLS = () => {
@@ -305,7 +305,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             </button>
 
                             {/* after click, display chosen number */}
-                            <button className={booleanState ? "squares bg-transparent btn text-black btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[50px]" : 'invisible'}>{number}</button>
+                            <button className={booleanState ? "squares bg-transparent btn text-black btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[96px]" : 'invisible'}>{number}</button>
                             {/* <button removeNums={x.num} onClick={removeHandler}>x</button> */}
                             
                         </div>
@@ -343,12 +343,12 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 })}
             </div> */}
 
-{booleanState ?
+{/* {booleanState ?
                     <>
-                    <div>
+                    <div> */}
                         {/* <Button value={number} onClick={handleSubmit} type="number" variant='primary'>submit</Button> */}
                     {/* if submitted, show message */}
-                            {destroyer ?
+                            {/* {destroyer ?
                                 null
                                 :
                                 <>
@@ -360,25 +360,25 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
                         </div>
                     </>
                     :
-                    null}
-
+                    null} */}
 
             {destroyer ? <>
                 <div className='
-                        absolute right-[30%] translate-x-1/2  text-xl pointer-events-none
+                        absolute md:right-[30%] translate-x-1/2  text-xl pointer-events-none
                         md:top-[40%] md:animate-fade
-                        max-md:top-[35px] max-md:tracking-wide max-md:bg-purple-200  max-md:pt-8 max-md:pb-8 max-md:pr-10 max-md:pl-10 max-md:bg-opacity-80  max-md:w-full
+                        max-md:top-[35px] max-md:left-[50%] max-md:-translate-x-1/2 max-md:w-full max-md:bg-purple-200  max-md:pt-8 max-md:pb-8 max-md:pr-10 max-md:pl-10 max-md:bg-opacity-80
                         [&>p]:m-0
                         '>
                     <p className='font-extrabold md:animate-bounce'>Thank you!</p>
                     <p>Please come again in  </p>
-                    <div><span className={
+                    <div className='max-md:hidden'><span className={
                         (
                             // it only highlights every 2 clicks, can't figure out for every click
                             // (reducerValue%2) > 0  &&
                         "")}>{timeLeft}</span> milliseconds !!!</div>
                     {/* <p>{staticTime} statictime </p> */}
                     <p>or {parseFloat(timeLeft/(1000*60*60)).toFixed(1)} Hours</p>
+                    <p className=''>Click on <span className='text-yellow-400 bg-black'>Darkness</span> ^^^ for the line graph </p>
                 </div>
             </> : null}
 
@@ -405,7 +405,7 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
 
             {booleanState === true &&
                 <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
-                max-md:top-[130px] max-md:[&>Button]:p-10 max-md:space-x-[200px] max-md:absolute max-md:min-w-[20000px]'>
+                max-md:top-[130px] max-md:[&>Button]:p-10 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
                     <Button ref={btnRef2} onClick={decrement} variant='danger' size="lg">-0.5</Button>
                     <Button ref={btnRef} onClick={increment} className='' variant='success' size="lg">+0.5</Button>
                 </div>
@@ -414,7 +414,7 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
             <div className='absolute left-[50%] -translate-x-1/2 select-none
             md:top-[113%]
             max-md:top-[116%]'>
-                <button className={booleanState ? "block border-2 border-black  rounded-full pl-4 pt-2 pb-2 pr-4 text-lg font-extrabold" : "invisible"} variant='success' size='sm' disabled>{number}</button>
+                <button className={booleanState ? "block border-2 border-black max-md:hidden rounded-full pl-4 pt-2 pb-2 pr-4 text-lg font-extrabold" : "invisible"} variant='success' size='sm' disabled>{number}</button>
             </div>
             
             {/* sets booleanState to false ==> initializes ALL states **resetButton */}
@@ -427,53 +427,45 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
                 <button
                     onClick={clickHandlerOne}
                     className='
-                mr-[240px] pr-4 pl-4 pt-3 pb-3 text-xl font-bold border-black rounded-md
+                mr-[240px] pr-4 pl-4 pt-3 pb-3 text-xl font-bold 
                hover:text-white
+               max-md:border-black max-md:rounded-md max-md:border-2 max-md:hover:bg-black max-md:left-[10%] max-md:top-[320px] max-md:mt-6 max-md:pb-6 max-md:absolute 
                 '>
                     {/* <i>R</i> */}
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
-  <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
-</svg>
+                        <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+                    </svg>
                 </button>
 
-{/* submitButton Desktop */}
-                <div className='[&>*]:bg-black max-md:hidden [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[54%] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12'>
+                {/* submitButton Desktop + mobile */}
+                <div className='
+                [&>*]:bg-black [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[54%] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
+                max-md:[&>*]:top-[374px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
+                '>
                     {/* When click button: booleanState = true */}
                     {/* localStorage: true */}
                     {/* disabled = {false || true } |- true */}
                     {/*  */}
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
-                    value={number} onClick={handleSubmit} type="number"
+                        value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
                         className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300' : 'opacity-30'))}
 
-                        // className={(booleanState  destroyer) ? 'hover:text-yellow-300' : 'opacity-30'}
-                        // const disabledState = if booleanState
+                    // className={(booleanState  destroyer) ? 'hover:text-yellow-300' : 'opacity-30'}
+                    // const disabledState = if booleanState
                     >
                         Submit</button>{error && { error }}
                 </div> 
 
-                {/* {booleanState ?
-                    <>
-                            {destroyer ?
-                                null
-                                :
-                                <>
-                                                    <button className='bg-black font-bold tracking-wider absolute top-[50%] -translate-y-1/2 text-white pt-2 pb-2 pr-8 pl-8'>Submit</button>
-                                    {error && { error }}</>
-                            }
-                    </>
-                    :
-                    <button disabled="true" className='bg-black font-bold tracking-wider absolute top-[50%] -translate-y-1/2 text-white pt-2 pb-2 pr-8 pl-8'>Submit</button>
-                    
-                    } */}
             </div>
 
 {/* EMOJIS :p */}
             <div className='absolute left-[50%] -translate-x-1/2 -bottom-[100px] flex
-[&>div]:ml-10 first:[&>div]:ml-0'>
+[&>div]:ml-10 first:[&>div]:ml-0
+max-md:hidden
+'>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" fill="currentColor" className="bi bi-emoji-expressionless-fill" viewBox="0 0 16 16">
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM4.5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm5 0h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm-5 4h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z" />

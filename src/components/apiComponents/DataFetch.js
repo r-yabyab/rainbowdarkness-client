@@ -27,16 +27,17 @@ function DataFetch ({reducerValue, destroyer, books}) {
         <>
 
             {/* fixed containers */}
-            <div className="md:hidden">
+            {/* <div className="md:hidden">
                 <div className="
                 fixed bottom-[100px] mt-[5em] p-4 select-none text-xl rounded-3xl left-[70px] shadow-red-700 shadow-2xl bg-blue-300  from-fuchsia-800
                 md:hover:bg-[#C4B5FD]
                 max-md:bottom-0 max-md:mb-4 max-md:left-[50%] max-md:-translate-x-1/2 max-md:w-full max-md:rounded-none max-md:text-center max-md:bg-[#2563EB] max-md:text-[#0a0802]
                 ">
                     <p className="font-bold">Global Score</p>
+                     */}
                     {/* <p>Daily: <span className="opacity-40">[WIP]</span></p> */}
 
-                    <div className={destroyer ? "ratingAnimationYellow md:bg-black max-md:shadow-white max-md:shadow-inner md:text-slate-100 md:text-center" : "md:bg-black max-md:shadow-white max-md:shadow-inner md:text-slate-100 md:text-center"}>
+                    {/* <div className={destroyer ? "ratingAnimationYellow md:bg-black max-md:shadow-white max-md:shadow-inner md:text-slate-100 md:text-center" : "md:bg-black max-md:shadow-white max-md:shadow-inner md:text-slate-100 md:text-center"}>
                         <div>Avg Score
                             <Suspense fallback={<Loader />}>
                                 <RainbowGet rainbow={rainbow} destroyer={destroyer} />
@@ -48,10 +49,10 @@ function DataFetch ({reducerValue, destroyer, books}) {
                             </Suspense>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
-                <div className="
+                {/* <div className="
                 fixed bottom-[100px] mt-[5em] p-4 select-none text-xl rounded-3xl right-[70px] shadow-red-700 shadow-2xl bg-blue-300 md:hover:bg-[#C4B5FD] from-fuchsia-800
                 max-md:bottom-0 max-md:mb-4 max-md:-right-[106px] max-md:-translate-x-1/2 max-md:rounded-none max-md:text-center max-md:bg-black max-md:text-[#2563EB]
                 max-md:h-[204px]">
@@ -65,17 +66,23 @@ function DataFetch ({reducerValue, destroyer, books}) {
                     </div>
 
                 </div>
-            </div>
+            </div> */}
 
 
 {/* Absolute desktop containers */}
-            <div className="relative pt-[80px] pr-[100px] pl-[100px] max-w-[1000px] mr-auto ml-auto mb-[200px]
-            max-md:hidden">
-                ___________________________________________________________________________________
+            <div className="relative md:pt-[80px] pr-[100px] pl-[100px] 
+            max-w-[1000px] mr-auto ml-auto mb-[200px]
+            max-md:pt-[100px] max-md:pointer-events-none max-md:absolute max-md:left-[8%]
+            ">
+                <div className="max-md:hidden">___________________________________________________________________________________</div>
                 <div className="pt-[80px]">
-                <div className="absolute right-0 w-[240px] mr-12">
+                <div className="
+                absolute w-[240px] 
+                md:mr-12 md:right-0
+                max-md:
+                ">
                     <span className="font-bold">Global Score</span>
-                    <div className=" md:bg-black p-3 mt-3 bg-white max-md:shadow-white max-md:shadow-inner md:text-slate-00 md:text-center">
+                    <div className="  p-3 mt-3 md:bg-white md:text-slate-00 md:text-center">
                         <div>Avg Score
                             <Suspense fallback={<Loader />}>
                                 <RainbowGet rainbow={rainbow} />
@@ -90,9 +97,17 @@ function DataFetch ({reducerValue, destroyer, books}) {
                 </div>
 
 
-                <div className="absolute left-0 ml-12">
+                <div className="
+                absolute left-0 
+                md:ml-12
+                
+                ">
                     <p className="font-bold">Your Score</p>
-                    <div className=' [&>div]:border-0 bg-white [&>div]:justify-center w-[240px] p-3'>{books.map((book, index1) => (
+                    <div className='w-[240px] p-3
+                    [&>div]:justify-center [&>div]:border-0
+                    md:bg-white  
+                    '>
+                        {books.map((book, index1) => (
                         <div key={index1} className=" space-x-2 flex">
                             <p className="max-md:text-sm">{book.inputTime}: &nbsp; <span className="font-bold ratingAnimationWhite border-green-500 text-green-400">{book.inputNumber}</span></p>
                         </div>))}

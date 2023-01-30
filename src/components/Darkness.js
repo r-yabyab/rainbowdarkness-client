@@ -94,6 +94,9 @@ function Darkness() {
                             <p className='mb-0'>Added new features to the Public Stats chart:</p>
                             <li className='text-gray-400'>displays # of users as a separate line</li>
                             <li className='text-gray-400'>updated labels</li>
+                            <p>Updated help tooltip</p>
+                            <p>Mobile friendlier (buttons, header, help tooltip)</p>
+
                             <p>Broke mobile button presses again (they double render on click)</p>
                             <div>______________</div>
 
