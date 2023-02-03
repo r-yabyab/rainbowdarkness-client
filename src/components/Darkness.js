@@ -30,11 +30,13 @@ function Darkness() {
     <p className='font-bold text-left pl-4 pt-4'>YOUR STATS</p>
     <p className='text-left p-4'>1, 2, 3, 4</p>
 </div> */}
-<p className='text-black font-bold pt-4 select-none'>Public stats</p>
 
-                    <iframe title='iframe_mongoDB' className='  
+{/* <p className='text-black font-bold pt-4 select-none'>Public stats</p> */}
+
+                    {/* <iframe title='iframe_mongoDB' className='  
                     m-auto w-[1000px] h-[800px] select-none'  
-                    src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed"></iframe>
+                    src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">    
+                    </iframe> */}
 
                     <div className=' animate-fade'>
 
@@ -89,6 +91,12 @@ function Darkness() {
   <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
 </svg>
                             </div> */}
+
+                            <div>1.0.8 (February 2, 2023)</div>
+                            <p>Removed page indicators</p>
+                            <p>Moved graph to the homepage</p>
+                            <p>Button click double render on mobile fixed itself somehow</p>
+                            <div>______________</div>
 
                             <div>1.0.7 (January 29, 2023)</div>
                             <p className='mb-0'>Added new features to the Public Stats chart:</p>

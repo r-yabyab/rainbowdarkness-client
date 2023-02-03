@@ -45,7 +45,7 @@ export function TopNav({ pageDetect, setPageDetect }) {
 
 
             </div>
-            <div className='  text-blue-300    flex         justify-content-center select-none'>
+            <div className='  text-blue-300 md:hidden max-md:hidden   flex         justify-content-center select-none'>
             {pageDetect ?
                 <div className='absolute ml-[80px] top-8'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" className="bi bi-triangle-fill" viewBox="0 0 16 16">

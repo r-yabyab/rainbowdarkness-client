@@ -378,7 +378,7 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
                         "")}>{timeLeft}</span> milliseconds !!!</div>
                     {/* <p>{staticTime} statictime </p> */}
                     <p>or {parseFloat(timeLeft/(1000*60*60)).toFixed(1)} Hours</p>
-                    <p className=''>Click on <span className='text-yellow-400 bg-black'>Darkness</span> ^^^ for the line graph </p>
+                    {/* <p className=''>Click on <span className='text-yellow-400 bg-black'>Darkness</span> ^^^ for the line graph </p> */}
                 </div>
             </> : null}
 

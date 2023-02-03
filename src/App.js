@@ -93,11 +93,11 @@ md:ml-10
 <p>- I am not satisfied with my life.</p>
 <p>- Usually, I am not able to control my</p>
 <p>feelings.</p>
-<div className='text-slate-500 text-sm pt-0'>From <i>Development and Standardization of Mental Health Battery for
-Visually Impaired (2018)</i></div>
+{/* <div className='text-slate-500 text-sm pt-0'>From <i>Development and Standardization of Mental Health Battery for
+Visually Impaired (2018)</i></div> */}
 </div>
 
-<div className='md:text-center max-md:pt-6'>Don't forget to compare yourself with the chart. <span className='md:hidden'>It updates daily!</span></div>
+<div className='md:text-center md:pt-6 max-md:pt-6'>Don't forget to compare yourself with the chart. <span className='md:hidden'>It updates daily!</span></div>
 <div className='md:text-center max-md:hidden'>It updates daily!</div>
 <img className='md:pl-16 md:pr-16' src={GraphPic} />
         </div>
