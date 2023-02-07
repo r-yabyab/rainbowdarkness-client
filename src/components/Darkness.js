@@ -94,7 +94,7 @@ function Darkness() {
 
                             <div>1.0.8 (February 2, 2023)</div>
                             <p>Removed page indicators</p>
-                            <p>Moved graph to the homepage</p>
+                            <p>Moved graph to the homepage (desktop mode)</p>
                             <p>Button click double render on mobile fixed itself somehow</p>
                             <div>______________</div>
 

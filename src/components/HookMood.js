@@ -50,18 +50,6 @@ function HookMood () {
     // const [books, setBooks] = useState(getDatafromLS())
     const books = getDatafromLS()
 
-
-    // vvv doesn't work
-    // const [myLocalStorageData, setMyLocalStorageData] = useState({})
-    // let moogleReturn = () => {
-    //     let d = localStorage.key(0)
-    //     const data11 = localStorage.getItem('_APP_moogle')
-    //     setMyLocalStorageData(JSON.parse(data11))
-    //     console.log(data11)
-    // }
-
-
-
     let selectHandler=(e)=>{
         let x = e.target.getAttribute("selectnums");
         updateList(list.filter(items=>items.num===x));                   //filter is method which defines (var)
@@ -150,21 +138,6 @@ const handleSubmit = async () => {
             moogleOld.push(moogleNew)
             // save old + new data to localStorage
             window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
-
-        // vvv WORKS ON CLIENTSIDE
-        //
-        // setInterval(() => {
-        //     setDestroyer(false);
-        //     window.localStorage.removeItem('_APP_timer')
-        // }, 5000);
-        //
-
-        // setInterval(() => {
-        //     setTimer(timer => timer - 1);
-        // }, 1000);
-        // console.log('new number added', json)
-
-        //82800000 = 23hours
     }
 }
 
@@ -177,30 +150,23 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
 
 // getStorage
-    useEffect(() => {
-        const data = window.localStorage.getItem('_APP');
-        const dataTime = window.localStorage.getItem('_APP_timer');
-        // const dataNumber = window.localStorage.getItem('_APP_moogle')
-        // idk what below does, but it keeps the data stored in application
-        if ( dataTime !== null ) setStaticTime(JSON.parse(dataTime));
-        if ( data !== null ) setDestroyer(JSON.parse(data));
-        // if ( dataNumber !== null) setNumberForStorage(JSON.parse(dataNumber));
-        // // if ( staticTime == null ) setStaticTime(JSON.parse(dataTime)); <<wrong
-        // when page loads, compare time atm to time submitted button.
-        const currentTime = Date.now()
-        const timePassed = currentTime - dataTime
-
+useEffect(() => {
+    const data = window.localStorage.getItem('_APP');
+    const dataTime = window.localStorage.getItem('_APP_timer');
+    if (dataTime !== null) {
+        setStaticTime(JSON.parse(dataTime));
+        const currentTime = Date.now();
+        const timePassed = currentTime - dataTime;
         if (timePassed > 86400000) {
-            setDestroyer(false)
-            setStaticTime(null)
+            setDestroyer(false);
+            setStaticTime(null);
         }
-        // // 86400000 == 24hrs
-        // // 10000 == 10secs
-        // for printing countdown
-        const countdown = 86400000 - timePassed
-        console.log(timePassed)
-        setTimeLeft(countdown)
-    }, [])
+        const countdown = 86400000 - timePassed;
+        console.log(timePassed);
+        setTimeLeft(countdown);
+    }
+    if (data !== null) setDestroyer(JSON.parse(data));
+}, []);
 
     //displays timeLeft before submitting when click on button
     useEffect(() => {
@@ -245,21 +211,6 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
     let btnRef = useRef();
     let btnRef2 = useRef();
-
-    // const purpleButton =             (<div value={number} onClick={handleSubmit} type="number"
-    // className="
-    // absolute right-[18%] top-[20%] inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group
-    // max-md:right-[50%] max-md:translate-x-1/2 max-md:invisible">
-    // <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
-    // <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-    // </span>
-    // <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease
-    // ">
-    //     Submit</span>
-    // <span className="relative invisible">Submit</span>
-    // </div>)
-
-
 
     return (
         <>
@@ -315,52 +266,6 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
                 
             </div>
-{/* for displaying only 0 && 10 Buttons */}
-            {/* <div className='absolute'>
-                {list.filter((item,index) => index == 0).map((x, index) => {
-                    return(
-                        <div key={index}>
-                            <Button variant='primary'
-                            selectnums={x.num}
-                                onClick={selectHandler}>
-                                {x.num}
-                            </Button>
-
-                        </div>
-                    )
-                })}
-                                {list.filter((item,index) => index == 10).map((x, index) => {
-                    return(
-                        <div key={index}>
-                            <Button variant='primary'
-                            selectnums={x.num}
-                                onClick={selectHandler}>
-                                {x.num}
-                            </Button>
-
-                        </div>
-                    )
-                })}
-            </div> */}
-
-{/* {booleanState ?
-                    <>
-                    <div> */}
-                        {/* <Button value={number} onClick={handleSubmit} type="number" variant='primary'>submit</Button> */}
-                    {/* if submitted, show message */}
-                            {/* {destroyer ?
-                                null
-                                :
-                                <>
-<div className={booleanState ? "absolute md:hidden top-[77%] left-[60%]" : "absolute hidden " }
-onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill="currentColor" className="bi hover:cursor-pointer bi-check-square-fill text-green-700 hover:text-green-300" viewBox="0 0 16 16">
-  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
-</svg></div></>
-                            }
-                        </div>
-                    </>
-                    :
-                    null} */}
 
             {destroyer ? <>
                 <div className='
@@ -381,27 +286,6 @@ onClick={handleSubmit}><svg xmlns="http://www.w3.org/2000/svg" width="100" fill=
                     {/* <p className=''>Click on <span className='text-yellow-400 bg-black'>Darkness</span> ^^^ for the line graph </p> */}
                 </div>
             </> : null}
-
-{/* Submit button */}
-            {/* <div> */}
-                {/* {booleanState ?
-                    <>
-                    <div> */}
-                        {/* <Button value={number} onClick={handleSubmit} type="number" variant='primary'>submit</Button> */}
-                    {/* if submitted, show message */}
-                            {/* {destroyer ?
-                                null
-                                :
-                                <>
-                                    {purpleButton}
-                                    {error && { error }}</>
-                            }
-                        </div>
-                    </>
-                    :
-                    null} */}
-            {/* </div> */}
-            {/* +- 0.5 buttons */}
 
             {booleanState === true &&
                 <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
