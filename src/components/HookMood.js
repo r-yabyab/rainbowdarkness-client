@@ -150,23 +150,25 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
 
 // getStorage
-useEffect(() => {
-    const data = window.localStorage.getItem('_APP');
-    const dataTime = window.localStorage.getItem('_APP_timer');
-    if (dataTime !== null) {
-        setStaticTime(JSON.parse(dataTime));
-        const currentTime = Date.now();
-        const timePassed = currentTime - dataTime;
+    useEffect(() => {
+        const data = window.localStorage.getItem('_APP');
+        const dataTime = window.localStorage.getItem('_APP_timer');
+        if ( dataTime !== null ) setStaticTime(JSON.parse(dataTime));
+        if ( data !== null ) setDestroyer(JSON.parse(data));
+        const currentTime = Date.now()
+        const timePassed = currentTime - dataTime
+
         if (timePassed > 86400000) {
-            setDestroyer(false);
-            setStaticTime(null);
+            setDestroyer(false)
+            setStaticTime(null)
         }
-        const countdown = 86400000 - timePassed;
-        console.log(timePassed);
-        setTimeLeft(countdown);
-    }
-    if (data !== null) setDestroyer(JSON.parse(data));
-}, []);
+        // // 86400000 == 24hrs
+        // // 10000 == 10secs
+        // for printing countdown
+        const countdown = 86400000 - timePassed
+        console.log(timePassed)
+        setTimeLeft(countdown)
+    }, [])
 
     //displays timeLeft before submitting when click on button
     useEffect(() => {
