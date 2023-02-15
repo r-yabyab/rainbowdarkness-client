@@ -95,6 +95,7 @@ function Darkness() {
                             <div>1.0.9 (February 15, 2023)</div>
                             <p>Time now displays + counts down properly on submission.</p>
                             <p>-0.5 and +0.5 buttons now will be disabled if they hit 0 or 10 respectively, and will reactivate if they hit 0.5 or 9.5 respectively</p>
+                            <p>Changed button colors</p>
                             <p>Removed bottom right "Time before next entry"</p>
                             <p>Graph removed from homepage, set to Darkness again</p>
                             <p className='opacity-40'>To add most recent number on homepage</p>
