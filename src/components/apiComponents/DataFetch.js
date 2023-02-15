@@ -21,6 +21,7 @@ function DataFetch ({reducerValue, destroyer, books}) {
         fetchRainbow()
     }, [reducerValue])
 
+
    //const rainbow2 = rainbow.number
 
     return (
@@ -115,6 +116,7 @@ function DataFetch ({reducerValue, destroyer, books}) {
                 </div>
             </div>
             </div>
+
 
         </>
     )

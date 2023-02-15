@@ -80,15 +80,21 @@ function HookMood () {
         setNumber(number => number + 0.5);
         console.log(`increment, number: ${number}`);
         // only can be clicked once
-        if (btnRef.current) {
+        if (number >= 9.5) {
             btnRef.current.setAttribute("disabled", "disabled")
+        }
+        if (number >=0) {
+            btnRef2.current.removeAttribute("disabled")
         }
 };
 
     const decrement = () => {
         setNumber(number => number - 0.5);
-        if (btnRef2.current) {
+        if (number <= 0.5) {
             btnRef2.current.setAttribute("disabled", "disabled")
+        }
+        if (number <=10) {
+            btnRef.current.removeAttribute("disabled")
         }
     }
 
@@ -146,6 +152,7 @@ const handleSubmit = async () => {
 // LocalStorage
 //
 const [staticTime, setStaticTime] = useState(0)
+// let [timeLeft, setTimeLeft] = useState(86400000)
 let [timeLeft, setTimeLeft] = useState(86400000)
 
 
@@ -155,12 +162,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         const dataTime = window.localStorage.getItem('_APP_timer');
         if ( dataTime !== null ) setStaticTime(JSON.parse(dataTime));
         if ( data !== null ) setDestroyer(JSON.parse(data));
+ 
         const currentTime = Date.now()
         const timePassed = currentTime - dataTime
 
         if (timePassed > 86400000) {
             setDestroyer(false)
-            setStaticTime(null)
+            setStaticTime(0)
         }
         // // 86400000 == 24hrs
         // // 10000 == 10secs
@@ -168,6 +176,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         const countdown = 86400000 - timePassed
         console.log(timePassed)
         setTimeLeft(countdown)
+
+        setInterval(() => {
+            setTimeLeft(x => x -1000)
+        },1000)
+
+
+
     }, [])
 
     //displays timeLeft before submitting when click on button
@@ -194,18 +209,16 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         // console.log(destroyer,'localstore')
         window.localStorage.setItem('_APP', JSON.stringify(destroyer))
         window.localStorage.setItem('_APP_timer', JSON.stringify(staticTime))
+        setTimeout(() => {
+            forceUpdate()
+        },100)
 
-
-    },[destroyer])
-
+    },[destroyer, staticTime])
 
 //
 // LocalStorage
 //
 
-
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
@@ -223,13 +236,6 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             <div className="
             max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center"
             >
-
-                {/* vvvvvv for masking to image (mobile responsive as well) */}
-                {/* <div className={booleanState ? "max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center" : "mask max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center"}> */}
-
-                {/* {list.filter((item,index) => index < 9 ).map((x, index) => */}
-                {/* <div className='left-0 absolute'></div> */}
-                
 
                     {list.filter((item, index) => index < 9).map((x, index) => {
                     // displays row of numbers from array
@@ -251,21 +257,15 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 onClick={selectHandler}
                             // key={index}
                             >
-
-
-                                {x.num}
-                                
+                                {x.num}   
                             </button>
 
                             {/* after click, display chosen number */}
                             <button className={booleanState ? "squares bg-transparent btn text-black btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[96px]" : 'invisible'}>{number}</button>
-                            {/* <button removeNums={x.num} onClick={removeHandler}>x</button> */}
-                            
+                     
                         </div>
                     )
                 })}
-                
-
                 
             </div>
 
@@ -278,13 +278,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                         '>
                     <p className='font-extrabold md:animate-bounce'>Thank you!</p>
                     <p>Please come again in  </p>
-                    <div className='max-md:hidden'><span className={
+                    <div className='max-md:hidden md:hidden'><span className={
                         (
                             // it only highlights every 2 clicks, can't figure out for every click
                             // (reducerValue%2) > 0  &&
                         "")}>{timeLeft}</span> milliseconds !!!</div>
-                    {/* <p>{staticTime} statictime </p> */}
-                    <p>or {parseFloat(timeLeft/(1000*60*60)).toFixed(1)} Hours</p>
+                    <p>{timeLeft > 0 ? `${(timeLeft/1000).toFixed(0)}` : null} seconds </p>
+                    <p>or {timeLeft > 0 ? `${parseFloat(timeLeft/(1000*60*60)).toFixed(1)}`: null} Hours</p>
                     {/* <p className=''>Click on <span className='text-yellow-400 bg-black'>Darkness</span> ^^^ for the line graph </p> */}
                 </div>
             </> : null}
@@ -329,18 +329,12 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 [&>*]:bg-black [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[54%] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
                 max-md:[&>*]:top-[374px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
                 '>
-                    {/* When click button: booleanState = true */}
-                    {/* localStorage: true */}
-                    {/* disabled = {false || true } |- true */}
-                    {/*  */}
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
                         className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300' : 'opacity-30'))}
 
-                    // className={(booleanState  destroyer) ? 'hover:text-yellow-300' : 'opacity-30'}
-                    // const disabledState = if booleanState
                     >
                         Submit</button>{error && { error }}
                 </div> 
@@ -371,10 +365,7 @@ max-md:hidden
                     </svg>
                 </div>
 
-
             </div>
-
-
 
 <DataFetch reducerValue={reducerValue} destroyer={destroyer} books={books}/>
 

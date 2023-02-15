@@ -33,10 +33,10 @@ function Darkness() {
 
 {/* <p className='text-black font-bold pt-4 select-none'>Public stats</p> */}
 
-                    {/* <iframe title='iframe_mongoDB' className='  
+                    <iframe title='iframe_mongoDB' className='  
                     m-auto w-[1000px] h-[800px] select-none'  
                     src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">    
-                    </iframe> */}
+                    </iframe>
 
                     <div className=' animate-fade'>
 
@@ -91,6 +91,14 @@ function Darkness() {
   <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
 </svg>
                             </div> */}
+
+                            <div>1.0.9 (February 15, 2023)</div>
+                            <p>Time now displays + counts down properly on submission.</p>
+                            <p>-0.5 and +0.5 buttons now will be disabled if they hit 0 or 10 respectively, and will reactivate if they hit 0.5 or 9.5 respectively</p>
+                            <p>Removed bottom right "Time before next entry"</p>
+                            <p>Graph removed from homepage, set to Darkness again</p>
+                            <p className='opacity-40'>To add most recent number on homepage</p>
+                            <div>______________</div>
 
                             <div>1.0.8 (February 2, 2023)</div>
                             <p>Removed page indicators</p>
@@ -167,7 +175,7 @@ function Darkness() {
             </div>
 
 
-            <p className="bottomRightText">Time before next entry:</p>
+            {/* <p className="bottomRightText">Time before next entry:</p> */}
 
         </>
     )

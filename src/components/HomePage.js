@@ -36,13 +36,13 @@ export function HomePage () {
           </ul> */}
           <HookMood />
           
-          <iframe title='iframe_mongoDB' 
+          {/* <iframe title='iframe_mongoDB' 
                     className='  
                     absolute m-auto w-[800px] h-[800px] select-none pb-20 justify-center left-[50%] -translate-x-1/2 pt-4
                     max-md:hidden
                     '  
                     src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">    
-                    </iframe>
+                    </iframe> */}
 
         </div>
       </>

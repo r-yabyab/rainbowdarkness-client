@@ -9,6 +9,8 @@ function RainbowGet({ rainbow }) {
                     {/* <RainbowDetails key={rainbow._id} rainbow={rainbow} /> */}
 
                     {parseFloat(rainbow.avgPrice).toFixed(2)}
+                    {/* {rainbow.documentCount} */}
+                    
                 </div>
 
             ))}
