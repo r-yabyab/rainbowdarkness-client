@@ -36,6 +36,41 @@ function DataFetch ({reducerValue, destroyer, books}) {
         fetchLastRainbow()
     }, [reducerValue])
 
+//     const [matched, setMatched] = useState([])
+//     const [matchData, setMatchData] = useState([])
+
+// useEffect(() => {
+//         const userScore = books.map((x, index) => {
+//             return (`Num:${x.inputNumber} Time:${x.inputTime}`)
+//         })
+//         const totalScore = lastRainbow && lastRainbow.map((x, index) => {
+//             return (`Num:${x.number} Time:${new Date(x.createdAt).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'})}`)
+//         }) 
+//         const matching = totalScore.filter((total) =>
+//         userScore.some((user) => user.inputNumber === total.number && user.inputTime === total.createdAt)
+//         )  
+
+//         // const mergedData = lastRainbow.map(x => {
+//         //     const userData = books.find(q => q.inputNumber === x.number)
+//         //     return { ...x, ...userData}  
+            
+//         // })
+
+//         const mergedData = books.filter(book => {
+//             return lastRainbow.some(rainbow => {
+//                 return book.inputNumber === rainbow.number && book.inputTime === (new Date(rainbow.createdAt).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'}))
+//             }) 
+//         })
+
+//         setMatchData(mergedData)
+
+//         setMatched(matching)
+
+//         console.log(userScore)
+//         console.log(totalScore)
+//         console.log(`MATCHED: ${matched}`)  
+// }, []) 
+// console.log(`MatchData ${JSON.stringify(matchData)} ...`)   
 
    //const rainbow2 = rainbow.number
 
@@ -81,20 +116,37 @@ function DataFetch ({reducerValue, destroyer, books}) {
                              [&>div]:pt-0 pt-4 w-[180px] [&>div]:hover:cursor-text
                              ">
                                 {lastRainbow && lastRainbow.map((x, index) =>
-                                    <div key={index} className={
+
+                                {
+                                    const matched = books.some(book => {
+                                        return book.inputNumber === x.number && book.inputTime === new Date(x.createdAt).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'})
+                                    })
+                                
+
+
+
+return (
+
+                                    <div key={index} 
+                                    className={`${
                                         index === 0 ? 'animate-pulse'
-                                            : x.number === 10 ? 'text-yellow-400'
-                                            : x.number === 0 ? 'text-purple-500'
-                                            : x.number > 5 ? 'text-green-600'
-                                            : x.number === 5 ? 'text-blue-500'
-                                            : 'text-red-700'
-                                        } title={new Date(x.createdAt).toLocaleDateString()}>
+                                      : x.number === 10 ? 'text-yellow-400'
+                                      : x.number === 0 ? 'text-purple-500'
+                                      : x.number > 5 ? 'text-green-600'
+                                      : x.number === 5 ? 'text-blue-500'
+                                      : 'text-red-700'
+                                      } ${matched ? 'bg-gray-300' : ''}`}
+                                        // title={new Date(x.createdAt).toLocaleDateString()}
+                                        title={new Date(x.createdAt).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'})}
+           
+                                        >
                                         {x.number}
                                         {/* {x.createdAt} */}
 
                                     </div>
-                                )}
-
+           );
+        }
+      )}
                             </div>
                         </Suspense>
     {/* [{"_id":"63ffc14a2cda705b884e245b","number":9.5,"createdAt":"2023-03-01T21:19:06.811Z","updatedAt":"2023-03-01T21:19:06.811Z","__v":0},{"_id":"63feb0cf9b87dcd33d189703","number":4,"createdAt":"2023-03-01T01:56:31.667Z","updatedAt":"2023-03-01T01:56:31.667Z","__v":0},{"_id":"63feac510fee7e58cc3971a2","number":8,"createdAt":"2023-03-01T01:37:21.821Z","updatedAt":"2023-03-01T01:37:21.821Z","__v":0},{"_id":"63feab0e4bd90432a79651d7","number":7,"createdAt":"2023-03-01T01:31:58.494Z","updatedAt":"2023-03-01T01:31:58.494Z","__v":0},{"_id":"63fd4cfe1294ebbe3409c1c7","number":5,"createdAt":"2023-02-28T00:38:22.851Z","updatedAt":"2023-02-28T00:38:22.851Z","__v":0},{"_id":"63fba59033b38ee1b59e5e4d","number":2,"createdAt":"2023-02-26T18:31:44.625Z","updatedAt":"2023-02-26T18:31:44.625Z","__v":0},{"_id":"63faff4d2036728e5d2c979f","number":5.5,"createdAt":"2023-02-26T06:42:21.761Z","updatedAt":"2023-02-26T06:42:21.761Z","__v":0},{"_id":"63f7ed4256a12bd456be0a35","number":7,"createdAt":"2023-02-23T22:48:34.358Z","updatedAt":"2023-02-23T22:48:34.358Z","__v":0},{"_id":"63f7055cdc031fd135551f17","number":6.5,"createdAt":"2023-02-23T06:19:08.119Z","updatedAt":"2023-02-23T06:19:08.119Z","__v":0},{"_id":"63f68ccd4c8bb7251b70a40b","number":0.5,"createdAt":"2023-02-22T21:44:45.835Z","updatedAt":"2023-02-22T21:44:45.835Z","__v":0}] */}
