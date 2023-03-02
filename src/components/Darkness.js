@@ -93,9 +93,18 @@ function Darkness() {
 </svg>
                             </div> */}
 <div className=' max-h-[400px] overflow-y-scroll'>
-                            <div>1.1.0 (March 1, 2023)</div>
+                            <div>1.1.0 (March 1-2, 2023)</div>
                             <p>Homepage now displays all numbers submitted, hover over a number to see its submission date (desktop)</p>
-                            <p>removed :| faces</p>
+                            <ul className='mb-0 -ml-8'>New colors for user's numbers and all submissions. Your submissions will be highlighted in the list. For those interested, the colors used (in this site and in my general practice) loosely follow Kandinsky's color theory, namely in his book <i>Concerning the Spiritual in Art.</i></ul>
+                                    <li className='ml-8 text-green-600'>5.5 - 9.5</li>
+                                    <li className='ml-8 text-red-700'>0.5 - 4.5</li>
+                                    <li className='ml-8 text-yellow-400'>10</li>
+                                    <li className='ml-8 text-blue-500'>5</li>
+                                    <li className='ml-8 text-purple-500'>0</li>
+                            <p className='pt-4 -mb-[0px]'>For restoring cache (will implement easier way to restore in the future): devtools -> application -> (Storage) LocalStorage -> https://rainbowdarkness.com -> _APP_moogle </p>
+                            {`[{"inputNumber":7,"inputTime":"03/01"},{"inputNumber":...,"inputTime":"..."},...{...}]`}
+                            <p className='pt-4'>removed :| faces</p>
+                            
                             <div>______________</div>
 
                             <div>1.0.9 (February 15, 2023)</div>
