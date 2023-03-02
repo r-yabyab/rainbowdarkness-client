@@ -4,14 +4,16 @@ const RainbowEntries = React.lazy (() => import("./RainbowEntries")) ;
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 // import RainbowDetails from "./RainbowDetails";
 
+const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
 function DataFetch ({reducerValue, destroyer, books}) {
 
     const [rainbow, setRainbow] = useState(null)
+    const [lastRainbow, setLastRainbow] = useState([])
 
     useEffect(() => {
         const fetchRainbow = async () => {
-            const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows')
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows`)
             const json = await response.json()
 
             if (response.ok) {
@@ -21,53 +23,25 @@ function DataFetch ({reducerValue, destroyer, books}) {
         fetchRainbow()
     }, [reducerValue])
 
+    useEffect(() => {
+        const fetchLastRainbow = async () => {
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`)
+            const json = await response.json()
+
+            if (response.ok) {
+                setLastRainbow(json)
+            }
+        }
+        fetchLastRainbow()
+    }, [reducerValue])
+
 
    //const rainbow2 = rainbow.number
 
     return (
         <>
 
-            {/* fixed containers */}
-            {/* <div className="md:hidden">
-                <div className="
-                fixed bottom-[100px] mt-[5em] p-4 select-none text-xl rounded-3xl left-[70px] shadow-red-700 shadow-2xl bg-blue-300  from-fuchsia-800
-                md:hover:bg-[#C4B5FD]
-                max-md:bottom-0 max-md:mb-4 max-md:left-[50%] max-md:-translate-x-1/2 max-md:w-full max-md:rounded-none max-md:text-center max-md:bg-[#2563EB] max-md:text-[#0a0802]
-                ">
-                    <p className="font-bold">Global Score</p>
-                     */}
-                    {/* <p>Daily: <span className="opacity-40">[WIP]</span></p> */}
-
-                    {/* <div className={destroyer ? "ratingAnimationYellow md:bg-black max-md:shadow-white max-md:shadow-inner md:text-slate-100 md:text-center" : "md:bg-black max-md:shadow-white max-md:shadow-inner md:text-slate-100 md:text-center"}>
-                        <div>Avg Score
-                            <Suspense fallback={<Loader />}>
-                                <RainbowGet rainbow={rainbow} destroyer={destroyer} />
-                            </Suspense>
-                        </div>
-                        <div> Entries
-                            <Suspense fallback={<Loader />}>
-                                <RainbowEntries rainbow={rainbow} destroyer={destroyer} />
-                            </Suspense>
-                        </div>
-                    </div>
-                </div> */}
-
-
-                {/* <div className="
-                fixed bottom-[100px] mt-[5em] p-4 select-none text-xl rounded-3xl right-[70px] shadow-red-700 shadow-2xl bg-blue-300 md:hover:bg-[#C4B5FD] from-fuchsia-800
-                max-md:bottom-0 max-md:mb-4 max-md:-right-[106px] max-md:-translate-x-1/2 max-md:rounded-none max-md:text-center max-md:bg-black max-md:text-[#2563EB]
-                max-md:h-[204px]">
-                    <p className="font-bold">Your score</p>
-                    <div className=' bg-black text-white'>{books.map((book, index1) => (
-                        <div key={index1} className=" space-x-2 flex">
-                            <p className="max-md:text-sm">{book.inputTime}:</p>
-                            <p className='font-bold ratingAnimationYellow border-green-500 pl-4 pr-4 pt-2 pb-2 border-2 text-green-400
-                        max-md:p-2'>{book.inputNumber}</p>
-                        </div>))}
-                    </div>
-
-                </div>
-            </div> */}
+        
 
 
 {/* Absolute desktop containers */}
@@ -97,6 +71,20 @@ function DataFetch ({reducerValue, destroyer, books}) {
                     </div>
                 </div>
 
+<div>penis
+
+<div className="flex space-x-4">
+    {lastRainbow && lastRainbow.map((x, index) => 
+    <div key={index} className=''>
+        {x.number + " " + x.createdAt}
+
+        {/* [{"_id":"63ffc14a2cda705b884e245b","number":9.5,"createdAt":"2023-03-01T21:19:06.811Z","updatedAt":"2023-03-01T21:19:06.811Z","__v":0},{"_id":"63feb0cf9b87dcd33d189703","number":4,"createdAt":"2023-03-01T01:56:31.667Z","updatedAt":"2023-03-01T01:56:31.667Z","__v":0},{"_id":"63feac510fee7e58cc3971a2","number":8,"createdAt":"2023-03-01T01:37:21.821Z","updatedAt":"2023-03-01T01:37:21.821Z","__v":0},{"_id":"63feab0e4bd90432a79651d7","number":7,"createdAt":"2023-03-01T01:31:58.494Z","updatedAt":"2023-03-01T01:31:58.494Z","__v":0},{"_id":"63fd4cfe1294ebbe3409c1c7","number":5,"createdAt":"2023-02-28T00:38:22.851Z","updatedAt":"2023-02-28T00:38:22.851Z","__v":0},{"_id":"63fba59033b38ee1b59e5e4d","number":2,"createdAt":"2023-02-26T18:31:44.625Z","updatedAt":"2023-02-26T18:31:44.625Z","__v":0},{"_id":"63faff4d2036728e5d2c979f","number":5.5,"createdAt":"2023-02-26T06:42:21.761Z","updatedAt":"2023-02-26T06:42:21.761Z","__v":0},{"_id":"63f7ed4256a12bd456be0a35","number":7,"createdAt":"2023-02-23T22:48:34.358Z","updatedAt":"2023-02-23T22:48:34.358Z","__v":0},{"_id":"63f7055cdc031fd135551f17","number":6.5,"createdAt":"2023-02-23T06:19:08.119Z","updatedAt":"2023-02-23T06:19:08.119Z","__v":0},{"_id":"63f68ccd4c8bb7251b70a40b","number":0.5,"createdAt":"2023-02-22T21:44:45.835Z","updatedAt":"2023-02-22T21:44:45.835Z","__v":0}] */}
+    </div>
+    )}
+
+</div>
+
+</div>
 
                 <div className="
                 absolute left-0 
