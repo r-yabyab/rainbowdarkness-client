@@ -297,11 +297,11 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </div>
             }
 
-            <div className='absolute left-[50%] -translate-x-1/2 select-none
+            {/* <div className='absolute left-[50%] -translate-x-1/2 select-none
             md:top-[113%]
             max-md:top-[116%]'>
                 <button className={booleanState ? "block border-2 border-black max-md:hidden rounded-full pl-4 pt-2 pb-2 pr-4 text-lg font-extrabold" : "invisible"} variant='success' size='sm' disabled>{number}</button>
-            </div>
+            </div> */}
             
             {/* sets booleanState to false ==> initializes ALL states **resetButton */}
             <div className='mt-[80px]'>

@@ -94,7 +94,8 @@ function Darkness() {
                             </div> */}
 <div className=' max-h-[400px] overflow-y-scroll'>
                             <div>1.1.0 (March 1, 2023)</div>
-                            <p>Homepage now displays all numbers submitted, hover over a number to see its submission date</p>
+                            <p>Homepage now displays all numbers submitted, hover over a number to see its submission date (desktop)</p>
+                            <p>removed :| faces</p>
                             <div>______________</div>
 
                             <div>1.0.9 (February 15, 2023)</div>
