@@ -44,6 +44,7 @@ function Darkness() {
                             <p className=' text-left font-bold'>Purpose:</p>
                             <div className=' text-left'>
                                 <p>Rainbow Darkness aims to gauge public mental status that is quick and anonymous.</p>
+                                <p>Many times you'll see that other people are having a much better/worse day than you. With this in mind, please be nice to one another regardless of the situation.</p>
                                 {/* <p>Compared to other mental health apps, we don't ask you to do dumb shit like imagine your perfect beach getaway or read about meditation techniques you'll never use. In here, U just press like 2 buttons</p> */}
                                 {/* <div className=' text-left mt-3'>We offer the following perks compared to other mental-health applications:</div>
                                 <ul className=' list-disc'>
@@ -91,6 +92,10 @@ function Darkness() {
   <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
 </svg>
                             </div> */}
+<div className=' max-h-[400px] overflow-y-scroll'>
+                            <div>1.1.0 (March 1, 2023)</div>
+                            <p>Homepage now displays all numbers submitted, hover over a number to see its submission date</p>
+                            <div>______________</div>
 
                             <div>1.0.9 (February 15, 2023)</div>
                             <p>Time now displays + counts down properly on submission.</p>
@@ -158,7 +163,7 @@ function Darkness() {
                             <div>1.0.0 (January 13, 2023)</div>
                             <p>Deployed client and server on Vercel</p>
                             <div>______________</div>
-
+                            </div>
                         </div>
 
                         <div className=' bg-black text-gray-300 rounded-lg mt-20 p-4 max-w-[500px] text-left mb-[200px]'>

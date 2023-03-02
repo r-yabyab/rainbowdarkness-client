@@ -1,13 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { 
+  // useState, 
+  useEffect } from 'react';
 // import Button from 'react-bootstrap/Button';
 import HookMood from './HookMood';
 // import DataPost from './apiComponents/DataPost';
 
 export function HomePage () {
   
+  
   useEffect (() => {
     document.title = 'Rainbow Darkness';
   }, [])
+
+  // const [today, setToday] = useState('')
+
+  // useEffect(() => {
+  //   const date = new Date()
+  //   const pstDate = date.toLocaleTimeString("en-US", {
+  //     timeZone: "America/Los_Angeles"
+  //   })
+  //   // const date = today.getUTCDate()
+  //   console.log(pstDate)
+  //   setToday(pstDate)
+  //   console.log(today + "state")
+
+  // }, [])
+
 
   return(
   <>

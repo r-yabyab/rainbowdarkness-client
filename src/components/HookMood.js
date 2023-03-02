@@ -342,7 +342,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             </div>
 
 {/* EMOJIS :p */}
-            <div className='absolute left-[50%] -translate-x-1/2 -bottom-[100px] flex
+            {/* <div className='absolute left-[50%] -translate-x-1/2 -bottom-[100px] flex
 [&>div]:ml-10 first:[&>div]:ml-0
 max-md:hidden
 '>
@@ -365,7 +365,7 @@ max-md:hidden
                     </svg>
                 </div>
 
-            </div>
+            </div> */}
 
 <DataFetch reducerValue={reducerValue} destroyer={destroyer} books={books}/>
 
