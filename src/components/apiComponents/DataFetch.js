@@ -135,7 +135,7 @@ return (
                                       : x.number > 5 ? 'text-green-600'
                                       : x.number === 5 ? 'text-blue-500'
                                       : 'text-red-700'
-                                      } ${matched ? 'bg-gray-300' : ''}`}
+                                      } ${matched ? 'bg-yellow-400' : ''}`}
                                         // title={new Date(x.createdAt).toLocaleDateString()}
                                         title={new Date(x.createdAt).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'})}
            
