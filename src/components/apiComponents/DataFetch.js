@@ -165,7 +165,19 @@ return (
                     '>
                         {books.map((book, index1) => (
                         <div key={index1} className=" space-x-2 flex">
-                            <p className="max-md:text-sm">{book.inputTime}: &nbsp; <span className="font-bold ratingAnimationWhite border-green-500 text-green-400">{book.inputNumber}</span></p>
+                            <p className="max-md:text-sm">{book.inputTime}: &nbsp; 
+                            <span 
+                            className=
+                            {`${
+                                book.inputNumber === 10 ? 'text-yellow-400'
+                              : book.inputNumber === 0 ? 'text-purple-500'
+                              : book.inputNumber > 5 ? 'text-green-600'
+                              : book.inputNumber === 5 ? 'text-blue-500'
+                              : 'text-red-700'
+                              } 
+                            "font-bold ratingAnimationWhite border-green-500 text-green-400"`}
+                            >
+                                {book.inputNumber}</span></p>
                         </div>))}
                     </div>
                 </div>
