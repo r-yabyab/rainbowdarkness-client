@@ -101,7 +101,7 @@ function Darkness() {
                                     <li className='ml-8 text-yellow-400'>10</li>
                                     <li className='ml-8 text-blue-500'>5</li>
                                     <li className='ml-8 text-purple-500'>0</li>
-                            <p className='pt-4 -mb-[0px]'>For restoring cache (will implement easier way to restore in the future): devtools -> application -> (Storage) LocalStorage -> https://rainbowdarkness.com -> _APP_moogle </p>
+                            <p className='pt-4 -mb-[0px]'>For restoring cache (will implement easier way to restore in the future): devtools -{`>`} application -{`>`} (Storage) LocalStorage -{`>`} https://rainbowdarkness.com -{`>`} _APP_moogle </p>
                             {`[{"inputNumber":7,"inputTime":"03/01"},{"inputNumber":...,"inputTime":"..."},...{...}]`}
                             <p className='pt-4'>removed :| faces</p>
                             
@@ -177,7 +177,7 @@ function Darkness() {
                         </div>
 
                         <div className=' bg-black text-gray-300 rounded-lg mt-20 p-4 max-w-[500px] text-left mb-[200px]'>
-                            <p className=' text-left font-bold'>Milestones :)</p>
+                            <p className=' text-left font-bold'>Milestones :{`)`}</p>
                             <p>Reached 20 unique visitors in a week on 1/29/23 [20:08]</p>
                             {/* <p> with ∼40% engagement</p> */}
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
+// import * as d3 from 'd3'
 // import Gradient1 from '../photos/gradient1.png'
 import Scuffed from '../photos/scuffed-gradient.png'
 
