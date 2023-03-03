@@ -243,7 +243,7 @@ return (
             </div>
 
 
-<div>Test SVG
+<div className="absolute">Test SVG
     <svg ref={svgRef}></svg>
 </div>
 
