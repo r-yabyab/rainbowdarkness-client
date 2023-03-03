@@ -1,6 +1,12 @@
 in ./package.json
 - added "proxy" for development ease shit
 
+
+03/02/23 21:17
+- i realized my chrome was on 110% zoom the entire time
+    - numbers look really small now
+
+
 /server
 - added npm install cors
 
