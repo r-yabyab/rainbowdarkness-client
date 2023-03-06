@@ -126,15 +126,28 @@ console.log(`MatchData ${JSON.stringify(matchData)} ...`)
        .attr('transform', `translate(0, ${h})`);
      svg.append('g')
        .call(yAxis);
+     // remove the previous line
+     svg.select(".line").remove();
      // setting up the data for the svg
-     svg.selectAll('.line')
-       .data([dbNumber])
-       .join('path')
-       .attr('d', d => generateScaledLine(d))
+     svg.append('path')
+       .datum(dbNumber)
+       .attr('class', 'line')
+       .attr('d', generateScaledLine)
        .attr('fill', 'none')
        .attr('stroke', 'black');
    }, [lastRainbow]);
 
+
+
+
+//      // setting up the data for the svg
+//      svg.selectAll('.line')
+//        .data([dbNumber])
+//        .join('path')
+//        .attr('d', d => generateScaledLine(d))
+//        .attr('fill', 'none')
+//        .attr('stroke', 'black');
+//    }, [lastRainbow]);
 
     return (
         <>
