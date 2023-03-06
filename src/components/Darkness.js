@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import "../App.css"
 
+import samplegraph from '../photos/samplegraph.png'
+
 function Darkness() {
 
     // const [expander, setExpander] = useState(false)
@@ -93,6 +95,13 @@ function Darkness() {
 </svg>
                             </div> */}
 <div className=' max-h-[400px] overflow-y-scroll'>
+                            
+                            <div>1.1.1 (March 5, 2023)</div>
+                            <p>Added thumbnail graph (dekstop and mobile)</p>
+                            <img className='ml-8 -mt-3 mb-4' src={samplegraph} alt='sample graph' />
+                            <p>Individual Moods added to mobile</p>
+                            <div>______________</div>
+
                             <div>1.1.0 (March 1-2, 2023)</div>
                             <p>Homepage now displays all numbers submitted, hover over a number to see its submission date (desktop)</p>
                             <ul className='mb-0 -ml-8'>New colors for user's numbers and all submissions. Your submissions will be highlighted in the list. For those interested, the colors used (in this site and in my general practice) loosely follow Kandinsky's color theory, namely in his book <i>Concerning the Spiritual in Art.</i></ul>

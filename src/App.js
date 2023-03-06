@@ -99,7 +99,7 @@ Visually Impaired (2018)</i></div> */}
 
 <div className='md:text-center md:pt-6 max-md:pt-6'>Don't forget to compare yourself with the chart. <span className='md:hidden'>It updates daily!</span></div>
 <div className='md:text-center max-md:hidden'>It updates daily!</div>
-<img className='md:pl-16 md:pr-16' src={GraphPic} />
+<img className='md:pl-16 md:pr-16' src={GraphPic} alt="graph image" />
         </div>
         :
         ""}
