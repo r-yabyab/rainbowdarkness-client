@@ -80,12 +80,22 @@ console.log(`MatchData ${JSON.stringify(matchData)} ...`)
 
    const svgRef = useRef();
 
-   const dbNumber = lastRainbow && lastRainbow.map((x, index) => {
-     return x.number;
-   });
-   const dbCreatedAt = lastRainbow && lastRainbow.map((x, index) => {
-     return new Date(x.createdAt);
-   });
+//    const dbNumber = lastRainbow && lastRainbow.map((x, index) => {
+//     return x.number;
+//   });
+
+   const dbNumber = lastRainbow && lastRainbow
+   .slice(0, 50)
+   .map(x => x.number);
+
+//    const dbCreatedAt = lastRainbow && lastRainbow.map((x, index) => {
+//      return new Date(x.createdAt);
+//    });
+
+const dbCreatedAt = lastRainbow &&  lastRainbow
+//   .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  .slice(0, 50)
+  .map(x => new Date(x.createdAt));
 
    
    
@@ -104,6 +114,7 @@ console.log(`MatchData ${JSON.stringify(matchData)} ...`)
      const xScale = d3.scaleTime()
        .domain(d3.extent(dbCreatedAt))
        .range([0, w]);
+     // to display y scale as 0-10
      const yScale = d3.scaleLinear()
        .domain([-1,11])
        .range([h, 0]);
