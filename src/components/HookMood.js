@@ -232,7 +232,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         <>
                 {/* <div className=' text-transparent text-xl bg-gradient-to-r from-purple-500 to-green-400 absolute w-full h-full bg-blend-multiply' /> */}
                 {/* <img className='absolute top-20 left-[50%] -translate-x-1/2 w-[534px]' src={Gradient1} alt='gradient' /> */}
-<img className={booleanState ? "hidden" : 'max-md:hidden absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]'} src={Scuffed} alt='gradientlol' />
+<img className={booleanState ? "hidden" 
+                : destroyer ? 'hidden' :
+                 'max-md:hidden absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]'} src={Scuffed} alt='gradientlol' />
 
             <div className="
             max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center"
@@ -249,11 +251,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
                         ' key={index}>
 
-                            <button
+                            <button disabled={destroyer ? true : false}
                                 className={booleanState ?
-                                    "invisible"
-                                    :
-                                    "squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"}
+                                    "invisible" :
+                                    destroyer ? 'squares   max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] ' :
+                                    'squares  bg-clip-text max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] '
+                                    //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"
+                                }
                                 selectnums={x.num}
                                 onClick={selectHandler}
                             // key={index}
@@ -270,7 +274,8 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 
             </div>
 
-            {destroyer ? <>
+{/* When submitted, countdown timer */}
+            {/* {destroyer ? <>
                 <div className='
                         absolute md:right-[30%] translate-x-1/2  text-xl pointer-events-none
                         md:top-[40%] md:animate-fade
@@ -279,16 +284,17 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                         '>
                     <p className='font-extrabold md:animate-bounce'>Thank you!</p>
                     <p>Please come again in  </p>
-                    <div className='max-md:hidden md:hidden'><span className={
-                        (
-                            // it only highlights every 2 clicks, can't figure out for every click
-                            // (reducerValue%2) > 0  &&
-                        "")}>{timeLeft}</span> milliseconds !!!</div>
-                    <p>{timeLeft > 0 ? `${(timeLeft/1000).toFixed(0)}` : null} seconds </p>
-                    <p>or {timeLeft > 0 ? `${parseFloat(timeLeft/(1000*60*60)).toFixed(1)}`: null} Hours</p>
+                        <div className='max-md:hidden md:hidden'><span className={
+                            (
+                                // it only highlights every 2 clicks, can't figure out for every click
+                                // (reducerValue%2) > 0  &&
+                                "")}>{timeLeft}</span> milliseconds !!!
+                        </div>
+                    <p>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)}` : null} seconds </p>
+                    <p>or {timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)}` : null} Hours</p>
                     {/* <p className=''>Click on <span className='text-yellow-400 bg-black'>Darkness</span> ^^^ for the line graph </p> */}
-                </div>
-            </> : null}
+                {/* </div> 
+            </> : null} */}
 
             {booleanState === true &&
                 <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
@@ -313,11 +319,11 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </Button> */}
                 <button
                     onClick={clickHandlerOne}
-                    className='
+                    className={`${destroyer ? 'invisible' : ''} 
                 mr-[240px] pr-4 pl-4 pt-3 pb-3 text-xl font-bold 
                hover:text-white
                max-md:border-black max-md:rounded-md max-md:border-2 max-md:hover:bg-black max-md:left-[10%] max-md:top-[320px] max-md:mt-6 max-md:pb-6 max-md:absolute 
-                '>
+                `}>
                     {/* <i>R</i> */}
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
@@ -337,7 +343,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                         className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300' : 'opacity-30'))}
 
                     >
-                        Submit</button>{error && { error }}
+                        Submit</button>
+                    <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} flex gap-4 items-center justify-center w-[340px]`}>
+                        <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
+                        <div>|</div>
+                        <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs</div>
+                    </div>
+                        {error && { error }}
                 </div> 
 
             </div>
