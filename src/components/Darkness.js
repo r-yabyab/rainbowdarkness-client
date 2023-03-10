@@ -41,14 +41,14 @@ function Darkness() {
                     </div> */}
 
                     {/* <p className='text-black font-bold pt-4 select-none'>Public stats</p> */}
-
+<div className='max-md:overflow-x-scroll  mb-20'>
                     <iframe title='iframe_mongoDB' className='  
-                    m-auto w-[1000px] h-[800px] select-none'
+                    m-auto w-[1000px] h-[680px] select-none'
                         src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
                     </iframe>
+</div>
 
-
-                    <div className='max-md:[&>div]:max-w-[500px] justify-center items-center flex-col flex bg-black text-white [&>div]:max-w-[800px] '>
+                    <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center items-center flex-col flex bg-black text-white [&>div]:max-w-[800px] '>
 
                         <div className='text-[36px] mt-[150px] text-black bg-white w-[800px] font-semibold'>About Rainbow Darkness</div>
                         <div className='pt-4'>
@@ -62,10 +62,13 @@ function Darkness() {
 
                     </div>
 
-                    <div className='pt-[150px]  max-md:[&>div]:max-w-[500px] [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-white'>
-                        <div className='text-[36px] w-[800px] text-black bg-white font-semibold mb-4'>ChangeLog</div>
-                        <div className=' max-h-[800px] overflow-y-scroll'>
+                    <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-white'>
+                        <div className='text-[36px]  w-[800px] text-black bg-white font-semibold mb-4'>ChangeLog</div>
+                        <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.1.2.1 (March 10, 2023)</div>
+                            <p>Fixed mobile spacing on About page (mongoDB chart, text out of bounds)</p>
+                            <div>______________</div>
 
                             <div>1.1.2 (March 9, 2023)</div>
                             <p>Changed number buttons, submit button, moved submission notification, moved bottom copyright header</p>
@@ -155,8 +158,8 @@ function Darkness() {
                             <p>When user submits number: Cache & display user's number/date </p>
                             <div>______________</div>
 
-                            <div>1.0.0 (January 13, 2023)</div>
-                            <p>Deployed client and server on Vercel</p>
+                            <div className='text-green-400'>1.0.0 (January 13, 2023)</div>
+                            <p className='text-green-400'>Deployed client and server on Vercel</p>
                             <div>______________</div>
                         </div>
 
