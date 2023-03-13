@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../App.css"
 
 import samplegraph from '../photos/samplegraph.png'
+import prototype from '../photos/prototype.png'
 
 function Darkness() {
+
+    const [maximize, setMaximize] = useState(false)
 
     // const [expander, setExpander] = useState(false)
 
@@ -66,10 +69,22 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
-                            <div>1.1.3 (March 12, 2023)</div>
+                            <div>1.1.3 (March 12-13, 2023)</div>
                             <p>Added dark mode</p>
-                            <p>Text and background have been contrasted to be less jarring in light mode.</p>
+                            <p>In About page, text and background have been contrasted to be less jarring.</p>
                             <p>Updated buttons (desktop), the gradient is still a png photo underneath the buttons, still figuring out how to ditch the png image method because the sizing messes up on + or - magnifying.</p>
+                            <p>Removed path.join to connect the frontend through backend, never worked and was originally intended for DigitalOcean, it just sat in index.js. Data fetching should run a bit faster now.</p>
+                            <p>Updated homepage data layout (desktop ready, need to work on mobile):</p>
+                            <p className='ml-8 -mt-4'>- Added weekly and current day's data</p>
+                            <p className='ml-8 -mt-4'>- Renamed "Individual Moods" to "Yours & Everyone Elses"</p>
+                            <p className='ml-8 -mt-4'>- Removed "Your Score" category, personal scores are <span className='bg-yellow-400 text-black'>highlighted</span> in "Yours & Everyone Elses", hover over number to see date submitted</p>
+                            <p>2 month anniversary :{')'} Here's how the site looked a week before launch:</p>
+                            <img 
+                                onClick={e => setMaximize(!maximize)} 
+                                className={maximize ? 'md:w-full md:hover:cursor-pointer' : 'md:w-[50%] md:hover:cursor-pointer'} 
+                                src={prototype} 
+                                alt='prototype.png' />
+                            {/* <p>Thank you tailwindcss</p> */}
                             <div>______________</div>
 
                             <div>1.1.2.1 (March 10, 2023)</div>

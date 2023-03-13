@@ -15,6 +15,8 @@ function DataFetch ({reducerValue, destroyer, books, darkMode}) {
 
     const [rainbow, setRainbow] = useState(null)
     const [lastRainbow, setLastRainbow] = useState([])
+    const [weekRainbow, setWeekRainbow] = useState([])
+    const [todayRainbow, setTodayRainbow] = useState([])
 
     useEffect(() => {
         const fetchRainbow = async () => {
@@ -39,6 +41,44 @@ function DataFetch ({reducerValue, destroyer, books, darkMode}) {
         }
         fetchLastRainbow()
     }, [reducerValue])
+
+    useEffect(() => {
+        const fetchWeekRainbow = async () => {
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`)
+            const json = await response.json()
+
+            if (response.ok) {
+                setWeekRainbow(json)
+            }
+        }
+        fetchWeekRainbow()
+    }, [reducerValue])
+
+    const weekAverage = () => {
+        const sum = (weekRainbow && weekRainbow.reduce((acc, x) => acc + x.number, 0)) 
+        const average = sum/weekRainbow.length
+        const parsed = parseFloat(average).toFixed(2) 
+        return parsed
+    }
+
+    useEffect(() => {
+        const fetchTodayRainbow = async () => {
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`)
+            const json = await response.json()
+
+            if (response.ok) {
+                setTodayRainbow(json)
+            }
+        }
+        fetchTodayRainbow()
+    }, [reducerValue])
+
+    const todayAverage = () => {
+        const sum = (todayRainbow && todayRainbow.reduce((acc, x) => acc + x.number, 0)) 
+        const average = sum/todayRainbow.length
+        const parsed = parseFloat(average).toFixed(2) 
+        return parsed
+    }
 
     const [matched, setMatched] = useState([])
     const [matchData, setMatchData] = useState([])
@@ -171,28 +211,69 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
             max-w-[1000px] mr-auto ml-auto mb-[200px]
             max-md:pt-[100px] max-md:pointer-events-none max-md:absolute max-md:left-[8%]
             ">
-                <div className="max-md:hidden">___________________________________________________________________________________</div>
+                <div className="max-md:hidden md:invisible">___________________________________________________________________________________</div>
                 <div className="pt-[80px]">
                     <div className="
-                absolute w-[240px] 
-                md:mr-12 md:right-0
-                max-md:
-                ">
-                        <span className={ darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Global Score</span>
+                        absolute lg:w-[900px] md:w-[700px] 
+                        right-[50%] translate-x-1/2
+                        ">
+                        {/* <span className={darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Global Score</span> */}
                         {/* <Link to='/darkness' className='no-underline text-sm hover:text-blue-200 right-0  md:hidden'><div className="">(chart)</div></Link> */}
-                        <div className="  p-3 mt-3 md:bg-white md:text-slate-00 md:text-center">
-                            <div>Avg Score
-                                <Suspense fallback={<Loader />}>
-                                    <RainbowGet rainbow={rainbow} />
-                                </Suspense>
+                        <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} flex flex-row justify-evenly items-center p-8 mt-3  md:rounded-lg md:text-slate-00 md:text-center`}>
+                            <div>
+                                <div className=" bg-black rounded-lg text-purple-200">TOTAL</div>
+                                <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}>Average
+                                    <Suspense fallback={<Loader />}>
+                                        <RainbowGet rainbow={rainbow} />
+                                    </Suspense>
+                                </div>
+                                <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}> Entries
+                                    <Suspense fallback={<Loader />}>
+                                        <RainbowEntries rainbow={rainbow} />
+                                    </Suspense>
+                                </div>
                             </div>
-                            <div> Entries
-                                <Suspense fallback={<Loader />}>
-                                    <RainbowEntries rainbow={rainbow} />
-                                </Suspense>
+
+                            <div>
+                                <div className=" bg-black rounded-lg text-purple-200">WEEK</div>
+                                {/* {weekRainbow && weekRainbow.map((x, index) => {
+                                    return (
+                                        <>
+                                            <div key={index}>
+                                                {x.number}
+                                            </div>
+                                        </>
+                                    )
+                                })} */}
+                                <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}>Average</div>
+                                <div className="text-green-400 ratingAnimationYellow">{weekAverage()}</div>
+                                <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}>Entries</div>
+                                <div className="text-red-400 ratingAnimationYellow">{weekRainbow.length}</div>
+
                             </div>
+
+
+                            <div>
+                                <div className=" bg-black rounded-lg text-purple-200">TODAY</div>
+                                {/* {weekRainbow && weekRainbow.map((x, index) => {
+                                    return (
+                                        <>
+                                            <div key={index}>
+                                                {x.number}
+                                            </div>
+                                        </>
+                                    )
+                                })} */}
+                                <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}>Average</div>
+                                <div className="text-green-400 ratingAnimationYellow">{todayAverage()}</div>
+                                <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}>Entries</div>
+                                <div className="text-red-400 ratingAnimationYellow">{todayRainbow.length}</div>
+
+                            </div>
+
+
                             <div title="Mini live graph" className="hover:cursor-text flex justify-center mt-2 mr-12 pb-4">
-                            <svg className="" ref={svgRef} />
+                                <svg className="" ref={svgRef} />
                             </div>
                             <Link to='/darkness' className=' no-underline text-sm hover:text-blue-200 absolute bottom-0 right-0  max-md:hidden'><div className="">full chart</div></Link>
                         </div>
@@ -200,7 +281,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
                     
 
-                    <div className="
+                    {/* <div className="
                         absolute left-0 
                         md:ml-12
                 
@@ -226,16 +307,16 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                                             {book.inputNumber}</span></p>
                                 </div>))}
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className=" max-md:mt-[280px] absolute md:left-[50%]  md:-translate-x-1/2 ">
-                        <span className={ darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Individual Moods</span>
+                    <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} max-md:mt-[280px] right-[50%] translate-x-1/2  md:mt-[260px] absolute md:rounded-lg lg:w-[900px] md:w-[700px]`}>
+                        <div className={`${ darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}><span className={ destroyer ? "bg-yellow-400" : ""}>Yours</span> & Everyone Elses</div>
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
                             <div className="
-                            
-                            grid grid-cols-4 gap-4 font-semibold 
-                             [&>div]:pt-0 pt-4 w-[180px] [&>div]:hover:cursor-text
+                            grid grid-cols-10 gap-4 pr-8 pl-8
+                            max-md:grid max-md:grid-cols-4 max-md:gap-4 font-semibold 
+                             [&>div]:pt-0 pt-4 max-md:w-[180px] [&>div]:hover:cursor-text
                              ">
                                 {lastRainbow && lastRainbow.map((x, index) => {
                                     const matched = books.some(book => {

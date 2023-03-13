@@ -338,7 +338,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </Button> */}
                 <button
                     onClick={clickHandlerOne}
-                    className={`${destroyer ? 'invisible' : ''} 
+                    className={`
+                    ${destroyer ? 'invisible' : ''} 
+                    ${darkMode ? 'md:text-blue-400' : 'md:text-red-600'} 
+
                 mr-[240px] pr-4 pl-4 pt-3 pb-3 text-xl font-bold 
                hover:text-white
                max-md:border-black max-md:rounded-md max-md:border-2 max-md:hover:bg-black max-md:left-[10%] max-md:top-[370px] max-md:mt-6 max-md:pb-6 max-md:absolute 
@@ -351,10 +354,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </button>
 
                 {/* submitButton Desktop + mobile */}
-                <div className='
+                <div className={`${darkMode ? '[&>*]:border-2 [&>*]:border-purple-200' : ''}
                 [&>*]:bg-black [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[54%] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
                 max-md:[&>*]:top-[420px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
-                '>
+                `}>
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
