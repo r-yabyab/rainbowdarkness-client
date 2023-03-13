@@ -69,6 +69,7 @@ function Darkness() {
                             <div>1.1.3 (March 12, 2023)</div>
                             <p>Added dark mode</p>
                             <p>Text and background have been contrasted to be less jarring in light mode.</p>
+                            <p>Updated buttons (desktop), the gradient is still a png photo underneath the buttons, still figuring out how to ditch the png image method because the sizing messes up on + or - magnifying.</p>
                             <div>______________</div>
 
                             <div>1.1.2.1 (March 10, 2023)</div>
