@@ -274,10 +274,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 onClick={selectHandler}
                             // key={index}
                             >
-                                <span className={!destroyer ? 'invisible' : 'text-[24px] flex justify-center items-center font-light pointer-events-none'}>
+                                <span className={destroyer ? 'invisible' : 'text-[24px] flex justify-center items-center font-light pointer-events-none'}>
                                     {x.num}
                                 </span>
-                                <span className={!destroyer ? ' w-[32px] flex justify-center items-center absolute top-0 translate-y-1/2 md:right-0 -translate-x-1/2 max-md:mt-3 max-md:ml-1 ml-1 md:-mt-[5px]' : 'hidden'}>
+                                <span className={destroyer ? ' w-[32px] flex justify-center items-center absolute top-0 translate-y-1/2 md:right-0 -translate-x-1/2 max-md:mt-3 max-md:ml-1 ml-1 md:-mt-[5px]' : 'hidden'}>
                                     <img src={downArrow} alt='down arrow' />
                                 </span>
                             </button>
