@@ -264,7 +264,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     // for padding button width instead of setting w-[...]..... : darkMode ? 'squares md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px]' 
                                 
                                 className={booleanState ?
-                                    "invisible" :
+                                    "invisible hover:cursor-not-allowed" :
                                     destroyer ? 'squares   max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] ' 
                                     : darkMode ? 'squares hover:bg-black md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px]' 
                                     :'squares bg-clip-text hover:bg-black  max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black rounded-lg md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px] '
