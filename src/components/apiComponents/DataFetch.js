@@ -311,7 +311,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
                     <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} max-md:mt-[280px] right-[50%] translate-x-1/2  md:mt-[260px] absolute md:rounded-lg lg:w-[900px] md:w-[700px]`}>
                         <div className={`${ darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
-                            <span className={`${ destroyer ? "bg-yellow-400" : ""}${ darkMode ? 'text-black' : 'text-zinc-300'}`}>Yours</span> & Everyone Elses</div>
+                            <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses</div>
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
                             <div className="
