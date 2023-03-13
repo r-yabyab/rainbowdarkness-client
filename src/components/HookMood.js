@@ -5,7 +5,8 @@ import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
 // import * as d3 from 'd3'
 // import Gradient1 from '../photos/gradient1.png'
-import Scuffed from '../photos/scuffed-gradient.png'
+// import Scuffed from '../photos/scuffed-gradient.png'
+import screenedGradient from '../photos/gradient-screen.png'
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -16,7 +17,7 @@ const getDatafromLS = () => {
     }
 }
 
-function HookMood () {
+function HookMood ({darkMode}) {
 
     let numberList = [
         // { num: '0' },
@@ -232,12 +233,19 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         <>
                 {/* <div className=' text-transparent text-xl bg-gradient-to-r from-purple-500 to-green-400 absolute w-full h-full bg-blend-multiply' /> */}
                 {/* <img className='absolute top-20 left-[50%] -translate-x-1/2 w-[534px]' src={Gradient1} alt='gradient' /> */}
-<img className={booleanState ? "hidden" 
-                : destroyer ? 'hidden' :
-                 'max-md:hidden absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]'} src={Scuffed} alt='gradientlol' />
+<img className={`${booleanState ? "hidden" 
+                : destroyer ? 'hidden' 
+                : darkMode ? 'max-md:hidden'  
+                :''} max-md:hidden absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]`} 
+                //  src={Scuffed} 
+                 src={ screenedGradient} 
+                 alt='button gradient' />
+
+<div className='relative'>
+{/* <div className="absolute inset-0 bg-gradient-to-r from-black to-white mix-blend-overlay " /> */}
 
             <div className="
-            max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center"
+            max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center "
             >
 
                     {list.filter((item, index) => index < 9).map((x, index) => {
@@ -246,7 +254,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                         
                         <div className='
                         
-                        relative md:text-center md:inline-flex md:p-0
+                        relative md:text-center md:inline-flex md:p-0 
                          max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap 
                                 max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
                         ' key={index}>
@@ -254,8 +262,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             <button disabled={destroyer ? true : false}
                                 className={booleanState ?
                                     "invisible" :
-                                    destroyer ? 'squares   max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] ' :
-                                    'squares  bg-clip-text max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] '
+                                    destroyer ? 'squares   max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] ' 
+                                    : darkMode ? 'squares md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px]' 
+                                    :'squares bg-clip-text   max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] '
                                     //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"
                                 }
                                 selectnums={x.num}
@@ -266,12 +275,14 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             </button>
 
                             {/* after click, display chosen number */}
-                            <button className={booleanState ? "squares bg-transparent btn text-black btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[96px]" : 'invisible'}>{number}</button>
+                            <button className={booleanState ? "squares bg-transparent btn btn-dark btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[96px]" : 'invisible'}>
+                                <span className={darkMode ? 'text-white' : 'text-black'}>{number}</span>
+                                </button>
                      
                         </div>
                     )
                 })}
-                
+                </div>
             </div>
 
 {/* When submitted, countdown timer */}
@@ -380,7 +391,7 @@ max-md:hidden
 
             </div> */}
 
-<DataFetch reducerValue={reducerValue} destroyer={destroyer} books={books}/>
+<DataFetch reducerValue={reducerValue} destroyer={destroyer} books={books} darkMode={darkMode}/>
 
         </>
     )

@@ -5,7 +5,7 @@ import React, {
 import HookMood from './HookMood';
 // import DataPost from './apiComponents/DataPost';
 
-export function HomePage () {
+export function HomePage ({ darkMode }) {
   
   
   useEffect (() => {
@@ -35,10 +35,10 @@ export function HomePage () {
         relative mt-[5em] text-center select-none
         max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl
         '>
-            <p className='
-            mb-[60px] text-2xl font-bold italic
-            max-md:mt-10 max-md:mb-[10px]
-            '>How happy are you today?</p>
+            <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
+            mb-[60px] text-2xl  
+            max-md:mt-10 max-md:mb-[10px]`}>
+            How happy are you today?</p>
           {/* <ul className='rating'>
             <li><button type="button" className="btn btn-outline-primary">0</button></li>
             <li><button type="button" className="btn btn-outline-primary">1</button></li>
@@ -52,7 +52,7 @@ export function HomePage () {
             <li><button type="button" className="btn btn-outline-primary">9</button></li>
             <li><button type="button" className="btn btn-outline-primary">10</button></li>
           </ul> */}
-          <HookMood />
+          <HookMood darkMode={darkMode} />
           
           {/* <iframe title='iframe_mongoDB' 
                     className='  

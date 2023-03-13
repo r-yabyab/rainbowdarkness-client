@@ -41,20 +41,20 @@ function Darkness() {
                     </div> */}
 
                     {/* <p className='text-black font-bold pt-4 select-none'>Public stats</p> */}
-<div className='max-md:overflow-x-scroll  mb-20'>
+<div className='max-md:overflow-x-scroll  mb-10'>
                     <iframe title='iframe_mongoDB' className='  
-                    m-auto w-[1000px] h-[680px] select-none'
+                    m-auto w-[1000px] h-[740px] select-none' 
                         src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
                     </iframe>
 </div>
 
-                    <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center items-center flex-col flex bg-black text-white [&>div]:max-w-[800px] '>
+                    <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center items-center flex-col flex bg-black text-zinc-200 [&>div]:max-w-[800px] '>
 
-                        <div className='text-[36px] mt-[150px] text-black bg-white w-[800px] font-semibold'>About Rainbow Darkness</div>
+                        <div className='text-[36px] mt-[150px] text-black bg-zinc-200 w-[800px] font-semibold'>About Rainbow Darkness</div>
                         <div className='pt-4'>
                             {/* Rainbow Darkness is a mental health platform that puts accessibility and anonyminity first. As someone with a background in psychology, I find it kind of dumb that mental health applications tend to require users to fill out personal information before hitting a paywall, or take long surveys that tells you overly positive things about your personality.
                             <br /> Here, we only ask about how happy you are at the moment, in hopes that proceeding visits will bring some introspection on what made you so sad/happy in the past. You also have access to everyone else's moods; Often you'll see that others are having a much worse day than you, which I find interesting because no matter who you talk to in person, they always appear O.K. */}
-                        Rainbow Darkness is a mental health platform that prioritizes accessibility and anonymity for its users. Our platform recognizes that many mental health applications require users to provide personal information or complete lengthy surveys before gaining access to their services. As someone with a background in psychology, I believe this approach is counterproductive.
+                        Rainbow Darkness is a mental health platform that prioritizes accessibility and anonymity for its users. Our platform recognizes that many mental health applications require users to provide personal information or complete lengthy surveys before gaining access to their services.
                         <br /><br /> At Rainbow Darkness, we believe in a simpler approach. We only ask how happy our users are at the moment, with the hope that future visits will prompt introspection and exploration of their emotional states. Additionally, our platform provides access to the moods of other users. This feature can be particularly insightful, as it reveals that others may be struggling even if they appear to be okay in person.
                         <br /><br />Our mission is to create a safe and supportive community for individuals to explore their mental health in a way that is accessible, anonymous, and free from judgment.
                         </div>
@@ -62,9 +62,14 @@ function Darkness() {
 
                     </div>
 
-                    <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-white'>
-                        <div className='text-[36px]  w-[800px] text-black bg-white font-semibold mb-4'>ChangeLog</div>
+                    <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-zinc-200'>
+                        <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
+
+                            <div>1.1.3 (March 12, 2023)</div>
+                            <p>Added dark mode</p>
+                            <p>Text and background have been contrasted to be less jarring in light mode.</p>
+                            <div>______________</div>
 
                             <div>1.1.2.1 (March 10, 2023)</div>
                             <p>Fixed mobile spacing on About page (mongoDB chart, text out of bounds)</p>

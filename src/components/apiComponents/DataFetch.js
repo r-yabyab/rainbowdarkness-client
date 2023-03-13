@@ -11,7 +11,7 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 
 const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
-function DataFetch ({reducerValue, destroyer, books}) {
+function DataFetch ({reducerValue, destroyer, books, darkMode}) {
 
     const [rainbow, setRainbow] = useState(null)
     const [lastRainbow, setLastRainbow] = useState([])
@@ -178,7 +178,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                 md:mr-12 md:right-0
                 max-md:
                 ">
-                        <span className="font-bold">Global Score</span>
+                        <span className={ darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Global Score</span>
                         {/* <Link to='/darkness' className='no-underline text-sm hover:text-blue-200 right-0  md:hidden'><div className="">(chart)</div></Link> */}
                         <div className="  p-3 mt-3 md:bg-white md:text-slate-00 md:text-center">
                             <div>Avg Score
@@ -205,7 +205,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         md:ml-12
                 
                         ">
-                        <p className="font-bold">Your Score</p>
+                        <p className={ darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Your Score</p>
                         <div className='w-[240px] p-3
                             [&>div]:justify-center [&>div]:border-0
                          md:bg-white  
@@ -229,10 +229,12 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                     </div>
 
                     <div className=" max-md:mt-[280px] absolute md:left-[50%]  md:-translate-x-1/2 ">
-                        <span className="font-bold">Individual Moods</span>
+                        <span className={ darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Individual Moods</span>
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
-                            <div className="grid grid-cols-4 gap-4 font-semibold 
+                            <div className="
+                            
+                            grid grid-cols-4 gap-4 font-semibold 
                              [&>div]:pt-0 pt-4 w-[180px] [&>div]:hover:cursor-text
                              ">
                                 {lastRainbow && lastRainbow.map((x, index) => {

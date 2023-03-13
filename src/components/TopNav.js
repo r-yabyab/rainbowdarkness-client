@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../photos/logo512.png'
 
-export function TopNav({ pageDetect, setPageDetect }) {
+export function TopNav({ pageDetect, setPageDetect, darkMode }) {
 
 
     const pageFalse = () => {
@@ -13,18 +13,16 @@ export function TopNav({ pageDetect, setPageDetect }) {
         setPageDetect(true)
     }
 
-
     return (
         <>
 
             {/* max-md:border-y-2 max-md:-mt-2 max-md:border-[#1D4ED8] max-md:h-[40px] max-md:bg-[#1D4ED8] */}
-            <div className='
-            navbar  
-            justify-content-center select-none 
-            ' draggable="false">
+            <div className={`${ darkMode ? 'bg-black border-b-2 border-neutral-600' : `
+             bg-zinc-800`} relative pt-2 pb-2 flex overflow-hidden justify-content-center select-none`} 
+            draggable="false">
 
 
-                <div className='[&>*]:text-yellow-300 flex space-x-2 font-semibold text-xl'>
+                <div className={`${ darkMode ? '[&>*]:text-yellow-200' : '[&>*]:text-yellow-200'} flex space-x-2 font-semibold text-xl`}>
                     <Link to='/' className='no-underline'><div onClick={pageFalse} className='hover:text-white'>Rainbow</div></Link>
                     <Link to='/darkness' className='no-underline'><div onClick={pageTrue} className=' hover:text-purple-300'>Darkness</div></Link>
               
