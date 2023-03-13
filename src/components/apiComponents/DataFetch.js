@@ -207,7 +207,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
 
             {/* Absolute desktop containers */}
-            <div className="relative md:pt-[80px] pr-[100px] pl-[100px] 
+            <div className="relative md:pt-[80px] pr-[100px] pl-[100px] md:mb-[900px]
             max-w-[1000px] mr-auto ml-auto mb-[200px]
             max-md:pt-[100px] max-md:pointer-events-none max-md:absolute max-md:left-[8%]
             ">
@@ -221,7 +221,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         {/* <Link to='/darkness' className='no-underline text-sm hover:text-blue-200 right-0  md:hidden'><div className="">(chart)</div></Link> */}
                         <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} flex flex-row justify-evenly items-center p-8 mt-3  md:rounded-lg md:text-slate-00 md:text-center`}>
                             <div>
-                                <div className=" bg-black rounded-lg text-purple-200">TOTAL</div>
+                                <div className=" bg-black  text-purple-200">TOTAL</div>
                                 <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}>Average
                                     <Suspense fallback={<Loader />}>
                                         <RainbowGet rainbow={rainbow} />
@@ -235,7 +235,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                             </div>
 
                             <div>
-                                <div className=" bg-black rounded-lg text-purple-200">WEEK</div>
+                                <div className=" bg-black  text-purple-200">WEEK</div>
                                 {/* {weekRainbow && weekRainbow.map((x, index) => {
                                     return (
                                         <>
@@ -254,7 +254,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
 
                             <div>
-                                <div className=" bg-black rounded-lg text-purple-200">TODAY</div>
+                                <div className=" bg-black  text-purple-200">TODAY</div>
                                 {/* {weekRainbow && weekRainbow.map((x, index) => {
                                     return (
                                         <>
@@ -309,7 +309,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         </div>
                     </div> */}
 
-                    <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} max-md:mt-[280px] right-[50%] translate-x-1/2  md:mt-[260px] absolute md:rounded-lg lg:w-[900px] md:w-[700px]`}>
+                    <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} max-md:mt-[280px] md:pb-10 right-[50%] translate-x-1/2  md:mt-[260px] absolute md:rounded-lg lg:w-[900px] md:w-[700px]`}>
                         <div className={`${ darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
                             <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses</div>
 
