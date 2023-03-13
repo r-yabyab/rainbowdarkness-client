@@ -7,6 +7,7 @@ import { format } from 'date-fns'
 // import Gradient1 from '../photos/gradient1.png'
 // import Scuffed from '../photos/scuffed-gradient.png'
 import screenedGradient from '../photos/gradient-screen.png'
+import downArrow from '../photos/red-arrow.png'
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -260,25 +261,32 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                         ' key={index}>
 
                             <button disabled={destroyer ? true : false}
+                                    // for padding button width instead of setting w-[...]..... : darkMode ? 'squares md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px]' 
+                                
                                 className={booleanState ?
                                     "invisible" :
                                     destroyer ? 'squares   max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] ' 
-                                    : darkMode ? 'squares md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px]' 
-                                    :'squares bg-clip-text   max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] '
+                                    : darkMode ? 'squares hover:bg-black md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px]' 
+                                    :'squares bg-clip-text hover:bg-black  max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black rounded-lg md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px] '
                                     //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"
                                 }
                                 selectnums={x.num}
                                 onClick={selectHandler}
                             // key={index}
                             >
-                                {x.num}   
+                                <span className={destroyer ? 'invisible' : 'text-[24px] flex justify-center items-center font-light pointer-events-none'}>
+                                    {x.num}
+                                </span>
+                                <span className={destroyer ? ' w-[32px] flex justify-center items-center absolute top-0 translate-y-1/2 right-0 -translate-x-1/2 -mt-[5px]' : 'hidden'}>
+                                    <img src={downArrow} alt='down arrow' />
+                                </span>
                             </button>
 
-                            {/* after click, display chosen number */}
-                            <button className={booleanState ? "squares bg-transparent btn btn-dark btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[96px]" : 'invisible'}>
+                            
+                            <button className={booleanState ? "squares bg-transparent btn md:btn-dark max-md:btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[96px]" : 'invisible'}>
                                 <span className={darkMode ? 'text-white' : 'text-black'}>{number}</span>
-                                </button>
-                     
+                            </button>
+
                         </div>
                     )
                 })}
@@ -333,7 +341,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     className={`${destroyer ? 'invisible' : ''} 
                 mr-[240px] pr-4 pl-4 pt-3 pb-3 text-xl font-bold 
                hover:text-white
-               max-md:border-black max-md:rounded-md max-md:border-2 max-md:hover:bg-black max-md:left-[10%] max-md:top-[320px] max-md:mt-6 max-md:pb-6 max-md:absolute 
+               max-md:border-black max-md:rounded-md max-md:border-2 max-md:hover:bg-black max-md:left-[10%] max-md:top-[370px] max-md:mt-6 max-md:pb-6 max-md:absolute 
                 `}>
                     {/* <i>R</i> */}
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
@@ -345,7 +353,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 {/* submitButton Desktop + mobile */}
                 <div className='
                 [&>*]:bg-black [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[54%] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
-                max-md:[&>*]:top-[374px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
+                max-md:[&>*]:top-[420px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
                 '>
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                         value={number} onClick={handleSubmit} type="number"
