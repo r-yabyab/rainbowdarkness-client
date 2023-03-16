@@ -5,7 +5,7 @@ import React, {
 import HookMood from './HookMood';
 // import DataPost from './apiComponents/DataPost';
 
-export function HomePage ({ darkMode }) {
+export function HomePage ({ darkMode, graphRef }) {
   
   
   useEffect (() => {
@@ -37,7 +37,7 @@ export function HomePage ({ darkMode }) {
         '>
             <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
             mb-[60px] text-2xl  
-            max-md:mt-10 max-md:mb-[10px]`}>
+            max-md:mt-20 max-md:mb-[10px]`}>
             How happy are you today?</p>
           {/* <ul className='rating'>
             <li><button type="button" className="btn btn-outline-primary">0</button></li>
@@ -52,7 +52,7 @@ export function HomePage ({ darkMode }) {
             <li><button type="button" className="btn btn-outline-primary">9</button></li>
             <li><button type="button" className="btn btn-outline-primary">10</button></li>
           </ul> */}
-          <HookMood darkMode={darkMode} />
+          <HookMood darkMode={darkMode} graphRef={graphRef} />
           
           {/* <iframe title='iframe_mongoDB' 
                     className='  
@@ -61,6 +61,20 @@ export function HomePage ({ darkMode }) {
                     '  
                     src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">    
                     </iframe> */}
+<div>
+<div ref={graphRef} className='md:absolute  md:left-[50%] md:-translate-x-1/2 md:overflow-x-scroll  mb-10
+                    max-md:overflow-x-scroll max-md:mt-[860px]'>
+                    <iframe title='iframe_mongoDB' className='  
+                    m-auto w-[1000px] h-[740px] select-none' 
+                        src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
+                    </iframe>
+          </div>
+          <div className='mt-32 z-50 md:hidden bg-black text-zinc-200 flex flex-col text-md font-thin'>
+            <div>Rainbow Darkness</div>
+            <div>© 2023 All Rights Reserved.</div>
+          </div>
+        </div>
+
 
         </div>
       </>

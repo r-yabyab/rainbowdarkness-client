@@ -24,7 +24,7 @@ function Darkness() {
             <div
                 // absolute top-[50%] -translate-y-1/2 left-[50%] -translate-x-1/2
                 className='
-                relative pt-14 
+                relative mt-14 
                 md:bg-black md:bg-opacity-90
                 max-md:bg-black max-md:bg-opacity-90
                 '>
@@ -44,12 +44,12 @@ function Darkness() {
                     </div> */}
 
                     {/* <p className='text-black font-bold pt-4 select-none'>Public stats</p> */}
-<div className='max-md:overflow-x-scroll  mb-10'>
+{/* <div className='max-md:overflow-x-scroll  mb-10'>
                     <iframe title='iframe_mongoDB' className='  
                     m-auto w-[1000px] h-[740px] select-none' 
                         src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
                     </iframe>
-</div>
+</div> */}
 
                     <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center items-center flex-col flex bg-black text-zinc-200 [&>div]:max-w-[800px] '>
 
@@ -69,6 +69,18 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.1.4 (March 16, 2023)</div>
+                            <div className='[&>p]:ml-8'>
+                                Mobile friendlier
+                                <p>Made buttons smaller, fixed sizing</p>
+                                <p className='-mt-4'>Changed button colors</p>
+                            </div>
+                            <p>Main graph moved back to homepage. Button scrolls to it.</p>
+                            <p>Numbers now flash yellow whenever you change it</p>
+                            <p>Added gradient backgrounds</p>
+                            <p>Changed appearance of + - buttons from filled to outlined colors</p>
+                            <div>______________</div>
+                            
                             <div>1.1.3 (March 12-13, 2023)</div>
                             <p>Added dark mode</p>
                             <p>In About page, text and background have been contrasted to be less jarring.</p>

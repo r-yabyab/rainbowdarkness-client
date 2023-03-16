@@ -11,7 +11,7 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 
 const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
-function DataFetch ({reducerValue, destroyer, books, darkMode}) {
+function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
 
     const [rainbow, setRainbow] = useState(null)
     const [lastRainbow, setLastRainbow] = useState([])
@@ -200,6 +200,13 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 //        .attr('stroke', 'black');
 //    }, [lastRainbow]);
 
+    const scrollToGraph = () => {
+        if (graphRef.current) {
+            graphRef.current.scrollIntoView({ behavior: 'instant' });
+        }
+    };
+
+
     return (
         <>
 
@@ -209,7 +216,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
             {/* Absolute desktop containers */}
             <div className="relative md:pt-[80px] pr-[100px] pl-[100px] md:mb-[900px]
             max-w-[1000px] mr-auto ml-auto mb-[200px]
-            max-md:pt-[100px] max-md:pointer-events-none max-md:absolute max-md:left-[8%]
+            max-md:pt-[100px] 
             ">
                 <div className="max-md:hidden md:invisible">___________________________________________________________________________________</div>
                 <div className="pt-[80px]">
@@ -219,7 +226,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         ">
                         {/* <span className={darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Global Score</span> */}
                         {/* <Link to='/darkness' className='no-underline text-sm hover:text-blue-200 right-0  md:hidden'><div className="">(chart)</div></Link> */}
-                        <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} flex flex-row justify-evenly items-center p-8 mt-3  md:rounded-lg md:text-slate-00 md:text-center`}>
+                        <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} flex flex-row justify-evenly max-md:flex-wrap items-center p-8 mt-3  md:rounded-lg md:text-slate-00 md:text-center`}>
                             <div>
                                 <div className=" bg-black  text-purple-200">TOTAL</div>
                                 <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}>Average
@@ -275,7 +282,12 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                             <div title="Mini live graph" className="hover:cursor-text flex justify-center mt-2 mr-12 pb-4">
                                 <svg className="" ref={svgRef} />
                             </div>
-                            <Link to='/darkness' className=' no-underline text-sm hover:text-blue-200 absolute bottom-0 right-0  max-md:hidden'><div className="">full chart</div></Link>
+                            {/* <Link to='/darkness' className=' no-underline text-sm hover:text-blue-200 absolute bottom-0 right-0  max-md:hidden'> */}
+                            <div onClick={scrollToGraph} className='no-underline text-blue-600 hover:cursor-pointer text-sm hover:text-blue-200 absolute bottom-0 right-0  
+                                max-md:left-[50%] max-md:hover:bg-black max-md:-translate-x-1/2 max-md:pt-2 max-md:pb-2 max-md:bg-gray-400 max-md:w-[200px]'>
+                                full chart
+                            </div>
+                            { }
                         </div>
                     </div>
 
@@ -309,15 +321,19 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         </div>
                     </div> */}
 
-                    <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} max-md:mt-[280px] md:pb-10 right-[50%] translate-x-1/2  md:mt-[260px] absolute md:rounded-lg lg:w-[900px] md:w-[700px]`}>
+                    <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} 
+                        max-md:mt-[280px] md:pb-10 right-[50%] translate-x-1/2  md:mt-[260px] absolute md:rounded-lg 
+                        lg:w-[900px] md:w-[700px]
+                        max-md:overflow-hidden max-md:h-[500px]
+                        `}>
                         <div className={`${ darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
                             <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses</div>
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
                             <div className="
                             grid grid-cols-10 gap-4 pr-8 pl-8
-                            max-md:grid max-md:grid-cols-4 max-md:gap-4 font-semibold 
-                             [&>div]:pt-0 pt-4 max-md:w-[180px] [&>div]:hover:cursor-text
+                            max-md:grid max-md:grid-cols-4 max-md:gap-4 font-semibold
+                             [&>div]:pt-0 pt-4 max-md:w-[300px] [&>div]:hover:cursor-text
                              ">
                                 {lastRainbow && lastRainbow.map((x, index) => {
                                     const matched = books.some(book => {

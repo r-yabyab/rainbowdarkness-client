@@ -18,7 +18,7 @@ const getDatafromLS = () => {
     }
 }
 
-function HookMood ({darkMode}) {
+function HookMood ({ darkMode, graphRef }) {
 
     let numberList = [
         // { num: '0' },
@@ -242,11 +242,14 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                  src={ screenedGradient} 
                  alt='button gradient' />
 
-<div className='relative'>
+<div className='relative  '>
 {/* <div className="absolute inset-0 bg-gradient-to-r from-black to-white mix-blend-overlay " /> */}
 
-            <div className="
-            max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center "
+            <div 
+            // className="
+            // max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center "
+className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w-[300px] max-md:m-auto
+'
             >
 
                     {list.filter((item, index) => index < 9).map((x, index) => {
@@ -256,18 +259,36 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                         <div className='
                         
                         relative md:text-center md:inline-flex md:p-0 
-                         max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap 
-                                max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
-                        ' key={index}>
+                        
+                        ' 
+                            // didn't work
+                        // max-md:[&>div]:c max-md:flex-wrap max-md:inline-flex max-md:flex-row max-md:text-center max-md:p-0
+
+
+                                //old, worked but boxy as hell
+                            //  max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap 
+                            //     max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
+
+                        key={index}>
+
 
                             <button disabled={destroyer ? true : false}
                                     // for padding button width instead of setting w-[...]..... : darkMode ? 'squares md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px]' 
                                 
                                 className={booleanState ?
-                                    "invisible" :
-                                    destroyer ? 'squares  hover:cursor-not-allowed  max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px] ' 
-                                    : darkMode ? 'squares hover:bg-black md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px]' 
-                                    :'squares bg-clip-text hover:bg-black  max-md:rounded-none max-md:animate-fade  border-[2px] border-black text-black rounded-lg md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px] '
+                                    // max-md:h used to prevent everything from moving up after buttons removed
+                                    `invisible 
+                                    max-md:h-[244px]`
+                                     :
+                                    destroyer ? `squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
+                                    md:mr-[8px] md:ml-[8px] 
+                                    max-md:rounded-none max-md:animate-fade`
+                                    : darkMode ? `squares hover:bg-black md:bg-clip-text    border-[2px]  border-slate-300 text-black rounded-lg 
+                                    md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px]
+                                    max-md:rounded-lg max-md:inset-0 max-md:bg-gradient-to-r max-md:from-slate-300 max-md:to-zinc-100  max-md:w-[60px] max-md:h-[60px] max-md:animate-fade` 
+                                    :`squares md:bg-clip-text hover:bg-black border-[2px] border-black text-black rounded-lg 
+                                    md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px] 
+                                    max-md:rounded-lg max-md:border-white max-md:inset-0 max-md:bg-gradient-to-r max-md:from-slate-300 max-md:to-zinc-100  max-md:w-[60px] max-md:h-[60px] max-md:animate-fade`
                                     //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"
                                 }
                                 selectnums={x.num}
@@ -282,9 +303,15 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 </span>
                             </button>
 
-                            
-                            <button className={booleanState ? "squares bg-transparent btn md:btn-dark max-md:btn-light btn-lg ratingAnimation max-md:-ml-[134px] max-md:mt-[96px]" : 'invisible'}>
-                                <span className={darkMode ? 'text-white' : 'text-black'}>{number}</span>
+
+                            <button
+                                className={booleanState ?
+                                    `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 btn md:btn-dark max-md:btn-light btn-lg  
+                                    max-md:absolute max-md:bg-black max-md:left-[0%] max-md:ml-[120px] max-md:top-[24%]`
+                                    : 'invisible'}>
+                                <span className={darkMode ? 'text-white ' : 'text-black'}>
+                                    {number}
+                                </span>
                             </button>
 
                         </div>
@@ -318,8 +345,8 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             {booleanState === true &&
                 <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
                 max-md:top-[130px] max-md:[&>Button]:p-10 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
-                    <Button ref={btnRef2} onClick={decrement} variant='danger' size="lg">-0.5</Button>
-                    <Button ref={btnRef} onClick={increment} className='' variant='success' size="lg">+0.5</Button>
+                    <Button ref={btnRef2} onClick={decrement} variant='outline-danger' size="lg">-0.5</Button>
+                    <Button ref={btnRef} onClick={increment} className='' variant='outline-success' size="lg">+0.5</Button>
                 </div>
             }
 
@@ -341,10 +368,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     className={`
                     ${destroyer ? 'invisible' : ''} 
                     ${darkMode ? 'md:text-blue-400' : 'md:text-red-600'} 
-
+                    ${booleanState? '' : 'max-md:hidden'}
                 mr-[240px] pr-4 pl-4 pt-3 pb-3 text-xl font-bold 
                hover:text-white
-               max-md:border-black max-md:rounded-md max-md:border-2 max-md:hover:bg-black max-md:left-[10%] max-md:top-[370px] max-md:mt-6 max-md:pb-6 max-md:absolute 
+               max-md:border-black max-md:rounded-md  max-md:hover:bg-black max-md:left-[20%] max-md:top-[368px] max-md:mt-6 max-md:pb-6 max-md:absolute 
                 `}>
                     {/* <i>R</i> */}
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
@@ -402,7 +429,7 @@ max-md:hidden
 
             </div> */}
 
-<DataFetch reducerValue={reducerValue} destroyer={destroyer} books={books} darkMode={darkMode}/>
+<DataFetch graphRef={graphRef} reducerValue={reducerValue} destroyer={destroyer} books={books} darkMode={darkMode}/>
 
         </>
     )

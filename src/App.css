@@ -71,6 +71,10 @@ opacity:100%;
     animation: 1s 0s 1 fadeInCenter;
 }
 
+.ratingAnimation2 {
+    animation: 0.5s 0s 1 fadeFromYellow2;
+}
+
 .ratingAnimationNoY {
     animation: 1.5s 0s 1 fadeInCenterNoY;
 }
@@ -81,6 +85,14 @@ opacity:100%;
 
 .ratingAnimationYellow {
     animation: 1.5s 0s 1 fadeFromYellow;
+}
+
+.ratingAnimationYellowFast {
+    animation: 0.5s 0s 1 fadeFromYellow;
+}
+
+.ratingAnimationYellowFast2 {
+    animation: 0.6s 0s 1 fadeFromYellow2;
 }
 
 .ratingAnimationWhite {
@@ -121,6 +133,14 @@ opacity:100%;
     }
 100% { background-color: none; }
 }
+
+@keyframes fadeFromYellow2{
+    0% { background-color: yellow;
+        color:blue;
+    }
+100% { background-color: none; }
+}
+
 
 @keyframes fadeFromWhite{
     0% { background-color: white;

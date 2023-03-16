@@ -47,17 +47,26 @@ useEffect (() => {
   document.title = 'Rainbow Darkness';
 }, [])
 
+
+const graphRef = useRef(null)
+
+const scrollToProjects = () => {
+  if (graphRef.current) {
+    graphRef.current.scrollIntoView({ behavior: 'instant' });
+  }
+};
+
   return (
     <>
-      <div className={`${ darkMode ? 'bg-[#121212]' :  ' bg-zinc-100'} fixed h-full w-full`} />
+      <div className={`${ darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 ' :  ' inset-0 bg-gradient-to-r from-black to-white max-md:from-zinc-700 max-md:to-zinc-200'} fixed h-full w-full`} />
+      {/*flat colors <div className={`${ darkMode ? 'bg-[#121212]' :  ' bg-zinc-100'} fixed h-full w-full`} /> */}
       <div className={help ? "blur-xl" : ""}>
        
-
        
         <TopNav pageDetect={pageDetect} setPageDetect={setPageDetect} darkMode={darkMode} />
 
         <Routes>
-          <Route path='/' element={<HomePage darkMode={darkMode} />} />
+          <Route path='/' element={<HomePage darkMode={darkMode} graphRef={graphRef} />} />
           <Route path='/darkness' element={<Darkness darkMode={darkMode} />} />
         </Routes>
 
