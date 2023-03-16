@@ -13,7 +13,7 @@ export function App() {
   const [help, setHelp] = useState(false)
   const [pageDetect, setPageDetect] = useState(false)
 
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(true)
 
   const buttonDarkMode = (e) => {
     setDarkMode(!darkMode)
