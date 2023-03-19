@@ -220,14 +220,14 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
         console.log(sorted)
     }
 
-    return (
+    return destroyer ? (
         <>
 
 
 
 
             {/* Absolute desktop containers */}
-            <div className="relative md:pt-[80px] pr-[100px] pl-[100px] md:mb-[900px]
+            <div className="relative animate-fade md:pt-[80px] pr-[100px] pl-[100px] md:mb-[900px]
             max-w-[1000px] mr-auto ml-auto mb-[200px]
             max-md:pt-[100px] 
             ">
@@ -391,9 +391,19 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
             {/* <div className="absolute">Test SVG
     <svg ref={svgRef} />
 </div> */}
+        <div>
+          <div ref={graphRef} className='  mb-10
+                    max-md:overflow-x-scroll mt-[860px]'>
+            <iframe title='iframe_mongoDB' className='  
+                    m-auto w-[1000px] h-[740px] select-none'
+              src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
+            </iframe>
+          </div>
+
+        </div>
 
         </>
-    )
+    ) : null 
 }
 
 export default DataFetch;

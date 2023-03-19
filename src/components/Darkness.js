@@ -70,6 +70,7 @@ function Darkness() {
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
                             <div>1.1.4 (March 19, 2023)</div>
+                            <p>Cleaned up CSS-- Stats will only show when user submits to make first time visits simpler.</p>
                             <p>Added score sorting</p>
                             <div>______________</div>
 

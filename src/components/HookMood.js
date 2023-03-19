@@ -381,8 +381,10 @@ className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w
                 </button>
 
                 {/* submitButton Desktop + mobile */}
-                <div className={`${darkMode ? '[&>*]:border-2 [&>*]:border-purple-200' : ''}
-                [&>*]:bg-black [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[54%] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
+                <div 
+                // [&>*]:top-[54%]
+                className={`${darkMode ? '[&>*]:border-2 [&>*]:border-purple-200' : ''}
+                [&>*]:bg-black [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
                 max-md:[&>*]:top-[420px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
                 `}>
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}

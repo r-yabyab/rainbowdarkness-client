@@ -61,22 +61,13 @@ export function HomePage ({ darkMode, graphRef }) {
                     '  
                     src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">    
                     </iframe> */}
-<div>
-<div ref={graphRef} className='md:absolute  md:left-[50%] md:-translate-x-1/2 md:overflow-x-scroll  mb-10
-                    max-md:overflow-x-scroll max-md:mt-[860px]'>
-                    <iframe title='iframe_mongoDB' className='  
-                    m-auto w-[1000px] h-[740px] select-none' 
-                        src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
-                    </iframe>
-          </div>
-          <div className='mt-32 z-50 md:hidden bg-black text-zinc-200 flex flex-col text-md font-thin'>
-            <div>Rainbow Darkness</div>
-            <div>© 2023 All Rights Reserved.</div>
-          </div>
+
+        <div className='fixed bottom-0 w-full text-left text-sm text-zinc-400 flex flex-colfont-thin'>
+
+          <div>© 2023 Rainbow Darkness</div>
         </div>
 
-
-        </div>
+      </div>
       </>
     )
   }

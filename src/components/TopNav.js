@@ -17,7 +17,7 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
         <>
 
             {/* max-md:border-y-2 max-md:-mt-2 max-md:border-[#1D4ED8] max-md:h-[40px] max-md:bg-[#1D4ED8] */}
-            <div className={`${ darkMode ? 'bg-black border-b-2 border-neutral-600' : `
+            <div className={`${ darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 border-b-2 border-neutral-600' : `
              bg-zinc-800`} relative pt-2 pb-2 flex overflow-hidden justify-content-center select-none`} 
             draggable="false">
 
