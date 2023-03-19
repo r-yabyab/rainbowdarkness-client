@@ -340,7 +340,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         max-md:overflow-hidden max-md:h-[500px]
                         `}>
                         <div className={`${ darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
-                            <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses <span className="text-blue-400 hover:text-blue-200" onClick={sortClick}>({sorted ? 'descending':'recent'})</span></div>
+                            <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses <span className="text-blue-400 hover:text-blue-200 hover:cursor-pointer" onClick={sortClick}>({sorted ? 'descending':'recent'})</span></div>
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
                             <div className="
