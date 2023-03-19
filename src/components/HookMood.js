@@ -7,7 +7,7 @@ import { format } from 'date-fns'
 // import Gradient1 from '../photos/gradient1.png'
 // import Scuffed from '../photos/scuffed-gradient.png'
 import screenedGradient from '../photos/gradient-screen.png'
-import downArrow from '../photos/red-arrow.png'
+// import downArrow from '../photos/red-arrow.png'
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -298,9 +298,9 @@ className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w
                                 <span className={destroyer ? 'invisible' : 'text-[24px] flex justify-center items-center font-light pointer-events-none'}>
                                     {x.num}
                                 </span>
-                                <span className={destroyer ? ' w-[32px] flex justify-center items-center absolute top-0 translate-y-1/2 md:-right-[1px] -translate-x-1/2 max-md:mt-3 max-md:ml-1 md:-mt-[5px]' : 'hidden'}>
+                                {/* <span className={destroyer ? ' w-[32px] flex justify-center items-center absolute top-0 translate-y-1/2 md:-right-[1px] -translate-x-1/2 max-md:mt-3 max-md:ml-1 md:-mt-[5px]' : 'hidden'}>
                                     <img src={downArrow} alt='down arrow' />
-                                </span>
+                                </span> */}
                             </button>
 
 
