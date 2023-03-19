@@ -22,6 +22,7 @@ function DataPost () {
 
         if (!response.ok) {
             setError(json.error)
+            console.log(error)
         }
         if (response.ok) {
             setNumber('')
@@ -35,8 +36,8 @@ function DataPost () {
 
 <div className="text-red-400">
     <Button variant="outline-primary" value={number} type="number" onClick={handleSubmit}>8</Button>
-    {error && {error}}
-    <Button variant="outline-dark">set to 1</Button>
+    {/* {error && {error}} */}
+    {/* <Button variant="outline-dark">set to 1</Button> */}
 
 
 

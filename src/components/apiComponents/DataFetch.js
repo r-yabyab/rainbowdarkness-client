@@ -2,12 +2,13 @@ import React, { Suspense, useEffect,
     useRef, 
     useState } from "react";
 import Loader from "./Loader";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import * as d3 from 'd3'
 
-const RainbowEntries = React.lazy (() => import("./RainbowEntries")) ;
+const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 // import RainbowDetails from "./RainbowDetails";
+
 
 const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
@@ -17,6 +18,8 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
     const [lastRainbow, setLastRainbow] = useState([])
     const [weekRainbow, setWeekRainbow] = useState([])
     const [todayRainbow, setTodayRainbow] = useState([])
+
+    
 
     useEffect(() => {
         const fetchRainbow = async () => {
@@ -207,6 +210,16 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
     };
 
 
+
+    const [sorted, setSorted] = useState(false)
+
+    const lastRainbowSorted = [...lastRainbow].sort((a, b) => a.number - b.number);
+
+    const sortClick = (e) => {
+        setSorted(!sorted)
+        console.log(sorted)
+    }
+
     return (
         <>
 
@@ -327,7 +340,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         max-md:overflow-hidden max-md:h-[500px]
                         `}>
                         <div className={`${ darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
-                            <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses</div>
+                            <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses <span className="text-blue-400 hover:text-blue-200" onClick={sortClick}>({sorted ? 'descending':'recent'})</span></div>
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
                             <div className="
@@ -335,7 +348,8 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                             max-md:grid max-md:grid-cols-4 max-md:gap-4 font-semibold
                              [&>div]:pt-0 pt-4 max-md:w-[300px] [&>div]:hover:cursor-text
                              ">
-                                {lastRainbow && lastRainbow.map((x, index) => {
+                                {lastRainbow && (sorted ? lastRainbowSorted : lastRainbow)
+                                .map((x, index) => {
                                     const matched = books.some(book => {
                                         return book.inputNumber === x.number && book.inputTime === new Date(x.createdAt).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })
                                     })
