@@ -1,31 +1,53 @@
 import React, { 
-  // useState, 
+  useState, 
   useEffect } from 'react';
+import axios from 'axios'
 // import Button from 'react-bootstrap/Button';
 import HookMood from './HookMood';
 // import DataPost from './apiComponents/DataPost';
 
+const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+
 export function HomePage ({ darkMode, graphRef }) {
   
+  const [aiReq, setAiReq] = useState(true)
+  const [aiText, setAiText] = useState('')
+  const [aiQuestion, setAiQuestion] = useState('')
+  const [aiCitation, setAiCitation] = useState('')
+
+  useEffect(() => {
+    const aiFetch = async () => {
+      try {
+        // const response = await axios.get(`${RAINBOW_DARKNESS}/aineg`, {
+          const response = await axios.get(`${RAINBOW_DARKNESS}/aipos`, {
+          headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        setAiText(response.data.content)
+        console.log(response.data.content)
+      } catch (error) {
+        console.error(error)
+      }
+      
+      
+    }
+    aiFetch()
+    setAiReq(false)
+  }, [])
+
+  useEffect(() => {
+    const question = aiText
+    const regex = /\s*\([^)]*\)/; // matches any text within parentheses and the parentheses themselves
+    const trimmedQuestion = question.replace(regex, '');
+    // const trimmedCitation = question.filter(regex, '');
+    setAiQuestion(trimmedQuestion)
+    // setAiCitation(trimmedCitation)
+  }, [aiText])
   
   useEffect (() => {
     document.title = 'Rainbow Darkness';
   }, [])
-
-  // const [today, setToday] = useState('')
-
-  // useEffect(() => {
-  //   const date = new Date()
-  //   const pstDate = date.toLocaleTimeString("en-US", {
-  //     timeZone: "America/Los_Angeles"
-  //   })
-  //   // const date = today.getUTCDate()
-  //   console.log(pstDate)
-  //   setToday(pstDate)
-  //   console.log(today + "state")
-
-  // }, [])
-
 
   return(
   <>
@@ -36,9 +58,11 @@ export function HomePage ({ darkMode, graphRef }) {
         max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl
         '>
             <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
-            mb-[60px] text-2xl  
+            mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
-            How happy are you today?</p>
+            {/* How happy are you today? */}
+            {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>}
+            </p>
           {/* <ul className='rating'>
             <li><button type="button" className="btn btn-outline-primary">0</button></li>
             <li><button type="button" className="btn btn-outline-primary">1</button></li>

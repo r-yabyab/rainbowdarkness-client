@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
 function DataPost () {
@@ -6,14 +6,23 @@ function DataPost () {
     const [number, setNumber] = useState(0)
     const [error, setError] = useState(null)
 
+    // const [inverseNum, setInverseNum] = useState('')
+    // useEffect(() => {
+    //     const invert = 10 - number
+    //     setInverseNum(invert)
+    //     console.log(invert)
+    // },[number])
+
     const handleSubmit = async () => {
 
         const rainbow = {number}
+        // const inverseRainbow = {inverseNum}
 
         //fetch req to post new dats
         const response = await fetch('api/rainbows', {
             method: 'POST',
             body: JSON.stringify(rainbow),                          // have to send number as json, not object
+            // body: JSON.stringify(inverseRainbow),                          // have to send number as json, not object
             headers: {
                 'Content-Type': 'application/json'
             }

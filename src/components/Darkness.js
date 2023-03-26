@@ -69,6 +69,14 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.1.5 (March 25-26, 2023)</div>
+                            <p>Removed static prompt "How happy are you today?"</p>
+                            <p>Prompt will be generated from openAI, pulling a question regarding your levels of happiness from a peer reviewed Psychology article with correlation values r{`>`}0.5. It returns real articles, however, the questions tend to be made up instead of being from the actual article.
+                                <br />I decided to remove the original prompt because seeing the same question everyday got boring, reflected in user retention and in my own use. With openAI I can leverage scientific battery items to work for the public rather than get lost in academia.
+                            </p>
+                            <p>Sad questions inversely correlating to happiness (e.g. How hopeless were you today?) waiting to be used, need to implement inverse scoring first.</p>
+                            <div>______________</div>
+
                             <div>1.1.4 (March 19, 2023)</div>
                             <p>Cleaned up CSS-- Stats will only show when user submits to make first time visits simpler.</p>
                             <p>Added score sorting</p>
