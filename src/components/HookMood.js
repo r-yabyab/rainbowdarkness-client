@@ -3,6 +3,9 @@ import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
+
+// redux
+
 // import * as d3 from 'd3'
 // import Gradient1 from '../photos/gradient1.png'
 // import Scuffed from '../photos/scuffed-gradient.png'
@@ -38,7 +41,9 @@ function HookMood ({ darkMode, graphRef }) {
     // for displaying incrementers
     let [booleanState, setBooleanState] = useState(false);
     // tracking number for storing
-    let [number, setNumber] = useState('');
+        // set to commented 03/26/23
+    // let [number, setNumber] = useState('');
+    let [number, setNumber] = useState(null);
     // for handleSubmit to DB
     let [error, setError] = useState(null);
     // for localStorage, true === can't submit
@@ -234,13 +239,15 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         <>
                 {/* <div className=' text-transparent text-xl bg-gradient-to-r from-purple-500 to-green-400 absolute w-full h-full bg-blend-multiply' /> */}
                 {/* <img className='absolute top-20 left-[50%] -translate-x-1/2 w-[534px]' src={Gradient1} alt='gradient' /> */}
-<img className={`${booleanState ? "hidden" 
+{/* Used for button background in Desktop */}
+{/* It clips out of element a bit, esp when magnifying browser page */}
+{/* <img className={`${booleanState ? "hidden" 
                 : destroyer ? 'hidden' 
                 : darkMode ? 'max-md:hidden'  
                 :''} max-md:hidden absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]`} 
                 //  src={Scuffed} 
                  src={ screenedGradient} 
-                 alt='button gradient' />
+                 alt='button gradient' /> */}
 
 <div className='relative  '>
 {/* <div className="absolute inset-0 bg-gradient-to-r from-black to-white mix-blend-overlay " /> */}
@@ -259,7 +266,7 @@ className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w
                         <div className='
                         
                         relative md:text-center md:inline-flex md:p-0 
-                        
+                        [&>*]:bg-white
                         ' 
                             // didn't work
                         // max-md:[&>div]:c max-md:flex-wrap max-md:inline-flex max-md:flex-row max-md:text-center max-md:p-0
@@ -277,16 +284,17 @@ className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w
                                 
                                 className={booleanState ?
                                     // max-md:h used to prevent everything from moving up after buttons removed
+                                    // ADD md:bg-clip-text TO DESTROYER FALSE TO MAKE TEXT CLIP THROUGH BG (for image gradients)
                                     `invisible 
                                     max-md:h-[244px]`
                                      :
                                     destroyer ? `squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
-                                    : darkMode ? `squares hover:bg-black md:bg-clip-text    border-[2px]  border-slate-300 text-black rounded-lg 
+                                    : darkMode ? `squares hover:bg-black     border-[2px]  border-slate-300 text-black  rounded-full animate-fade 
                                     md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px]
                                     max-md:rounded-lg max-md:inset-0 max-md:bg-gradient-to-r max-md:from-slate-300 max-md:to-zinc-100  max-md:w-[60px] max-md:h-[60px] max-md:animate-fade` 
-                                    :`squares md:bg-clip-text hover:bg-black border-[2px] border-black text-black rounded-lg 
+                                    :`squares  hover:bg-black border-[2px] border-black text-black rounded-full animate-fade 
                                     md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-lg max-md:border-white max-md:inset-0 max-md:bg-gradient-to-r max-md:from-slate-300 max-md:to-zinc-100  max-md:w-[60px] max-md:h-[60px] max-md:animate-fade`
                                     //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"

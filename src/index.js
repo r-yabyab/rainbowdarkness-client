@@ -5,12 +5,16 @@ import {App} from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HashRouter } from 'react-router-dom';
 import { inject } from '@vercel/analytics'
+import { Provider } from 'react-redux'
+import { store } from './state/store.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 inject()
 root.render(
       <HashRouter>
+        <Provider store={store}>
         <App />
+        </Provider>
       </HashRouter>
 );
 

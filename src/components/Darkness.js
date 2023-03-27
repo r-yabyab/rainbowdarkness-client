@@ -69,6 +69,11 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.1.4 (March 19, 2023)</div>
+                            <p>Changed buttons from rounded-lg to rounded-full</p>
+                            <div>______________</div>
+
+                        
                             <div>1.1.5 (March 25-26, 2023)</div>
                             <p>Removed static prompt "How happy are you today?"</p>
                             <p>Prompt will be generated from openAI, pulling a question regarding your levels of happiness from a peer reviewed Psychology article with correlation values r{`>`}0.5. It returns real articles, however, the questions tend to be made up instead of being from the actual article.
