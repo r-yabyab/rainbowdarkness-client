@@ -71,6 +71,7 @@ function Darkness() {
 
                             <div>1.1.4 (March 19, 2023)</div>
                             <p>Changed buttons from rounded-lg to rounded-full</p>
+                            <p>Currently changing flow of page, extra question, inverse scoring, etc. to utilize ai aspect</p>
                             <div>______________</div>
 
                         

@@ -36,14 +36,31 @@ function HookMood ({ darkMode, graphRef }) {
         { num: '9' },
         { num: '10' }
     ]
+
+    let negNumberList = [
+        { num: '1' },
+        { num: '2' },
+        { num: '3' },
+        { num: '4' },
+        { num: '5' },
+        { num: '6' },
+        { num: '7' },
+        { num: '8' },
+        { num: '9' },
+        { num: '10' }
+    ]
     // for mapping numbers
     let [list, updateList] = useState(numberList);
+    let [negList, updateNegList] = useState(negNumberList)
     // for displaying incrementers
     let [booleanState, setBooleanState] = useState(false);
     // tracking number for storing
         // set to commented 03/26/23
     // let [number, setNumber] = useState('');
     let [number, setNumber] = useState(null);
+    // before the main number
+    let [posNumber, setPosNumber] = useState(null)
+    let [negNumber, setNegNumber] = useState(null)
     // for handleSubmit to DB
     let [error, setError] = useState(null);
     // for localStorage, true === can't submit
@@ -255,8 +272,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             <div 
             // className="
             // max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center "
-className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w-[300px] max-md:m-auto
-'
+// className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w-[300px] max-md:m-auto'
             >
 
                     {list.filter((item, index) => index < 9).map((x, index) => {
@@ -265,8 +281,8 @@ className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w
                         
                         <div className='
                         
-                        relative md:text-center md:inline-flex md:p-0 
-                        [&>*]:bg-white
+                        relative text-center inline-flex md:p-0 
+                        
                         ' 
                             // didn't work
                         // max-md:[&>div]:c max-md:flex-wrap max-md:inline-flex max-md:flex-row max-md:text-center max-md:p-0
@@ -291,19 +307,19 @@ className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w
                                     destroyer ? `squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
-                                    : darkMode ? `squares hover:bg-black     border-[2px]  border-slate-300 text-black  rounded-full animate-fade 
-                                    md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px]
-                                    max-md:rounded-lg max-md:inset-0 max-md:bg-gradient-to-r max-md:from-slate-300 max-md:to-zinc-100  max-md:w-[60px] max-md:h-[60px] max-md:animate-fade` 
-                                    :`squares  hover:bg-black border-[2px] border-black text-black rounded-full animate-fade 
-                                    md:w-[45px] md:h-[50px]  md:mr-[8px] md:ml-[8px] 
-                                    max-md:rounded-lg max-md:border-white max-md:inset-0 max-md:bg-gradient-to-r max-md:from-slate-300 max-md:to-zinc-100  max-md:w-[60px] max-md:h-[60px] max-md:animate-fade`
+                                    : darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full animate-fade 
+                                    w-[45px] h-[50px]  mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
+                                    ` 
+                                    :`squares  hover:bg-green-400 border-[2px] border-black text-black rounded-full animate-fade 
+                                    w-[45px] h-[50px]  mr-[8px] ml-[8px] 
+                                    `
                                     //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"
                                 }
                                 selectnums={x.num}
                                 onClick={selectHandler}
                             // key={index}
                             >
-                                <span className={destroyer ? 'invisible' : 'text-[24px] flex justify-center items-center font-light pointer-events-none'}>
+                                <span className={destroyer ? 'invisible' : 'max-md:text-[18px] md:text-[18px] flex justify-center items-center font-light pointer-events-none'}>
                                     {x.num}
                                 </span>
                                 {/* <span className={destroyer ? ' w-[32px] flex justify-center items-center absolute top-0 translate-y-1/2 md:-right-[1px] -translate-x-1/2 max-md:mt-3 max-md:ml-1 md:-mt-[5px]' : 'hidden'}>
@@ -314,10 +330,10 @@ className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w
 
                             <button
                                 className={booleanState ?
-                                    `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 btn md:btn-dark max-md:btn-light btn-lg  
-                                    max-md:absolute max-md:bg-black max-md:left-[0%] max-md:ml-[120px] max-md:top-[24%]`
+                                    `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 border-[2px] bg-green-400 border-green-400 pr-4 pl-4 pt-[10px] text-black pb-[10px] rounded-full  btn-lg  
+                                    max-md:absolute max-md:bg-black max-md:left-[0%] max-md:ml-[120px] font-bold max-md:top-[24%]`
                                     : 'invisible'}>
-                                <span className={darkMode ? 'text-white ' : 'text-black'}>
+                                <span className={darkMode ? 'text-black ' : 'text-black'}>
                                     {number}
                                 </span>
                             </button>
@@ -325,7 +341,19 @@ className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w
                         </div>
                     )
                 })}
+
+
                 </div>
+
+                {/* {negList.filter((item, index) => index < 9).map((x, index) => { 
+return(
+<div key={index}>
+    {x.num}
+</div>
+)
+})
+} */}
+
             </div>
 
 {/* When submitted, countdown timer */}
