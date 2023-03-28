@@ -1,5 +1,4 @@
 From Oxford Happiness Inventory (OHI)
-
 1. I don’t feel particularly pleased with the way I am (NEGATIVE)
 2. I am intensely interested in other people (POSITIVE)
 3. I feel that life is very rewarding (POSITIVE)
@@ -49,3 +48,14 @@ From World Health Organization Five Well-Being Index (WHO-5)
 - I have felt active and vigorous. 
 - I woke up feeling fresh and rested.
 - My daily life has been filled with things that interest me.
+
+From 
+
+...
+Good ones I'm getting from serverside
+- To what extent did you experience positive emotions today?
+- How happy did you feel today?
+- How happy are you currently?
+- How satisfied are you with your life as a whole these days?
+- How satisfied are you with your social support network?
+- How happy do you feel right now?

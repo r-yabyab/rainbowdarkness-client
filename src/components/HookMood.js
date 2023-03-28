@@ -401,7 +401,7 @@ const buttonClasses = [
         selectnums={x.num}
         onClick={selectHandler}
         className={`
-        ${booleanState ? 'hidden':''}
+        ${ booleanState ? 'hidden': destroyer ? 'hidden' : ''}
         ${buttonClasses.join(' ')} hover:bg-green-200 mr-[8px] ml-[8px] border-2 rounded-full text-white`}
         >
         
@@ -489,15 +489,15 @@ const buttonClasses = [
                 {/* submitButton Desktop + mobile */}
                 <div 
                 // [&>*]:top-[54%]
-                className={`${darkMode ? '[&>*]:border-2 [&>*]:border-purple-200' : ''}
+                className={`${darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-green-500 [&>*]:text-zinc-100'  : ''}
                 [&>*]:bg-black [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
-                max-md:[&>*]:top-[420px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
+                max-md:[&>*]:top-[220px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
                 `}>
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                        className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300' : 'opacity-30'))}
+                        className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300 max-md:animate-fade' : 'max-md:hidden opacity-30'))}
 
                     >
                         Submit</button>

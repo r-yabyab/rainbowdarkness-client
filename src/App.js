@@ -58,7 +58,7 @@ const scrollToProjects = () => {
 
   return (
     <>
-      <div className={`${ darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 ' :  ' inset-0 bg-gradient-to-r from-black to-white max-md:from-zinc-700 max-md:to-zinc-200'} fixed h-full w-full`} />
+      <div className={`${ darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 ' :  ' inset-0 bg-gradient-to-r from-zinc-400 to-zinc-300 max-md:from-zinc-400 max-md:to-zinc-300'} fixed h-full w-full`} />
       {/*flat colors <div className={`${ darkMode ? 'bg-[#121212]' :  ' bg-zinc-100'} fixed h-full w-full`} /> */}
       <div className={help ? "blur-xl" : ""}>
        
