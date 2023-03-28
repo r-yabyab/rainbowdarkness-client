@@ -497,7 +497,7 @@ const buttonClasses = [
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                        className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300 max-md:animate-fade' : 'max-md:hidden opacity-30'))}
+                        className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300 bg-green-500 max-md:animate-fade' : 'max-md:hidden opacity-30'))}
 
                     >
                         Submit</button>
