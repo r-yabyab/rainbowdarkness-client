@@ -363,7 +363,7 @@ const buttonClasses = [
     'squares',
     'border-2',
     'rounded-full',
-    'w-[45px] h-[46px] hover:bg-green-200 mr-[8px] ml-[8px] border-2 rounded-full text-white',
+    'w-[45px] h-[46px]  mr-[8px] ml-[8px] border-2 rounded-full text-white',
     ];
 
     if (index === 3) {
@@ -402,7 +402,7 @@ const buttonClasses = [
         onClick={selectHandler}
         className={`
         ${ booleanState ? 'hidden': destroyer ? 'hidden' : ''}
-        ${buttonClasses.join(' ')} hover:bg-green-200 mr-[8px] ml-[8px] border-2 rounded-full text-white`}
+        ${buttonClasses.join(' ')}  mr-[8px] ml-[8px] border-2 rounded-full text-white`}
         >
         
         
@@ -411,7 +411,7 @@ const buttonClasses = [
         <button
                                 className={booleanState ?
                                     `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 border-[2px] bg-green-400 border-green-400 pr-4 pl-4 pt-[10px] text-black pb-[10px] rounded-full  btn-lg  
-                                    absolute right-[50%] translate-x-1/2 ml-[120px] font-bold top-[24%]`
+                                    absolute right-[50%] translate-x-1/2 ml-[120px] font-bold top-[20px]`
                                     : 'invisible'}>
                                 <span className={darkMode ? 'text-black ' : 'text-black'}>
                                     {number}
@@ -449,7 +449,7 @@ const buttonClasses = [
             </> : null} */}
 
             {booleanState === true &&
-                <div className='absolute md:ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
+                <div className='absolute md:ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[102px]
                 max-md:top-[106px] max-md:[&>Button]:p-4 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
                     <Button ref={btnRef2} onClick={decrement} variant='outline-danger' size="lg">-0.5</Button>
                     <Button ref={btnRef} onClick={increment} className='' variant='outline-success' size="lg">+0.5</Button>
@@ -463,41 +463,44 @@ const buttonClasses = [
             </div> */}
             
             {/* sets booleanState to false ==> initializes ALL states **resetButton */}
-            <div className='mt-[80px]'>
+            <div className='md:mt-[90px] max-md:mt-[150px] max-md:mr-8'>
                 {/* <Button variant='outline-dark' className='mt-[80px] ratingAnimation p-3' onClick={clickHandlerOne}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="currentColor" className="bi bi-wind" viewBox="0 0 16 16">
                         <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z" />
                     </svg>
                 </Button> */}
+
+                {/* THIS ONE RESETS */}
                 <button
                     onClick={clickHandlerOne}
+                    // ${darkMode ? 'md:text-blue-400' : 'md:text-red-600'} 
+            //    max-md:border-black max-md:rounded-md bg-zinc-800  max-md:hover:bg-black max-md:left-[20%] max-md:top-[368px] max-md:mt-6 max-md:pb-6 max-md:absolute 
                     className={`
                     ${destroyer ? 'invisible' : ''} 
-                    ${darkMode ? 'md:text-blue-400' : 'md:text-red-600'} 
-                    ${booleanState? '' : 'max-md:hidden'}
-                mr-[240px] pr-4 pl-4 pt-3 pb-3 text-xl font-bold 
-               hover:text-white
-               max-md:border-black max-md:rounded-md  max-md:hover:bg-black max-md:left-[20%] max-md:top-[368px] max-md:mt-6 max-md:pb-6 max-md:absolute 
+                    ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} 
+                    ${booleanState? '' : 'hidden'}
+                mr-[260px] pr-4 pl-4 pt-[10px] pb-[10px] text-lg 
+               md:hover:text-white bg-zinc-800
                 `}>
-                    {/* <i>R</i> */}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
+                    undo
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
                         <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
-                    </svg>
+                    </svg> */}
                 </button>
 
                 {/* submitButton Desktop + mobile */}
                 <div 
                 // [&>*]:top-[54%]
                 className={`${darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-green-500 [&>*]:text-zinc-100'  : ''}
-                [&>*]:bg-black [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
-                max-md:[&>*]:top-[220px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
+                 [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
+                max-md:[&>*]:top-[260px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
                 `}>
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                        className={(destroyer ? 'opacity-30 ' : (booleanState ? 'hover:text-yellow-300 bg-green-500 max-md:animate-fade' : 'max-md:hidden opacity-30'))}
+                        className={(destroyer ? 'opacity-30 ' : (booleanState ? 'md:hover:text-yellow-300 bg-green-500 max-md:animate-fade' : 'max-md:hidden bg-black opacity-30'))}
 
                     >
                         Submit</button>

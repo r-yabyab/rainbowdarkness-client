@@ -54,8 +54,8 @@ export function HomePage ({ darkMode, graphRef }) {
   
   <link rel="shortcut icon" href="/a.png" />
         <div draggable="false" className='
-        relative mt-[5em] text-center select-none
-        max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl
+        relative mt-[5em] text-center select-none [&>*]:h-[40px]
+        max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl 
         '>
             <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
             mb-[60px] text-2xl
