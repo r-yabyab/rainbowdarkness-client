@@ -59,8 +59,8 @@ function HookMood ({ darkMode, graphRef }) {
     // let [number, setNumber] = useState('');
     let [number, setNumber] = useState(null);
     // before the main number
-    let [posNumber, setPosNumber] = useState(null)
-    let [negNumber, setNegNumber] = useState(null)
+    // let [posNumber, setPosNumber] = useState(null)
+    // let [negNumber, setNegNumber] = useState(null)
     // for handleSubmit to DB
     let [error, setError] = useState(null);
     // for localStorage, true === can't submit
@@ -270,12 +270,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 {/* <div className="absolute inset-0 bg-gradient-to-r from-black to-white mix-blend-overlay " /> */}
 
             <div 
+            className='max-md:hidden'
             // className="
             // max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center "
 // className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w-[300px] max-md:m-auto'
             >
 
-                    {list.filter((item, index) => index < 9).map((x, index) => {
+                    {list.filter((item, index) =>  index < 9).map((x, index) => {
                     // displays row of numbers from array
                     return (
                         
@@ -308,7 +309,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
                                     : darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full animate-fade 
-                                    w-[45px] h-[50px]  mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
+                                    w-[45px] h-[50px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
                                     :`squares  hover:bg-green-400 border-[2px] border-black text-black rounded-full animate-fade 
                                     w-[45px] h-[50px]  mr-[8px] ml-[8px] 
@@ -343,6 +344,8 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 })}
 
 
+
+
                 </div>
 
                 {/* {negList.filter((item, index) => index < 9).map((x, index) => { 
@@ -353,6 +356,73 @@ return(
 )
 })
 } */}
+<div className='flex md:hidden justify-center animate-fade pt-10'>
+{list.filter((item, index) => [0,1,3,4,5,7,8].includes(index)).map((x, index) => { 
+
+const buttonClasses = [
+    'squares',
+    'border-2',
+    'rounded-full',
+    'w-[45px] h-[46px] hover:bg-green-200 mr-[8px] ml-[8px] border-2 rounded-full text-white',
+    ];
+
+    if (index === 3) {
+        // middle button
+        buttonClasses.push('border-zinc-400 text-white w-[25px] h-[26px]');
+    } else if (index === 0) {
+        // right buttons
+        buttonClasses.push('border-red-400 text-white  w-[58px] h-[58px]');
+    } else if (index === 1) {
+        // right buttons
+        buttonClasses.push('border-red-400 text-white  w-[46px] h-[46px]');
+    } else if (index === 2) {
+        // right buttons
+        buttonClasses.push('border-red-400 text-white w-[35px] h-[36px]');
+    } else if (index === 4) {
+        // right buttons
+        buttonClasses.push('border-green-400 text-white w-[35px] h-[36px]');
+    } else if (index === 5) {
+        // right buttons
+        buttonClasses.push('border-green-400 text-white w-[46px] h-[46px]');
+    } else if (index === 6) {
+        // right buttons
+        buttonClasses.push('border-green-400 text-white w-[58px] h-[58px]');
+    } else {
+        // left buttons
+        buttonClasses.push('bg-red-400 border-red-400 text-white');
+    }
+
+    return (
+    <div 
+        key={index}
+        className="relative text-center inline-flex md:p-0 items-center"
+    >
+        <button 
+        selectnums={x.num}
+        onClick={selectHandler}
+        className={`
+        ${booleanState ? 'hidden':''}
+        ${buttonClasses.join(' ')} hover:bg-green-200 mr-[8px] ml-[8px] border-2 rounded-full text-white`}
+        >
+        
+        
+        </button>
+
+        <button
+                                className={booleanState ?
+                                    `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 border-[2px] bg-green-400 border-green-400 pr-4 pl-4 pt-[10px] text-black pb-[10px] rounded-full  btn-lg  
+                                    absolute right-[50%] translate-x-1/2 ml-[120px] font-bold top-[24%]`
+                                    : 'invisible'}>
+                                <span className={darkMode ? 'text-black ' : 'text-black'}>
+                                    {number}
+                                </span>
+                            </button>
+
+    </div>
+)
+
+})}
+</div>
 
             </div>
 
@@ -379,8 +449,8 @@ return(
             </> : null} */}
 
             {booleanState === true &&
-                <div className='absolute ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
-                max-md:top-[130px] max-md:[&>Button]:p-10 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
+                <div className='absolute md:ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[92px]
+                max-md:top-[106px] max-md:[&>Button]:p-4 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
                     <Button ref={btnRef2} onClick={decrement} variant='outline-danger' size="lg">-0.5</Button>
                     <Button ref={btnRef} onClick={increment} className='' variant='outline-success' size="lg">+0.5</Button>
                 </div>

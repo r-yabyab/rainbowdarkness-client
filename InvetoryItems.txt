@@ -1,0 +1,51 @@
+From Oxford Happiness Inventory (OHI)
+
+1. I don’t feel particularly pleased with the way I am (NEGATIVE)
+2. I am intensely interested in other people (POSITIVE)
+3. I feel that life is very rewarding (POSITIVE)
+4. I have very warm feelings towards almost everyone (POSITIVE)
+5. I rarely wake up feeling rested (NEGATIVE)
+6. I am not particularly optimistic about the future (NEGATIVE)
+7. I find most things amusing (POSITIVE)
+8. I am always committed and involved (POSITIVE)
+9. Life is good (POSITIVE)
+10. I do not think that the world is a good place (NEGATIVE) 
+11. I laugh a lot (POSITIVE)
+12. I am well satisfied about everything in my life (POSITIVE)
+13. I don’t think I look attractive (NEGATIVE) 
+14. There is a gap between what I would like to do and what I have done (NEGATIVE)
+15. I am very happy (POSITIVE)
+16. I find beauty in some things (POSITIVE)
+17. I always have a cheerful effect on others (POSITIVE)
+18. I can fit in everything I want to (POSITIVE)
+19. I feel that I am not especially in control of my life (NEGATIVE)
+20. I feel able to take anything on (POSITIVE)
+21. I feel fully mentally alert (POSITIVE)
+22. I often experience joy and elation (POSITIVE)
+23. I do not find it easy to make decisions (NEGATIVE)
+24. I do not have a particular sense of meaning and purpose in my life (NEGATIVE)
+25. I feel I have a great deal of energy (POSITIVE)
+26. I usually have a good influence on events (POSITIVE)
+27. I do not have fun with other people (NEGATIVE)
+28. I don’t feel particularly healthy (NEGATIVE)
+29. I do not have particularly happy memories of the past (NEGATIVE)
+
+From Satisfaction with Life Scale (SWLS)
+- In most ways my life is close to my ideal.
+- The conditions of my life are excellent.
+- I am satisfied with my life.
+- So far I have gotten the important things I want in life.
+- If I could live my life over, I would change almost nothing.
+
+From Subjective Happiness Scale (SHS)
+- In general, I consider myself a happy person.
+- Compared to most of my peers, I consider myself (0) less happy - (10) more happy 
+- Some people are generally very happy. They enjoy life regardless of what is going on, getting the most out of everything. To what extent does this characterization describe you?
+- Some people are generally not very happy. Although they are not depressed, they never seem as happy as they might be. To what extent does this characterization describe you?
+
+From World Health Organization Five Well-Being Index (WHO-5)
+- I have felt cheerful in good spirits.
+- I have felt calm and relaxed.
+- I have felt active and vigorous. 
+- I woke up feeling fresh and rested.
+- My daily life has been filled with things that interest me.
