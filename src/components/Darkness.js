@@ -69,7 +69,9 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
-                            <div>1.1.4 (March 19, 2023)</div>
+
+
+                            <div>1.1.6 (March 27, 2023)</div>
                             <p>Changed buttons from rounded-lg to rounded-full</p>
                             <p>Currently changing flow of page, extra question, inverse scoring, etc. to utilize ai aspect</p>
                             <div>______________</div>

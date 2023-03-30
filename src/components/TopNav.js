@@ -4,16 +4,16 @@ import logo from '../photos/logo512.png'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export function TopNav({ pageDetect, setPageDetect, darkMode }) {
+    const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
+
 
 // Auth0 shit
     const LoginButton = () => {
-        const { loginWithRedirect } = useAuth0();
 
         return <button onClick={() => loginWithRedirect()}>Log In</button>;
     };
 
     const LogoutButton = () => {
-        const { logout } = useAuth0();
 
         return (
             <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
@@ -22,33 +22,36 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
         );
     };
 
-    const Profile = () => {
-        const { user, isAuthenticated, isLoading } = useAuth0();
+
+
+
+    // const Profile = () => {
+    //     const { user, isAuthenticated, isLoading } = useAuth0();
       
-        if (isLoading) {
-          return <div>Loading ...</div>;
-        }
+    //     if (isLoading) {
+    //       return <div>Loading ...</div>;
+    //     }
       
-        return (
-          isAuthenticated && (
-            <div>
-              <img src={user.picture} alt={user.name} />
-              <h2>{user.name}</h2>
-              <p>{user.email}</p>
-            </div>
-          )
-        );
-      };
+    //     return (
+    //       isAuthenticated && (
+    //         <div>
+    //           <img src={user.picture} alt={user.name} />
+    //           <h2>{user.name}</h2>
+    //           <p>{user.email}</p>
+    //         </div>
+    //       )
+    //     );
+    //   };
 
     
 // for detecting which page is selected, Deprecated don't use
-    const pageFalse = () => {
-        setPageDetect(false)
-    }
+    // const pageFalse = () => {
+    //     setPageDetect(false)
+    // }
 
-    const pageTrue = () => {
-        setPageDetect(true)
-    }
+    // const pageTrue = () => {
+    //     setPageDetect(true)
+    // }
 
     return (
         <>
@@ -60,8 +63,12 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
 
 
                 <div className={`${darkMode ? '[&>*]:text-yellow-200' : '[&>*]:text-yellow-200'} flex space-x-2 font-semibold text-xl`}>
-                    <Link to='/' className='no-underline'><div onClick={pageFalse} className='hover:text-white'>Rainbow</div></Link>
-                    <Link to='/darkness' className='no-underline'><div onClick={pageTrue} className=' hover:text-purple-300'>Darkness</div></Link>
+                    <Link to='/' className='no-underline'><div
+                        // onClick={pageFalse}
+                        className='hover:text-white'>Rainbow</div></Link>
+                    <Link to='/darkness' className='no-underline'><div
+                        // onClick={pageTrue}
+                        className=' hover:text-purple-300'>Darkness</div></Link>
 
                     {/* arrow stuff */}
 
@@ -92,12 +99,23 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                     </svg> </div>}
             </div>
 
-    <div className='absolute flex top-2 right-0 mr-24 text-white hover:cursor-pointer '>
-        <div className='hover:bg-blue-600'>{LoginButton()} </div>
-        <div className='hover:bg-blue-600'>{LogoutButton()}</div>
-        <div>{Profile()}</div>
+            {/* <div className='absolute flex top-2 right-0 mr-24 text-white hover:cursor-pointer '>
+                <div>                        {
+                    isLoading ? <><div className="tracking-tighter text-zinc-400 animate-pulse">Loading...</div></>
+                        : isAuthenticated ?
+                            <>
+                                <div className={'text-slate-500 hover:cursor-pointer'}>Account</div>
+                                <div className={"absolute w-[240px] z-50  right-0 top-12 bg-slate-500"}>
+                                    <div className="flex gap-2 pt-2 pb-2 hover:bg-slate-500   flex-col">
+                                        <div className=" hover:cursor-text select-text  text-zinc-800  overflow-hidden w-full text-center">Acc: {user && user.email}</div>
+                                        <div className="hover:bg-white hover:cursor-pointer hover:text-zinc-800 text-bg-zinc-200 w-full text-center">{LogoutButton()}</div>
+                                    </div>
+                                </div>
+                            </> :
+                            <span className="hover:cursor-pointer hover:text-neutral-400">{LoginButton()}</span>
+                }</div>
 
-      </div>
+            </div> */}
 
         </>
     )

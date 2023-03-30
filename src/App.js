@@ -7,6 +7,7 @@ import Darkness from './components/Darkness';
 import { BottomHeader } from './components/BottomHeader';
 // import resetArrow from './photos/resetArrow.png'
 import GraphPic from './photos/graph-pic.png'
+import { UserProfile } from './components/UserProfile';
 
 export function App() {
 
@@ -68,6 +69,7 @@ const scrollToProjects = () => {
         <Routes>
           <Route path='/' element={<HomePage darkMode={darkMode} graphRef={graphRef} />} />
           <Route path='/darkness' element={<Darkness darkMode={darkMode} />} />
+          <Route path='/test' element={<UserProfile darkMode={darkMode} />} />
         </Routes>
 
         <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor"
