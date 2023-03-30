@@ -69,10 +69,16 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.1.7 (March 30, 2023)</div>
+                            <p>Changed logo</p>
+                            <p>openAI prompts still a work in progress. After some tinkering, it has a really hard time returning actual content peer reviewed articles. When it does, it responds extremely slowly and times out sometimes.</p>
+                            <p>Created Auth0 frontend for data storage and possible daily memos, need to create serverside functions before rolling out to users (includes user pages).</p>
+                            <div>______________</div>
 
 
                             <div>1.1.6 (March 27, 2023)</div>
-                            <p>Changed buttons from rounded-lg to rounded-full</p>
+                            <p>Changed buttons from rounded-lg to rounded-full, changed colors</p>
+                            <p>Changed mobile to show just 7 buttons.</p>
                             <p>Currently changing flow of page, extra question, inverse scoring, etc. to utilize ai aspect</p>
                             <div>______________</div>
 
