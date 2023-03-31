@@ -492,7 +492,7 @@ const buttonClasses = [
                 {/* submitButton Desktop + mobile */}
                 <div 
                 // [&>*]:top-[54%]
-                className={`${darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-green-500 [&>*]:text-zinc-100'  : ''}
+                className={`${darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-green-500 [&>*]:text-zinc-100'  : 'bg-black'}
                  [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
                 max-md:[&>*]:top-[260px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
                 `}>
