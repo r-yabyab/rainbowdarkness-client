@@ -15,13 +15,13 @@ function DataPost () {
 
     const handleSubmit = async () => {
 
-        const rainbow = {number}
+        // const rainbow = {number}
         // const inverseRainbow = {inverseNum}
 
         //fetch req to post new dats
-        const response = await fetch('api/rainbows', {
+        const response = await fetch('api/memos', {
             method: 'POST',
-            body: JSON.stringify(rainbow),                          // have to send number as json, not object
+            body: JSON.stringify(memo),                          // have to send number as json, not object
             // body: JSON.stringify(inverseRainbow),                          // have to send number as json, not object
             headers: {
                 'Content-Type': 'application/json'
