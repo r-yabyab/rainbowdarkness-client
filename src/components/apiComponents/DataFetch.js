@@ -12,7 +12,7 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 
 const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
-function DataFetch ({  destroyer, books, darkMode, graphRef}) {
+function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
 
     const [rainbow, setRainbow] = useState(null)
     const [lastRainbow, setLastRainbow] = useState([])
@@ -24,7 +24,8 @@ function DataFetch ({  destroyer, books, darkMode, graphRef}) {
     useEffect(() => {
         const fetchRainbow = async () => {
             const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows`,
-            { mode: 'cors'})
+            { mode: 'cors'}
+            )
             const json = await response.json()
 
             if (response.ok) {
@@ -32,12 +33,13 @@ function DataFetch ({  destroyer, books, darkMode, graphRef}) {
             }
         }
         fetchRainbow()
-    }, [ ])
+    }, [reducerValue])
 
     useEffect(() => {
         const fetchLastRainbow = async () => {
             const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`,
-            { mode: 'cors'})
+            { mode: 'cors'}
+            )
             const json = await response.json()
 
             if (response.ok) {
@@ -45,12 +47,13 @@ function DataFetch ({  destroyer, books, darkMode, graphRef}) {
             }
         }
         fetchLastRainbow()
-    }, [ ])
+    }, [reducerValue])
 
     useEffect(() => {
         const fetchWeekRainbow = async () => {
             const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`,
-            { mode: 'cors' })
+            { mode: 'cors' }
+            )
             const json = await response.json()
 
             if (response.ok) {
@@ -58,7 +61,7 @@ function DataFetch ({  destroyer, books, darkMode, graphRef}) {
             }
         }
         fetchWeekRainbow()
-    }, [ ])
+    }, [reducerValue])
 
 
     //For calc
@@ -81,7 +84,7 @@ function DataFetch ({  destroyer, books, darkMode, graphRef}) {
             }
         }
         fetchTodayRainbow()
-    }, [ ])
+    }, [reducerValue])
 
     const todayAverage = () => {
         const sum = (todayRainbow && todayRainbow.reduce((acc, x) => acc + x.number, 0)) 

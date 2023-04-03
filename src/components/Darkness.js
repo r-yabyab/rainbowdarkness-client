@@ -69,6 +69,10 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.1.7 (April 3, 2023)</div>
+                            <p>Tweaking Auth0 and MongoDB API. Cors and 429 errors happening randomly-- Expect disruptions</p>
+                            <div>______________</div>
+
                             <div>1.1.7 (March 30, 2023)</div>
                             <p>Changed logo</p>
                             <p>openAI prompts still a work in progress. After some tinkering, it has a really hard time returning actual content peer reviewed articles. When it does, it responds extremely slowly and times out sometimes.</p>
