@@ -26,11 +26,13 @@ function Memos () {
                 // headers: {
                 //     'Content-Type': 'application/json'
                 memo: memo
-            }, {
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            })
+            }, 
+            // {
+            //     headers: {
+            //         'Authorization': `Bearer ${accessToken}`
+            //     }
+            // }
+            )
             console.log(response.data)
             setMemo('')
         } catch (error) {

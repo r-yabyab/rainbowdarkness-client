@@ -12,7 +12,7 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 
 const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
-function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
+function DataFetch ({  destroyer, books, darkMode, graphRef}) {
 
     const [rainbow, setRainbow] = useState(null)
     const [lastRainbow, setLastRainbow] = useState([])
@@ -32,7 +32,7 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
             }
         }
         fetchRainbow()
-    }, [reducerValue])
+    }, [ ])
 
     useEffect(() => {
         const fetchLastRainbow = async () => {
@@ -45,7 +45,7 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
             }
         }
         fetchLastRainbow()
-    }, [reducerValue])
+    }, [ ])
 
     useEffect(() => {
         const fetchWeekRainbow = async () => {
@@ -58,7 +58,7 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
             }
         }
         fetchWeekRainbow()
-    }, [reducerValue])
+    }, [ ])
 
 
     //For calc
@@ -81,7 +81,7 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
             }
         }
         fetchTodayRainbow()
-    }, [reducerValue])
+    }, [ ])
 
     const todayAverage = () => {
         const sum = (todayRainbow && todayRainbow.reduce((acc, x) => acc + x.number, 0)) 
@@ -93,27 +93,27 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
     const [matched, setMatched] = useState([])
     const [matchData, setMatchData] = useState([])
 
-useEffect(() => {
+    useEffect(() => {
         const userScore = books.map((x, index) => {
             return (`Num:${x.inputNumber} Time:${x.inputTime}`)
         })
         const totalScore = lastRainbow && lastRainbow.map((x, index) => {
-            return (`Num:${x.number} Time:${new Date(x.createdAt).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'})}`)
-        }) 
+            return (`Num:${x.number} Time:${new Date(x.createdAt).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}`)
+        })
         const matching = totalScore.filter((total) =>
-        userScore.some((user) => user.inputNumber === total.number && user.inputTime === total.createdAt)
-        )  
+            userScore.some((user) => user.inputNumber === total.number && user.inputTime === total.createdAt)
+        )
 
         // const mergedData = lastRainbow.map(x => {
         //     const userData = books.find(q => q.inputNumber === x.number)
         //     return { ...x, ...userData}  
-            
+
         // })
 
         const mergedData = books.filter(book => {
             return lastRainbow.some(rainbow => {
-                return book.inputNumber === rainbow.number && book.inputTime === (new Date(rainbow.createdAt).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'}))
-            }) 
+                return book.inputNumber === rainbow.number && book.inputTime === (new Date(rainbow.createdAt).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' }))
+            })
         })
 
         setMatchData(mergedData)
@@ -122,13 +122,17 @@ useEffect(() => {
 
         console.log(userScore)
         console.log(totalScore)
-        console.log(`MATCHED: ${matched}`)  
-}, []) 
-// console.log(`MatchData ${JSON.stringify(matchData)} ...`)   
+        console.log(`MATCHED: ${matched}`)
+    }, [])
+    
+    // console.log(`MatchData ${JSON.stringify(matchData)} ...`)   
+    useEffect(() => {
+        console.log(`MatchData changed: ${JSON.stringify(matchData)}`);
+      }, [matchData]);
 
-//    const rainbow2 = rainbow.number
+    //    const rainbow2 = rainbow.number
 
-   const svgRef = useRef();
+    const svgRef = useRef();
 
 //    const dbNumber = lastRainbow && lastRainbow.map((x, index) => {
 //     return x.number;
