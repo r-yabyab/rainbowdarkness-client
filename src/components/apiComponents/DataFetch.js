@@ -23,7 +23,8 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
 
     useEffect(() => {
         const fetchRainbow = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows`)
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows`,
+            { mode: 'cors'})
             const json = await response.json()
 
             if (response.ok) {
@@ -35,7 +36,8 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
 
     useEffect(() => {
         const fetchLastRainbow = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`)
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`,
+            { mode: 'cors'})
             const json = await response.json()
 
             if (response.ok) {
@@ -47,7 +49,8 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
 
     useEffect(() => {
         const fetchWeekRainbow = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`)
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`,
+            { mode: 'cors' })
             const json = await response.json()
 
             if (response.ok) {
@@ -69,7 +72,8 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
 
     useEffect(() => {
         const fetchTodayRainbow = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`)
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`,
+            { mode: 'cors' })
             const json = await response.json()
 
             if (response.ok) {
