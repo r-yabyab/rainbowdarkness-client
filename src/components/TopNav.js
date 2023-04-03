@@ -6,7 +6,6 @@ import { useAuth0 } from '@auth0/auth0-react'
 export function TopNav({ pageDetect, setPageDetect, darkMode }) {
     const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
 
-
 // Auth0 shit
     const LoginButton = () => {
 
@@ -99,7 +98,7 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                     </svg> </div>}
             </div>
 
-            {/* <div className='absolute flex top-2 right-0 mr-24 text-white hover:cursor-pointer '>
+            <div className='absolute flex top-2 right-0 mr-24 text-white hover:cursor-pointer '>
                 <div>                        {
                     isLoading ? <><div className="tracking-tighter text-zinc-400 animate-pulse">Loading...</div></>
                         : isAuthenticated ?
@@ -114,8 +113,7 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                             </> :
                             <span className="hover:cursor-pointer hover:text-neutral-400">{LoginButton()}</span>
                 }</div>
-
-            </div> */}
+            </div>
 
         </>
     )

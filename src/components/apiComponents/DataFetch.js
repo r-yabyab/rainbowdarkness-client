@@ -57,6 +57,9 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
         fetchWeekRainbow()
     }, [reducerValue])
 
+
+    //For calc
+
     const weekAverage = () => {
         const sum = (weekRainbow && weekRainbow.reduce((acc, x) => acc + x.number, 0)) 
         const average = sum/weekRainbow.length
@@ -117,7 +120,7 @@ useEffect(() => {
         console.log(totalScore)
         console.log(`MATCHED: ${matched}`)  
 }, []) 
-console.log(`MatchData ${JSON.stringify(matchData)} ...`)   
+// console.log(`MatchData ${JSON.stringify(matchData)} ...`)   
 
 //    const rainbow2 = rainbow.number
 

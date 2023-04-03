@@ -10,40 +10,40 @@ const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
 export function HomePage ({ darkMode, graphRef }) {
   
-  const [aiReq, setAiReq] = useState(true)
-  const [aiText, setAiText] = useState('')
-  const [aiQuestion, setAiQuestion] = useState('')
-  const [aiCitation, setAiCitation] = useState('')
+  // const [aiReq, setAiReq] = useState(true)
+  // const [aiText, setAiText] = useState('')
+  // const [aiQuestion, setAiQuestion] = useState('')
+  // const [aiCitation, setAiCitation] = useState('')
 
-  useEffect(() => {
-    const aiFetch = async () => {
-      try {
-        // const response = await axios.get(`${RAINBOW_DARKNESS}/aineg`, {
-          const response = await axios.get(`${RAINBOW_DARKNESS}/aipos`, {
-          headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        setAiText(response.data.content)
-        console.log(response.data.content)
-      } catch (error) {
-        console.error(error)
-      }
+  // useEffect(() => {
+  //   const aiFetch = async () => {
+  //     try {
+  //       // const response = await axios.get(`${RAINBOW_DARKNESS}/aineg`, {
+  //         const response = await axios.get(`${RAINBOW_DARKNESS}/aipos`, {
+  //         headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     })
+  //       setAiText(response.data.content)
+  //       console.log(response.data.content)
+  //     } catch (error) {
+  //       console.error(error)
+  //     }
       
       
-    }
-    aiFetch()
-    setAiReq(false)
-  }, [])
+  //   }
+  //   aiFetch()
+  //   setAiReq(false)
+  // }, [])
 
-  useEffect(() => {
-    const question = aiText
-    const regex = /\s*\([^)]*\)/; // matches any text within parentheses and the parentheses themselves
-    const trimmedQuestion = question.replace(regex, '');
-    // const trimmedCitation = question.filter(regex, '');
-    setAiQuestion(trimmedQuestion)
-    // setAiCitation(trimmedCitation)
-  }, [aiText])
+  // useEffect(() => {
+  //   const question = aiText
+  //   const regex = /\s*\([^)]*\)/; // matches any text within parentheses and the parentheses themselves
+  //   const trimmedQuestion = question.replace(regex, '');
+  //   // const trimmedCitation = question.filter(regex, '');
+  //   setAiQuestion(trimmedQuestion)
+  //   // setAiCitation(trimmedCitation)
+  // }, [aiText])
   
   useEffect (() => {
     document.title = 'Rainbow Darkness';
@@ -60,8 +60,8 @@ export function HomePage ({ darkMode, graphRef }) {
             <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
             mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
-            {/* How happy are you today? */}
-            {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>}
+            How happy are you today?
+            {/* {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>} */}
             </p>
           {/* <ul className='rating'>
             <li><button type="button" className="btn btn-outline-primary">0</button></li>
