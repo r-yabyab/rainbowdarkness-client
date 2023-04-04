@@ -38,7 +38,7 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
           setTodayRainbow(todayRainbowData);
         };
         fetchData();
-      }, []);
+      }, [reducerValue]);
     
     // // fetches total avg + total entries
     // useEffect(() => {
