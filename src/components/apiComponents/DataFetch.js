@@ -10,7 +10,8 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 // import RainbowDetails from "./RainbowDetails";
 
 
-const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+const RAINBOW_DARKNESS = 'http://localhost:4000'
 
 function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
 
@@ -19,49 +20,84 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
     const [weekRainbow, setWeekRainbow] = useState([])
     const [todayRainbow, setTodayRainbow] = useState([])
 
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const responses = await Promise.all([
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows`, { mode: 'cors' }),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`, { mode: 'cors' }),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`, { mode: 'cors' }),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`, { mode: 'cors' }),
+          ]);
+          const data = await Promise.all(responses.map((response) => response.json()));
+          const [rainbowData, lastRainbowData, weekRainbowData, todayRainbowData] = data;
+          setRainbow(rainbowData);
+          setLastRainbow(lastRainbowData);
+          setWeekRainbow(weekRainbowData);
+          setTodayRainbow(todayRainbowData);
+        };
+        fetchData();
+      }, []);
     
+    // // fetches total avg + total entries
+    // useEffect(() => {
+    //     const fetchRainbow = async () => {
+    //         const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows`,
+    //         { mode: 'cors'}
+    //         )
+    //         const json = await response.json()
 
-    useEffect(() => {
-        const fetchRainbow = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows`,
-            { mode: 'cors'}
-            )
-            const json = await response.json()
+    //         if (response.ok) {
+    //             setRainbow(json)
+    //         }
+    //     }
+    //     fetchRainbow()
+    // }, [reducerValue])
 
-            if (response.ok) {
-                setRainbow(json)
-            }
-        }
-        fetchRainbow()
-    }, [reducerValue])
+    // // fetches most recent all
+    // // for mini graph and everyone elses numbers
+    // useEffect(() => {
+    //     const fetchLastRainbow = async () => {
+    //         const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`,
+    //         { mode: 'cors'}
+    //         )
+    //         const json = await response.json()
 
-    useEffect(() => {
-        const fetchLastRainbow = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`,
-            { mode: 'cors'}
-            )
-            const json = await response.json()
+    //         if (response.ok) {
+    //             setLastRainbow(json)
+    //         }
+    //     }
+    //     fetchLastRainbow()
+    // }, [reducerValue])
 
-            if (response.ok) {
-                setLastRainbow(json)
-            }
-        }
-        fetchLastRainbow()
-    }, [reducerValue])
+    // // fetches this week's total entries + avg
+    // useEffect(() => {
+    //     const fetchWeekRainbow = async () => {
+    //         const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`,
+    //         { mode: 'cors' }
+    //         )
+    //         const json = await response.json()
 
-    useEffect(() => {
-        const fetchWeekRainbow = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`,
-            { mode: 'cors' }
-            )
-            const json = await response.json()
+    //         if (response.ok) {
+    //             setWeekRainbow(json)
+    //         }
+    //     }
+    //     fetchWeekRainbow()
+    // }, [reducerValue])
 
-            if (response.ok) {
-                setWeekRainbow(json)
-            }
-        }
-        fetchWeekRainbow()
-    }, [reducerValue])
+    // // fetches today's total entries + avg
+    // useEffect(() => {
+    //     const fetchTodayRainbow = async () => {
+    //         const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`,
+    //         { mode: 'cors' })
+    //         const json = await response.json()
+
+    //         if (response.ok) {
+    //             setTodayRainbow(json)
+    //         }
+    //     }
+    //     fetchTodayRainbow()
+    // }, [reducerValue])
 
 
     //For calc
@@ -73,18 +109,7 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
         return parsed
     }
 
-    useEffect(() => {
-        const fetchTodayRainbow = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`,
-            { mode: 'cors' })
-            const json = await response.json()
 
-            if (response.ok) {
-                setTodayRainbow(json)
-            }
-        }
-        fetchTodayRainbow()
-    }, [reducerValue])
 
     const todayAverage = () => {
         const sum = (todayRainbow && todayRainbow.reduce((acc, x) => acc + x.number, 0)) 
