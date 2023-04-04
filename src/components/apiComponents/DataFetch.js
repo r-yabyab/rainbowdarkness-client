@@ -10,8 +10,8 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 // import RainbowDetails from "./RainbowDetails";
 
 
-// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
-const RAINBOW_DARKNESS = 'http://localhost:4000'
+const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+// const RAINBOW_DARKNESS = 'http://localhost:4000'
 
 function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
 
