@@ -5,8 +5,8 @@ import {App} from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HashRouter } from 'react-router-dom';
 import { inject } from '@vercel/analytics'
-import { Provider } from 'react-redux'
-import { store } from './state/store.js';
+// import { Provider } from 'react-redux'
+// import { store } from './state/store.js';
 import { Auth0Provider } from "@auth0/auth0-react"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,9 +22,9 @@ root.render(
         redirect_uri: 'http://localhost:3000'
       }}
     >
-      <Provider store={store}>
+      {/* <Provider store={store}> */}
         <App />
-      </Provider>
+      {/* </Provider> */}
     </Auth0Provider>
   </HashRouter>
 );
