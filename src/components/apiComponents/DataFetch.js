@@ -10,6 +10,7 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 // import RainbowDetails from "./RainbowDetails";
 
 
+// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 // const RAINBOW_DARKNESS = 'http://localhost:4000'
 
@@ -24,10 +25,10 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
     useEffect(() => {
         const fetchData = async () => {
           const responses = await Promise.all([
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows`, { mode:'cors'}),
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`, { mode:'cors'}),
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`, { mode:'cors'}),
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`, { mode:'cors'}),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows`,),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`,),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`,),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`,),
           ]);
           const data = await Promise.all(responses.map((response) => response.json()));
           const [rainbowData, lastRainbowData, weekRainbowData, todayRainbowData] = data;
