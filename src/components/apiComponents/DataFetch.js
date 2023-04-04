@@ -24,10 +24,10 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
     useEffect(() => {
         const fetchData = async () => {
           const responses = await Promise.all([
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows`, { mode: 'cors' }),
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`, { mode: 'cors' }),
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`, { mode: 'cors' }),
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`, { mode: 'cors' }),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows`, { mode:'cors'}),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`, { mode:'cors'}),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`, { mode:'cors'}),
+            fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`, { mode:'cors'}),
           ]);
           const data = await Promise.all(responses.map((response) => response.json()));
           const [rainbowData, lastRainbowData, weekRainbowData, todayRainbowData] = data;
