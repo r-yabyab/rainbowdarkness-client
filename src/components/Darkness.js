@@ -69,6 +69,11 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.1.7.1 (April 6, 2023)</div>
+                            <p>Changing submitted layout (color, come back tomorrow text in place of blacked out buttons), implementing Redux to remove static prompt after submission.</p>
+                            <p>Disruptions coming from Vercel. Cold starts hit 429 error sometimes, need to migrate from express to NextJS using express to utilize serverless functions.</p>
+                            <div>______________</div>
+
                             <div>1.1.7 (April 3, 2023)</div>
                             <p>Tweaking Auth0 and MongoDB API. Cors and 429 errors happening randomly-- Expect disruptions</p>
                             <div>______________</div>

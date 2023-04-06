@@ -9,7 +9,7 @@ import { format } from 'date-fns'
 // import * as d3 from 'd3'
 // import Gradient1 from '../photos/gradient1.png'
 // import Scuffed from '../photos/scuffed-gradient.png'
-import screenedGradient from '../photos/gradient-screen.png'
+// // import screenedGradient from '../photos/gradient-screen.png'
 // import downArrow from '../photos/red-arrow.png'
 
 const getDatafromLS = () => {
@@ -37,30 +37,14 @@ function HookMood ({ darkMode, graphRef }) {
         { num: '10' }
     ]
 
-    let negNumberList = [
-        { num: '1' },
-        { num: '2' },
-        { num: '3' },
-        { num: '4' },
-        { num: '5' },
-        { num: '6' },
-        { num: '7' },
-        { num: '8' },
-        { num: '9' },
-        { num: '10' }
-    ]
     // for mapping numbers
     let [list, updateList] = useState(numberList);
-    let [negList, updateNegList] = useState(negNumberList)
     // for displaying incrementers
     let [booleanState, setBooleanState] = useState(false);
     // tracking number for storing
         // set to commented 03/26/23
     // let [number, setNumber] = useState('');
     let [number, setNumber] = useState(null);
-    // before the main number
-    // let [posNumber, setPosNumber] = useState(null)
-    // let [negNumber, setNegNumber] = useState(null)
     // for handleSubmit to DB
     let [error, setError] = useState(null);
     // for localStorage, true === can't submit
@@ -268,6 +252,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
 <div className='relative  '>
 {/* <div className="absolute inset-0 bg-gradient-to-r from-black to-white mix-blend-overlay " /> */}
+<div className={ destroyer ? 'max-md:absolute left-[50%] font-thin text-xl max-md:-translate-x-1/2 max-md:top-14 text-white' : 'hidden'}>Please come back tomorrow!</div>
 
             <div 
             className='max-md:hidden'
@@ -305,7 +290,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     `invisible 
                                     max-md:h-[244px]`
                                      :
-                                    destroyer ? `squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
+                                    destroyer ? `hidden squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
                                     : darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full animate-fade 
@@ -492,7 +477,7 @@ const buttonClasses = [
                 {/* submitButton Desktop + mobile */}
                 <div 
                 // [&>*]:top-[54%]
-                className={`${darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-green-500 [&>*]:text-zinc-100'  : '[&>*]:bg-black'}
+                className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-green-500 [&>*]:text-zinc-100'  : '[&>*]:bg-black'}
                  [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
                 max-md:[&>*]:top-[260px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
                 `}>
@@ -500,7 +485,7 @@ const buttonClasses = [
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                        className={(destroyer ? 'opacity-30 ' : (booleanState ? 'md:hover:text-yellow-300 bg-green-500 max-md:animate-fade' : 'max-md:hidden bg-black opacity-30'))}
+                        className={(destroyer ? 'hidden ' : (booleanState ? 'md:hover:text-yellow-300 bg-green-500 max-md:animate-fade' : 'max-md:hidden bg-black opacity-30'))}
 
                     >
                         Submit</button>

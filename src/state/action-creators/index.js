@@ -1,28 +1,55 @@
 
-export const positiveNumber = (num) => {
+export const destroyer = (completion) => {
     return (dispatch) => {
         dispatch({
-            type: "positive",
-            payload: num
+            type: "completed",
+            payload: completion
         })
     }
 }
 
-export const negativeNumber = (num) => {
+export const falseDestroyer = (completion) => {
     return (dispatch) => {
         dispatch({
-            type: 'negative',
-            payload: num
+            type: "finished",
+            payload: completion
         })
     }
 }
 
-// use as setNumber
-export const setNumber = (num) => {
+export const setDestroyer = (completion) => {
     return (dispatch) => {
         dispatch({
-            type: 'set',
-            payload: num
+            type: "set",
+            payload: completion
         })
     }
 }
+
+// export const positiveNumber = (num) => {
+//     return (dispatch) => {
+//         dispatch({
+//             type: "positive",
+//             payload: num
+//         })
+//     }
+// }
+
+// export const negativeNumber = (num) => {
+//     return (dispatch) => {
+//         dispatch({
+//             type: 'negative',
+//             payload: num
+//         })
+//     }
+// }
+
+// // use as setNumber
+// export const setNumber = (num) => {
+//     return (dispatch) => {
+//         dispatch({
+//             type: 'set',
+//             payload: num
+//         })
+//     }
+// }

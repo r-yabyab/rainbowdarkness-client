@@ -4,6 +4,7 @@ import React, { Suspense, useEffect,
 import Loader from "./Loader";
 // import { Link } from 'react-router-dom'
 import * as d3 from 'd3'
+import axios from 'axios'
 
 const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
@@ -38,7 +39,9 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
           setTodayRainbow(todayRainbowData);
         };
         fetchData();
-      }, [reducerValue]);
+        // used to refresh on submit
+    //   }, [reducerValue]);
+    }, [reducerValue]);
     
     // // fetches total avg + total entries
     // useEffect(() => {

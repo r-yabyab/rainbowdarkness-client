@@ -1,12 +1,12 @@
 import React, { 
-  useState, 
+  // useState, 
   useEffect } from 'react';
-import axios from 'axios'
+// import axios from 'axios'
 // import Button from 'react-bootstrap/Button';
 import HookMood from './HookMood';
 // import DataPost from './apiComponents/DataPost';
 
-const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
 export function HomePage ({ darkMode, graphRef }) {
   
@@ -86,8 +86,7 @@ export function HomePage ({ darkMode, graphRef }) {
                     src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">    
                     </iframe> */}
 
-        <div className='fixed bottom-0 w-full text-left text-sm text-zinc-400 flex flex-colfont-thin'>
-
+        <div className='fixed -bottom-4 text-sm text-zinc-400 flex flex-col font-thin'>
           <div>© 2023 Rainbow Darkness</div>
         </div>
 
