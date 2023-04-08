@@ -31,7 +31,7 @@ function HomeChart () {
   
       // setting the scaling
       const xScale = d3.scaleTime()
-        .domain([0, inputNumber.length - 1])
+        .domain([0, 10])
         .range([0, w]);
       const yScale = d3.scaleLinear()
         .domain([-1, 11])
@@ -39,7 +39,7 @@ function HomeChart () {
   
       const generateScaledLine = d3.line()
         .x((d, i) => xScale(i))
-        .y((d) => yScale(d))
+        .y(yScale)
         .curve(d3.curveCardinal);
   
       // setting the axes
@@ -59,31 +59,40 @@ function HomeChart () {
       svg.select(".line").remove();
   
       // setting up the data for the svg
-      const lineData = inputNumber.map((d, i) => {
-        const y = yScale(d);
-        const diff = y - yScale(4.33);
-        const fillColor = diff >= 0 ? 'green' : 'red';
-        return {x: xScale(i), y: y, fillColor: fillColor};
-      });
-      
       svg.append('path')
         .datum(inputNumber)
         .attr('class', 'line')
         .attr('d', generateScaledLine)
         .attr('fill', 'none')
         .attr('stroke', 'black');
-        
-      const area = d3.area()
-        .x((d) => d.x)
-        .y0((d) => d.y)
-        .y1(yScale(4.33));
+
+      // adding the additional flat line at y = 4.33
+      svg.append('line')
+        .attr('x1', xScale(0))
+        .attr('y1', yScale(4.33))
+        .attr('x2', xScale(10))
+        .attr('y2', yScale(4.33))
+        .attr('stroke', 'black')
+        .attr('stroke-width', 1)
+        .attr('stroke-dasharray', '2 2');
   
+      // fill the area above or below the line based on inputNumber
       svg.append('path')
-        .datum(lineData)
-        .attr('class', 'area')
-        .attr('d', area)
-        .style('fill', (d) => d.fillColor);
-      
+        .datum(inputNumber)
+        .attr('d', d3.area()
+          .x((d, i) => xScale(i))
+          .y0(yScale(4.33))
+          .y1((d) => yScale(d))
+          .curve(d3.curveCardinal))
+        .attr('fill', (d) => {
+          if (d >= 4.33) {
+            return 'red';
+          } else {
+            return 'green';
+          }
+        })
+        .attr('opacity', '0.5');
+
     }, [books]);
 
     return (
