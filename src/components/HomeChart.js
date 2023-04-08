@@ -22,76 +22,78 @@ function HomeChart () {
         // setting up svg
         const w = 200;
         const h = 300;
-        const svg = d3
-          .select(svgHomeRef.current)
-          .attr("width", w)
-          .attr("height", h)
-          .style("margin-top", 0)
-          .style("margin-left", 50)
-          .style("overflow", "visible");
-    
-        // setting the scaling
-        const xScale = d3
-          .scaleTime()
-          .domain([0, 10])
-          .range([0, w]);
-        const yScale = d3
-          .scaleLinear()
-          .domain([-1, 11])
-          .range([h, 0]);
-    
-        const generateScaledLine = d3
-          .line()
+        const svg = d3.select(svgHomeRef.current)
+        .attr('width', w)
+        .attr('height', h)
+        .style('margin-top', 0)
+        .style('margin-left', 50)
+        .style('overflow', 'visible');
+  
+      // setting the scaling
+      const xScale = d3.scaleTime()
+        .domain([0, 10])
+        .range([0, w]);
+      const yScale = d3.scaleLinear()
+        .domain([-1, 11])
+        .range([h, 0]);
+  
+      const generateScaledLine = d3.line()
+        .x((d, i) => xScale(i))
+        .y(yScale)
+        .curve(d3.curveCardinal);
+  
+      // setting the axes
+      const xAxis = d3.axisBottom(xScale)
+         .ticks(0)
+      const yAxis = d3.axisLeft(yScale)
+         .ticks(0)
+  
+      svg.append('g')
+        .attr('class', 'axis-x')
+        .call(xAxis)
+        .attr('transform', `translate(0, ${h})`);
+      svg.append('g')
+        .call(yAxis);
+  
+      // remove the previous line
+      svg.select(".line").remove();
+  
+      // setting up the data for the svg
+      svg.append('path')
+        .datum(inputNumber)
+        .attr('class', 'line')
+        .attr('d', generateScaledLine)
+        .attr('fill', 'none')
+        .attr('stroke', 'black');
+
+      // adding the additional flat line at y = 4.33
+      svg.append('line')
+        .attr('x1', xScale(0))
+        .attr('y1', yScale(4.33))
+        .attr('x2', xScale(10))
+        .attr('y2', yScale(4.33))
+        .attr('stroke', 'black')
+        .attr('stroke-width', 1)
+        .attr('stroke-dasharray', '2 2');
+  
+      // fill the area above or below the line based on inputNumber
+      svg.append('path')
+        .datum(inputNumber)
+        .attr('d', d3.area()
           .x((d, i) => xScale(i))
-          .y((d) => yScale(d))
-          .curve(d3.curveCardinal);
-    
-        // setting the axes
-        const xAxis = d3.axisBottom(xScale).ticks(0);
-        const yAxis = d3.axisLeft(yScale).ticks(0);
-    
-        svg
-          .append("g")
-          .attr("class", "axis-x")
-          .call(xAxis)
-          .attr("transform", `translate(0, ${h})`);
-        svg.append("g").call(yAxis);
-    
-        // remove the previous line and area
-        svg.select(".line").remove();
-        svg.select(".area").remove();
-    
-        // add the flat line
-        svg
-          .append("line")
-          .attr("class", "flat-line")
-          .attr("x1", xScale(0))
-          .attr("y1", yScale(4.33))
-          .attr("x2", xScale(10))
-          .attr("y2", yScale(4.33))
-          .attr("stroke", "black");
-    
-        // add the area above/below the flat line
-        svg
-          .append("path")
-          .datum(inputNumber)
-          .attr("class", "area")
-          .attr("d", d3.area()
-            .x((d, i) => xScale(i))
-            .y0(yScale(4.33))
-            .y1((d) => yScale(d >= 4.33 ? d : 4.33))
-          )
-          .attr("fill", (d) => (d >= 4.33 ? "red" : "green"));
-    
-        // add the line
-        svg
-          .append("path")
-          .datum(inputNumber)
-          .attr("class", "line")
-          .attr("d", generateScaledLine)
-          .attr("fill", "none")
-          .attr("stroke", "black");
-      }, [books]);
+          .y0(yScale(4.33))
+          .y1((d) => yScale(d))
+          .curve(d3.curveCardinal))
+        .attr('fill', (d) => {
+          if (d >= 4.33) {
+            return 'red';
+          } else {
+            return 'green';
+          }
+        })
+        .attr('opacity', '0.5');
+
+    }, [books]);
 
     return (
         <>
