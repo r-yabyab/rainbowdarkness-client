@@ -4,6 +4,7 @@ import React, {
 // import axios from 'axios'
 // import Button from 'react-bootstrap/Button';
 import HookMood from './HookMood';
+import { useSelector } from 'react-redux';
 // import DataPost from './apiComponents/DataPost';
 
 // const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
@@ -49,6 +50,8 @@ export function HomePage ({ darkMode, graphRef }) {
     document.title = 'Rainbow Darkness';
   }, [])
 
+  const destroyer = useSelector((state) => state.destroyer)
+
   return(
   <>
   
@@ -60,7 +63,7 @@ export function HomePage ({ darkMode, graphRef }) {
             <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
             mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
-            How happy are you today?
+            {!destroyer ? 'How happy are you today?' : 'Please come back tomorrow!' }
             {/* {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>} */}
             </p>
           {/* <ul className='rating'>

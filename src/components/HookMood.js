@@ -3,6 +3,9 @@ import React, { useEffect, useState, useRef, useReducer} from 'react';
 import { Button } from 'react-bootstrap';
 import DataFetch from './apiComponents/DataFetch';
 import { format } from 'date-fns'
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state';
 
 // redux
 
@@ -47,9 +50,15 @@ function HookMood ({ darkMode, graphRef }) {
     let [number, setNumber] = useState(null);
     // for handleSubmit to DB
     let [error, setError] = useState(null);
-    // for localStorage, true === can't submit
-    // used with setInterval && useEffect
-    let [destroyer, setDestroyer] = useState(false)
+        
+        // for localStorage, true === can't submit
+        // used with setInterval && useEffect
+    // let [destroyer, setDestroyer] = useState(false)
+    const dispatch = useDispatch()
+    const { setDestroyer } = bindActionCreators(actionCreators, dispatch)
+    const destroyer = useSelector((state) => state.destroyer)
+    
+
     // refreshes api and timer
     const [reducerValue, forceUpdate] = useReducer(x => x + 1, 0);
     //for refreshing className on every click
@@ -73,7 +82,7 @@ function HookMood ({ darkMode, graphRef }) {
         updateList(numberList);
         setBooleanState(false);
         setNumber('')
-        forceUpdate()
+        // forceUpdate()
         console.log(reducerValue)
     }
 
@@ -137,7 +146,7 @@ const handleSubmit = async () => {
         setDestroyer(true);
         setStaticTime(Date.now())
         setNumber('')
-        forceUpdate()
+        // forceUpdate()
 
         // gets data from submitbutton
         const moogleNew = {
@@ -525,7 +534,7 @@ max-md:hidden
 
             </div> */}
 
-<DataFetch graphRef={graphRef} reducerValue={reducerValue} destroyer={destroyer} books={books} darkMode={darkMode}/>
+<DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode}/>
 
         </>
     )

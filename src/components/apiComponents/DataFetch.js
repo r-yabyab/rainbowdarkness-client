@@ -15,7 +15,7 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 // const RAINBOW_DARKNESS = 'http://localhost:4000'
 
-function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
+function DataFetch ({destroyer, books, darkMode, graphRef}) {
 
     const [rainbow, setRainbow] = useState(null)
     const [lastRainbow, setLastRainbow] = useState([])
@@ -41,7 +41,7 @@ function DataFetch ({reducerValue, destroyer, books, darkMode, graphRef}) {
         fetchData();
         // used to refresh on submit
     //   }, [reducerValue]);
-    }, [reducerValue]);
+    }, [destroyer]);
     
     // // fetches total avg + total entries
     // useEffect(() => {

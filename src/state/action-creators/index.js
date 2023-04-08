@@ -1,21 +1,21 @@
 
-export const destroyer = (completion) => {
-    return (dispatch) => {
-        dispatch({
-            type: "completed",
-            payload: completion
-        })
-    }
-}
+// export const destroyer = (completion) => {
+//     return (dispatch) => {
+//         dispatch({
+//             type: "completed",
+//             payload: completion
+//         })
+//     }
+// }
 
-export const falseDestroyer = (completion) => {
-    return (dispatch) => {
-        dispatch({
-            type: "finished",
-            payload: completion
-        })
-    }
-}
+// export const falseDestroyer = (completion) => {
+//     return (dispatch) => {
+//         dispatch({
+//             type: "finished",
+//             payload: completion
+//         })
+//     }
+// }
 
 export const setDestroyer = (completion) => {
     return (dispatch) => {
