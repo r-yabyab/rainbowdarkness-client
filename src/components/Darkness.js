@@ -3,6 +3,7 @@ import "../App.css"
 
 import samplegraph from '../photos/samplegraph.png'
 import prototype from '../photos/prototype.png'
+import mdd from '../photos/mdd.png'
 
 function Darkness() {
 
@@ -57,9 +58,15 @@ function Darkness() {
                         <div className='pt-4'>
                             {/* Rainbow Darkness is a mental health platform that puts accessibility and anonyminity first. As someone with a background in psychology, I find it kind of dumb that mental health applications tend to require users to fill out personal information before hitting a paywall, or take long surveys that tells you overly positive things about your personality.
                             <br /> Here, we only ask about how happy you are at the moment, in hopes that proceeding visits will bring some introspection on what made you so sad/happy in the past. You also have access to everyone else's moods; Often you'll see that others are having a much worse day than you, which I find interesting because no matter who you talk to in person, they always appear O.K. */}
-                        Rainbow Darkness is a mental health platform that prioritizes accessibility and anonymity for its users. Our platform recognizes that many mental health applications require users to provide personal information or complete lengthy surveys before gaining access to their services.
+                        {/* Rainbow Darkness is a mental health platform that prioritizes accessibility and anonymity for its users. Our platform recognizes that many mental health applications require users to provide personal information or complete lengthy surveys before gaining access to their services.
                         <br /><br /> At Rainbow Darkness, we believe in a simpler approach. We only ask how happy our users are at the moment, with the hope that future visits will prompt introspection and exploration of their emotional states. Additionally, our platform provides access to the moods of other users. This feature can be particularly insightful, as it reveals that others may be struggling even if they appear to be okay in person.
-                        <br /><br />Our mission is to create a safe and supportive community for individuals to explore their mental health in a way that is accessible, anonymous, and free from judgment.
+                        <br /><br />Our mission is to create a safe and supportive community for individuals to explore their mental health in a way that is accessible, anonymous, and free from judgment. */}
+                        Rainbow Darkness is a mental health platform that helps track your mood level.
+                        <br/> <br/> Here's a mood chart of people with major depressive disorder. They tend to hover below normal mood levels, and shows improvement after treatment. 
+                        <img className='text-white pt-8' src={mdd} alt='mdd' />
+                        <p className='mt-14 -mb-14'>Because people don't often have the luxury to get help, with the healthcare system being too complicated, with psychiatrists not giving quality care, this site aims to help users be mindful of themselves of others. 
+                        {/* When shit hits the fan, how do we make things better? */}
+                        </p>
                         </div>
 
 
@@ -68,6 +75,13 @@ function Darkness() {
                     <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-zinc-200'>
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
+
+                            <div>1.1.8 (April 8, 2023)</div>
+                            <p>On submission, users are shown a graph of their mood for the past 10 days compared to the week's average (implemented Redux)</p>
+                            <p>Changed About page contents</p>
+                            <p>Rainbow Darkness text on the header now only redirects to homepage. Click in the ? to go here (about page)</p>
+                            <p>Data fetching is working a lot better, less 429 errors, still need to port the backend to NextJS</p>
+                            <div>______________</div>
 
                             <div>1.1.7.1 (April 6, 2023)</div>
                             <p>Changing submitted layout (color, come back tomorrow text in place of blacked out buttons), implementing Redux to remove static prompt after submission.</p>

@@ -63,13 +63,15 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                 draggable="false">
 
 
-                <div className={`${darkMode ? '[&>*]:text-yellow-200' : '[&>*]:text-yellow-200'} flex space-x-2 font-semibold text-xl`}>
-                    <Link to='/' className='no-underline'><div
+                <div className={`${darkMode ? '[&>*]:text-yellow-200 group' : 'group [&>*]:text-yellow-200'} flex space-x-2 font-semibold text-xl`}>
+                    <Link to='/' className='no-underline '><div
                         // onClick={pageFalse}
-                        className='hover:text-white'>Rainbow</div></Link>
-                    <Link to='/darkness' className='no-underline'><div
+                        className='group-hover:text-white'>Rainbow</div></Link>
+                    {/* <Link to='/darkness' className='no-underline'> */}
+                    <Link to='/' className='no-underline'>
+                        <div
                         // onClick={pageTrue}
-                        className=' hover:text-purple-300'>Darkness</div></Link>
+                        className=' group-hover:text-white'>Darkness</div></Link>
 
                     {/* arrow stuff */}
 
