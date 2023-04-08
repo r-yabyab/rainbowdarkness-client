@@ -64,7 +64,7 @@ export function HomePage ({ darkMode, graphRef }) {
             <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
             mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
-            {!destroyer ? 'How happy are you today?' : 'Please come back tomorrow!' }
+            {!destroyer ? 'How happy are you today?' : null }
             {/* {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>} */}
             </p>
           {/* <ul className='rating'>
@@ -95,7 +95,7 @@ export function HomePage ({ darkMode, graphRef }) {
         </div>
 
       </div>
-      <div className='absolute top-20'><HomeChart /></div>
+      <div className='absolute left-[50%] -translate-x-1/2 top-[200px]'>{ destroyer ? <HomeChart /> : null}</div>
       </>
     )
   }

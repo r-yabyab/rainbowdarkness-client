@@ -261,7 +261,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
 <div className='relative  '>
 {/* <div className="absolute inset-0 bg-gradient-to-r from-black to-white mix-blend-overlay " /> */}
-<div className={ destroyer ? 'max-md:absolute left-[50%] font-thin text-xl max-md:-translate-x-1/2 max-md:top-14 text-white' : 'hidden'}>Please come back tomorrow!</div>
+{/* <div className={ destroyer ? 'max-md:absolute left-[50%] font-thin text-xl max-md:-translate-x-1/2 max-md:top-14 text-white' : 'hidden'}>Please come back tomorrow!</div> */}
 
             <div 
             className='max-md:hidden'
@@ -498,11 +498,12 @@ const buttonClasses = [
 
                     >
                         Submit</button>
-                    <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} flex gap-4 items-center justify-center w-[340px]`}>
+                        {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
+                    {/* <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} flex gap-4 items-center justify-center w-[340px]`}>
                         <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
                         <div>|</div>
                         <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs</div>
-                    </div>
+                    </div> */}
                         {error && { error }}
                 </div> 
 

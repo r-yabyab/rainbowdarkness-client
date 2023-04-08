@@ -10,90 +10,137 @@ const getDatafromLS = () => {
     }
 }
 
+const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+
+
 function HomeChart () {
 
+    const [weekRainbow, setWeekRainbow] = useState('')
+    const [weekAvg, setWeekAvg] = useState('')
+
+        useEffect(() => {
+        const fetchWeekRainbow = async () => {
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`,
+            { mode: 'cors' }
+            )
+            const json = await response.json()
+
+            if (response.ok) {
+                setWeekRainbow(json)
+            }
+        }
+        fetchWeekRainbow()
+    }, [])
+
+    useEffect(() => {
+        const sum = (weekRainbow && weekRainbow.reduce((acc, x) => acc + x.number, 0)) 
+        const average = sum/weekRainbow.length
+        const parsed = parseFloat(average).toFixed(2) 
+        setWeekAvg(parsed)
+    },[weekRainbow])
+
     const books = getDatafromLS()
-    const inputTime = books && books.map(book => new Date(book.inputTime));
-    const inputNumber = books && books.map(book => book.inputNumber);
+    // const inputTime = books && books.map(book => new Date(book.inputTime));
+    // const inputNumber = books && books.map(book => book.inputNumber);
+    const inputNumber = books && books.map(book => book.inputNumber).slice(Math.max(0, books.length - 10));
+    // adds a 0 at the begging of the array
+    // inputNumber.unshift(0)
+    inputNumber.unshift(weekAvg)
 
     const svgHomeRef = useRef();
 
     useEffect(() => {
+        d3.select(svgHomeRef.current).selectAll('*').remove();
         // setting up svg
-        const w = 200;
-        const h = 300;
+        const w = 400;
+        const h = 200;
         const svg = d3.select(svgHomeRef.current)
-        .attr('width', w)
-        .attr('height', h)
-        .style('margin-top', 0)
-        .style('margin-left', 50)
-        .style('overflow', 'visible');
-  
-      // setting the scaling
-      const xScale = d3.scaleTime()
-        .domain([0, 10])
-        .range([0, w]);
-      const yScale = d3.scaleLinear()
-        .domain([-1, 11])
-        .range([h, 0]);
-  
-      const generateScaledLine = d3.line()
-        .x((d, i) => xScale(i))
-        .y(yScale)
-        .curve(d3.curveCardinal);
-  
-      // setting the axes
-      const xAxis = d3.axisBottom(xScale)
-         .ticks(0)
-      const yAxis = d3.axisLeft(yScale)
-         .ticks(0)
-  
-      svg.append('g')
-        .attr('class', 'axis-x')
-        .call(xAxis)
-        .attr('transform', `translate(0, ${h})`);
-      svg.append('g')
-        .call(yAxis);
-  
-      // remove the previous line
-      svg.select(".line").remove();
-  
-      // setting up the data for the svg
-      svg.append('path')
-        .datum(inputNumber)
-        .attr('class', 'line')
-        .attr('d', generateScaledLine)
-        .attr('fill', 'none')
-        .attr('stroke', 'black');
-
-      // adding the additional flat line at y = 4.33
-      svg.append('line')
-        .attr('x1', xScale(0))
-        .attr('y1', yScale(4.33))
-        .attr('x2', xScale(10))
-        .attr('y2', yScale(4.33))
-        .attr('stroke', 'black')
-        .attr('stroke-width', 1)
-        .attr('stroke-dasharray', '2 2');
-  
-      // fill the area above or below the line based on inputNumber
-      svg.append('path')
-        .datum(inputNumber)
-        .attr('d', d3.area()
+          .attr('width', w)
+          .attr('height', h)
+          .style('margin-top', 0)
+          .style('margin-left', 50)
+          .style('overflow', 'visible')
+        //   .style('background', '');
+    
+        // setting the scaling
+        const xScale = d3.scaleTime()
+          .domain([0, 10])
+          .range([0, w]);
+        const yScale = d3.scaleLinear()
+        //   .domain([-1, 11])
+          .domain([0, 10])
+          .range([h, 0]);
+    
+        const generateScaledLine = d3.line()
           .x((d, i) => xScale(i))
-          .y0(yScale(4.33))
-          .y1((d) => yScale(d))
-          .curve(d3.curveCardinal))
-        .attr('fill', (d) => {
-          if (d >= 4.33) {
-            return 'red';
-          } else {
-            return 'green';
-          }
-        })
-        .attr('opacity', '0.5');
+          .y(yScale)
+          .curve(d3.curveCardinal);
+    
+        // setting the axes
+        const xAxis = d3.axisBottom(xScale)
+           .ticks(0);
+        const yAxis = d3.axisLeft(yScale)
+           .ticks(0)
+    
+           svg.append('g')
+           .attr('class', 'axis-x')
+           .call(xAxis)
+           .attr('transform', `translate(0, ${h})`)
+           .select(".domain")
+           .attr("stroke", "white");
+         svg.append('g')
+           .call(yAxis)
+           .select(".domain")
+           .attr("stroke", "white");
 
-    }, [books]);
+           
+    
+        // remove the previous line and area
+        svg.select(".line").remove();
+        svg.select(".area").remove();
+    
+        // setting up the data for the svg
+        svg.append('path')
+          .datum(inputNumber)
+          .attr('class', 'line')
+            .attr('d', generateScaledLine)
+            .attr('fill', 'none')
+            //   .attr('stroke', 'black')
+            .attr("stroke-width", 4)
+            .attr('stroke', 'white');
+        
+        // adding a flat line at y=4.33
+        svg.append("line")
+          .attr("x1", 0)
+          .attr("y1", yScale(weekAvg))
+          .attr("x2", w)
+          .attr("y2", yScale(weekAvg))
+          .attr("stroke-width", 2)
+          .attr("stroke", "darkorchid");
+
+              // adding weekAvg label
+    svg.append("text")
+    .attr("x", w + 5)
+    .attr("y", yScale(weekAvg) - 5)
+    .attr("font-size", "12px")
+    .attr("fill", "black")
+    .style("fill", "darkorchid")
+    .text(`Weekly average: ${weekAvg}`);
+          
+        // adding the fill area
+        const areaGenerator = d3.area()
+          .x((d, i) => xScale(i))
+          .y0(yScale(weekAvg))
+          .y1((d) => yScale(d))
+          .curve(d3.curveCardinal);
+    
+        svg.append("path")
+          .datum(inputNumber)
+          .attr("class", "area")
+          .attr("d", areaGenerator)
+          .attr("fill", (d) => d[d.length - 1] > weekAvg ? "green" : "red");
+          
+    }, [books, weekRainbow]);
 
     return (
         <>
@@ -125,9 +172,10 @@ function HomeChart () {
                                 </div>))}
                         </div>
                     </div> */}
+                    <div className='text-zinc-200 text-center pb-4 -mt-4'>This is how you compare with the average.</div>
                     <svg className="" ref={svgHomeRef} />
-                    {inputNumber}
-
+                    <div className='text-zinc-200 text-center pt-12'>Please come again tomorrow to fill the graph!</div>
+                    {/* {inputNumber} */}
             </div>
             </>
     )
