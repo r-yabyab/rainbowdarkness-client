@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../photos/logo512.png'
 import { useAuth0 } from '@auth0/auth0-react'
+// import Countdown from './Countdown';
 
 export function TopNav({ pageDetect, setPageDetect, darkMode }) {
     const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
@@ -115,8 +116,10 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                                 </> :
                                 <span className="hover:cursor-pointer hover:text-neutral-400">{LoginButton()}</span>
                     }
+{/* <div className='text-white'><Countdown /></div> */}
                 </div>
             </div>
+
 
         </>
     )

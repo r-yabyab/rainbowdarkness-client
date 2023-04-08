@@ -5,6 +5,7 @@ import React, {
 // import Button from 'react-bootstrap/Button';
 import HookMood from './HookMood';
 import { useSelector } from 'react-redux';
+import HomeChart from './HomeChart';
 // import DataPost from './apiComponents/DataPost';
 
 // const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
@@ -94,6 +95,7 @@ export function HomePage ({ darkMode, graphRef }) {
         </div>
 
       </div>
+      <div className='absolute top-20'><HomeChart /></div>
       </>
     )
   }

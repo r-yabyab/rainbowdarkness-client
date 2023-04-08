@@ -26,6 +26,15 @@ export const setDestroyer = (completion) => {
     }
 }
 
+export const setStaticTime = (time) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'changeStaticTime',
+            payload: time
+        })
+    }
+}
+
 // export const positiveNumber = (num) => {
 //     return (dispatch) => {
 //         dispatch({
