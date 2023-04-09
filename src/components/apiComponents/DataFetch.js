@@ -107,19 +107,27 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
     //For calc
 
     const weekAverage = () => {
+        if (weekRainbow.length > 0) {
         const sum = (weekRainbow && weekRainbow.reduce((acc, x) => acc + x.number, 0)) 
         const average = sum/weekRainbow.length
         const parsed = parseFloat(average).toFixed(2) 
         return parsed
+        } else {
+            return 'N/A'
+        }
     }
 
 
 
     const todayAverage = () => {
-        const sum = (todayRainbow && todayRainbow.reduce((acc, x) => acc + x.number, 0)) 
-        const average = sum/todayRainbow.length
-        const parsed = parseFloat(average).toFixed(2) 
-        return parsed
+        if (todayRainbow.length > 0) {
+            const sum = (todayRainbow && todayRainbow.reduce((acc, x) => acc + x.number, 0))
+            const average = sum / todayRainbow.length
+            const parsed = parseFloat(average).toFixed(2)
+            return parsed
+        } else {
+            return 'N/A'
+        }
     }
 
     const [matched, setMatched] = useState([])

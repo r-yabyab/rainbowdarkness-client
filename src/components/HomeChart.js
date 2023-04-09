@@ -33,10 +33,14 @@ function HomeChart () {
     }, [])
 
     useEffect(() => {
+        if (weekRainbow.length > 0) {
         const sum = (weekRainbow && weekRainbow.reduce((acc, x) => acc + x.number, 0)) 
         const average = sum/weekRainbow.length
         const parsed = parseFloat(average).toFixed(2) 
         setWeekAvg(parsed)
+        } else {
+            setWeekAvg(0)
+        }
     },[weekRainbow])
 
     const books = getDatafromLS()
@@ -125,7 +129,7 @@ function HomeChart () {
     .attr("font-size", "12px")
     .attr("fill", "black")
     .style("fill", "darkorchid")
-    .text(`Weekly average: ${weekAvg}`);
+    .text((weekRainbow.length > 0) ? `Weekly average: ${weekAvg}` : `New Week`);
           
         // adding the fill area
         const areaGenerator = d3.area()
