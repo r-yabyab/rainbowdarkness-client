@@ -6,7 +6,6 @@ import React, {
 import HookMood from './HookMood';
 import { useSelector } from 'react-redux';
 import HomeChart from './HomeChart';
-// import DataPost from './apiComponents/DataPost';
 
 // const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
