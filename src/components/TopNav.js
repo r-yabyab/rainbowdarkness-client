@@ -103,7 +103,7 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                     </svg> </div>}
             </div>
 
-            <div className='absolute hidden flex top-2 right-0 mr-24 text-white hover:cursor-pointer '>
+            <div className='absolute flex top-2 right-0 mr-24 text-white hover:cursor-pointer '>
                 <div>
                     {
                         isLoading ? <><div className="tracking-tighter text-zinc-400 animate-pulse">Loading...</div></>
@@ -112,8 +112,12 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                                     <div className={'text-slate-500 hover:cursor-pointer'}>Account</div>
                                     <div className={"absolute w-[240px] z-50  right-0 top-12 bg-slate-500"}>
                                         <div className="flex gap-2 pt-2 pb-2 hover:bg-slate-500   flex-col">
-                                            <div className=" hover:cursor-text select-text  text-zinc-800  overflow-hidden w-full text-center">Acc: {user && user.email}</div>
-                                            <div className="hover:bg-white hover:cursor-pointer hover:text-zinc-800 text-bg-zinc-200 w-full text-center">{LogoutButton()}</div>
+                                            <div className=" hover:cursor-text select-text  text-zinc-800  overflow-hidden w-full text-center">
+                                                Acc: {user && user.email}
+                                            </div>
+                                            <div className="hover:bg-white hover:cursor-pointer hover:text-zinc-800 text-bg-zinc-200 w-full text-center">
+                                                {LogoutButton()}
+                                            </div>
                                         </div>
                                     </div>
                                 </> :

@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state';
+import { useAuth0 } from '@auth0/auth0-react'
 
 // redux
 
@@ -24,6 +25,9 @@ const getDatafromLS = () => {
     }
 }
 
+// const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
+const RAINBOW_DARKNESS = "http://localhost:4000"
+
 function HookMood ({ darkMode, graphRef }) {
 
     let numberList = [
@@ -39,6 +43,13 @@ function HookMood ({ darkMode, graphRef }) {
         { num: '20' },
         { num: '10' }
     ]
+
+    const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+    const handleClick = async () => {
+        const accessToken = await getAccessTokenSilently();
+        console.log(accessToken);
+      };
+    
 
     // for mapping numbers
     let [list, updateList] = useState(numberList);
@@ -121,18 +132,21 @@ function HookMood ({ darkMode, graphRef }) {
 const handleSubmit = async () => {
 
     const rainbow = {number}
-
+    const accessToken = await getAccessTokenSilently();
     // for local prod, use
     // /api/rainbows
     // with proxy in package.json
 
     //fetch req to post new dats
-    const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows', {
+    // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
+    
+    const url = (isAuthenticated ? `${RAINBOW_DARKNESS}/api/rainbows/postnumuser` : `${RAINBOW_DARKNESS}/api/rainbows/postnum`)
+    const headers = (isAuthenticated ? { 'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}` } : { 'Content-Type': 'application/json' } )
+    
+    const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(rainbow),                          // have to send number as json, not object
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        headers
     })
     const json = await response.json()
 
@@ -508,6 +522,12 @@ const buttonClasses = [
                 </div> 
 
             </div>
+
+<div className='text-white text-left'>penis {isAuthenticated ? user.email : "not logged in"} 
+<button className='absolute text-white bg-blue-400 mt-40' onClick={handleClick}>Get Access Token</button>
+{isAuthenticated ? 'true' : 'false'}
+</div>
+
 
 {/* EMOJIS :p */}
             {/* <div className='absolute left-[50%] -translate-x-1/2 -bottom-[100px] flex
