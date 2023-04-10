@@ -46,7 +46,12 @@ function HookMood ({ darkMode, graphRef }) {
 
     const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
     const handleClick = async () => {
-        const accessToken = await getAccessTokenSilently();
+        const accessToken = await getAccessTokenSilently(
+            {
+            audience: 'https://www.rainbowdarkness-api.com',
+            client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO'
+        }
+        );
         console.log(accessToken);
       };
     
@@ -129,56 +134,70 @@ function HookMood ({ darkMode, graphRef }) {
 
 //
 // POST to DB
-const handleSubmit = async () => {
+    const handleSubmit = async () => {
 
-    const rainbow = {number}
-    const accessToken = await getAccessTokenSilently();
-    // for local prod, use
-    // /api/rainbows
-    // with proxy in package.json
+        if (!isAuthenticated) {
+            const rainbow = { number }
+            //fetch req to post new data
+            // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
 
-    //fetch req to post new dats
-    // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
-    
-    const url = (isAuthenticated ? `${RAINBOW_DARKNESS}/api/rainbows/postnumuser` : `${RAINBOW_DARKNESS}/api/rainbows/postnum`)
-    const headers = (isAuthenticated ? { 'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}` } : { 'Content-Type': 'application/json' } )
-    
-    const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(rainbow),                          // have to send number as json, not object
-        headers
-    })
+            const url = `${RAINBOW_DARKNESS}/api/rainbows/postnum`
+            const headers = { 'Content-Type': 'application/json' }
 
-                        // const rainbow = {number}
-                    
-                        // // for local prod, use
-                        // // /api/rainbows
-                        // // with proxy in package.json
-                    
-                        // //fetch req to post new dats
-                        // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows', {
-                        //     method: 'POST',
-                        //     body: JSON.stringify(rainbow),                          // have to send number as json, not object
-                        //     headers: {
-                        //         'Content-Type': 'application/json'
-                        //     }
-                        // })
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(rainbow),                          // have to send number as json, not object
+                headers
+            })
+
+            const json = await response.json()
+
+            if (!response.ok) {
+                setError(json.error)
+            }
+            if (response.ok) {
+                setError(null)
+                updateList(numberList);
+                setBooleanState(false);
+                setDestroyer(true);
+                setStaticTime(Date.now())
+                setNumber('')
+            }
+        } else {
+
+            const rainbow = { number }
+            const accessToken = await getAccessTokenSilently();
+            
+            //fetch req to post new data
+            // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
+
+            const url = `${RAINBOW_DARKNESS}/api/rainbows/postnumuser`
+            const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}` }
+
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(rainbow),  
+                headers
+            })
+
+            const json = await response.json()
+
+            if (!response.ok) {
+                setError(json.error)
+            }
+            if (response.ok) {
+                setError(null)
+                updateList(numberList);
+                setBooleanState(false);
+                setDestroyer(true);
+                setStaticTime(Date.now())
+                setNumber('')
+                // forceUpdate()
+
+            }
 
 
 
-    const json = await response.json()
-
-    if (!response.ok) {
-        setError(json.error)
-    }
-    if (response.ok) {
-        setError(null)
-        updateList(numberList);
-        setBooleanState(false);
-        setDestroyer(true);
-        setStaticTime(Date.now())
-        setNumber('')
-        // forceUpdate()
 
         // gets data from submitbutton
         const moogleNew = {
@@ -541,7 +560,7 @@ const buttonClasses = [
 
             </div>
 
-<div className='text-white text-left'>penis {isAuthenticated ? user.email : "not logged in"} 
+<div className='text-white text-left mt-20'>penis {isAuthenticated ? user.email : "not logged in"} 
 <button className='absolute text-white bg-blue-400 mt-40' onClick={handleClick}>Get Access Token</button>
 {isAuthenticated ? 'true' : 'false'}
 </div>
