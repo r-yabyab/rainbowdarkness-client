@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 // import Countdown from './Countdown';
 
 export function TopNav({ pageDetect, setPageDetect, darkMode }) {
-    const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
+    const { user, isAuthenticated, isLoading, loginWithRedirect, logout, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
 
 // Auth0 shit
     const LoginButton = () => {
@@ -21,6 +21,60 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
             </button>
         );
     };
+
+    const getTokenButton =  () => {
+        const fetchToken = async () => {
+            const token = await getAccessTokenSilently();
+
+            const response = await fetch('https://dev-bxpbdydalm6tmklv.us.auth0.com/oauth/token', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                grant_type: 'authorization_code',
+                client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
+                client_secret: '78HUH5f8l71CakSJhUdQTGCdPMD92nk0eLmP1qLwAUlt06B5amCT-G_qqzfB-Wxz',
+                code: token,
+                audience: "https://www.rainbowdarkness-api.com",
+            })
+                   const json = await response.json()
+
+           if (response.ok) {
+               console.log(json)
+           }
+        }
+        fetchToken()
+    }
+
+    const getAuthCode = () => {
+        const fetchAuthCode = async () => {
+          const url = 'https://dev-bxpbdydalm6tmklv.us.auth0.com/authorize' +
+                      '?audience=https://www.rainbowdarkness-api.com' +
+                      '&response_type=code' +
+                      '&client_id=oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO';
+          const response = await fetch(url);
+          const json = await response.json();
+          if (response.ok) {
+            console.log(json);
+          }
+        };
+        fetchAuthCode();
+      };
+
+    const handleClick = async () => {
+        const accessToken = await getAccessTokenSilently(
+        //     {
+        //     audience: 'https://www.rainbowdarkness-api.com',
+        //     client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
+        //     // scope: 'read:messages',
+        // }
+        )
+        const idToken = await getIdTokenClaims();
+        console.log(accessToken);
+        console.log(user.sub)
+        console.log(idToken)
+      }
+    
 
 
 
@@ -124,6 +178,9 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                                 <span className="hover:cursor-pointer hover:text-neutral-400">{LoginButton()}</span>
                     }
 {/* <div className='text-white'><Countdown /></div> */}
+<button onClick={handleClick}>ACESS TOKEN</button>
+<button className='absolute ml-10 top-20 bg-red-800' onClick={getTokenButton}>POST TOKEN</button>
+<button className='absolute ml-10  mt-[20px] bg-blue-800' onClick={getAuthCode}>GETAUTHCODE</button>
                 </div>
             </div>
 

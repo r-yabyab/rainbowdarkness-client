@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state';
 import { useAuth0 } from '@auth0/auth0-react'
+import queryString from 'query-string'
+
 
 // redux
 
@@ -46,12 +48,11 @@ function HookMood ({ darkMode, graphRef }) {
 
     const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
     const handleClick = async () => {
-        const accessToken = await getAccessTokenSilently(
-            {
-            audience: 'https://www.rainbowdarkness-api.com',
-            client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO'
+        const payload = {
+            sub: user.sub,
+            name: user.name,
         }
-        );
+        const accessToken = await getAccessTokenSilently();
         console.log(accessToken);
       };
     
@@ -171,14 +172,26 @@ function HookMood ({ darkMode, graphRef }) {
             //fetch req to post new data
             // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
 
-            const url = `${RAINBOW_DARKNESS}/api/rainbows/postnumuser`
-            const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}` }
+            // const url = `${RAINBOW_DARKNESS}/api/rainbows/postnumuser`
+            // const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}` }
 
-            const response = await fetch(url, {
+            // const response = await fetch(url, {
+            //     method: 'POST',
+            //     body: JSON.stringify(rainbow),  
+            //     headers
+            // })
+
+            // const { code } = queryString.parse(location.search)
+
+            // const response = await fetch (`${RAINBOW_DARKNESS}/api/rainbows/postnumuser?code=${code}`, {
+            const response = await fetch (`${RAINBOW_DARKNESS}/api/rainbows/postnumuser`, {
                 method: 'POST',
-                body: JSON.stringify(rainbow),  
-                headers
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: "application/json"
+                }
             })
+
 
             const json = await response.json()
 
@@ -560,9 +573,11 @@ const buttonClasses = [
 
             </div>
 
-<div className='text-white text-left mt-20'>penis {isAuthenticated ? user.email : "not logged in"} 
+<div className='text-white text-left mt-20'>
+email {isAuthenticated ? user.email : "not logged in"} 
+    <br/>sub {isAuthenticated ? user.sub : "not logged in"} 
 <button className='absolute text-white bg-blue-400 mt-40' onClick={handleClick}>Get Access Token</button>
-{isAuthenticated ? 'true' : 'false'}
+<br/>{isAuthenticated ? 'isAuthenticated = true' : 'isAuthenticated = false'}
 </div>
 
 
