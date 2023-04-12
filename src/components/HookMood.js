@@ -172,6 +172,19 @@ function HookMood ({ darkMode, graphRef }) {
                 setStaticTime(Date.now())
                 setNumber('')
             }
+            const moogleNew = {
+                inputNumber:numberForStorage,
+                inputTime: format(new Date(),'MM/dd')
+            }
+            // if nothing saved at start, then save an empty array
+            if(window.localStorage.getItem('_APP_moogle') == null) {
+                window.localStorage.setItem('_APP_moogle', '[]')
+            }
+            // get old data and slap it to the new data
+                const moogleOld = JSON.parse(window.localStorage.getItem('_APP_moogle'))
+                moogleOld.push(moogleNew)
+                // save old + new data to localStorage
+                window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
         } else {
 
             const rainbow = { number }
