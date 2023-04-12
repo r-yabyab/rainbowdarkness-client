@@ -21,8 +21,8 @@ root.render(
       authorizationParams={{
         // redirect_uri: window.location.origin
         // redirect_uri: 'https://rainbowdarkness.com/'
-        redirect_uri: 'http://localhost:3000'
-        // redirect_uri: window.location.origin
+        // redirect_uri: 'http://localhost:3000'
+        redirect_uri: window.location.origin
       }}
     >
       <Provider store={store}>
