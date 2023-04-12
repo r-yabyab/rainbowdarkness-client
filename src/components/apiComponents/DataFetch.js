@@ -4,7 +4,7 @@ import React, { Suspense, useEffect,
 import Loader from "./Loader";
 // import { Link } from 'react-router-dom'
 import * as d3 from 'd3'
-import axios from 'axios'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
@@ -12,15 +12,22 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 
 
 // const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
-const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
-// const RAINBOW_DARKNESS = 'http://localhost:4000'
+// prod
+// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+// staging
+// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server-cayabyabrr-yahoocom.vercel.app'
+// localhost
+const RAINBOW_DARKNESS = 'http://localhost:4000'
 
 function DataFetch ({destroyer, books, darkMode, graphRef}) {
+
+    const { user, isAuthenticated} = useAuth0()
 
     const [rainbow, setRainbow] = useState(null)
     const [lastRainbow, setLastRainbow] = useState([])
     const [weekRainbow, setWeekRainbow] = useState([])
     const [todayRainbow, setTodayRainbow] = useState([])
+    const [allUserNum, setAllUserNum] = useState([])
 
 
     useEffect(() => {
@@ -42,6 +49,27 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
         // used to refresh on submit
     //   }, [reducerValue]);
     }, [destroyer]);
+
+    useEffect(() => {
+        const fetchUserNum = async () => {
+          if (isAuthenticated) {
+            try {
+              const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/lastnumuser?sub=${user.sub}`)
+              const json = await response.json()
+        
+              if (response.ok) {
+                setAllUserNum(json)
+              }
+            } catch (error) {
+              console.error(error)
+            }
+          } else {
+            console.log('not logged in')
+          }
+        }
+      
+        fetchUserNum()
+      }, [isAuthenticated])
     
     // // fetches total avg + total entries
     // useEffect(() => {
@@ -390,6 +418,17 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         lg:w-[900px] md:w-[700px]
                         max-md:overflow-hidden max-md:h-[500px]
                         `}>
+                        {/* <div>Usernum Route
+                            <div>
+                                {allUserNum && allUserNum.map((x, index) => {
+                                return (
+                                    <div key={index}>
+                                        {x.number}
+                                    </div>
+                                )
+                            })}
+                            </div>
+                        </div> */}
                         <div className={`${ darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
                             <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses <span className="text-blue-400 hover:text-blue-200 hover:cursor-pointer" onClick={sortClick}>({sorted ? 'descending':'recent'})</span></div>
 
@@ -450,6 +489,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
               src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
             </iframe>
           </div>
+
 
         </div>
 

@@ -6,6 +6,8 @@ import { format } from 'date-fns'
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state';
+import { useAuth0 } from '@auth0/auth0-react'
+
 
 // redux
 
@@ -24,6 +26,9 @@ const getDatafromLS = () => {
     }
 }
 
+// const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
+const RAINBOW_DARKNESS = "http://localhost:4000"
+
 function HookMood ({ darkMode, graphRef }) {
 
     let numberList = [
@@ -36,9 +41,29 @@ function HookMood ({ darkMode, graphRef }) {
         { num: '6' },
         { num: '7' },
         { num: '8' },
-        { num: '9' },
+        { num: '20' },
         { num: '10' }
     ]
+
+    const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+    const handleClick = async () => {
+        const payload = {
+            sub: user.sub,
+            name: user.name,
+        }
+        const accessToken = await getAccessTokenSilently(
+            {
+            audience: 'https://www.rainbowdarkness-api.com',
+            client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
+            scope: 'read:messages',
+            sub: user.sub,
+
+            // payload: payload
+        }
+        );
+        console.log(accessToken);
+      };
+    
 
     // for mapping numbers
     let [list, updateList] = useState(numberList);
@@ -118,35 +143,62 @@ function HookMood ({ darkMode, graphRef }) {
 
 //
 // POST to DB
-const handleSubmit = async () => {
+    const handleSubmit = async () => {
 
-    const rainbow = {number}
+        if (!isAuthenticated) {
+            const rainbow = { number }
+            //fetch req to post new data
+            // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
 
-    // for local prod, use
-    // /api/rainbows
-    // with proxy in package.json
+            const url = `${RAINBOW_DARKNESS}/api/rainbows/postnum`
+            const headers = { 'Content-Type': 'application/json' }
 
-    //fetch req to post new dats
-    const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows', {
-        method: 'POST',
-        body: JSON.stringify(rainbow),                          // have to send number as json, not object
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    const json = await response.json()
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(rainbow),                          // have to send number as json, not object
+                headers
+            })
 
-    if (!response.ok) {
-        setError(json.error)
-    }
-    if (response.ok) {
-        setError(null)
-        updateList(numberList);
-        setBooleanState(false);
-        setDestroyer(true);
-        setStaticTime(Date.now())
-        setNumber('')
-        // forceUpdate()
+            const json = await response.json()
+
+            if (!response.ok) {
+                setError(json.error)
+            }
+            if (response.ok) {
+                setError(null)
+                updateList(numberList);
+                setBooleanState(false);
+                setDestroyer(true);
+                setStaticTime(Date.now())
+                setNumber('')
+            }
+        } else {
+
+            const rainbow = { number }
+            
+            //user data post
+            const response = await fetch (`${RAINBOW_DARKNESS}/api/rainbows/postnumuser?sub=${user.sub}`, {
+                method: 'POST',
+                body: JSON.stringify(rainbow),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+
+            const json = await response.json()
+
+            if (!response.ok) {
+                setError(json.error)
+            }
+            if (response.ok) {
+                setError(null)
+                updateList(numberList);
+                setBooleanState(false);
+                setDestroyer(true);
+                setStaticTime(Date.now())
+                setNumber('')
+                // forceUpdate()
+            }
 
         // gets data from submitbutton
         const moogleNew = {
@@ -508,6 +560,15 @@ const buttonClasses = [
                 </div> 
 
             </div>
+
+{/* For debugging */}
+            {/* <div className='text-white text-left mt-20'>
+                email {isAuthenticated ? user.email : "not logged in"}
+                <br />sub {isAuthenticated ? user.sub : "not logged in"}
+                <button className='absolute text-white bg-blue-400 mt-40' onClick={handleClick}>Get Access Token</button>
+                <br />{isAuthenticated ? 'isAuthenticated = true' : 'isAuthenticated = false'}
+            </div> */}
+
 
 {/* EMOJIS :p */}
             {/* <div className='absolute left-[50%] -translate-x-1/2 -bottom-[100px] flex

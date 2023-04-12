@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../photos/logo512.png'
 import { useAuth0 } from '@auth0/auth0-react'
 // import Countdown from './Countdown';
 
 export function TopNav({ pageDetect, setPageDetect, darkMode }) {
-    const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
+
+    const { user, isAuthenticated, isLoading, loginWithRedirect, logout, } = useAuth0();
+
+    const [dropDown, setDropDown] = useState(false)
 
 // Auth0 shit
     const LoginButton = () => {
@@ -22,8 +25,9 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
         );
     };
 
-
-
+    const AccountDropDown = () => {
+        setDropDown(!dropDown)
+    }
 
     // const Profile = () => {
     //     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -72,6 +76,7 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                         <div
                         // onClick={pageTrue}
                         className=' group-hover:text-white'>Darkness</div></Link>
+                        {/* <div className='tracking-widest'> <span className='text-red-400 absolute left-0 bg-green-800 font-serif'>STAGING ENV</span> </div> */}
 
                     {/* arrow stuff */}
 
@@ -102,23 +107,27 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                     </svg> </div>}
             </div>
 
-            <div className='absolute hidden flex top-2 right-0 mr-24 text-white hover:cursor-pointer '>
+            <div className='absolute flex select-none top-2 right-0 mr-24 text-white hover:cursor-pointer '>
                 <div>
                     {
                         isLoading ? <><div className="tracking-tighter text-zinc-400 animate-pulse">Loading...</div></>
                             : isAuthenticated ?
                                 <>
-                                    <div className={'text-slate-500 hover:cursor-pointer'}>Account</div>
-                                    <div className={"absolute w-[240px] z-50  right-0 top-12 bg-slate-500"}>
-                                        <div className="flex gap-2 pt-2 pb-2 hover:bg-slate-500   flex-col">
-                                            <div className=" hover:cursor-text select-text  text-zinc-800  overflow-hidden w-full text-center">Acc: {user && user.email}</div>
-                                            <div className="hover:bg-white hover:cursor-pointer hover:text-zinc-800 text-bg-zinc-200 w-full text-center">{LogoutButton()}</div>
+                                    <div onClick={AccountDropDown} className={dropDown ? 'text-white hover:cursor-pointer' : 'text-zinc-300 hover:cursor-pointer hover:text-white' }>Account</div>
+                                    <div className={dropDown ? "absolute w-[240px] z-50  -right-20 top-12 bg-zinc-500" : 'hidden'}>
+                                        <div className="flex gap-2 pt-2 pb-2   flex-col">
+                                            <div className=" hover:cursor-text select-text  text-zinc-800  overflow-hidden w-full text-center">
+                                                Acc: {user && user.email}
+                                            </div>
+                                            <div className="hover:bg-white hover:cursor-pointer hover:text-zinc-800 text-bg-zinc-200 w-full text-center">
+                                                {LogoutButton()}
+                                            </div>
                                         </div>
                                     </div>
                                 </> :
-                                <span className="hover:cursor-pointer hover:text-neutral-400">{LoginButton()}</span>
+                                <span className="hover:cursor-pointer hover:text-white text-zinc-300">{LoginButton()}</span>
                     }
-{/* <div className='text-white'><Countdown /></div> */}
+                    {/* <div className='text-white'><Countdown /></div> */}
                 </div>
             </div>
 

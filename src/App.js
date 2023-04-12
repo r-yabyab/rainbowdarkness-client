@@ -38,13 +38,13 @@ export function App() {
 
   const helpRef = useRef()
 
-useEffect(() => {
-  document.addEventListener("mousedown", (e) =>{
-    if (!helpRef.current.contains(e.target) || helpRef.current.contains(e.target)) {
-      setHelp(false)
-    }
-  })
-}, [help])
+// useEffect(() => {
+//   document.addEventListener("mousedown", (e) =>{
+//     if (!helpRef.current.contains(e.target) || helpRef.current.contains(e.target)) {
+//       setHelp(false)
+//     }
+//   })
+// }, [help])
 
 useEffect (() => {
   document.title = 'Rainbow Darkness';
