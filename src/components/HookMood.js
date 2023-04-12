@@ -26,8 +26,8 @@ const getDatafromLS = () => {
     }
 }
 
-// const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
-const RAINBOW_DARKNESS = "http://localhost:4000"
+const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
+// const RAINBOW_DARKNESS = "http://localhost:4000"
 
 function HookMood ({ darkMode, graphRef }) {
 
@@ -46,23 +46,23 @@ function HookMood ({ darkMode, graphRef }) {
     ]
 
     const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
-    const handleClick = async () => {
-        const payload = {
-            sub: user.sub,
-            name: user.name,
-        }
-        const accessToken = await getAccessTokenSilently(
-            {
-            audience: 'https://www.rainbowdarkness-api.com',
-            client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
-            scope: 'read:messages',
-            sub: user.sub,
+    // const handleClick = async () => {
+    //     const payload = {
+    //         sub: user.sub,
+    //         name: user.name,
+    //     }
+    //     const accessToken = await getAccessTokenSilently(
+    //         {
+    //         audience: 'https://www.rainbowdarkness-api.com',
+    //         client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
+    //         scope: 'read:messages',
+    //         sub: user.sub,
 
-            // payload: payload
-        }
-        );
-        console.log(accessToken);
-      };
+    //         // payload: payload
+    //     }
+    //     );
+    //     console.log(accessToken);
+    //   };
     
 
     // for mapping numbers
@@ -550,16 +550,22 @@ const buttonClasses = [
 
                     >
                         Submit</button>
-                        {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
-                    {/* <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} flex gap-4 items-center justify-center w-[340px]`}>
-                        <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
-                        <div>|</div>
-                        <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs</div>
-                    </div> */}
+
                         {error && { error }}
+
+
                 </div> 
 
             </div>
+                    {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
+                    <div className=''>
+
+                        <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[388px] text-zinc-600 absolute `}>
+                            {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
+                        <div>|</div> */}
+                            <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs until next submission</div>
+                        </div>
+                    </div>
 
 {/* For debugging */}
             {/* <div className='text-white text-left mt-20'>

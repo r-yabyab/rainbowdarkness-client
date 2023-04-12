@@ -76,8 +76,9 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
-                            <div>1.1.8 (April 8, 2023)</div>
+                            <div>1.1.9 (April 11-12, 2023)</div>
                             <p>Added user registration (Auth0)-- If you submit a number while logged in, your submission will include your userID in the database (kept secret). Currently incorporating registered user data to work with the site, as of now it just stores your userID with submissions for later use.</p>
+                            <p>Next submission timer set on homepage temporarily</p>
                             <div>______________</div>
 
                             <div>1.1.8 (April 8, 2023)</div>
