@@ -19,7 +19,7 @@ function Memos () {
 
     const handleSubmit = async () => {
         try {
-            const accessToken = await getAccessTokenSilently();
+            // const accessToken = await getAccessTokenSilently();
 
             const response = await axios.post('https://rainbowdarkness-server.vercel.app/api/memos', {
                 // body: JSON.stringify(memo),

@@ -13,11 +13,11 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 
 // const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 // prod
-// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 // staging
 // const RAINBOW_DARKNESS = 'https://rainbowdarkness-server-cayabyabrr-yahoocom.vercel.app'
 // localhost
-const RAINBOW_DARKNESS = 'http://localhost:4000'
+// const RAINBOW_DARKNESS = 'http://localhost:4000'
 
 function DataFetch ({destroyer, books, darkMode, graphRef}) {
 
