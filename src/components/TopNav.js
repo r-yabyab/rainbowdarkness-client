@@ -119,8 +119,8 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                                             <div className=" hover:cursor-text select-text  text-zinc-800  overflow-hidden w-full text-center">
                                                 Acc: {user && user.email}
                                             </div>
-                                            <div className="hover:bg-white hover:cursor-pointer hover:text-zinc-800 text-bg-zinc-200 w-full text-center">
-                                                {LogoutButton()}
+                                            <div className="   text-bg-zinc-200 w-full text-center hover:cursor-default">
+                                                <span className='hover:bg-white hover:text-zinc-800'>{LogoutButton()}</span>
                                             </div>
                                         </div>
                                     </div>
