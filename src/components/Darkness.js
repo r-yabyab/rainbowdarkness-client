@@ -77,6 +77,10 @@ function Darkness() {
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
                             <div>1.1.8 (April 8, 2023)</div>
+                            <p>Added user registration (Auth0)-- If you submit a number while logged in, your submission will include your userID in the database (kept secret). Currently incorporating registered user data to work with the site, as of now it just stores your userID with submissions for later use.</p>
+                            <div>______________</div>
+
+                            <div>1.1.8 (April 8, 2023)</div>
                             <p>On submission, users are shown a graph of their mood for the past 10 days compared to the week's average (implemented Redux)</p>
                             <p>Changed About page contents</p>
                             <p>Rainbow Darkness text on the header now only redirects to homepage. Click in the ? to go here (about page)</p>

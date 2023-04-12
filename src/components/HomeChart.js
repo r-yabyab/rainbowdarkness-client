@@ -176,7 +176,7 @@ function HomeChart () {
                                 </div>))}
                         </div>
                     </div> */}
-                    <div className='text-zinc-200 text-center pb-4 -mt-4'>This is how you compare with the average:</div>
+                    <div className='text-zinc-200 text-center pb-4 -mt-4'>This is how you compare with other users:</div>
                     <svg className="" ref={svgHomeRef} />
                     <div className='text-zinc-200 text-center pt-12'>Please come again tomorrow to fill the graph!</div>
                     {/* {inputNumber} */}

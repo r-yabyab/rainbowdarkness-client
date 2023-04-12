@@ -26,10 +26,10 @@ export const setDestroyer = (completion) => {
     }
 }
 
-export const setStaticTime = (time) => {
+export const setTimeLeft = (time) => {
     return (dispatch) => {
         dispatch({
-            type: 'changeStaticTime',
+            type: 'changeTimeLeft',
             payload: time
         })
     }

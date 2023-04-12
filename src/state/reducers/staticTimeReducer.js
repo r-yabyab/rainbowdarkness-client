@@ -1,6 +1,6 @@
 const reducer = (state = 0, action) => {
     switch (action.type) {
-        case 'changeStaticTime':
+        case 'changeTimeLeft':
             return action.payload
         default:
             return state
