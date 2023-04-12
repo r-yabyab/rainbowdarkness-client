@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../photos/logo512.png'
 import { useAuth0 } from '@auth0/auth0-react'
 // import Countdown from './Countdown';
 
 export function TopNav({ pageDetect, setPageDetect, darkMode }) {
-    const { user, isAuthenticated, isLoading, loginWithRedirect, logout, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+
+    const { user, isAuthenticated, isLoading, loginWithRedirect, logout, } = useAuth0();
+
+    const [dropDown, setDropDown] = useState(false)
 
 // Auth0 shit
     const LoginButton = () => {
@@ -22,62 +25,9 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
         );
     };
 
-    const getTokenButton =  () => {
-        const fetchToken = async () => {
-            const token = await getAccessTokenSilently();
-
-            const response = await fetch('https://dev-bxpbdydalm6tmklv.us.auth0.com/oauth/token', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                },
-                grant_type: 'authorization_code',
-                client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
-                client_secret: '78HUH5f8l71CakSJhUdQTGCdPMD92nk0eLmP1qLwAUlt06B5amCT-G_qqzfB-Wxz',
-                code: token,
-                audience: "https://www.rainbowdarkness-api.com",
-            })
-                   const json = await response.json()
-
-           if (response.ok) {
-               console.log(json)
-           }
-        }
-        fetchToken()
+    const AccountDropDown = () => {
+        setDropDown(!dropDown)
     }
-
-    const getAuthCode = () => {
-        const fetchAuthCode = async () => {
-          const url = 'https://dev-bxpbdydalm6tmklv.us.auth0.com/authorize' +
-                      '?audience=https://www.rainbowdarkness-api.com' +
-                      '&response_type=code' +
-                      '&client_id=oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO';
-          const response = await fetch(url);
-          const json = await response.json();
-          if (response.ok) {
-            console.log(json);
-          }
-        };
-        fetchAuthCode();
-      };
-
-    const handleClick = async () => {
-        const accessToken = await getAccessTokenSilently(
-        //     {
-        //     audience: 'https://www.rainbowdarkness-api.com',
-        //     client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
-        //     // scope: 'read:messages',
-        // }
-        )
-        const idToken = await getIdTokenClaims();
-        console.log(accessToken);
-        console.log(user.sub)
-        console.log(idToken)
-      }
-    
-
-
-
 
     // const Profile = () => {
     //     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -126,7 +76,7 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                         <div
                         // onClick={pageTrue}
                         className=' group-hover:text-white'>Darkness</div></Link>
-                        <div className='tracking-widest'> <span className='text-red-400 bg-green-800 font-serif'>STAGING ENV</span> </div>
+                        {/* <div className='tracking-widest'> <span className='text-red-400 absolute left-0 bg-green-800 font-serif'>STAGING ENV</span> </div> */}
 
                     {/* arrow stuff */}
 
@@ -157,15 +107,15 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                     </svg> </div>}
             </div>
 
-            <div className='absolute flex top-2 right-0 mr-24 text-white hover:cursor-pointer '>
+            <div className='absolute flex select-none top-2 right-0 mr-24 text-white hover:cursor-pointer '>
                 <div>
                     {
                         isLoading ? <><div className="tracking-tighter text-zinc-400 animate-pulse">Loading...</div></>
                             : isAuthenticated ?
                                 <>
-                                    <div className={'text-slate-500 hover:cursor-pointer'}>Account</div>
-                                    <div className={"absolute w-[240px] z-50  right-0 top-12 bg-slate-500"}>
-                                        <div className="flex gap-2 pt-2 pb-2 hover:bg-slate-500   flex-col">
+                                    <div onClick={AccountDropDown} className={dropDown ? 'text-white hover:cursor-pointer' : 'text-zinc-300 hover:cursor-pointer hover:text-white' }>Account</div>
+                                    <div className={dropDown ? "absolute w-[240px] z-50  -right-20 top-12 bg-zinc-500" : 'hidden'}>
+                                        <div className="flex gap-2 pt-2 pb-2   flex-col">
                                             <div className=" hover:cursor-text select-text  text-zinc-800  overflow-hidden w-full text-center">
                                                 Acc: {user && user.email}
                                             </div>
@@ -175,12 +125,9 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                                         </div>
                                     </div>
                                 </> :
-                                <span className="hover:cursor-pointer hover:text-neutral-400">{LoginButton()}</span>
+                                <span className="hover:cursor-pointer hover:text-white text-zinc-300">{LoginButton()}</span>
                     }
-{/* <div className='text-white'><Countdown /></div> */}
-<button onClick={handleClick}>ACESS TOKEN</button>
-<button className='absolute ml-10 top-20 bg-red-800' onClick={getTokenButton}>POST TOKEN</button>
-<button className='absolute ml-10  mt-[20px] bg-blue-800' onClick={getAuthCode}>GETAUTHCODE</button>
+                    {/* <div className='text-white'><Countdown /></div> */}
                 </div>
             </div>
 

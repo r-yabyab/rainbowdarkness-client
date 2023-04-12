@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state';
 import { useAuth0 } from '@auth0/auth0-react'
-import queryString from 'query-string'
 
 
 // redux
@@ -52,7 +51,16 @@ function HookMood ({ darkMode, graphRef }) {
             sub: user.sub,
             name: user.name,
         }
-        const accessToken = await getAccessTokenSilently();
+        const accessToken = await getAccessTokenSilently(
+            {
+            audience: 'https://www.rainbowdarkness-api.com',
+            client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
+            scope: 'read:messages',
+            sub: user.sub,
+
+            // payload: payload
+        }
+        );
         console.log(accessToken);
       };
     
@@ -167,31 +175,15 @@ function HookMood ({ darkMode, graphRef }) {
         } else {
 
             const rainbow = { number }
-            const accessToken = await getAccessTokenSilently();
             
-            //fetch req to post new data
-            // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
-
-            // const url = `${RAINBOW_DARKNESS}/api/rainbows/postnumuser`
-            // const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}` }
-
-            // const response = await fetch(url, {
-            //     method: 'POST',
-            //     body: JSON.stringify(rainbow),  
-            //     headers
-            // })
-
-            // const { code } = queryString.parse(location.search)
-
-            // const response = await fetch (`${RAINBOW_DARKNESS}/api/rainbows/postnumuser?code=${code}`, {
-            const response = await fetch (`${RAINBOW_DARKNESS}/api/rainbows/postnumuser`, {
+            //user data post
+            const response = await fetch (`${RAINBOW_DARKNESS}/api/rainbows/postnumuser?sub=${user.sub}`, {
                 method: 'POST',
+                body: JSON.stringify(rainbow),
                 headers: {
                     'Content-Type': 'application/json',
-                    Accept: "application/json"
                 }
             })
-
 
             const json = await response.json()
 
@@ -206,11 +198,7 @@ function HookMood ({ darkMode, graphRef }) {
                 setStaticTime(Date.now())
                 setNumber('')
                 // forceUpdate()
-
             }
-
-
-
 
         // gets data from submitbutton
         const moogleNew = {
@@ -573,12 +561,13 @@ const buttonClasses = [
 
             </div>
 
-<div className='text-white text-left mt-20'>
-email {isAuthenticated ? user.email : "not logged in"} 
-    <br/>sub {isAuthenticated ? user.sub : "not logged in"} 
-<button className='absolute text-white bg-blue-400 mt-40' onClick={handleClick}>Get Access Token</button>
-<br/>{isAuthenticated ? 'isAuthenticated = true' : 'isAuthenticated = false'}
-</div>
+{/* For debugging */}
+            {/* <div className='text-white text-left mt-20'>
+                email {isAuthenticated ? user.email : "not logged in"}
+                <br />sub {isAuthenticated ? user.sub : "not logged in"}
+                <button className='absolute text-white bg-blue-400 mt-40' onClick={handleClick}>Get Access Token</button>
+                <br />{isAuthenticated ? 'isAuthenticated = true' : 'isAuthenticated = false'}
+            </div> */}
 
 
 {/* EMOJIS :p */}
