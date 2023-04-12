@@ -41,7 +41,7 @@ function HookMood ({ darkMode, graphRef }) {
         { num: '6' },
         { num: '7' },
         { num: '8' },
-        { num: '20' },
+        { num: '9' },
         { num: '10' }
     ]
 
