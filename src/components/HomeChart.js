@@ -177,7 +177,7 @@ function HomeChart () {
                                 </div>))}
                         </div>
                     </div> */}
-                <div className='text-zinc-200 text-center pb-4 -mt-4'>This is how you compare with other users:</div>
+                <div className='text-zinc-200 text-center pb-4 -mt-4'>Here are your last 10 submissions:</div>
                 <svg className="" ref={svgHomeRef} />
                 <div className='text-zinc-200 text-center pt-12'>Please come again tomorrow to fill the graph!</div>
                 {/* <div className='text-center text-zinc-400 pt-2 m-auto hover:text-white hover:cursor-pointer'>
