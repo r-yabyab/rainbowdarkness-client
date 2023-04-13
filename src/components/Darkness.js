@@ -64,7 +64,7 @@ function Darkness() {
                         Rainbow Darkness is a mental health platform that helps track your mood level.
                         <br/> <br/> Here's a mood chart of people with major depressive disorder. They tend to hover below normal mood levels, and shows improvement after treatment. 
                         <img className='text-white pt-8' src={mdd} alt='mdd' />
-                        <p className='mt-14 -mb-14'>Because people don't often have the luxury to get help, with the healthcare system being too complicated, with psychiatrists not giving quality care, this site aims to help users be mindful of themselves of others. 
+                        <p className='mt-14 -mb-14'>Because people don't often have the luxury to get help, with the healthcare system being too complicated, with psychiatrists not giving quality care, this site aims to help users be mindful of themselves and others. 
                         {/* When shit hits the fan, how do we make things better? */}
                         </p>
                         </div>
@@ -75,6 +75,16 @@ function Darkness() {
                     <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-zinc-200'>
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
+
+                            <div>1.2.0 (April 12, 2023)</div>
+                            <p>Added an about section on submission page.</p>
+                            <div>Articles used:
+                                <p className=' indent-4'>Watson, D., & Clark, L. A. (1994). The PANAS-X: Manual for the Positive and Negative Affect Schedule - Expanded Form.</p>
+                                <p className=' indent-4'>Kunst, J. R., & Thomsen, L. (2017). Gender stereotypes and response bias: An experimental test of the moderating role of response latency. Social Sciences, 6(3), 103. </p>
+                                <p className=' indent-4'>EMA research Manual: https://jruwaard.github.io/aph_ema_handbook/mood.html</p>
+                            <p>Upon reviewing some positive / negative affect articles, it seems that we're measuring the joviality factor of positive affect. Negative affect seems to have more dimensions compared to positive. These studies tend to administer surveys with multiple items, specifying the time of day to take it, etc. The main concern is that these surveys stay inclusive to psychology research. Furthermore, I find that public mental health apps (headspace, online therapy sites) don't do a good job because they promise you too much, the onboarding process can be overwhelming. </p>
+                            </div>
+                            <div>______________</div>
 
                             <div>1.1.9 (April 11-12, 2023)</div>
                             <p>Added user registration (Auth0)-- If you submit a number while logged in, your submission will include your userID in the database (kept secret). Currently incorporating registered user data to work with the site, as of now it just stores your userID with submissions for later use.</p>
