@@ -250,8 +250,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
  
         const currentTime = Date.now()
         const timePassed = currentTime - dataTime
-
-        if (timePassed > 86400000) {
+        
+        // if (timePassed > 86400000) { //24 hours
+            if (timePassed > 82800000) { // 23 hours
             setDestroyer(false)
             setStaticTime(0)
         }
@@ -663,7 +664,7 @@ max-md:hidden
             </div> */}
 
 <DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode}/>
-<div className='absolute left-[50%] -translate-x-1/2 top-[10px] text-zinc-200'>{ destroyer ? `AI: ${aiText && aiText}` : null}</div>
+<div className='absolute left-[50%] font-normal -translate-x-1/2 top-[10px] text-zinc-200'>{ destroyer ? `AI: ${aiText && aiText}` : null}</div>
 
         </>
     )

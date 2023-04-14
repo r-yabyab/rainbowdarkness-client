@@ -79,6 +79,7 @@ function Darkness() {
                             <div>1.2.1 (April 13, 2023)</div>
                             <p>Readded AI component. Instead of generating a question for the user, the AI will give you a comment that compares your number today from yesterday's. If it's your first time submitting, it will only comment on that number. The AI will not give advice to sad people because they don't know what it's like to be sad.</p>
                             <p>Changed timer to count down every 30 seconds instead of 1 second</p>
+                            <p>Post cooldown changed from 24 hours to 23 hours.</p>
                             {/* <div>{`setInterval(() => {setTimeLeft(x => x -30000)},30000)`}</div> */}
                             <div>______________</div>
 
