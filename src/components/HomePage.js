@@ -8,45 +8,11 @@ import { useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import HomeChart from './HomeChart';
 import sampleGraph from '../photos/samplehomegraph.png'
+// import AiComment from './AiComment';
 
-// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
 export function HomePage ({ darkMode, graphRef }) {
-  
-  // const [aiReq, setAiReq] = useState(true)
-  // const [aiText, setAiText] = useState('')
-  // const [aiQuestion, setAiQuestion] = useState('')
-  // const [aiCitation, setAiCitation] = useState('')
 
-  // useEffect(() => {
-  //   const aiFetch = async () => {
-  //     try {
-  //       // const response = await axios.get(`${RAINBOW_DARKNESS}/aineg`, {
-  //         const response = await axios.get(`${RAINBOW_DARKNESS}/aipos`, {
-  //         headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     })
-  //       setAiText(response.data.content)
-  //       console.log(response.data.content)
-  //     } catch (error) {
-  //       console.error(error)
-  //     }
-      
-      
-  //   }
-  //   aiFetch()
-  //   setAiReq(false)
-  // }, [])
-
-  // useEffect(() => {
-  //   const question = aiText
-  //   const regex = /\s*\([^)]*\)/; // matches any text within parentheses and the parentheses themselves
-  //   const trimmedQuestion = question.replace(regex, '');
-  //   // const trimmedCitation = question.filter(regex, '');
-  //   setAiQuestion(trimmedQuestion)
-  //   // setAiCitation(trimmedCitation)
-  // }, [aiText])
 
   const { loginWithRedirect } = useAuth0()
   
@@ -125,6 +91,7 @@ export function HomePage ({ darkMode, graphRef }) {
         </div>
 
       </div>
+      {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}
       <div className='absolute left-[50%] -translate-x-1/2 top-[200px]'>{ destroyer ? <HomeChart /> : null}</div>
       </>
     )

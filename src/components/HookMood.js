@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state';
 import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios';
 
 
 // redux
@@ -41,11 +42,11 @@ function HookMood ({ darkMode, graphRef }) {
         { num: '6' },
         { num: '7' },
         { num: '8' },
-        { num: '9' },
+        { num: '20' },
         { num: '10' }
     ]
 
-    const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+    const { isAuthenticated, user } = useAuth0();
     // const handleClick = async () => {
     //     const payload = {
     //         sub: user.sub,
@@ -240,6 +241,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
 
 // getStorage
+// logic for when destroyer get cleared after 24 hours is up
     useEffect(() => {
         const data = window.localStorage.getItem('_APP');
         const dataTime = window.localStorage.getItem('_APP_timer');
@@ -260,9 +262,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         console.log(timePassed)
         setTimeLeft(countdown)
 
+        // x => x -1000 for countdown every 1 second
         setInterval(() => {
-            setTimeLeft(x => x -1000)
-        },1000)
+            setTimeLeft(x => x -30000)
+        },30000)
 
 
 
@@ -276,6 +279,50 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         const countdown = 86400000 - timePassed
         setTimeLeft(countdown)
     }, [reducerValue])
+
+    // for ai Component
+    const [aiText, setAiText] = useState('')
+    const todayNumberForAi = () => {
+        if (books && books.length > 0) {
+            const num1 = books && books.map(book => book.inputNumber).slice(-1)[0];
+            return num1
+        } else {
+            return 'awaiting number'
+        }
+    }
+    
+    const yesterdayNumberForAi = () => {
+        if (books && books.length > 1) {
+            const num2 = books && books.map(book => book.inputNumber).slice(-2)[0];
+            return num2
+        } else {
+            return 'this is my first submission!'
+        }
+    }
+
+    useEffect(() => {
+        if (destroyer) {
+      const aiFetch = async () => {
+        try {
+            const response = await axios.get(`${RAINBOW_DARKNESS}/aicomment?todaynumber=${todayNumberForAi()}&yesterdaynumber=${yesterdayNumberForAi()}`, {
+            headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          setAiText(response.data.content)
+          console.log(response.data.content)
+        //   console.log(todayNumberForAi + "today")
+        //   console.log(yesterdayNumberForAi + "yesterday")
+        } catch (error) {
+          console.error(error)
+        }
+        
+        
+      }
+      aiFetch()
+    }
+    }, [destroyer])
+
 
 // // for timer
 // // // // // // // // // // // WORKS,
@@ -616,6 +663,7 @@ max-md:hidden
             </div> */}
 
 <DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode}/>
+<div className='absolute left-[50%] -translate-x-1/2 top-[10px] text-zinc-200'>{ destroyer ? `AI: ${aiText && aiText}` : null}</div>
 
         </>
     )
