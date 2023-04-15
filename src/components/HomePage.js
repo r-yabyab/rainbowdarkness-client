@@ -39,7 +39,7 @@ export function HomePage ({ darkMode, graphRef }) {
             <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
             mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
-            {!destroyer ? 'How happy are you today?' : null }
+            {destroyer ?  null : 'How happy are you today?' }
             {/* {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>} */}
             </p>
 
