@@ -6,14 +6,13 @@ import { Routes, Route } from 'react-router-dom'
 import Darkness from './components/Darkness';
 import { BottomHeader } from './components/BottomHeader';
 // import resetArrow from './photos/resetArrow.png'
-import GraphPic from './photos/graph-pic.png'
+// import GraphPic from './photos/graph-pic.png'
 import { UserProfile } from './components/UserProfile';
 // import Memos from './components/Memos';
 import { Link } from 'react-router-dom';
 
 export function App() {
 
-  const [help, setHelp] = useState(false)
   const [pageDetect, setPageDetect] = useState(false)
 
   const [darkMode, setDarkMode] = useState(true)
@@ -32,11 +31,6 @@ export function App() {
     window.localStorage.setItem('_APP_darkmode', JSON.stringify(darkMode))
   },[darkMode])
 
-  const helpHandler = () => {
-      setHelp(true)
-  }
-
-  const helpRef = useRef()
 
 // useEffect(() => {
 //   document.addEventListener("mousedown", (e) =>{
@@ -53,17 +47,17 @@ useEffect (() => {
 
 const graphRef = useRef(null)
 
-const scrollToProjects = () => {
-  if (graphRef.current) {
-    graphRef.current.scrollIntoView({ behavior: 'instant' });
-  }
-};
+// const scrollToProjects = () => {
+//   if (graphRef.current) {
+//     graphRef.current.scrollIntoView({ behavior: 'instant' });
+//   }
+// };
 
   return (
     <>
       <div className={`${ darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 ' :  ' inset-0 bg-gradient-to-r from-zinc-400 to-zinc-300 max-md:from-zinc-400 max-md:to-zinc-300'} fixed h-full w-full`} />
       {/*flat colors <div className={`${ darkMode ? 'bg-[#121212]' :  ' bg-zinc-100'} fixed h-full w-full`} /> */}
-      <div className={help ? "blur-xl" : ""}>
+      <div className={""}>
 
 
         <TopNav pageDetect={pageDetect} setPageDetect={setPageDetect} darkMode={darkMode} />
@@ -100,7 +94,7 @@ const scrollToProjects = () => {
 
       {/* Help icon */}
 
-      {help ?
+      {/* {help ?
         <div className='
         fixed select-none animate-fade bg-slate-400 left-[50%] -translate-x-1/2 top-[12%] h-[740px] w-[600px] shadow-inner shadow-zinc-600
         max-md:w-[340px] max-md:h-[650px] max-md:pl-4 max-md:pr-4 max-md:top-[10%] max-md:
@@ -128,8 +122,8 @@ const scrollToProjects = () => {
             <p>- I am not satisfied with my life.</p>
             <p>- Usually, I am not able to control my</p>
             <p>feelings.</p>
-            {/* <div className='text-slate-500 text-sm pt-0'>From <i>Development and Standardization of Mental Health Battery for
-              Visually Impaired (2018)</i></div> */}
+            <div className='text-slate-500 text-sm pt-0'>From <i>Development and Standardization of Mental Health Battery for
+              Visually Impaired (2018)</i></div>
           </div>
 
           <div className='md:text-center md:pt-6 max-md:pt-6'>Don't forget to compare yourself with the chart. <span className='md:hidden'>It updates daily!</span></div>
@@ -137,7 +131,7 @@ const scrollToProjects = () => {
           <img className='md:pl-16 md:pr-16' src={GraphPic} alt="graph image" />
         </div>
         :
-        null}
+        null} */}
 
 
 

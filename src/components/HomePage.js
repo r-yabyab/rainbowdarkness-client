@@ -67,9 +67,9 @@ export function HomePage ({ darkMode, graphRef }) {
                     src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">    
                     </iframe> */}
 
-        <div className={ destroyer ? 'hidden' : about ? 'text-zinc-200 text-center font-normal [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] pt-8 bg-zinc-800 border-t-2 border-b-2 border-zinc-600 max-md:min-h-[480px] md:min-h-[400px]' : 'hidden'}>
-          <div className='text-center underline'>About <span className='absolute ml-4 text-sm text-blue-400 hover:cursor-pointer hover:underline' onClick={AboutHandler}>dismiss</span></div>
-          <div>Rainbow Darkness tracks your mood / positive affect levels every 24 hours.</div>
+        <div className={` ${destroyer ? 'hidden' : about ? 'text-center text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black'}`}>
+          <div className='text-center underline border-t'> <span className='absolute md:ml-[300px] max-md:hidden text-sm text-blue-400 hover:cursor-pointer hover:underline' onClick={AboutHandler}>dismiss</span></div>
+          <div>Rainbow Darkness tracks your daily mood levels.</div>
           <div className='mt-4'>Use the following scale to record your answer:</div>
           <div>0 = Not At All Happy | 5 = Moderately Happy | 10 = Extremely Happy</div>
 
@@ -78,11 +78,36 @@ export function HomePage ({ darkMode, graphRef }) {
             <img className='w-[240px] max-md:m-auto max-md:mt-2' draggable={false} src={sampleGraph} alt='sample graph' />
           </div>
 
+          <div className='mt-16 border-t'>Having trouble choosing a number?</div>
+          <div>Consider these items that correlates to joviality alongside happiness:</div>
+          <div title='Watson, D., & Clark, L. A. (1994). The PANAS-X: Manual for the Positive and Negative Affect Schedule - Expanded Form.' className='border mt-8'>
+            <div className='mb-2'>Indicate to what extent you have felt this way today:</div>
+            <div className=' flex justify-evenly pb-4 [&>div>div]:text-sm'>
+              <div>1
+                <div>very slightly </div>
+                <div className='absolute'>or not at all</div>
+              </div>
+              <div>2
+                <div>a little</div>
+              </div>
+              <div>3
+                <div>moderately</div>
+              </div>
+              <div>4
+                <div>quite a bit</div>
+              </div>
+              <div>5
+                <div>extremely</div>
+              </div>
+
+            </div>
+            <div className='mb-4 text-yellow-200'>Cheerful, Joyful, Excited, Enthusiastic, Lively</div>
+          </div>
 
           <div>
             {/* <div>Notes from https://www2.psychology.uiowa.edu/faculty/clark/panas-x.pdf</div> */}
             {/* <div>For a more accurate estimate of your mood, try submitting during the evening.</div> */}
-            <div className='mt-4'><span className='text-blue-400 hover:cursor-pointer hover:underline' onClick={() => loginWithRedirect()}>Register</span> to track your levels across devices.</div>
+            <div className='mt-4 mb-20'><span className='text-blue-400 hover:cursor-pointer hover:underline' onClick={() => loginWithRedirect()}>Register</span> to track your levels across devices.</div>
           </div>
         </div>
 

@@ -17,7 +17,7 @@ function HomeChart () {
 
     const [weekRainbow, setWeekRainbow] = useState('')
     const [weekAvg, setWeekAvg] = useState('')
-    const [showTimeLeft, setShowTimeLeft] = useState(false)
+    // const [showTimeLeft, setShowTimeLeft] = useState(false)
 
         useEffect(() => {
         const fetchWeekRainbow = async () => {
