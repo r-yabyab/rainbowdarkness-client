@@ -80,6 +80,7 @@ function Darkness() {
                             <p>Updated personal graph to correctly show scores below or above the weekly average as red or green, respectively.</p>
                             <p>Added toggle function to homepage's help section</p>
                             <p>Updated help section to include alternative scoring system, redesigned so it's just borders instead of background to separate</p>
+                            <p className='ml-4 text-zinc-400'>To make the alternative scoring system functional. Need to find cross correlations of happiness between the other items for the joviality factor. Will allow users to use this alt system to average out the happiness level, scroll up when finished, etc.</p>
                             <div>______________</div>
 
                             <div>1.2.1 (April 13, 2023)</div>
