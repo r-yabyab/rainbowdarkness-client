@@ -83,22 +83,23 @@ function HomeChart () {
     
         // setting the axes
         const xAxis = d3.axisBottom(xScale)
-           .ticks(0);
+            .ticks(0);
         const yAxis = d3.axisLeft(yScale)
-           .ticks(0)
-    
-           svg.append('g')
-           .attr('class', 'axis-x')
-           .call(xAxis)
-           .attr('transform', `translate(0, ${h})`)
-           .select(".domain")
-           .attr("stroke", "white");
-         svg.append('g')
-           .call(yAxis)
-           .select(".domain")
-           .attr("stroke", "white");
+            .ticks(0)
 
-           
+        // displays axes
+        svg.append('g')
+            .attr('class', 'axis-x')
+            .call(xAxis)
+            .attr('transform', `translate(0, ${h})`)
+            .select(".domain")
+            .attr("stroke", "white");
+        svg.append('g')
+            .call(yAxis)
+            .select(".domain")
+            .attr("stroke", "white");
+
+        if (weekAvg) {           
     
         // remove the previous line and area
         svg.select(".line").remove();
@@ -106,44 +107,88 @@ function HomeChart () {
     
         // setting up the data for the svg
         svg.append('path')
-          .datum(inputNumber)
-          .attr('class', 'line')
-            .attr('d', generateScaledLine)
-            .attr('fill', 'none')
-            //   .attr('stroke', 'black')
-            .attr("stroke-width", 4)
-            .attr('stroke', 'white');
-        
-        // adding a flat line at y=4.33
-        svg.append("line")
-          .attr("x1", 0)
-          .attr("y1", yScale(weekAvg))
-          .attr("x2", w)
-          .attr("y2", yScale(weekAvg))
-          .attr("stroke-width", 2)
-          .attr("stroke", "darkorchid");
+  .datum(inputNumber)
+  .attr('class', 'line')
+  .attr('d', generateScaledLine)
+  .attr('fill', 'none')
+  .attr("stroke-width", 4)
+  .attr('stroke', 'white');
 
-              // adding weekAvg label
-    svg.append("text")
-    .attr("x", w + 5)
-    .attr("y", yScale(weekAvg) - 5)
-    .attr("font-size", "12px")
-    .attr("fill", "black")
-    .style("fill", "darkorchid")
-    .text((weekRainbow.length > 0) ? `Weekly average: ${weekAvg}` : `New Week`);
-          
-        // adding the fill area
-        const areaGenerator = d3.area()
-          .x((d, i) => xScale(i))
-          .y0(yScale(weekAvg))
-          .y1((d) => yScale(d))
-          .curve(d3.curveCardinal);
-    
-        svg.append("path")
-          .datum(inputNumber)
-          .attr("class", "area")
-          .attr("d", areaGenerator)
-          .attr("fill", (d) => d[d.length - 1] > weekAvg ? "green" : "red");
+// adding a flat line at y=4.33
+svg.append("line")
+  .attr("x1", 0)
+  .attr("y1", yScale(weekAvg))
+  .attr("x2", w)
+  .attr("y2", yScale(weekAvg))
+  .attr("stroke-width", 2)
+  .attr("stroke", "darkorchid");
+
+// adding weekAvg label
+svg.append("text")
+  .attr("x", w + 5)
+  .attr("y", yScale(weekAvg) - 5)
+  .attr("font-size", "12px")
+  .attr("fill", "black")
+  .style("fill", "darkorchid")
+  .text((weekRainbow.length > 0) ? `Weekly average: ${weekAvg}` : `New Week`);
+
+// adding the fill area
+const areaGenerator = d3.area()
+  .x((d, i) => xScale(i))
+  .y0(yScale(weekAvg))
+  .y1((d) => yScale(d))
+  .curve(d3.curveCardinal);
+
+const areaPath = svg.append("path")
+  .datum(inputNumber)
+  .attr("class", "area")
+  .attr("d", areaGenerator)
+  .attr("fill", "none");
+
+const areaGradient = svg.append("linearGradient")
+  .attr("id", "area-gradient")
+  .attr("gradientUnits", "userSpaceOnUse")
+  .attr("x1", 0).attr("y1", yScale(weekAvg))
+  .attr("x2", 0).attr("y2", yScale(d3.min(inputNumber)))
+  .selectAll("stop")
+  .data([
+    { offset: "0%", color: "green" },
+    // { offset: "0%", color: "purple" },
+    // { offset: "50%", color: "grey" },
+    { offset: "0%", color: "red" }
+  ])
+  .enter().append("stop")
+  .attr("offset", function(d) { return d.offset; })
+  .attr("stop-color", function(d) { return d.color; });
+
+//   const areaGradient = svg.append("defs")
+//   .append("linearGradient")
+//   .attr("id", "area-gradient")
+//   .attr("gradientUnits", "userSpaceOnUse")
+//   .attr("x1", 0).attr("y1", yScale(0))
+//   .attr("x2", 0).attr("y2", yScale(10))
+//   .selectAll("stop")
+//   .data([
+//     { offset: "0%", color: "red" },
+//     { offset: "50%", color: "red" },
+//     { offset: "50%", color: "green" },
+//     { offset: "100%", color: "green" }
+//   ])
+//   .enter().append("stop")
+//   .attr("offset", function (d) { return d.offset; })
+//   .attr("stop-color", function (d) { return d.color; });
+
+areaPath.attr("fill", "url(#area-gradient)");
+        } else {
+            svg.append('text')
+            .attr('class', 'loading')
+            .attr('x', w / 2)
+            .attr('y', h / 2)
+            .attr('text-anchor', 'middle')
+            .attr('fill', 'white')
+            .text('Loading...');
+          return; // exit the useEffect hook
+        }
           
     }, [books, weekRainbow]);
 
