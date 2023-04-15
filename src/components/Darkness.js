@@ -76,6 +76,12 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.2.2 (April 14, 2023)</div>
+                            <p>Updated personal graph to correctly show scores below or above the weekly average as red or green, respectively.</p>
+                            <p>Added toggle function to homepage's help section</p>
+                            <p>Updated help section to include alternative scoring system, redesigned so it's just borders instead of background to separate</p>
+                            <div>______________</div>
+
                             <div>1.2.1 (April 13, 2023)</div>
                             <p>Readded AI component. Instead of generating a question for the user, the AI will give you a comment that compares your number today from yesterday's. If it's your first time submitting, it will only comment on that number. The AI will not give advice to sad people because they don't know what it's like to be sad.</p>
                             <p>Changed timer to count down every 30 seconds instead of 1 second</p>
