@@ -4,6 +4,7 @@ import "../App.css"
 import samplegraph from '../photos/samplegraph.png'
 import prototype from '../photos/prototype.png'
 import mdd from '../photos/mdd.png'
+import sampleGraph1 from '../photos/samplehomegraph.png'
 
 function Darkness() {
 
@@ -76,11 +77,20 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.2.3 (April 20, 2023)</div>
+                            <p className='text-green-600'>Registered user functionality improved:</p>
+                            <p className='ml-8 -mt-4'>When a user is logged in, it now detects if their 23 hour timer is up based on their previous submission stored on MongoDB. If user is not logged in, it still looks at the timer based on localStorage. There is about a second delay before Auth0 tells this site if user is authenticated and will show the submit page, need to fix.</p>
+                            <div className='md:flex justify-around align-middle items-center gap-4'>
+                                <p>Changed x- and y- axes to white with labels. Still tweaking with D3js pointer mouseovers to show data points when you hover over sections of the curve. </p>
+                            <img className='md:w-[300px]' src={sampleGraph1} alt='samplehomegraph' />
+                            </div>
+                            <div>______________</div>
+
                             <div>1.2.2 (April 14, 2023)</div>
                             <p>Updated personal graph to correctly show scores below or above the weekly average as red or green, respectively.</p>
                             <p>Added toggle function to homepage's help section</p>
                             <p>Updated help section to include alternative scoring system, redesigned so it's just borders instead of background to separate</p>
-                            <p className='ml-4 text-zinc-400'>To make the alternative scoring system functional. Need to find cross correlations of happiness between the other items for the joviality factor. Will allow users to use this alt system to average out the happiness level, scroll up when finished, etc.</p>
+                            <p className='ml-8 -mt-4 text-zinc-400'>To make the alternative scoring system functional. Need to find cross correlations of happiness between the other items for the joviality factor. Will allow users to use this alt system to average out the happiness level, scroll up when finished, etc.</p>
                             <div>______________</div>
 
                             <div>1.2.1 (April 13, 2023)</div>
@@ -107,7 +117,8 @@ function Darkness() {
                             <div>______________</div>
 
                             <div>1.1.8 (April 8, 2023)</div>
-                            <p>On submission, users are shown a graph of their mood for the past 10 days compared to the week's average (implemented Redux)</p>
+                            <p className='text-green-600'>Implemented Redux:</p>
+                            <p className='ml-8 -mt-4'>On submission, users are shown a graph of their mood for the past 10 days compared to the week's average</p>
                             <p>Changed About page contents</p>
                             <p>Rainbow Darkness text on the header now only redirects to homepage. Click in the ? to go here (about page)</p>
                             <p>Data fetching is working a lot better, less 429 errors, still need to port the backend to NextJS</p>
@@ -273,7 +284,7 @@ function Darkness() {
 
                             <div className='text-green-400'>1.0.0 (January 13, 2023)</div>
                             <p className='text-green-400'>Deployed client and server on Vercel</p>
-                            <div>______________</div>
+                            <div className='text-yellow-400 bg-yellow-400'>______________</div>
                         </div>
 
 

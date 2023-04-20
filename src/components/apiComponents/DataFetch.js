@@ -319,7 +319,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                         {/* <span className={darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Global Score</span> */}
                         {/* <Link to='/darkness' className='no-underline text-sm hover:text-blue-200 right-0  md:hidden'><div className="">(chart)</div></Link> */}
                         <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} flex flex-row justify-evenly max-md:flex-wrap items-center p-8 mt-3  md:rounded-lg md:text-slate-00 md:text-center`}>
-                            <div>
+                            <div className="">
                                 <div className=" bg-black  text-purple-200">TOTAL</div>
                                 <div className={darkMode ? 'text-zinc-300 font-thin tracking-wide' : 'text-black'}>Average
                                     <Suspense fallback={<Loader />}>
@@ -416,7 +416,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                     <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} 
                         max-md:mt-[280px] md:pb-10 right-[50%] translate-x-1/2  md:mt-[260px] absolute md:rounded-lg 
                         lg:w-[900px] md:w-[700px]
-                        max-md:overflow-hidden max-md:h-[500px]
+                        
                         `}>
                         {/* <div>Usernum Route
                             <div>
@@ -429,14 +429,22 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                             })}
                             </div>
                         </div> */}
-                        <div className={`${ darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
-                            <span className={ destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses <span className="text-blue-400 hover:text-blue-200 hover:cursor-pointer" onClick={sortClick}>({sorted ? 'descending':'recent'})</span></div>
+                        <div className={`${darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
+                            {/* <div>
+                                <span className={destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses
+                                </div> */}
+                                <div>Here are everyone's daily moods (anonymous and registered users).</div>
+                                <div>User information is kept private, only <span className={destroyer ? "bg-yellow-400 text-black" : ""}>your number</span> and the date submitted will be public.</div>
+                            <span className="text-blue-400 hover:text-blue-200 hover:cursor-pointer" onClick={sortClick}>
+                                ({sorted ? 'descending' : 'recent'})
+                            </span>
+                        </div>
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
                             <div className="
                             grid grid-cols-10 gap-4 pr-8 pl-8
                             max-md:grid max-md:grid-cols-4 max-md:gap-4 font-semibold
-                             [&>div]:pt-0 pt-4 max-md:w-[300px] [&>div]:hover:cursor-text
+                             [&>div]:pt-0 pt-4 max-md:w-[300px] [&>div]:hover:cursor-text max-md:h-[310px] max-md:overflow-y-scroll no-scrollbar
                              ">
                                 {lastRainbow && (sorted ? lastRainbowSorted : lastRainbow)
                                 .map((x, index) => {
@@ -483,7 +491,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 </div> */}
         <div>
           <div ref={graphRef} className='  mb-10
-                    max-md:overflow-x-scroll max-md:mt-[920px] md:mt-[1160px]'>
+                    max-md:overflow-x-scroll max-md:mt-[920px] md:mt-[1260px]'>
             <iframe title='iframe_mongoDB' className='  
                     m-auto w-[1000px] h-[740px] select-none'
               src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">

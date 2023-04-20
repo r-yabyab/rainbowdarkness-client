@@ -10,11 +10,13 @@ import HomeChart from './HomeChart';
 import sampleGraph from '../photos/samplehomegraph.png'
 // import AiComment from './AiComment';
 
+const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
+// const RAINBOW_DARKNESS = "http://localhost:4000"
 
 export function HomePage ({ darkMode, graphRef }) {
 
 
-  const { loginWithRedirect } = useAuth0()
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0()
   
   useEffect (() => {
     document.title = 'Rainbow Darkness';
@@ -38,6 +40,7 @@ export function HomePage ({ darkMode, graphRef }) {
   const AboutHandler = () => {
     setAbout(!about)
   }
+
 
   return(
   <>
@@ -82,14 +85,18 @@ export function HomePage ({ darkMode, graphRef }) {
         <div onClick={() => setAbout(true)} className={about ? 'hidden' : 'mt-16 text-zinc-500 hover:cursor-pointer hover:text-zinc-200'}>Click me for details</div>
         <div className={` ${destroyer ? 'hidden' : about ? 'text-center text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black'}`}>
           <div className='text-center underline border-t'> <span className='absolute md:ml-[300px] max-md:hidden text-sm text-blue-400 hover:cursor-pointer hover:underline' onClick={AboutHandler}>dismiss</span></div>
-          <div>Rainbow Darkness tracks your daily mood levels.</div>
-          <div className='mt-4'>Use the following scale to record your answer:</div>
-          <div>0 = Not At All Happy | 5 = Moderately Happy | 10 = Extremely Happy</div>
+          {/* <div>Rainbow Darkness tracks your daily mood levels.</div> */}
+
 
           <div className='md:flex max-md:flex-col max-md:mt-6 md:justify-center md:mt-8'>
-            <div className='md:w-[300px] flex justify-center items-center'>Your mood levels will be logged to your personal graph and browser cache.</div>
-            <img className='w-[240px] max-md:m-auto max-md:mt-2' draggable={false} src={sampleGraph} alt='sample graph' />
+            <div className='md:w-[300px] flex justify-center items-center'>
+              {/* Your mood levels will be logged to your personal graph and browser cache. */}
+              Rainbow Darkness tracks your daily mood levels. See how you change over time!
+              </div>
+            <img className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2' draggable={false} src={sampleGraph} alt='sample graph' />
           </div>
+          <div className='mt-4'>Use the following scale to record your answer:</div>
+          <div>0 = Not At All Happy | 5 = Moderately Happy | 10 = Extremely Happy</div>
 
           <div className='mt-16 border-t'>Having trouble choosing a number?</div>
           <div>Consider these items that correlates to joviality alongside happiness:</div>
@@ -130,6 +137,8 @@ export function HomePage ({ darkMode, graphRef }) {
 
       </div>
       {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}
+
+      
       <div className='absolute left-[50%] -translate-x-1/2 top-[200px]'>{ destroyer ? <HomeChart /> : null}</div>
       </>
     )

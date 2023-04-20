@@ -28,11 +28,21 @@
 opacity:100%;
 }*/
 
+/* .data-label-background {
+  fill: white;
+  opacity: 0.8;
+}
+.data-label-text {
+  fill: white;
+  font-size: 12px;
+  font-weight: bold;
+} */
 
-.axis-x text {
+
+/* .axis-x text {
   transform: rotate(90deg);
   text-anchor: start;
-}
+} */
 
 .maskclip{
     mask-clip: fill-box;

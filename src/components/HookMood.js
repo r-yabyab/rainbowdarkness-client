@@ -234,6 +234,77 @@ function HookMood ({ darkMode, graphRef }) {
 
 //
 // LocalStorage
+
+  // check if user is logged in first
+  // checks if user is logged in and if submitted if logged in
+  const [userNums, setUserNums] = useState('')
+  const [recentNumTimeEpoch, setRecentNumTimeEpoch] = useState('')
+  const [diffMs, setDiffMs] = useState(0)
+
+  useEffect(() => {
+    if (isAuthenticated) {
+        const fetchUserNums = async () => {
+          if (isAuthenticated) {
+            try {
+              const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/lastnumuser?sub=${user.sub}`)
+              const json = await response.json()
+        
+              if (response.ok) {
+                setUserNums(json)
+                console.log('user nums' + userNums )
+                setRecentNumTimeEpoch(userNums && userNums[0].createdAt)
+
+              }
+            } catch (error) {
+              console.error(error)
+            }
+          } else {
+            console.log('not logged in')
+          }
+        }
+      
+        fetchUserNums()
+
+    } else {
+      console.log('not registered')
+    }
+  }, [isAuthenticated])
+
+  useEffect(() => {
+    if (userNums) {
+    const dateStringRecent = userNums[0].createdAt
+    const dateObj = new Date(dateStringRecent)
+    const timeStringRecent = Date.parse(dateObj)
+
+    const dateNow = Date.now()
+    const diffDate = dateNow - timeStringRecent
+    setDiffMs(diffDate)
+}
+  }, [userNums])
+
+    const firstUserNum = () => {
+      const dateStringRecent = userNums && userNums[0].createdAt
+      const dateObj = new Date(dateStringRecent)
+      const timeStringRecent = Date.parse(dateObj)
+
+      const dateNow = Date.now()
+      const diffDate = dateNow - timeStringRecent
+        console.log('between today and recent' + (diffDate))   
+        console.log('between today and recent' + (dateNow - timeStringRecent))   
+
+
+      const dateStringSecondMostRecent = userNums && userNums[1].createdAt
+      const dateObj2 = new Date(dateStringSecondMostRecent)
+      const timeStringSecondMostRecent = Date.parse(dateObj2)
+      console.log('recent' + timeStringRecent + '//2nd recent' + timeStringSecondMostRecent + '//subtract//' + (timeStringRecent - timeStringSecondMostRecent))
+      // 24hrs = 86400000
+      // 23 hrs = 82800000
+      //the date string = 1681836958000
+
+
+
+      return timeStringRecent
+    }
 //
 const [staticTime, setStaticTime] = useState(0)
 // let [timeLeft, setTimeLeft] = useState(86400000)
@@ -243,6 +314,8 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 // getStorage
 // logic for when destroyer get cleared after 24 hours is up
     useEffect(() => {
+
+        if (!isAuthenticated) {
         const data = window.localStorage.getItem('_APP');
         const dataTime = window.localStorage.getItem('_APP_timer');
         if ( dataTime !== null ) setStaticTime(JSON.parse(dataTime));
@@ -267,19 +340,36 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         setInterval(() => {
             setTimeLeft(x => x -30000)
         },30000)
+    }
+    else {
+        // gets most recent user's submission in ms
 
+        if (diffMs > 82800000) {
+            console.log('TIME PASSED, DESTROYER TURN OFF')
+            setDestroyer(false)
+        } else {
+            console.log('WAIT WAIT WAIT' + diffMs)
+            setDestroyer(true)
+        }
 
+    }
 
-    }, [])
+    }, [isAuthenticated, diffMs])
 
     //displays timeLeft before submitting when click on button
     useEffect(() => {
+        if (!isAuthenticated) {
         const dataTime = window.localStorage.getItem('_APP_timer');
         const currentTime = Date.now()
         const timePassed = currentTime - dataTime
         const countdown = 86400000 - timePassed
         setTimeLeft(countdown)
-    }, [reducerValue])
+    }
+    else {
+        const timeLeftAuth = 82800000 - diffMs
+        setTimeLeft(timeLeftAuth)
+    }
+    }, [reducerValue, diffMs])
 
     // for ai Component
     const [aiText, setAiText] = useState('')
@@ -627,7 +717,11 @@ const buttonClasses = [
                             <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs until next submission</div>
                         </div>
                     </div>
-
+{/* 
+            <div className='text-white top-20 bg-black absolute'>
+                {userNums && userNums[0].createdAt}
+                firstFunc {firstUserNum()}
+            </div> */}
 
 <DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode}/>
 <div className={`${aiText  ? '' : ' animate-pulse'} absolute left-[50%] font-normal -translate-x-1/2 top-[10px] text-zinc-200`}>{ destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
