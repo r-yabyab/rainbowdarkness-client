@@ -77,6 +77,10 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.2.4 (April 21, 2023)</div>
+                            <p>For registered users - Submission timer isn't based on 23 hours anymore; Users can now post after 5PM if they haven't already submitted for that day. If they haven't submitted for 2 days, they can do so anytime. This encourages users (registered) to post after most of the day has finished, giving them more context on how their mood was across the day. </p>
+                            <div>______________</div>
+
                             <div>1.2.3 (April 20, 2023)</div>
                             <p className='text-green-600'>Registered user functionality improved:</p>
                             <p className='ml-8 -mt-4'>When a user is logged in, it now detects if their 23 hour timer is up based on their previous submission stored on MongoDB. If user is not logged in, it still looks at the timer based on localStorage. There is about a second delay before Auth0 tells this site if user is authenticated and will show the submit page, need to fix.</p>

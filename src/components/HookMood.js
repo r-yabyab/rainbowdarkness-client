@@ -240,6 +240,12 @@ function HookMood ({ darkMode, graphRef }) {
   const [userNums, setUserNums] = useState('')
   const [recentNumTimeEpoch, setRecentNumTimeEpoch] = useState('')
   const [diffMs, setDiffMs] = useState(0)
+  // 0-23 hours
+  const [lastSubmissionHour, setLastSubmissionHour] = useState(0)
+  // typically 1-30
+  const [lastSubmissionDate, setLastSubmissionDate] = useState(0)
+  const [diffDate, setDiffDate] = useState(0)
+  const [localeHours, setLocaleHours] = useState(0)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -276,34 +282,48 @@ function HookMood ({ darkMode, graphRef }) {
     const dateObj = new Date(dateStringRecent)
     const timeStringRecent = Date.parse(dateObj)
 
+    const localeTimeHours = dateObj.getHours()
+    setLastSubmissionHour(localeTimeHours)
+    const localeTimeDate = dateObj.getDate()
+    setLastSubmissionDate(localeTimeDate)
+
+
     const dateNow = Date.now()
+    const dateNow1 = new Date()
+    const todayHour = dateNow1.getHours()
+    const todayDate = dateNow1.getDate()
     const diffDate = dateNow - timeStringRecent
     setDiffMs(diffDate)
+    setDiffDate(todayDate - localeTimeDate)
+    setLocaleHours(todayHour)
+
 }
   }, [userNums])
 
     const firstUserNum = () => {
-      const dateStringRecent = userNums && userNums[0].createdAt
-      const dateObj = new Date(dateStringRecent)
-      const timeStringRecent = Date.parse(dateObj)
+        const dateStringRecent = userNums && userNums[0].createdAt
+        const dateObj = new Date(dateStringRecent)
+        const timeStringRecent = Date.parse(dateObj)
+    
+        const localeTimeHours = dateObj.getHours()
+        setLastSubmissionHour(localeTimeHours)
+        const localeTimeDate = dateObj.getDate()
+        setLastSubmissionDate(localeTimeDate)
+    
+    
+        const dateNow1 = new Date()
+        const todayHour = dateNow1.getHours()
+        const todayDate = dateNow1.getDate()  
 
-      const dateNow = Date.now()
-      const diffDate = dateNow - timeStringRecent
-        console.log('between today and recent' + (diffDate))   
-        console.log('between today and recent' + (dateNow - timeStringRecent))   
-
-
-      const dateStringSecondMostRecent = userNums && userNums[1].createdAt
-      const dateObj2 = new Date(dateStringSecondMostRecent)
-      const timeStringSecondMostRecent = Date.parse(dateObj2)
-      console.log('recent' + timeStringRecent + '//2nd recent' + timeStringSecondMostRecent + '//subtract//' + (timeStringRecent - timeStringSecondMostRecent))
+        console.log('today:' + todayHour + todayDate)
       // 24hrs = 86400000
       // 23 hrs = 82800000
       //the date string = 1681836958000
 
-
+ 
 
       return timeStringRecent
+    
     }
 //
 const [staticTime, setStaticTime] = useState(0)
@@ -344,11 +364,14 @@ let [timeLeft, setTimeLeft] = useState(86400000)
     else {
         // gets most recent user's submission in ms
 
-        if (diffMs > 82800000) {
+        // if (diffMs > 82800000) {
+            if ((localeHours >= 17 && diffDate == 1) || (diffDate >= 2)) {
             console.log('TIME PASSED, DESTROYER TURN OFF')
             setDestroyer(false)
         } else {
             console.log('WAIT WAIT WAIT' + diffMs)
+            console.log('diffDate' + diffDate)
+            console.log('localeHours' + localeHours)
             setDestroyer(true)
         }
 
@@ -717,8 +740,8 @@ const buttonClasses = [
                             <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs until next submission</div>
                         </div>
                     </div>
-{/* 
-            <div className='text-white top-20 bg-black absolute'>
+
+            {/* <div className='text-white top-20 bg-black absolute'>
                 {userNums && userNums[0].createdAt}
                 firstFunc {firstUserNum()}
             </div> */}

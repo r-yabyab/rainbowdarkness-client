@@ -188,15 +188,15 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
 
         setMatched(matching)
 
-        console.log(userScore)
-        console.log(totalScore)
-        console.log(`MATCHED: ${matched}`)
+        // console.log(userScore)
+        // console.log(totalScore)
+        // console.log(`MATCHED: ${matched}`)
     }, [])
     
     // console.log(`MatchData ${JSON.stringify(matchData)} ...`)   
-    useEffect(() => {
-        console.log(`MatchData changed: ${JSON.stringify(matchData)}`);
-      }, [matchData]);
+    // useEffect(() => {
+    //     console.log(`MatchData changed: ${JSON.stringify(matchData)}`);
+    //   }, [matchData]);
 
     //    const rainbow2 = rainbow.number
 

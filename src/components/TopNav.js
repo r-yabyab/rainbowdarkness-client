@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../photos/logo512.png'
 import { useAuth0 } from '@auth0/auth0-react'
 // import Countdown from './Countdown';
 
@@ -29,34 +28,6 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
         setDropDown(!dropDown)
     }
 
-    // const Profile = () => {
-    //     const { user, isAuthenticated, isLoading } = useAuth0();
-      
-    //     if (isLoading) {
-    //       return <div>Loading ...</div>;
-    //     }
-      
-    //     return (
-    //       isAuthenticated && (
-    //         <div>
-    //           <img src={user.picture} alt={user.name} />
-    //           <h2>{user.name}</h2>
-    //           <p>{user.email}</p>
-    //         </div>
-    //       )
-    //     );
-    //   };
-
-    
-// for detecting which page is selected, Deprecated don't use
-    // const pageFalse = () => {
-    //     setPageDetect(false)
-    // }
-
-    // const pageTrue = () => {
-    //     setPageDetect(true)
-    // }
-
     return (
         <>
 
@@ -77,24 +48,9 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                         // onClick={pageTrue}
                         className=' group-hover:text-white'>Darkness</div></Link>
                         {/* <div className='tracking-widest'> <span className='text-red-400 absolute left-0 bg-green-800 font-serif'>STAGING ENV</span> </div> */}
-
-                    {/* arrow stuff */}
-
-
                 </div>
-
             </div>
-            <div className='absolute top-0 text-stone-100 
-            max-md:w-[30px] max-md:ml-2'>
-                {/* top right sun */}
-                <Link to="/"><div className='flex'>
-                    <img src={logo} alt="logo" className='w-[100px] select-none md:hidden max-md:hidden' draggable="false" />
-                    <img src={logo} alt="logo" className='w-[100px] select-none md:hidden max-md:hidden' draggable="false" />
-                </div></Link>
 
-
-
-            </div>
             <div className='  text-blue-300 md:hidden max-md:hidden   flex         justify-content-center select-none'>
                 {pageDetect ?
                     <div className='absolute ml-[80px] top-8'>

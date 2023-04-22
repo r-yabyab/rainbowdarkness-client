@@ -87,13 +87,13 @@ function HomeChart () {
             .reverse()
             .map(x => x.number)
         setUserNumsArr(mappedNums)
-        console.log('USER NUM ARR ARR ARR ARR' + userNumsArr + 'ARF ARF ')
+        // console.log('USER NUM ARR ARR ARR ARR' + userNumsArr + 'ARF ARF ')
   } else {
-    console.log('ARF ARF ARF ARF ARF ')
+    // console.log('ARF ARF ARF ARF ARF ')
   }
     }, [userNums])
     
-    console.log('USER NUM ARR ARR ARR ARR', userNumsArr, 'ARF ARF')
+    // console.log('USER NUM ARR ARR ARR ARR', userNumsArr, 'ARF ARF')
 
     const books = getDatafromLS()
     // const inputTime = books && books.map(book => new Date(book.inputTime));
