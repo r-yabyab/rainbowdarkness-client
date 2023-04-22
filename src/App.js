@@ -67,6 +67,7 @@ const graphRef = useRef(null)
           <Route path='/darkness' element={<Darkness darkMode={darkMode} />} />
           <Route path='/test' element={<UserProfile darkMode={darkMode} />} />
           {/* <Route path='/memo' element={<Memos />} /> */}
+          <Route path='/profile' element={<UserProfile />} />
         </Routes>
 
         <Link to='/darkness' className='no-underline'><svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor"

@@ -319,12 +319,9 @@ function HookMood ({ darkMode, graphRef }) {
       // 24hrs = 86400000
       // 23 hrs = 82800000
       //the date string = 1681836958000
-
- 
-
       return timeStringRecent
-    
     }
+
 //
 const [staticTime, setStaticTime] = useState(0)
 // let [timeLeft, setTimeLeft] = useState(86400000)
@@ -528,10 +525,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     destroyer ? `hidden squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
-                                    : darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full animate-fade 
+                                    : darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full  ratingAnimation
                                     w-[45px] h-[50px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
-                                    :`squares  hover:bg-green-400 border-[2px] border-black text-black rounded-full animate-fade 
+                                    :`squares  hover:bg-green-400 border-[2px] border-black text-black rounded-full ratingAnimation 
                                     w-[45px] h-[50px]  mr-[8px] ml-[8px] 
                                     `
                                     //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"
