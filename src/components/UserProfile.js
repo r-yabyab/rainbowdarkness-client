@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import format from "date-fns/format";
 
 export function UserProfile() {
 
@@ -18,7 +19,7 @@ export function UserProfile() {
 
     const buttonHandler1 = () => {
         console.log('test')
-        const localNums = books && books.map(x => x.inputNumber + '-' + x.inputTime)
+        const localNums = books && books.reverse().map(x => x.inputNumber + '-' + x.inputTime)
         console.log(localNums)
     }
 
@@ -67,18 +68,42 @@ export function UserProfile() {
                         className="bg-white hover:cursor-pointer">
                         Click to see #s you can export
                     </button>
-                    <div className="text-white bg-black flex flex-wrap gap-2">
+                    <div className="text-white bg-black flex flex-wrap gap-x-2 overflow-scroll">
                         {allNums && allNums
-                        .reverse()
                         .map((x, index) => {
+
+                            const backgroundColor = index % 2 === 0 ? 'bg-black' : 'bg-zinc-500'
+                            const matched = books && books.some(book => {
+                                // return (book.inputNumber === x.number) && ((new Date(book.inputTime), 'MM/dd') === (new Date(x.createdAt), 'MM/dd'))})
+                                return (book.inputNumber === x.number) && ((book.inputTime) === format(new Date(x.createdAt), 'MM/dd'))})
+                            
+
                             return (
-                                <div key={index}>
-                                    {`Num:${x.number} Date${x.createdAt}`}
+                                <div 
+                                    className={`${backgroundColor}`}
+                                    key={index}>
+                                    {`Num:${x.number} Date:${format(new Date(x.createdAt), 'MM/dd')} ${x.userID && x.userID ? x.userID : ''}`}
+                                {matched ? <span className="bg-green-500">{x.number}</span> : <span className="bg-red-500">{x.number}</span>}
                                 </div>
                             )
                         })}
                     </div>
                 </div>
+
+                <div className="text-white bg-zinc-700 flex flex-wrap gap-2">
+                    {books && books.map((x, index) => {
+                        const backgroundColor = index % 2 === 0 ? 'bg-zinc-700' : 'bg-zinc-900'
+                        
+                        return(
+                        <div
+                            className={backgroundColor}
+                            key={index}>
+                            {`Num:${x.inputNumber} + Date:${x.inputTime}`}
+                        </div>
+                        )
+                    })}
+                </div>
+                <div className="mb-20">testestestest</div>
 
             </div>
         </>
