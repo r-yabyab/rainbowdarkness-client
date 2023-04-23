@@ -97,8 +97,8 @@ function HomeChart () {
 
     const books = getDatafromLS()
     // const inputTime = books && books.map(book => new Date(book.inputTime));
-    // const inputNumber = books && books.map(book => book.inputNumber);
-    const inputNumberData = books && books.map(book => book.inputNumber).slice(Math.max(0, books.length - 10));
+    const inputNumberData = books && books.map(book => book.inputNumber);
+    // const inputNumberData = books && books.map(book => book.inputNumber).slice(Math.max(0, books.length - 10));
     // adds a 0 at the begging of the array
     // inputNumber.unshift(0)
     inputNumberData.unshift(weekAvg)

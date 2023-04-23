@@ -47,24 +47,6 @@ function HookMood ({ darkMode, graphRef }) {
     ]
 
     const { isAuthenticated, user } = useAuth0();
-    // const handleClick = async () => {
-    //     const payload = {
-    //         sub: user.sub,
-    //         name: user.name,
-    //     }
-    //     const accessToken = await getAccessTokenSilently(
-    //         {
-    //         audience: 'https://www.rainbowdarkness-api.com',
-    //         client_id: 'oZoxA3tZVzg4W4bFQctFITiXj9RuV0mO',
-    //         scope: 'read:messages',
-    //         sub: user.sub,
-
-    //         // payload: payload
-    //     }
-    //     );
-    //     console.log(accessToken);
-    //   };
-    
 
     // for mapping numbers
     let [list, updateList] = useState(numberList);
