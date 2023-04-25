@@ -55,9 +55,6 @@ export function UserProfile() {
                         <div>Username:</div>
                         <div>...</div>
                     </div>
-                    <div>penis</div>
-                    <div>penis</div>
-                    <div>penis</div>
                 </div>
 
                 <div className=" bg-blue-200 ml-4 mr-4 p-4 text-black">
@@ -68,7 +65,7 @@ export function UserProfile() {
                         className="bg-white hover:cursor-pointer">
                         Click to see #s you can export
                     </button>
-                    <div className="text-white bg-black flex flex-wrap gap-x-2 overflow-scroll">
+                    <div className="text-white bg-black flex flex-col gap-x-2 overflow-scroll">
                         {allNums && allNums
                         .map((x, index) => {
 
@@ -82,7 +79,7 @@ export function UserProfile() {
                                 <div 
                                     className={`${backgroundColor}`}
                                     key={index}>
-                                    {`Num:${x.number} Date:${format(new Date(x.createdAt), 'MM/dd')} ${x.userID && x.userID ? x.userID : ''}`}
+                                    {`Num:${x.number} _id:${x._id} Date:${format(new Date(x.createdAt), 'MM/dd')} ${x.userID && x.userID ? x.userID : ''}`}
                                 {matched ? <span className="bg-green-500">{x.number}</span> : <span className="bg-red-500">{x.number}</span>}
                                 </div>
                             )

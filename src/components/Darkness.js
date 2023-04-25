@@ -77,6 +77,13 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.2.5 (April 25, 2023)</div>
+                            <p>Adding loading spinner for registered users (it takes around a second to check if user has already submitted based on the database)</p>
+                            <p>Changed height of mood buttons from 50px to 48px</p>
+                            <p>Changed submit button from green with white border to just rounded blue </p>
+                            <p>Added a send icon on the submit button. Attempted to use Material UI for the icon but the base packages introduced 3 moderate vulnerabilities, so I'll stick to HTML SVGs.</p>
+                            <div>______________</div>
+
                             <div>1.2.4 (April 21, 2023)</div>
                             <p>For registered users - Submission timer isn't based on 23 hours anymore; Users can now post after 5PM if they haven't already submitted for that day. If they haven't submitted for 2 days, they can do so anytime. This encourages users (registered) to post after most of the day has finished, giving them more context on how their mood was across the day. </p>
                             <div>______________</div>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
+import { actionCreators } from '../state';
+import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 // import Countdown from './Countdown';
 
 export function TopNav({ pageDetect, setPageDetect, darkMode }) {
@@ -8,6 +11,9 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
     const { user, isAuthenticated, isLoading, loginWithRedirect, logout, } = useAuth0();
 
     const [dropDown, setDropDown] = useState(false)
+
+    const dispatch = useDispatch()
+    const { setisLoadingComponent } = bindActionCreators(actionCreators, dispatch)
 
 // Auth0 shit
     const LoginButton = () => {
@@ -50,6 +56,18 @@ export function TopNav({ pageDetect, setPageDetect, darkMode }) {
                         {/* <div className='tracking-widest'> <span className='text-red-400 absolute left-0 bg-green-800 font-serif'>STAGING ENV</span> </div> */}
                 </div>
             </div>
+
+            <Link onClick={e => setisLoadingComponent(true)} to='/darkness' className='no-underline'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor"
+                    // onClick={helpHandler} ref={helpRef}
+                    className="absolute top-0 right-0 text-gray-400  pt-[8px] mr-2 
+                hover:cursor-pointer hover:text-white
+                "
+                    viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                </svg>
+            </Link>
 
             {/* <div className='  text-blue-300 md:hidden max-md:hidden   flex         justify-content-center select-none'>
                 {pageDetect ?

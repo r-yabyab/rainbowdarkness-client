@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import HomeChart from './HomeChart';
 import sampleGraph from '../photos/samplehomegraph.png'
+import { LoadingComponent } from './LoadingComponent';
 // import AiComment from './AiComment';
 
 const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
@@ -23,6 +24,7 @@ export function HomePage ({ darkMode, graphRef }) {
   }, [])
 
   const destroyer = useSelector((state) => state.destroyer)
+  const isLoadingComponent = useSelector((state) => state.isLoadingComponent)
 
   const [about, setAbout] = useState(true)
 
@@ -44,13 +46,18 @@ export function HomePage ({ darkMode, graphRef }) {
 
   return(
   <>
-  
+  {/* <div className={isLoadingComponent ? 'bg-purple-400 absolute top-10' : 'text-black absolute top-10 bg-green-600 text-[40px]'}>test test</div> */}
+  {isLoadingComponent ? 
+  <div className='flex justify-center mt-40'><LoadingComponent /></div>
+  : 
+  null}
+  <div>
   <link rel="shortcut icon" href="/a.png" />
-        <div draggable="false" className='
+        <div draggable="false" className={isLoadingComponent ? `hidden` :`
         relative mt-[5em] text-center select-none [&>*]:h-[40px]
         max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl 
-        '>
-            <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-semibold'}
+        `}>
+            <p className={`${ darkMode ? 'text-zinc-200 tracking-wide font-extralight' :'text-black  font-normal'}
             mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
             {destroyer ?  null : 'How happy are you today?' }
@@ -83,7 +90,7 @@ export function HomePage ({ darkMode, graphRef }) {
 
         
         <div onClick={() => setAbout(true)} className={about ? 'hidden' : 'mt-16 text-zinc-500 hover:cursor-pointer hover:text-zinc-200'}>Click me for details</div>
-        <div className={` ${destroyer ? 'hidden' : about ? 'text-center text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black'}`}>
+        <div className={` ${destroyer ? 'hidden' : about ? 'text-center text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black'}`}>
           <div className='text-center underline border-t'> <span className='absolute md:ml-[300px] max-md:hidden text-sm text-blue-400 hover:cursor-pointer hover:underline' onClick={AboutHandler}>dismiss</span></div>
           {/* <div>Rainbow Darkness tracks your daily mood levels.</div> */}
 
@@ -139,7 +146,11 @@ export function HomePage ({ darkMode, graphRef }) {
       {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}
 
       
-      <div className='absolute left-[50%] -translate-x-1/2 top-[200px]'>{ destroyer ? <HomeChart /> : null}</div>
+      <div className={isLoadingComponent ? 'hidden' :'absolute left-[50%] -translate-x-1/2 top-[200px]'}>{ destroyer ? <HomeChart /> : null}</div>
+      </div>
+      
+      <div className={about ? 'hidden' : isAuthenticated ? 'hidden' : isLoadingComponent ? 'hidden' : 'mt-4 absolute left-[50%] select-none -translate-x-1/2 text-zinc-500 mb-20'}><span className='text-blue-400 hover:cursor-pointer hover:underline' onClick={() => loginWithRedirect()}>Register</span> to track your mood across devices. It's currently free!</div>
+      
       </>
     )
   }

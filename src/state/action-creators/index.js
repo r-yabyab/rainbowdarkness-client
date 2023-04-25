@@ -26,6 +26,15 @@ export const setDestroyer = (completion) => {
     }
 }
 
+export const setisLoadingComponent = (loading) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'setisLoadingComponentAction',
+            payload: loading
+        })
+    }
+}
+
 export const setTimeLeft = (time) => {
     return (dispatch) => {
         dispatch({

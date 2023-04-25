@@ -46,7 +46,7 @@ function HookMood ({ darkMode, graphRef }) {
         { num: '10' }
     ]
 
-    const { isAuthenticated, user } = useAuth0();
+    const { isAuthenticated, user, isLoading } = useAuth0();
 
     // for mapping numbers
     let [list, updateList] = useState(numberList);
@@ -63,8 +63,9 @@ function HookMood ({ darkMode, graphRef }) {
         // used with setInterval && useEffect
     // let [destroyer, setDestroyer] = useState(false)
     const dispatch = useDispatch()
-    const { setDestroyer } = bindActionCreators(actionCreators, dispatch)
+    const { setDestroyer, setisLoadingComponent } = bindActionCreators(actionCreators, dispatch)
     const destroyer = useSelector((state) => state.destroyer)
+    const isLoadingComponent = useSelector((state) => state.isLoadingComponent)
     
 
     // refreshes api and timer
@@ -220,12 +221,12 @@ function HookMood ({ darkMode, graphRef }) {
   // check if user is logged in first
   // checks if user is logged in and if submitted if logged in
   const [userNums, setUserNums] = useState('')
-  const [recentNumTimeEpoch, setRecentNumTimeEpoch] = useState('')
+//   const [recentNumTimeEpoch, setRecentNumTimeEpoch] = useState('')
   const [diffMs, setDiffMs] = useState(0)
   // 0-23 hours
-  const [lastSubmissionHour, setLastSubmissionHour] = useState(0)
+//   const [lastSubmissionHour, setLastSubmissionHour] = useState(0)
   // typically 1-30
-  const [lastSubmissionDate, setLastSubmissionDate] = useState(0)
+//   const [lastSubmissionDate, setLastSubmissionDate] = useState(0)
   const [diffDate, setDiffDate] = useState(0)
   const [localeHours, setLocaleHours] = useState(0)
 
@@ -240,7 +241,7 @@ function HookMood ({ darkMode, graphRef }) {
               if (response.ok) {
                 setUserNums(json)
                 console.log('user nums' + userNums )
-                setRecentNumTimeEpoch(userNums && userNums[0].createdAt)
+                // setRecentNumTimeEpoch(userNums && userNums[0].createdAt)
 
               }
             } catch (error) {
@@ -265,9 +266,9 @@ function HookMood ({ darkMode, graphRef }) {
     const timeStringRecent = Date.parse(dateObj)
 
     const localeTimeHours = dateObj.getHours()
-    setLastSubmissionHour(localeTimeHours)
+    // setLastSubmissionHour(localeTimeHours)
     const localeTimeDate = dateObj.getDate()
-    setLastSubmissionDate(localeTimeDate)
+    // setLastSubmissionDate(localeTimeDate)
 
 
     const dateNow = Date.now()
@@ -278,31 +279,31 @@ function HookMood ({ darkMode, graphRef }) {
     setDiffMs(diffDate)
     setDiffDate(todayDate - localeTimeDate)
     setLocaleHours(todayHour)
-
+    setisLoadingComponent(false)
 }
   }, [userNums])
 
-    const firstUserNum = () => {
-        const dateStringRecent = userNums && userNums[0].createdAt
-        const dateObj = new Date(dateStringRecent)
-        const timeStringRecent = Date.parse(dateObj)
+    // const firstUserNum = () => {
+    //     const dateStringRecent = userNums && userNums[0].createdAt
+    //     const dateObj = new Date(dateStringRecent)
+    //     const timeStringRecent = Date.parse(dateObj)
     
-        const localeTimeHours = dateObj.getHours()
-        setLastSubmissionHour(localeTimeHours)
-        const localeTimeDate = dateObj.getDate()
-        setLastSubmissionDate(localeTimeDate)
+    //     const localeTimeHours = dateObj.getHours()
+    //     // setLastSubmissionHour(localeTimeHours)
+    //     const localeTimeDate = dateObj.getDate()
+    //     // setLastSubmissionDate(localeTimeDate)
     
     
-        const dateNow1 = new Date()
-        const todayHour = dateNow1.getHours()
-        const todayDate = dateNow1.getDate()  
+    //     const dateNow1 = new Date()
+    //     const todayHour = dateNow1.getHours()
+    //     const todayDate = dateNow1.getDate()  
 
-        console.log('today:' + todayHour + todayDate)
-      // 24hrs = 86400000
-      // 23 hrs = 82800000
-      //the date string = 1681836958000
-      return timeStringRecent
-    }
+    //     console.log('today:' + todayHour + todayDate)
+    //   // 24hrs = 86400000
+    //   // 23 hrs = 82800000
+    //   //the date string = 1681836958000
+    //   return timeStringRecent
+    // }
 
 //
 const [staticTime, setStaticTime] = useState(0)
@@ -327,6 +328,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             if (timePassed > 82800000) { // 23 hours
             setDestroyer(false)
             setStaticTime(0)
+            
         }
         // // 86400000 == 24hrs
         // // 10000 == 10secs
@@ -339,6 +341,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         setInterval(() => {
             setTimeLeft(x => x -30000)
         },30000)
+        
     }
     else {
         // gets most recent user's submission in ms
@@ -348,14 +351,18 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             console.log('TIME PASSED, DESTROYER TURN OFF')
             setDestroyer(false)
         } else {
+            // THIS FIRES FIRST BECAUSE CHECKING DIFFMS
             console.log('WAIT WAIT WAIT' + diffMs)
-            console.log('diffDate' + diffDate)
-            console.log('localeHours' + localeHours)
+            // console.log('diffDate' + diffDate)
+            // console.log('localeHours' + localeHours)
             setDestroyer(true)
         }
-
     }
-
+    // setTimeout(() => {
+    //     if (!isAuthenticated) {
+    //     setisLoadingComponent(false)
+    //     }
+    // }, 300)
     }, [isAuthenticated, diffMs])
 
     //displays timeLeft before submitting when click on button
@@ -372,6 +379,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         setTimeLeft(timeLeftAuth)
     }
     }, [reducerValue, diffMs])
+
+    // for non-users to load in almost instantly
+    useEffect(() => {
+        if (!isLoading && !isAuthenticated) {
+            setisLoadingComponent(false)
+        }
+    }, [isLoading])
 
     // for ai Component
     const [aiText, setAiText] = useState('')
@@ -508,10 +522,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
                                     : darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full  ratingAnimation
-                                    w-[45px] h-[50px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
+                                    w-[45px] h-[48px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
                                     :`squares  hover:bg-green-400 border-[2px] border-black text-black rounded-full ratingAnimation 
-                                    w-[45px] h-[50px]  mr-[8px] ml-[8px] 
+                                    w-[45px] h-[48px]  mr-[8px] ml-[8px] 
                                     `
                                     //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"
                                 }
@@ -555,7 +569,7 @@ return(
 )
 })
 } */}
-<div className='flex md:hidden justify-center animate-fade pt-10'>
+<div className='flex md:hidden justify-center ratingAnimation  pt-10'>
 {list.filter((item, index) => [0,1,3,4,5,7,8].includes(index)).map((x, index) => { 
 
 const buttonClasses = [
@@ -662,7 +676,8 @@ const buttonClasses = [
             </div> */}
             
             {/* sets booleanState to false ==> initializes ALL states **resetButton */}
-            <div className='md:mt-[90px] max-md:mt-[150px] max-md:mr-8'>
+            {/* <div className='md:mt-[90px] max-md:mt-[150px] max-md:mr-8'> */}
+            <div className='md:mt-[92px] max-md:mt-[142px] max-md:mr-2'>
                 {/* <Button variant='outline-dark' className='mt-[80px] ratingAnimation p-3' onClick={clickHandlerOne}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="currentColor" className="bi bi-wind" viewBox="0 0 16 16">
                         <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z" />
@@ -676,10 +691,10 @@ const buttonClasses = [
             //    max-md:border-black max-md:rounded-md bg-zinc-800  max-md:hover:bg-black max-md:left-[20%] max-md:top-[368px] max-md:mt-6 max-md:pb-6 max-md:absolute 
                     className={`
                     ${destroyer ? 'invisible' : ''} 
-                    ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} 
+                    ${darkMode ? 'text-zinc-500 bg-transparent border-2 border-zinc-600 md:hover:text-white' : 'md:hover:text-zinc-600 text-zinc-400 bg-white border-2 border-zinc-300'} 
                     ${booleanState? '' : 'hidden'}
-                mr-[260px] pr-4 pl-4 pt-[10px] pb-[10px] text-lg 
-               md:hover:text-white bg-zinc-800
+                mr-[260px] pr-4 pl-4 pt-[6px] pb-[6px] text-lg 
+                bg-zinc-800 max-md:font-normal rounded-md
                 `}>
                     undo
                     {/* <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
@@ -689,22 +704,28 @@ const buttonClasses = [
                 </button>
 
                 {/* submitButton Desktop + mobile */}
-                <div 
-                // [&>*]:top-[54%]
-                className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-green-500 [&>*]:text-zinc-100'  : '[&>*]:bg-black'}
-                 [&>*]:font-bold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-12 [&>*]:pl-12
-                max-md:[&>*]:top-[260px] max-md:[&>*]:pt-6 max-md:[&>*]:pb-6
-                `}>
+                <div
+                    // [&>*]:top-[54%]
+                    // className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-blue-600 [&>*]:text-zinc-100' : '[&>*]:bg-black'}
+                    className={`${destroyer ? '[&>*]:border-2 hidden' : darkMode ? '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
+                     
+                    [&>*]:font-semibold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-10 [&>*]:pl-10
+                    [&>*]:flex [&>*]:items-center [&>*]:gap-x-2
+                    `}>
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                        className={(destroyer ? 'hidden ' : (booleanState ? 'md:hover:text-yellow-300 bg-green-500 max-md:animate-fade' : 'max-md:hidden bg-black opacity-30'))}
+                        className={(destroyer ? 'hidden ' : (booleanState ? 'md:hover:text-yellow-200 bg-green-500' : 'bg-black opacity-30'))}
 
                     >
-                        Submit</button>
+                        Submit
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-send" viewBox="0 0 16 16">
+  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+</svg>
+                    </button>
 
-                        {error && { error }}
+                    {error && { error }}
 
 
                 </div> 
