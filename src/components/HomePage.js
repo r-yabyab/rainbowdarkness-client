@@ -146,7 +146,7 @@ export function HomePage ({ darkMode, graphRef }) {
       {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}
 
       
-      <div className={isLoadingComponent ? 'hidden' :'absolute left-[50%] -translate-x-1/2 top-[200px]'}>{ destroyer ? <HomeChart /> : null}</div>
+      <div className={isLoadingComponent ? 'hidden' :'absolute left-[50%] -translate-x-1/2 top-[200px]'}>{ destroyer ? <HomeChart darkMode={darkMode} /> : null}</div>
       </div>
       
       <div className={about ? 'hidden' : isAuthenticated ? 'hidden' : isLoadingComponent ? 'hidden' : 'mt-4 absolute left-[50%] select-none -translate-x-1/2 text-zinc-500 mb-20'}><span className='text-blue-400 hover:cursor-pointer hover:underline' onClick={() => loginWithRedirect()}>Register</span> to track your mood across devices. It's currently free!</div>

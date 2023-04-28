@@ -77,6 +77,12 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.2.6 (April 28, 2023)</div>
+                            <p>Fixed dark mode for the mood chart</p>
+                            <p>Mood chart now properly shows last 10 submissions for both users and non-users</p>
+                            <p>Server is experiencing cold start problems from Vercel again, NextJS port still on my todo list</p>
+                            <div>______________</div>
+
                             <div>1.2.5 (April 25, 2023)</div>
                             <p>Adding loading spinner for registered users (it takes around a second to check if user has already submitted based on the database)</p>
                             <p>Changed height of mood buttons from 50px to 48px</p>

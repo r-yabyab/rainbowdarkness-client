@@ -14,7 +14,7 @@ const getDatafromLS = () => {
 const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 
 
-function HomeChart () {
+function HomeChart ({darkMode}) {
 
     const { isAuthenticated, user } = useAuth0()
 
@@ -85,7 +85,8 @@ function HomeChart () {
         const mappedNums = 
             userNums
             .reverse()
-            .map(x => x.number)
+            .map(x => x.number).slice(0, 10)
+            mappedNums.unshift(weekAvg)
         setUserNumsArr(mappedNums)
         // console.log('USER NUM ARR ARR ARR ARR' + userNumsArr + 'ARF ARF ')
   } else {
@@ -106,7 +107,7 @@ function HomeChart () {
     const svgHomeRef = useRef();
 
     useEffect(() => {
-
+      // localstorage or mongoDB for graph data
       const graphNumData = isAuthenticated ? userNumsArr : inputNumberData;
 
         d3.select(svgHomeRef.current).selectAll('*').remove();
@@ -154,7 +155,7 @@ function HomeChart () {
     .axis-x1 path,
     .axis-y line,
     .axis-y path {
-      stroke: white;
+      stroke: ${darkMode ? "white" : "black" };
     }
   `);
 
@@ -165,7 +166,7 @@ function HomeChart () {
         .call(xAxis)
         .attr('transform', `translate(0, ${h})`)
         .selectAll("text")
-          .attr("fill", "white")
+          .attr("fill", `${darkMode ? "white" : "black" }`)
         .selectAll("path")
           .style("stroke", "white");
           
@@ -173,7 +174,7 @@ function HomeChart () {
         .attr('class', 'axis-y')
         .call(yAxis)
         .selectAll("text")
-          .attr("fill", "white")
+          .attr("fill", `${darkMode ? "white" : "black" }`)
         .selectAll("path")
           .attr("stroke", "white")
 
@@ -201,8 +202,9 @@ function HomeChart () {
   .attr('class', 'line')
   .attr('d', generateScaledLine)
   .attr('fill', 'none')
-  .attr("stroke-width", 3)
-  .attr('stroke', 'white');
+  // .attr("stroke-width", 3)
+  .attr("stroke-width", `${darkMode ? 3 : 2 }`)
+  .attr('stroke', `${darkMode ? "white" : "black" }`);
 //   .attr('d', d3.line()
 //             .xScale(function(d) { return xScale(d.xScale)})
 //             .yScale(function(d) { return yScale(d.yScale )})
@@ -459,10 +461,10 @@ areaPath.attr("fill", "url(#area-gradient)");
                                 </div>))}
                         </div>
                     </div> */}
-                <div className='text-zinc-200 text-center pb-4 -mt-4'>Here are your most recent submissions:</div>
+                <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pb-4 -mt-4`}>Here are your most recent submissions:</div>
                 <svg className="" ref={svgHomeRef} />
                 {/* <svg className=' overflow-visible' ref={svgHomeRefTEST} /> */}
-                <div className='text-zinc-200 text-center pt-12'>Please come again tomorrow to fill the graph!</div>
+                <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pt-12`}>Please come again tomorrow to fill the graph!</div>
                 {/* <div className='text-center text-zinc-400 pt-2 m-auto hover:text-white hover:cursor-pointer'>
                     {showTimeLeft ? '' : 'Show time left'}
                 </div> */}
