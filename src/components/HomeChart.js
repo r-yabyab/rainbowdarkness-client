@@ -11,7 +11,10 @@ const getDatafromLS = () => {
     }
 }
 
-const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
+// const RAINBOW_DARKNESS = 'http://localhost:4000'
+const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
+
 
 
 function HomeChart ({darkMode}) {
@@ -86,7 +89,7 @@ function HomeChart ({darkMode}) {
             userNums
             .reverse()
             .map(x => x.number).slice(0, 10)
-            mappedNums.unshift(weekAvg)
+          mappedNums.unshift(weekAvg)
         setUserNumsArr(mappedNums)
         // console.log('USER NUM ARR ARR ARR ARR' + userNumsArr + 'ARF ARF ')
   } else {

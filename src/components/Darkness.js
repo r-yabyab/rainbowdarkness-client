@@ -77,6 +77,13 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
                         <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
 
+                            <div>1.2.7 (April 30, 2023)</div>
+                            <p className='text-green-600'>Moved express server from Vercel to EC2</p>
+                            <p className='ml-8 -mt-4'>Server shares the same EC2 instance with my other webapp. NGINX points to their own routes, added port number to the instance's security group. Monitoring for any problems. 429 and cors errors should be resolved.</p>
+                            <p>Problem where upon submitting number, nothing happens for a couple seconds then brings user to the data page. It can also trigger double submissions. Will fix.</p>
+                            <p>Vercel also added a paywall behind page analytics for data beyond 30 days.</p>
+                            <div>______________</div>
+
                             <div>1.2.6 (April 28, 2023)</div>
                             <p>Fixed dark mode for the mood chart</p>
                             <p>Mood chart now properly shows last 10 submissions for both users and non-users</p>

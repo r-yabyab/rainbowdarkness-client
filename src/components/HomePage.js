@@ -11,8 +11,9 @@ import sampleGraph from '../photos/samplehomegraph.png'
 import { LoadingComponent } from './LoadingComponent';
 // import AiComment from './AiComment';
 
-const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
+// const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
 // const RAINBOW_DARKNESS = "http://localhost:4000"
+const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
 
 export function HomePage ({ darkMode, graphRef }) {
 
