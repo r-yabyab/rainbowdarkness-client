@@ -90,7 +90,7 @@ export function HomePage ({ darkMode, graphRef }) {
                     </iframe> */}
 
         
-        <div onClick={() => setAbout(true)} className={about ? 'hidden' : 'mt-16 text-zinc-500 hover:cursor-pointer hover:text-zinc-200'}>Click me for details</div>
+        <div onClick={() => setAbout(true)} className={about || destroyer ? 'hidden' : 'mt-16 text-zinc-500 hover:cursor-pointer hover:text-zinc-200'}>Click me for details</div>
         <div className={` ${destroyer ? 'hidden' : about ? 'text-center text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black'}`}>
           <div className='text-center underline border-t'> <span className='absolute md:ml-[300px] max-md:hidden text-sm text-blue-400 hover:cursor-pointer hover:underline' onClick={AboutHandler}>dismiss</span></div>
           {/* <div>Rainbow Darkness tracks your daily mood levels.</div> */}

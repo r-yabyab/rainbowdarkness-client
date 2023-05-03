@@ -17,8 +17,8 @@ function Darkness() {
     // }
 
     useEffect(() => {
-        document.title = 'Stats';
-        window.scrollTo(0, 0)
+        document.title = 'About';
+        // window.scrollTo(0, 0)
     }, [])
 
     return (
@@ -55,7 +55,7 @@ function Darkness() {
 
                     <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center items-center flex-col flex bg-black text-zinc-200 [&>div]:max-w-[800px] '>
 
-                        <div className='text-[36px] mt-[150px] text-black bg-zinc-200 w-[800px] font-semibold'>About Rainbow Darkness</div>
+                        <div className='text-[36px] mt-[150px] text-black bg-zinc-200 w-[800px] font-semibold pl-2'>About Rainbow Darkness</div>
                         <div className='pt-4'>
                             {/* Rainbow Darkness is a mental health platform that puts accessibility and anonyminity first. As someone with a background in psychology, I find it kind of dumb that mental health applications tend to require users to fill out personal information before hitting a paywall, or take long surveys that tells you overly positive things about your personality.
                             <br /> Here, we only ask about how happy you are at the moment, in hopes that proceeding visits will bring some introspection on what made you so sad/happy in the past. You also have access to everyone else's moods; Often you'll see that others are having a much worse day than you, which I find interesting because no matter who you talk to in person, they always appear O.K. */}
@@ -74,14 +74,23 @@ function Darkness() {
                     </div>
 
                     <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-zinc-200'>
-                        <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4'>ChangeLog</div>
-                        <div className=' max-h-[800px] no-scrollbar overflow-y-scroll'>
+                        <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
+                        <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
+
+                            <div>1.2.8 (May 2, 2023)</div>
+                            <p>For registered users:</p>
+                            <p className='ml-8 -mt-4'>- Fixed mood submission time where if your last mood was submitted on the 30th and the next day was the 1st, it calculated the difference between days as -29.</p>
+                            <p  className='ml-8 -mt-4'>- Personal graph now correctly displays the previous 10 submissions.</p>
+                            <p  className='ml-8 -mt-4'>- Loading screen shows when user is authenticated with green text.</p>
+                            <p>Fixed bug where the "Click me for details" frontpage toggle was showing on the stats page.</p>
+                            <p>No serverside interruptions observed so far with EC2.</p>
+                            <div>______________</div>
 
                             <div>1.2.7 (April 30, 2023)</div>
                             <p className='text-green-600'>Moved express server from Vercel to EC2</p>
                             <p className='ml-8 -mt-4'>Server shares the same EC2 instance with my other webapp. NGINX points to their own routes, added port number to the instance's security group. Monitoring for any problems. 429 and cors errors should be resolved.</p>
                             <p>Problem where upon submitting number, nothing happens for a couple seconds then brings user to the data page. It can also trigger double submissions. Will fix.</p>
-                            <p>Vercel also added a paywall behind page analytics for data beyond 30 days.</p>
+                            <p className='text-red-500'>Vercel added a paywall for page analytics beyond the last 30 days.</p>
                             <div>______________</div>
 
                             <div>1.2.6 (April 28, 2023)</div>

@@ -88,7 +88,9 @@ function HomeChart ({darkMode}) {
         const mappedNums = 
             userNums
             .reverse()
-            .map(x => x.number).slice(0, 10)
+            .map(x => x.number)
+            // .slice(0, 10)
+            .slice(-10)
           mappedNums.unshift(weekAvg)
         setUserNumsArr(mappedNums)
         // console.log('USER NUM ARR ARR ARR ARR' + userNumsArr + 'ARF ARF ')

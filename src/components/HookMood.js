@@ -348,14 +348,15 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         // gets most recent user's submission in ms
 
         // if (diffMs > 82800000) {
-            if ((localeHours >= 17 && diffDate == 1) || (diffDate >= 2)) {
+            // if ((localeHours >= 17 && Math.abs(diffDate) == 1) || (diffDate >= 2)) {
+            if ((localeHours >= 17 && Math.abs(diffDate) >= 1)) {
             console.log('TIME PASSED, DESTROYER TURN OFF')
             setDestroyer(false)
         } else {
             // THIS FIRES FIRST BECAUSE CHECKING DIFFMS
             console.log('WAIT WAIT WAIT' + diffMs)
-            // console.log('diffDate' + diffDate)
-            // console.log('localeHours' + localeHours)
+            console.log('diffDate' + Math.abs(diffDate))
+            console.log('localeHours' + localeHours)
             setDestroyer(true)
         }
     }
@@ -738,7 +739,7 @@ const buttonClasses = [
                         <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[388px] text-zinc-600 absolute `}>
                             {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
                         <div>|</div> */}
-                            <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs until next submission</div>
+                            {isAuthenticated ? 'Please wait until 5PM to submit your mood.' : <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs until next submission</div>}
                         </div>
                     </div>
 
