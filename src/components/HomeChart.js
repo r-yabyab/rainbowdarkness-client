@@ -625,7 +625,7 @@ if (!isAuthenticated) {
           }
         `);
 
-            g.append("g")
+            svg.append("g")
               // .attr('transform', 'translate(0,' + height + ")")
               // .call(d3.axisBottom(x))
               // .append('text')
@@ -640,11 +640,11 @@ if (!isAuthenticated) {
                   .ticks(5)
                 )
               .selectAll("text")
-              .attr("fill", `${darkMode ? "white" : "black"}`)
+                .attr("fill", `${darkMode ? "white" : "black"}`)
               .selectAll("path")
-              .attr("stroke", "white")
+                .style("stroke", "white")
 
-            g.append("g")
+              svg.append("g")
               .attr('class', 'axis-y2')
               .call(
                 d3
@@ -652,7 +652,9 @@ if (!isAuthenticated) {
                   .ticks(5)
                 )
               .selectAll('text')
-              .attr('fill', 'white')
+                .attr("fill", `${darkMode ? "white" : "black"}`)
+              .selectAll("path")
+                .style('stroke', 'white')
                 //for putting text
               // .append('text')
               // .attr('fill' , 'white')
@@ -680,6 +682,11 @@ if (!isAuthenticated) {
                 .attr('cx', function(d) { return x(d.x) })
                 .attr('cy', function(d) { return y(d.y) })
                 .attr('r', 3)
+              
+              
+              //if (isAuthenticated)
+              //if (isAuthenticated)
+              //if (isAuthenticated)
               } else {
                 
         const parseDate = d3.timeParse("%m/%d")
@@ -705,8 +712,17 @@ if (!isAuthenticated) {
 
         const margin = { top:20, right:20, bottom: 30, left: 50};
 
-        const g = svg.append("g")
+        // const g = svg.append("g")
           // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+          svg.append('style').text(`
+          .axis-x2 line,
+          .axis-x2 path,
+          .axis-y2 line,
+          .axis-y2 path {
+            stroke: ${darkMode? "white" : "black" };
+          }
+        `);
 
           const x = d3.scaleTime()
             .range([0, width])
@@ -725,16 +741,9 @@ if (!isAuthenticated) {
           // .curve(d3.curveCardinal);
             
 
-          svg.append('style').text(`
-          .axis-x2 line,
-          .axis-x2 path,
-          .axis-y2 line,
-          .axis-y2 path {
-            stroke: ${darkMode ? "white" : "black" };
-          }
-        `);
 
-            g.append("g")
+
+            svg.append("g")
               // .attr('transform', 'translate(0,' + height + ")")
               // .call(d3.axisBottom(x))
               // .append('text')
@@ -749,11 +758,12 @@ if (!isAuthenticated) {
                   .ticks(5)
                 )
               .selectAll("text")
-              .attr("fill", `${darkMode ? "white" : "black"}`)
+                .attr("fill", `${darkMode ? "white" : "black"}`)
               .selectAll("path")
-              .attr("stroke", "white")
+                .style("stroke", "white")
+              
 
-            g.append("g")
+            svg.append("g")
               .attr('class', 'axis-y2')
               .call(
                 d3
@@ -761,17 +771,22 @@ if (!isAuthenticated) {
                   .ticks(5)
                 )
               .selectAll('text')
-              .attr('fill', 'white')
+                .attr("fill", `${darkMode ? "white" : "black"}`)
+              .selectAll("path")
+                .style('stroke', 'white')
                 //for putting text
-              // .append('text')
-              // .attr('fill' , 'white')
+              
+            svg.append('g')  
+              .append('text')
+              .attr("fill", `${darkMode ? "white" : "black"}`)
               // .attr('transform', 'rotate(-90)')
-              // .attr('y', 6)
-              // .attr('dy', '0.71em')
-              // .attr('text-anchor', 'end')
-              // .text('Your chart');
+              .attr('x', 240)
+              // .attr('text-decoration', 'underline')
+              .attr('dy', '0.71em')
+              .attr('text-anchor', 'end')
+              .text('Your Mood Chart');
 
-            g.append('path')
+            svg.append('path')
               .datum(data)
               .attr('fill', 'none')
               .attr('stroke', 'steelblue')
@@ -791,7 +806,7 @@ if (!isAuthenticated) {
                 .attr('r', 3)
               }
 
-    }, [userNumsArr, isAuthenticated])
+    }, [userNumsArr, isAuthenticated, darkMode])
 
 
     return (
@@ -824,9 +839,9 @@ if (!isAuthenticated) {
                                 </div>))}
                         </div>
                     </div> */}
-                <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pb-4 -mt-4`}>Here are your most recent submissions:</div>
+                {/* <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pb-4 -mt-4`}>Here are your most recent submissions:</div> */}
                 {/* <svg className="" ref={svgHomeRef} /> */}
-                <svg className=" " ref={svgHomeRefTEST2} />
+                <svg className='mt-4' ref={svgHomeRefTEST2} />
                 {/* <svg className=' overflow-visible' ref={svgHomeRefTEST} /> */}
                 <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pt-12`}>Please come again tomorrow to fill the graph!</div>
                 {/* <div className='text-center text-zinc-400 pt-2 m-auto hover:text-white hover:cursor-pointer'>
