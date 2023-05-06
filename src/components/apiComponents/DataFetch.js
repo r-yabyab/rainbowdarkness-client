@@ -5,15 +5,14 @@ import Loader from "./Loader";
 // import { Link } from 'react-router-dom'
 import * as d3 from 'd3'
 import { useAuth0 } from "@auth0/auth0-react";
+import format from "date-fns/format";
 
 const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 // import RainbowDetails from "./RainbowDetails";
 
 
-// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 // prod
-// const RAINBOW_DARKNESS = 'https://rainbowdarkness-server.vercel.app'
 // const RAINBOW_DARKNESS = 'http://localhost:4000'
 const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
 // staging
@@ -150,11 +149,24 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
 
     const todayAverage = () => {
         if (todayRainbow.length > 0) {
+            const dbCheck = todayRainbow && todayRainbow.map(rainbow=> new Date(rainbow.createdAt).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })) 
+            // console.log(dbCheck + 'DB CHECK')
+            if (dbCheck.some(x=> x === format(new Date(),'MM/dd'))) {
             const sum = (todayRainbow && todayRainbow.reduce((acc, x) => acc + x.number, 0))
             const average = sum / todayRainbow.length
             const parsed = parseFloat(average).toFixed(2)
+            // console.log(todayRainbow)
+            console.log ('test 1')
             return parsed
-        } else {
+        } 
+        // else 
+        // {
+        //     console.log('failed')
+        //     return 'failed'
+        // }
+        // } 
+        // else 
+        // {
             return 'N/A'
         }
     }
@@ -297,7 +309,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
     const sortClick = (e) => {
         setSorted(!sorted)
-        console.log(sorted)
+        // console.log(sorted)
     }
 
     return destroyer ? (

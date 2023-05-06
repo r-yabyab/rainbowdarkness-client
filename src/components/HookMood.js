@@ -241,7 +241,7 @@ function HookMood ({ darkMode, graphRef }) {
         
               if (response.ok) {
                 setUserNums(json)
-                console.log('user nums' + userNums )
+                // console.log('user nums' + userNums )
                 // setRecentNumTimeEpoch(userNums && userNums[0].createdAt)
 
               }
@@ -350,13 +350,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         // if (diffMs > 82800000) {
             // if ((localeHours >= 17 && Math.abs(diffDate) == 1) || (diffDate >= 2)) {
             if ((localeHours >= 17 && Math.abs(diffDate) >= 1)) {
-            console.log('TIME PASSED, DESTROYER TURN OFF')
+            // console.log('TIME PASSED, DESTROYER TURN OFF')
             setDestroyer(false)
         } else {
             // THIS FIRES FIRST BECAUSE CHECKING DIFFMS
-            console.log('WAIT WAIT WAIT' + diffMs)
-            console.log('diffDate' + Math.abs(diffDate))
-            console.log('localeHours' + localeHours)
+            // console.log('WAIT WAIT WAIT' + diffMs)
+            // console.log('diffDate' + Math.abs(diffDate))
+            // console.log('localeHours' + localeHours)
             setDestroyer(true)
         }
     }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 import { useAuth0 } from '@auth0/auth0-react';
+import format from 'date-fns/format';
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -53,6 +54,8 @@ function HomeChart ({darkMode}) {
 
     const [userNums, setUserNums] = useState('')
     const [userNumsArr, setUserNumsArr] = useState([])
+    const [userDatesArr, setUserDatesArr] = useState([])
+    const [userObjArr, setUserObjArr] = useState([])
   
     useEffect(() => {
       if (isAuthenticated) {
@@ -64,7 +67,7 @@ function HomeChart ({darkMode}) {
           
                 if (response.ok) {
                   setUserNums(json)
-                  console.log('user nums' + userNums )
+                  // console.log('user nums' + userNums )
                   console.log('LOGGED IN')
   
                 }
@@ -85,19 +88,23 @@ function HomeChart ({darkMode}) {
   
     useEffect(() => {
       if (userNums) {
-        const mappedNums = 
-            userNums
-            .reverse()
-            .map(x => x.number)
-            // .slice(0, 10)
-            .slice(-10)
-          mappedNums.unshift(weekAvg)
-        setUserNumsArr(mappedNums)
-        // console.log('USER NUM ARR ARR ARR ARR' + userNumsArr + 'ARF ARF ')
-  } else {
-    // console.log('ARF ARF ARF ARF ARF ')
-  }
-    }, [userNums])
+        const mappedData = userNums.map((item) => ({
+          x: format(new Date(item.createdAt), 'MM/dd'),
+          y: item.number,
+        }));
+        // console.log('mappedData', mappedData);
+        setUserNumsArr(mappedData);
+
+      }
+    }, [userNums]);
+
+    
+    useEffect(() => {
+      if (userNumsArr && userNumsArr.length > 0) {
+        // console.log('USER NUMS ARR X', userNumsArr[0].x);
+        // console.log('USER NUMS ARR Y', userNumsArr[0].y);
+      }
+    }, [userNumsArr]);
     
     // console.log('USER NUM ARR ARR ARR ARR', userNumsArr, 'ARF ARF')
 
@@ -109,331 +116,682 @@ function HomeChart ({darkMode}) {
     // inputNumber.unshift(0)
     inputNumberData.unshift(weekAvg)
 
-    const svgHomeRef = useRef();
+//     const svgHomeRef = useRef();
+
+//     useEffect(() => {
+//       // localstorage or mongoDB for graph data
+//       // const graphNumData = isAuthenticated ? userNumsArr : inputNumberData;
+//       const graphNumData = userNumsArr;
+//       // const graphNumData = isAuthenticated ? userObjArr : inputNumberData;
+
+//         d3.select(svgHomeRef.current).selectAll('*').remove();
+//         // setting up svg
+//         const w = 400;
+//         const h = 200;
+//         const svg = d3.select(svgHomeRef.current)
+//           .attr('width', w)
+//           .attr('height', h)
+//           .style('margin-top', 0)
+//           .style('margin-left', 50)
+//           .style('overflow', 'visible')
+//         //   .style('background', '');
+    
+//         // setting the scaling
+       
+//         // For the last 10 submissions
+//         // var xScale = d3.scaleLinear()
+//         // // const xScale = d3.scaleTime()
+//         //   .domain([0, 10])
+//         // //   .domain(d3.extent(books.map((d) => d.inputTime[0])))
+//         //   // .domain([0, books.length +1])
+//         //   .range([0, w]);
+
+//         // For the last 10 days
+//         const endDate = new Date();
+//         const startDate = new Date();
+//         startDate.setDate(endDate.getDate() - 10);
+        
+//         // Set the format for the tick labels
+//         const tickFormat = date => format(date, 'MM/dd');
+        
+//         // Define the xScale using the start and end dates
+//         const xScale = d3.scaleTime()
+//           .domain([startDate, endDate])
+//           // .domain([0, 10])
+
+//           .range([0, w]);
+
+//         var yScale = d3.scaleLinear()
+//         //   .domain([-1, 11])
+//           .domain([0, 10])
+//           // .domain(d3.extent(books.map((d) => d.inputNumber)))
+//           .range([h, 0]);
+
+//           // OLD using on numbers
+//         const generateScaledLine = d3.line()
+//           .x((d, i) => xScale(i))
+//         //   .x((d) => xScale(d))
+//           .y(yScale)
+//           .curve(d3.curveCardinal);
+          
+//         // const generateScaledLine = d3.line()
+//         //   .x(function(d) {return x(d.x) })
+//         // //   .x((d) => xScale(d))
+//         //   .y(function(d) { return y(d.y) })
+//         //   .curve(d3.curveCardinal);
+    
+//         // setting the axes
+//         const xAxis = d3.axisBottom(xScale)
+//             .ticks(10)
+//             .tickFormat(tickFormat);
+//         const yAxis = d3.axisLeft(yScale)
+//             .ticks(4)
+            
+
+//   // Append the CSS style to make axis white
+//   // .axis-x1 because .axis-x is shared with the miniGraph on /apiComponents
+//   svg.append('style').text(`
+//     .axis-x1 line,
+//     .axis-x1 path,
+//     .axis-y line,
+//     .axis-y path {
+//       stroke: ${darkMode ? "white" : "black" };
+//     }
+//   `);
+
+
+//         // displays axes
+//         svg.append('g')
+//         .attr('class', 'axis-x1')
+//         .call(xAxis)
+//         .attr('transform', `translate(0, ${h})`)
+//         .selectAll("text")
+//           .attr("fill", `${darkMode ? "white" : "black" }`)
+//         .selectAll("path")
+//           .style("stroke", "white");
+          
+//       svg.append('g')
+//         .attr('class', 'axis-y')
+//         .call(yAxis)
+//         .selectAll("text")
+//           .attr("fill", `${darkMode ? "white" : "black" }`)
+//         .selectAll("path")
+//           .attr("stroke", "white")
+
+//                   // displays axes
+//     //     svg.append('g')
+//     //     .attr('class', 'axis-x')
+//     //     .call(xAxis)
+//     //     .attr('transform', `translate(0, ${h})`)
+//     //     .select(".domain")
+//     //     .attr("stroke", "white");
+//     // svg.append('g')
+//     //     .call(yAxis)
+//     //     .select(".domain")
+//     //     .attr("stroke", "white");
+
+//         if (weekAvg) {           
+    
+//         // remove the previous line and area
+//         svg.select(".line").remove();
+//         svg.select(".area").remove();
+    
+//         // setting up the data for the svg
+//         svg.append('path')
+//   .datum(graphNumData)
+//   .attr('class', 'line')
+//   .attr('d', generateScaledLine)
+//   .attr('fill', 'none')
+//   // .attr("stroke-width", 3)
+//   .attr("stroke-width", `${darkMode ? 3 : 2 }`)
+//   .attr('stroke', `${darkMode ? "white" : "black" }`);
+// //   .attr('d', d3.line()
+// //             .xScale(function(d) { return xScale(d.xScale)})
+// //             .yScale(function(d) { return yScale(d.yScale )})
+// //             )
+
+// // adding a flat line at y=4.33
+// svg.append("line")
+//   .attr("x1", 0)
+//   .attr("y1", yScale(weekAvg))
+//   .attr("x2", w)
+//   .attr("y2", yScale(weekAvg))
+//   .attr("stroke-width", 2)
+//   .attr("stroke", "darkorchid");
+
+// // adding weekAvg label
+// svg.append("text")
+//   .attr("x", w + 5)
+//   .attr("y", yScale(weekAvg) - 5)
+//   .attr("font-size", "12px")
+//   .attr("fill", "black")
+//   .style("fill", "darkorchid")
+//   .text((weekRainbow.length > 0) ? `Weekly average: ${weekAvg}` : `New Week`);
+
+// // adding the fill area
+// const areaGenerator = d3.area()
+//   .x((d, i) => xScale(i))
+//   // .y0(yScale(weekAvg))
+//   // supposed to lay the y axis line above the area gradient. To test
+//   .y0(yScale(d3.min(graphNumData)))
+//   .y1((d) => yScale(d))
+//   .curve(d3.curveCardinal);
+
+// const areaPath = svg.append("path")
+//   .datum(graphNumData)
+//   .attr("class", "area")
+//   .attr("d", areaGenerator)
+//   .attr("fill", "none");
+
+// const areaGradient = svg.append("linearGradient")
+//   .attr("id", "area-gradient")
+//   .attr("gradientUnits", "userSpaceOnUse")
+//   .attr("x1", 0).attr("y1", yScale(weekAvg))
+//   .attr("x2", 0).attr("y2", yScale(d3.min(graphNumData)))
+//   .selectAll("stop")
+//   .data([
+//     { offset: "0%", color: "green" },
+//     // { offset: "0%", color: "purple" },
+//     // { offset: "50%", color: "grey" },
+//     { offset: "0%", color: "red" }
+//   ])
+//   .enter().append("stop")
+//   .attr("offset", function(d) { return d.offset; })
+//   .attr("stop-color", function(d) { return d.color; });
+
+// // for hover over shit
+
+// //   const bisect = d3.bisector(function(d) { return d.x; }).left
+
+// //   const focus = svg
+// //   .append('g')
+// //   .append('circle')
+// //     .style('fill', 'none')
+// //     .attr('stroke', 'black')
+// //     .attr('r', 8.5)
+// //     .style('opacity', 0)
+
+// //   const focusText = svg
+// //     .append('g')
+// //     .append('text')
+// //         .style('opacity', 0)
+// //         .attr('text-anchor', 'left')
+// //         .attr('allignment-baseline', 'middle')
+
+// //   svg
+// //   .append('rect')
+// //         // shows the hover area
+// //         .style('fill', 'purple')
+// //         .style('opacity', 0.2)
+// //   .style('pointer-events', 'all')
+// //   .attr('width', w)
+// //   .attr('height', h)
+// //   .on('mouseover', mouseover)
+// //   .on('mousemove', mousemove)
+// //   .on('mouseout', mouseout);
+
+// //   function mouseover() {
+// //     focus.style("opacity", 1)
+// //     .style('stroke' , 'white')
+// //     focusText.style("opacity",1)
+// //     .style('stroke', 'purple')
+// //   }
+
+// //   // from pepeBot
+// // //   function mousemove(event) {
+// // //     const x0 = xScale.invert(d3.pointer(event)[0]);
+// // //     const i = bisect(inputNumber, x0, 1);
+// // //     const selectedData = inputNumber[i - 1];
+// // //     focus
+// // //       .attr('cx', xScale(i - 1))
+// // //       .attr('cy', yScale(selectedData))
+// // //     focusText
+// // //       .html('Index: ' + (i - 1) + ' - ' + "Value: " + selectedData)
+// // //       .attr('x', xScale(i - 1) + 15)
+// // //       .attr('y', yScale(selectedData))
+  
+// // //     console.log('Index:', i - 1, 'Value:', selectedData);
+// // //   }
+
+  
+
+// //   function mousemove(event) {
+// //     const x0 = xScale.invert(d3.pointer(event)[0]);
+// //     const i = bisect(inputNumberData, x0, 0);
+// //     const selectedData = inputNumberData[i]
+// //     focus
+// //         .attr('cx', xScale(selectedData.x))
+// //         .attr('cy', yScale(selectedData.y))
+// //     focusText
+// //         .html('x:' + x0 + ' - ' + "y:" + selectedData.y)
+// //         // .attr('x', xScale(selectedData.x)+15)
+// //         .attr('x', xScale(x0)+15)
+// //         .attr('y', yScale(selectedData.y))
+
+// //         console.log('i:', i, 'x0:', x0, 'inputNumber[i]:', inputNumberData[i], 'SelectedDatay:', selectedData.y);
+// //     }
+
+// //   function mouseout() {
+// //     focus.style('opacity', 0)
+// //     focusText.style('opacity', 0)
+// //   }
+  
+
+  
+
+// areaPath.attr("fill", "url(#area-gradient)");
+
+
+
+
+
+//         } else {
+//             svg.append('text')
+//             .attr('class', 'loading')
+//             .attr('x', w / 2)
+//             .attr('y', h / 2)
+//             .attr('text-anchor', 'middle')
+//             .attr('fill', 'white')
+//             .text('Loading...');
+//           return; // exit the useEffect hook
+//         }
+//         // console.log(inputNumberData)
+          
+//     }, [books, weekRainbow, userNumsArr]);
+
+
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+//     const svgHomeRefTEST = useRef();
+//     let dummyData = [
+//         [1,1],
+//         [2,1],
+//     ]
+
+//     useEffect(() => {
+//       // localstorage or mongoDB for graph data
+//       // const graphNumData = isAuthenticated ? userNumsArr : inputNumberData;
+//       const graphNumData = userNumsArr;
+//       // const graphNumData = isAuthenticated ? userObjArr : inputNumberData;
+
+//         d3.select(svgHomeRefTEST.current).selectAll('*').remove();
+//         // setting up svg
+//         const w = 400;
+//         const h = 200;
+//         const svg = d3.select(svgHomeRefTEST.current)
+//           .attr('width', w)
+//           .attr('height', h)
+//           .style('margin-top', 0)
+//           .style('margin-left', 50)
+//           .style('overflow', 'visible')
+
+//         // For the last 10 submissions
+//         // var xScale = d3.scaleLinear()
+//         // // const xScale = d3.scaleTime()
+//         //   .domain([0, 10])
+//         // //   .domain(d3.extent(books.map((d) => d.inputTime[0])))
+//         //   // .domain([0, books.length +1])
+//         //   .range([0, w]);
+
+//         // For the last 10 days
+//         const endDateRaw = new Date();
+//         const endDate = format(endDateRaw, 'MM/dd');
+//         const startDateRaw = new Date(endDateRaw);
+//         startDateRaw.setDate(endDateRaw.getDate() - 10);
+//         const startDate = format(startDateRaw, 'MM/dd');
+        
+//         // Set the format for the tick labels
+//         const tickFormat = date => format(date, 'MM/dd');
+        
+//         // Define the xScale using the start and end dates
+//         // const xScale = d3.scaleLinear()
+//         //   .domain([startDate, endDate])
+//         //   // .domain([0, 10])
+//       //   .range([0, w]);
+//       // const xScale = d3.scaleTime()
+//       const xScale = d3.scaleTime()
+//         .domain([startDateRaw, endDateRaw])
+//         .range([0, w]);
+
+//         var yScale = d3.scaleLinear()
+//         //   .domain([-1, 11])
+//           .domain([0, 10])
+//           // .domain(d3.extent(books.map((d) => d.inputNumber)))
+//           .range([h, 0]);
+
+//           let line = d3
+//           .line()
+//           .x((d) => xScale(d.x))
+//           .y((d) => yScale(d.y));
+        
+//         let path = line(graphNumData);
+//           // let path = line(graphNumData)
+//           console.log("d.x " + graphNumData.map(item => item.x))
+//           console.log('Xscale' + xScale(graphNumData.map(date => date.x)))
+//           console.log("start date: " + startDate + " end date: " + endDate)
+          
+//           svg.append('path')
+//     .datum(graphNumData)
+//     .attr('class', 'line')
+//     .attr('d', line)
+//     .attr('fill', 'none')
+//     .attr('stroke', 'steelblue')
+//     .attr('stroke-width', 2);
+
+
+//           // OLD using on numbers
+//         const generateScaledLine = d3.line()
+//           .x((d, i) => xScale(i))
+//           .y(yScale)
+//           .curve(d3.curveCardinal);
+          
+//         // setting the axes
+//         const xAxis = d3.axisBottom(xScale)
+//             .ticks(10)
+//             .tickFormat(tickFormat);
+//         const yAxis = d3.axisLeft(yScale)
+//             .ticks(4)
+            
+
+//   // Append the CSS style to make axis white
+//   // .axis-x1 because .axis-x is shared with the miniGraph on /apiComponents
+//   svg.append('style').text(`
+//     .axis-x1 line,
+//     .axis-x1 path,
+//     .axis-y line,
+//     .axis-y path {
+//       stroke: ${darkMode ? "white" : "black" };
+//     }
+//   `);
+
+
+//         // displays axes
+//         svg.append('g')
+//         .attr('class', 'axis-x1')
+//         .call(xAxis)
+//         .attr('transform', `translate(0, ${h})`)
+//         .selectAll("text")
+//           .attr("fill", `${darkMode ? "white" : "black" }`)
+//         .selectAll("path")
+//           .style("stroke", "white");
+          
+//       svg.append('g')
+//         .attr('class', 'axis-y')
+//         .call(yAxis)
+//         .selectAll("text")
+//           .attr("fill", `${darkMode ? "white" : "black" }`)
+//         .selectAll("path")
+//           .attr("stroke", "white")
+          
+//     }, [userNumsArr]);
+
+    // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+    // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+    // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+    // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+    // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+    // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+    // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+    // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+
+    const svgHomeRefTEST2 = useRef();
+
+    // const [data, setData] = useState([])
+
+    // useEffect(() => {
+    //   if (isAuthenticated) {
+    //     const parseDate = d3.timeParse("%m/%d")
+    //     setData(userNumsArr
+    //       .slice(0,10)
+    //       .map(item => ({
+    //         x: parseDate(item.x),
+    //         y: item.y,
+    //       })))
+    //     } else {
+    //       const parseDate = d3.timeParse("%m/%d")
+    //       setData(books
+    //         // .slice(0,10)
+    //         .map(item => ({
+    //           x: parseDate(item.inputTime),
+    //           y: item.inputNumber
+    //         })))
+    //     }
+    // },[isAuthenticated])
 
     useEffect(() => {
-      // localstorage or mongoDB for graph data
-      const graphNumData = isAuthenticated ? userNumsArr : inputNumberData;
+      
+d3.select(svgHomeRefTEST2.current).selectAll('*').remove();
 
-        d3.select(svgHomeRef.current).selectAll('*').remove();
+if (!isAuthenticated) {
+
+            const parseDate = d3.timeParse("%m/%d")
+          const data = (books
+            // .slice(0,10)
+            .map(item => ({
+              x: parseDate(item.inputTime),
+              y: item.inputNumber
+            })))
+// console.log('DATA DATA !#@!#$!@$!@:::::: ', JSON.stringify(data))
         // setting up svg
-        const w = 400;
-        const h = 200;
-        const svg = d3.select(svgHomeRef.current)
-          .attr('width', w)
-          .attr('height', h)
+        const width = 400;
+        const height = 200;
+        const svg = d3.select(svgHomeRefTEST2.current)
+          .attr('width', width)
+          .attr('height', height)
           .style('margin-top', 0)
           .style('margin-left', 50)
           .style('overflow', 'visible')
-        //   .style('background', '');
-    
-        // setting the scaling
-        var xScale = d3.scaleLinear()
-        // const xScale = d3.scaleTime()
-          .domain([0, 10])
-        //   .domain(d3.extent(books.map((d) => d.inputTime[0])))
-          // .domain([0, books.length +1])
-          .range([0, w]);
-        var yScale = d3.scaleLinear()
-        //   .domain([-1, 11])
-          .domain([0, 10])
-          // .domain(d3.extent(books.map((d) => d.inputNumber)))
-          .range([h, 0]);
-    
-        const generateScaledLine = d3.line()
-          .x((d, i) => xScale(i))
-        //   .x((d) => xScale(d))
-          .y(yScale)
-          .curve(d3.curveCardinal);
-    
-        // setting the axes
-        const xAxis = d3.axisBottom(xScale)
-            .ticks(10);
-        const yAxis = d3.axisLeft(yScale)
-            .ticks(4)
+          
+          // console.log("2nd useEffect Test: ", data)
+          // .style('background', 'black')
+
+        const margin = { top:20, right:20, bottom: 30, left: 50};
+
+        const g = svg.append("g")
+          // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+          const x = d3.scaleTime()
+            .range([0, width])
+            .domain(d3.extent(data, function(d) { return d.x}))
+
+
+          const y = d3.scaleLinear()
+            .range([height, 0])
+            // .domain(d3.extent(data, function(d) { return d.y}))
+            .domain([0,10])
+            // console.log(x.domain(), y.domain() + 'CONSOLE LOG !')
+
+          const line = d3.line()
+          .x(d => x(d.x))
+          .y(d => y(d.y))
+          // .curve(d3.curveCardinal);
             
 
-  // Append the CSS style to make axis white
-  // .axis-x1 because .axis-x is shared with the miniGraph on /apiComponents
-  svg.append('style').text(`
-    .axis-x1 line,
-    .axis-x1 path,
-    .axis-y line,
-    .axis-y path {
-      stroke: ${darkMode ? "white" : "black" };
-    }
-  `);
+          svg.append('style').text(`
+          .axis-x2 line,
+          .axis-x2 path,
+          .axis-y2 line,
+          .axis-y2 path {
+            stroke: ${darkMode ? "white" : "black" };
+          }
+        `);
+
+            g.append("g")
+              // .attr('transform', 'translate(0,' + height + ")")
+              // .call(d3.axisBottom(x))
+              // .append('text')
+              // .select('.domain')
+              // .attr('fill', '#000')
+              // .remove()
+              .attr('class', 'axis-x2')
+              .attr('transform', 'translate(0,' + height + ")")
+              .call(
+                d3
+                  .axisBottom(x)
+                  .ticks(5)
+                )
+              .selectAll("text")
+              .attr("fill", `${darkMode ? "white" : "black"}`)
+              .selectAll("path")
+              .attr("stroke", "white")
+
+            g.append("g")
+              .attr('class', 'axis-y2')
+              .call(
+                d3
+                  .axisLeft(y)
+                  .ticks(5)
+                )
+              .selectAll('text')
+              .attr('fill', 'white')
+                //for putting text
+              // .append('text')
+              // .attr('fill' , 'white')
+              // .attr('transform', 'rotate(-90)')
+              // .attr('y', 6)
+              // .attr('dy', '0.71em')
+              // .attr('text-anchor', 'end')
+              // .text('Your chart');
+
+            g.append('path')
+              .datum(data)
+              .attr('fill', 'none')
+              .attr('stroke', 'steelblue')
+              .attr('stroke-linejoin' , 'round')
+              .attr('stroke-linecap', 'round')
+              .attr('stroke-width' , 1.5)
+              .attr('d', line)
+
+            svg.selectAll("myCircles")
+              .data(data)
+              .enter()
+              .append('circle')
+                .attr('fill', 'red')
+                .attr('stroke', 'none')
+                .attr('cx', function(d) { return x(d.x) })
+                .attr('cy', function(d) { return y(d.y) })
+                .attr('r', 3)
+              } else {
+                
+        const parseDate = d3.timeParse("%m/%d")
+        const data =(userNumsArr
+          .slice(0,10)
+          .map(item => ({
+            x: parseDate(item.x),
+            y: item.y,
+          })))
 
 
-        // displays axes
-        svg.append('g')
-        .attr('class', 'axis-x1')
-        .call(xAxis)
-        .attr('transform', `translate(0, ${h})`)
-        .selectAll("text")
-          .attr("fill", `${darkMode ? "white" : "black" }`)
-        .selectAll("path")
-          .style("stroke", "white");
+                const width = 400;
+        const height = 200;
+        const svg = d3.select(svgHomeRefTEST2.current)
+          .attr('width', width)
+          .attr('height', height)
+          .style('margin-top', 0)
+          .style('margin-left', 50)
+          .style('overflow', 'visible')
           
-      svg.append('g')
-        .attr('class', 'axis-y')
-        .call(yAxis)
-        .selectAll("text")
-          .attr("fill", `${darkMode ? "white" : "black" }`)
-        .selectAll("path")
-          .attr("stroke", "white")
+          // console.log("2nd useEffect Test: ", data)
+          // .style('background', 'black')
 
-                  // displays axes
-    //     svg.append('g')
-    //     .attr('class', 'axis-x')
-    //     .call(xAxis)
-    //     .attr('transform', `translate(0, ${h})`)
-    //     .select(".domain")
-    //     .attr("stroke", "white");
-    // svg.append('g')
-    //     .call(yAxis)
-    //     .select(".domain")
-    //     .attr("stroke", "white");
+        const margin = { top:20, right:20, bottom: 30, left: 50};
 
-        if (weekAvg) {           
-    
-        // remove the previous line and area
-        svg.select(".line").remove();
-        svg.select(".area").remove();
-    
-        // setting up the data for the svg
-        svg.append('path')
-  .datum(graphNumData)
-  .attr('class', 'line')
-  .attr('d', generateScaledLine)
-  .attr('fill', 'none')
-  // .attr("stroke-width", 3)
-  .attr("stroke-width", `${darkMode ? 3 : 2 }`)
-  .attr('stroke', `${darkMode ? "white" : "black" }`);
-//   .attr('d', d3.line()
-//             .xScale(function(d) { return xScale(d.xScale)})
-//             .yScale(function(d) { return yScale(d.yScale )})
-//             )
+        const g = svg.append("g")
+          // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-// adding a flat line at y=4.33
-svg.append("line")
-  .attr("x1", 0)
-  .attr("y1", yScale(weekAvg))
-  .attr("x2", w)
-  .attr("y2", yScale(weekAvg))
-  .attr("stroke-width", 2)
-  .attr("stroke", "darkorchid");
-
-// adding weekAvg label
-svg.append("text")
-  .attr("x", w + 5)
-  .attr("y", yScale(weekAvg) - 5)
-  .attr("font-size", "12px")
-  .attr("fill", "black")
-  .style("fill", "darkorchid")
-  .text((weekRainbow.length > 0) ? `Weekly average: ${weekAvg}` : `New Week`);
-
-// adding the fill area
-const areaGenerator = d3.area()
-  .x((d, i) => xScale(i))
-  // .y0(yScale(weekAvg))
-  // supposed to lay the y axis line above the area gradient. To test
-  .y0(yScale(d3.min(graphNumData)))
-  .y1((d) => yScale(d))
-  .curve(d3.curveCardinal);
-
-const areaPath = svg.append("path")
-  .datum(graphNumData)
-  .attr("class", "area")
-  .attr("d", areaGenerator)
-  .attr("fill", "none");
-
-const areaGradient = svg.append("linearGradient")
-  .attr("id", "area-gradient")
-  .attr("gradientUnits", "userSpaceOnUse")
-  .attr("x1", 0).attr("y1", yScale(weekAvg))
-  .attr("x2", 0).attr("y2", yScale(d3.min(graphNumData)))
-  .selectAll("stop")
-  .data([
-    { offset: "0%", color: "green" },
-    // { offset: "0%", color: "purple" },
-    // { offset: "50%", color: "grey" },
-    { offset: "0%", color: "red" }
-  ])
-  .enter().append("stop")
-  .attr("offset", function(d) { return d.offset; })
-  .attr("stop-color", function(d) { return d.color; });
-
-// for hover over shit
-
-//   const bisect = d3.bisector(function(d) { return d.x; }).left
-
-//   const focus = svg
-//   .append('g')
-//   .append('circle')
-//     .style('fill', 'none')
-//     .attr('stroke', 'black')
-//     .attr('r', 8.5)
-//     .style('opacity', 0)
-
-//   const focusText = svg
-//     .append('g')
-//     .append('text')
-//         .style('opacity', 0)
-//         .attr('text-anchor', 'left')
-//         .attr('allignment-baseline', 'middle')
-
-//   svg
-//   .append('rect')
-//         // shows the hover area
-//         .style('fill', 'purple')
-//         .style('opacity', 0.2)
-//   .style('pointer-events', 'all')
-//   .attr('width', w)
-//   .attr('height', h)
-//   .on('mouseover', mouseover)
-//   .on('mousemove', mousemove)
-//   .on('mouseout', mouseout);
-
-//   function mouseover() {
-//     focus.style("opacity", 1)
-//     .style('stroke' , 'white')
-//     focusText.style("opacity",1)
-//     .style('stroke', 'purple')
-//   }
-
-//   // from pepeBot
-// //   function mousemove(event) {
-// //     const x0 = xScale.invert(d3.pointer(event)[0]);
-// //     const i = bisect(inputNumber, x0, 1);
-// //     const selectedData = inputNumber[i - 1];
-// //     focus
-// //       .attr('cx', xScale(i - 1))
-// //       .attr('cy', yScale(selectedData))
-// //     focusText
-// //       .html('Index: ' + (i - 1) + ' - ' + "Value: " + selectedData)
-// //       .attr('x', xScale(i - 1) + 15)
-// //       .attr('y', yScale(selectedData))
-  
-// //     console.log('Index:', i - 1, 'Value:', selectedData);
-// //   }
-
-  
-
-//   function mousemove(event) {
-//     const x0 = xScale.invert(d3.pointer(event)[0]);
-//     const i = bisect(inputNumberData, x0, 0);
-//     const selectedData = inputNumberData[i]
-//     focus
-//         .attr('cx', xScale(selectedData.x))
-//         .attr('cy', yScale(selectedData.y))
-//     focusText
-//         .html('x:' + x0 + ' - ' + "y:" + selectedData.y)
-//         // .attr('x', xScale(selectedData.x)+15)
-//         .attr('x', xScale(x0)+15)
-//         .attr('y', yScale(selectedData.y))
-
-//         console.log('i:', i, 'x0:', x0, 'inputNumber[i]:', inputNumberData[i], 'SelectedDatay:', selectedData.y);
-//     }
-
-//   function mouseout() {
-//     focus.style('opacity', 0)
-//     focusText.style('opacity', 0)
-//   }
-  
-
-  
-
-areaPath.attr("fill", "url(#area-gradient)");
+          const x = d3.scaleTime()
+            .range([0, width])
+            .domain(d3.extent(data, function(d) { return d.x}))
 
 
+          const y = d3.scaleLinear()
+            .range([height, 0])
+            // .domain(d3.extent(data, function(d) { return d.y}))
+            .domain([0,10])
+            // console.log(x.domain(), y.domain() + 'CONSOLE LOG !')
 
-
-
-        } else {
-            svg.append('text')
-            .attr('class', 'loading')
-            .attr('x', w / 2)
-            .attr('y', h / 2)
-            .attr('text-anchor', 'middle')
-            .attr('fill', 'white')
-            .text('Loading...');
-          return; // exit the useEffect hook
-        }
-        // console.log(inputNumberData)
-          
-    }, [books, weekRainbow, userNumsArr]);
-
-
-    // TEST TEST TEST
-    // TEST TEST TEST
-    // const svgHomeRefTEST = useRef();
-    // let dummyData = [
-    //     [1,1],
-    //     [2,1],
-    // ]
-
-    // useEffect(() => {
-    //     var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    //     width = 460 - margin.left - margin.right,
-    //         height = 400 - margin.top - margin.bottom;
-
-    //     var svg = d3.select(svgHomeRefTEST.current)
-    //         .append("svg")
-    //         .attr("width", width + margin.left + margin.right)
-    //         .attr("height", height + margin.top + margin.bottom)
-    //         .append("g")
-    //         .attr("transform",
-    //             "translate(" + margin.left + "," + margin.top + ")");
-
-    //         // add x axis
-    //         var x = d3.scaleLinear()
-    //             .domain([1, 50])
-    //             .range([0, width]);
-    //         svg.append('g')
-    //             .attr('transform', 'translate(0,' + height + ')')
-    //             .call(d3.axisBottom(x));
+          const line = d3.line()
+          .x(d => x(d.x))
+          .y(d => y(d.y))
+          // .curve(d3.curveCardinal);
             
-    //         // add y axis
-    //         var y = d3.scaleLinear()
-    //             .domain([0,13])
-    //             .range([ height, 0]);
-    //         svg.append('g')
-    //             .call(d3.axisLeft(y))
 
-    //         //to do this
-    //         //var bisect = d3.bisector
+          svg.append('style').text(`
+          .axis-x2 line,
+          .axis-x2 path,
+          .axis-y2 line,
+          .axis-y2 path {
+            stroke: ${darkMode ? "white" : "black" };
+          }
+        `);
 
-    //         var focus = svg
-    //             .append('g')
-    //             .append('circle')
-    //                 .style('fill', 'none')
-    //                 .attr('stroke', 'black')
-    //                 .attr('r', 8.5)
-    //                 .style('opactiy', 0)
+            g.append("g")
+              // .attr('transform', 'translate(0,' + height + ")")
+              // .call(d3.axisBottom(x))
+              // .append('text')
+              // .select('.domain')
+              // .attr('fill', '#000')
+              // .remove()
+              .attr('class', 'axis-x2')
+              .attr('transform', 'translate(0,' + height + ")")
+              .call(
+                d3
+                  .axisBottom(x)
+                  .ticks(5)
+                )
+              .selectAll("text")
+              .attr("fill", `${darkMode ? "white" : "black"}`)
+              .selectAll("path")
+              .attr("stroke", "white")
 
-    //         var focusText = svg
-    //             .append('g')
-    //             .append('text')
-    //                 .style('opacity', 0)
-    //                 .attr('text-anchor', 'left')
-    //                 .attr('alignment-baseline', 'middle')
+            g.append("g")
+              .attr('class', 'axis-y2')
+              .call(
+                d3
+                  .axisLeft(y)
+                  .ticks(5)
+                )
+              .selectAll('text')
+              .attr('fill', 'white')
+                //for putting text
+              // .append('text')
+              // .attr('fill' , 'white')
+              // .attr('transform', 'rotate(-90)')
+              // .attr('y', 6)
+              // .attr('dy', '0.71em')
+              // .attr('text-anchor', 'end')
+              // .text('Your chart');
 
-    //                 // console.log('books' + JSON.stringify(books))
-    //         // add the line
-    //         svg
-    //             .append('path')
-    //             .datum(books.map(function(d) { return { inputTime: +d.inputTime, inputNumber: +d.inputNumber }; }))
-    //             .attr('fill', 'none')
-    //             .attr('stroke', 'black')
-    //             .attr('stroke-width', 1.5)
-    //             .attr('d', d3.line()
-    //                 .x(function(d) { return x(d.inputTime); })
-    //                 .y(function(d) { return y(d.inputNumber); })
-    //                 );
+            g.append('path')
+              .datum(data)
+              .attr('fill', 'none')
+              .attr('stroke', 'steelblue')
+              .attr('stroke-linejoin' , 'round')
+              .attr('stroke-linecap', 'round')
+              .attr('stroke-width' , 1.5)
+              .attr('d', line)
 
-    //     console.log('penis')
-    // },[books, userNumsArr])
+            svg.selectAll("myCircles")
+              .data(data)
+              .enter()
+              .append('circle')
+                .attr('fill', 'red')
+                .attr('stroke', 'none')
+                .attr('cx', function(d) { return x(d.x) })
+                .attr('cy', function(d) { return y(d.y) })
+                .attr('r', 3)
+              }
+
+    }, [userNumsArr, isAuthenticated])
 
 
     return (
@@ -467,7 +825,8 @@ areaPath.attr("fill", "url(#area-gradient)");
                         </div>
                     </div> */}
                 <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pb-4 -mt-4`}>Here are your most recent submissions:</div>
-                <svg className="" ref={svgHomeRef} />
+                {/* <svg className="" ref={svgHomeRef} /> */}
+                <svg className=" " ref={svgHomeRefTEST2} />
                 {/* <svg className=' overflow-visible' ref={svgHomeRefTEST} /> */}
                 <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pt-12`}>Please come again tomorrow to fill the graph!</div>
                 {/* <div className='text-center text-zinc-400 pt-2 m-auto hover:text-white hover:cursor-pointer'>

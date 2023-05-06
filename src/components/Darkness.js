@@ -77,6 +77,14 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
+                            <div>1.3.0 (May 6, 2023)</div>
+                            <p>Changed personal graph to show datapoints for each submission. The x-axis also shows the date submitted.</p>
+                            <div>______________</div>
+
+                            <div>1.2.9 (May 3, 2023)</div>
+                            <p>Fixed today's numbers to be aggregated on the backend using UTC instead of system time (problem came up when backend was placed in EC2)</p>
+                            <div>______________</div>
+
                             <div>1.2.8 (May 2, 2023)</div>
                             <p>For registered users:</p>
                             <p className='ml-8 -mt-4'>- Fixed mood submission time where if your last mood was submitted on the 30th and the next day was the 1st, it calculated the difference between days as -29.</p>
