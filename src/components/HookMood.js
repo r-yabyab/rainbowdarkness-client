@@ -150,16 +150,19 @@ function HookMood ({ darkMode, graphRef }) {
                 setError(json.error)
             }
             if (response.ok) {
+                const objId = json._id;
+                console.log('Object ID:', objId);
                 setError(null)
                 updateList(numberList);
                 setBooleanState(false);
                 setDestroyer(true);
                 setStaticTime(Date.now())
                 setNumber('')
-            }
+            
             const moogleNew = {
                 inputNumber:numberForStorage,
-                inputTime: format(new Date(),'MM/dd')
+                inputTime: format(new Date(),'MM/dd'),
+                objId: objId
             }
             // if nothing saved at start, then save an empty array
             if(window.localStorage.getItem('_APP_moogle') == null) {
@@ -170,7 +173,10 @@ function HookMood ({ darkMode, graphRef }) {
                 moogleOld.push(moogleNew)
                 // save old + new data to localStorage
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
-        } else {
+        }
+    } 
+    else 
+    {
 
             const rainbow = { number }
             
@@ -193,27 +199,28 @@ function HookMood ({ darkMode, graphRef }) {
                 updateList(numberList);
                 setBooleanState(false);
                 setDestroyer(true);
-                setStaticTime(Date.now())
+                // setStaticTime(Date.now())
                 setNumber('')
                 // forceUpdate()
-            }
 
-        // gets data from submitbutton
-        const moogleNew = {
-            inputNumber:numberForStorage,
-            inputTime: format(new Date(),'MM/dd')
+
+                // // gets data from submitbutton
+                // const moogleNew = {
+                //     inputNumber: numberForStorage,
+                //     inputTime: format(new Date(), 'MM/dd')
+                // }
+                // // if nothing saved at start, then save an empty array
+                // if (window.localStorage.getItem('_APP_moogle') == null) {
+                //     window.localStorage.setItem('_APP_moogle', '[]')
+                // }
+                // // get old data and slap it to the new data
+                // const moogleOld = JSON.parse(window.localStorage.getItem('_APP_moogle'))
+                // moogleOld.push(moogleNew)
+                // // save old + new data to localStorage
+                // window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
+            }
         }
-        // if nothing saved at start, then save an empty array
-        if(window.localStorage.getItem('_APP_moogle') == null) {
-            window.localStorage.setItem('_APP_moogle', '[]')
-        }
-        // get old data and slap it to the new data
-            const moogleOld = JSON.parse(window.localStorage.getItem('_APP_moogle'))
-            moogleOld.push(moogleNew)
-            // save old + new data to localStorage
-            window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
     }
-}
 
 
 //

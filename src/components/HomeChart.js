@@ -691,7 +691,7 @@ if (!isAuthenticated) {
                 
         const parseDate = d3.timeParse("%m/%d")
         const data =(userNumsArr
-          .slice(0,10)
+          .slice(0,20)
           .map(item => ({
             x: parseDate(item.x),
             y: item.y,

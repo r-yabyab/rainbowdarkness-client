@@ -78,7 +78,8 @@ function Darkness() {
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
                             <div>1.3.0 (May 6, 2023)</div>
-                            <p>Changed personal graph to show datapoints for each submission. The x-axis also shows the date submitted.</p>
+                            <p>Changed personal graph to show datapoints for each submission. The x-axis also shows the date submitted. Graph loads a lot faster now.</p>
+                            <p>to add memos: Woke up, hours slept, activities, misc.</p>
                             <div>______________</div>
 
                             <div>1.2.9 (May 3, 2023)</div>
