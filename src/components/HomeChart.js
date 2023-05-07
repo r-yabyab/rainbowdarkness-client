@@ -664,6 +664,79 @@ if (!isAuthenticated) {
               // .attr('text-anchor', 'end')
               // .text('Your chart');
 
+              svg.append('g')  
+              .append('text')
+              .attr("fill", `${darkMode ? "white" : "black"}`)
+              // .attr('transform', 'rotate(-90)')
+              .attr('x', 50)
+              // .attr('text-decoration', 'underline')
+              .attr('dy', '0.71em')
+              .attr('font-size', '8px')
+              .attr('text-anchor', 'end')
+              .text('Mood Chart')
+
+  const tooltip = d3.select(svgHomeRefTEST2.current)
+  .append("text")
+  .attr("fill", `${darkMode ? "white" : "black"}`)
+
+            const circle = svg.append('circle')
+            .attr('r', 0)
+            .attr('fill', `${darkMode ? "white" : "black"}`)
+            .style('stroke', 'white')
+            .attr('opacity', 1)
+            .style('pointer-events', 'none')
+
+            const listeningRect = svg.append('rect')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('opacity', 0)
+            
+                listeningRect.on('mousemove', function(event) {
+                  const [xCoord] = d3.pointer(event, this);
+                  const bisectDate = d3.bisector(d => d.x).left;
+                
+                  // Sort the data by x values
+                  const sortedData = data.slice().sort((a, b) => a.x - b.x);
+                
+                  const x0 = x.invert(xCoord);
+                  const i = bisectDate(sortedData, x0, 1);
+                  const d0 = sortedData[i - 1];
+                  const d1 = sortedData[i];
+                  const d = x0 - d0.x > d1.x - x0 ? d1 : d0;
+                  const xPos = x(d.x);
+                  const yPos = y(d.y);
+                
+                  circle.attr('cx', xPos)
+                    .attr('cy', yPos);
+                
+                  // console.log(xPos)
+                  // console.log("test", d.x)
+
+                  circle.transition()
+                  .duration(50)
+                  .attr('r', 10);
+
+                  // d3.select(svgHomeRefTEST2.current) 
+                  tooltip
+                  // .append('text')
+                  .attr("fill", `${darkMode ? "white" : "black"}`)
+                  .style("opacity", 1)
+                  // .attr('transform', 'rotate(-90)')
+                  .attr('x', 240)
+                  // .attr('text-decoration', 'underline')
+                  .attr('dy', '0.71em')
+                  .attr('text-anchor', 'end')
+                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')}`)
+              });
+
+                listeningRect.on("mouseleave", function () {
+                  circle.transition()
+                    .duration(50)
+                    .attr("r", 0);
+              
+                  tooltip.style("opacity", 0);
+                });
+
             g.append('path')
               .datum(data)
               .attr('fill', 'none')
@@ -780,12 +853,78 @@ if (!isAuthenticated) {
               .append('text')
               .attr("fill", `${darkMode ? "white" : "black"}`)
               // .attr('transform', 'rotate(-90)')
-              .attr('x', 240)
+              .attr('x', 50)
               // .attr('text-decoration', 'underline')
               .attr('dy', '0.71em')
+              .attr('font-size', '8px')
               .attr('text-anchor', 'end')
-              .text('Your Mood Chart');
+              .text('Mood Chart')
 
+  const tooltip = d3.select(svgHomeRefTEST2.current)
+  .append("text")
+  .attr("fill", `${darkMode ? "white" : "black"}`)
+
+            const circle = svg.append('circle')
+            .attr('r', 0)
+            .attr('fill', `${darkMode ? "white" : "black"}`)
+            .style('stroke', 'white')
+            .attr('opacity', 1)
+            .style('pointer-events', 'none')
+
+            const listeningRect = svg.append('rect')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('opacity', 0)
+            
+                listeningRect.on('mousemove', function(event) {
+                  const [xCoord] = d3.pointer(event, this);
+                  const bisectDate = d3.bisector(d => d.x).left;
+                
+                  // Sort the data by x values
+                  const sortedData = data.slice().sort((a, b) => a.x - b.x);
+                
+                  const x0 = x.invert(xCoord);
+                  const i = bisectDate(sortedData, x0, 1);
+                  const d0 = sortedData[i - 1];
+                  const d1 = sortedData[i];
+                  const d = x0 - d0.x > d1.x - x0 ? d1 : d0;
+                  const xPos = x(d.x);
+                  const yPos = y(d.y);
+                
+                  circle.attr('cx', xPos)
+                    .attr('cy', yPos);
+                
+                  // console.log(xPos)
+                  // console.log("test", d.x)
+
+                  circle.transition()
+                  .duration(50)
+                  .attr('r', 10);
+
+                  // d3.select(svgHomeRefTEST2.current) 
+                  tooltip
+                  // .append('text')
+                  .attr("fill", `${darkMode ? "white" : "black"}`)
+                  .style("opacity", 1)
+                  // .attr('transform', 'rotate(-90)')
+                  .attr('x', 240)
+                  // .attr('text-decoration', 'underline')
+                  .attr('dy', '0.71em')
+                  .attr('text-anchor', 'end')
+                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')}`)
+              });
+
+                listeningRect.on("mouseleave", function () {
+                  circle.transition()
+                    .duration(50)
+                    .attr("r", 0);
+              
+                  tooltip.style("opacity", 0);
+                });
+
+
+
+              // plots the line connecting the datapoints
             svg.append('path')
               .datum(data)
               .attr('fill', 'none')
@@ -794,7 +933,9 @@ if (!isAuthenticated) {
               .attr('stroke-linecap', 'round')
               .attr('stroke-width' , 1.5)
               .attr('d', line)
+              
 
+              // each datapoint has a red dot
             svg.selectAll("myCircles")
               .data(data)
               .enter()
@@ -805,6 +946,8 @@ if (!isAuthenticated) {
                 .attr('cy', function(d) { return y(d.y) })
                 .attr('r', 3)
               }
+
+              // const svg = d3.select(svgHomeRefTEST2.current)
 
     }, [userNumsArr, isAuthenticated, darkMode])
 

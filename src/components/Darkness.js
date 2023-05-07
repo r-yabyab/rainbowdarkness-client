@@ -77,7 +77,14 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
-                            <div>1.3.0 (May 6, 2023)</div>
+                            <div>1.3.1 (May 6-7, 2023 midnight)</div>
+                            <p><span className='text-green-600'>You can now hover over your mood graph (if more than 1 submission) to display the number and date submitted.</span> Available for users and non users.</p>
+                            <p>Non user submissions now stores _id from database into the browser's storage along with mood number and date submitted.</p>
+                            <p>Registered user submissions no longer stores to browser's storage, just on MongoDB.</p>
+                            <p></p>
+                            <div>______________</div>
+
+                            <div>1.3.0 (May 5-6, 2023 midnight)</div>
                             <p>Changed personal graph to show datapoints for each submission. The x-axis also shows the date submitted. Graph loads a lot faster now.</p>
                             <p>to add memos: Woke up, hours slept, activities, misc.</p>
                             <div>______________</div>

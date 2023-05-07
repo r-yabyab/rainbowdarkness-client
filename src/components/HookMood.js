@@ -746,7 +746,7 @@ const buttonClasses = [
                         <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[388px] text-zinc-600 absolute `}>
                             {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
                         <div>|</div> */}
-                            {isAuthenticated ? 'Please wait until 5PM to submit your mood.' : <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs until next submission</div>}
+                            {isAuthenticated ? 'Next submission @ 5PM' : <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs until next submission</div>}
                         </div>
                     </div>
 
