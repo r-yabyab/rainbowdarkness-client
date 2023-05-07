@@ -86,6 +86,7 @@ function Darkness() {
 
                             <div>1.3.0 (May 5-6, 2023 midnight)</div>
                             <p>Changed personal graph to show datapoints for each submission. The x-axis also shows the date submitted. Graph loads a lot faster now.</p>
+                            <p>Personal graph loads about 2x faster now.</p>
                             <p>to add memos: Woke up, hours slept, activities, misc.</p>
                             <div>______________</div>
 
