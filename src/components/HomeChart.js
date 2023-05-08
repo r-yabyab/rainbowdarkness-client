@@ -1125,7 +1125,9 @@ function HomeChart ({darkMode}) {
               .attr('stroke-linecap', 'round')
               .attr('stroke-width' , 1.5)
               .attr('d', line)
+              .style('pointer-events', 'none')
               
+              console.log(userNumsArr)
 
               // each datapoint has a red dot
             svg.selectAll("myCircles")
@@ -1137,6 +1139,7 @@ function HomeChart ({darkMode}) {
                 .attr('cx', function(d) { return x(d.x) })
                 .attr('cy', function(d) { return y(d.y) })
                 .attr('r', 3)
+                .style('pointer-events', 'none')
               }
               setGraph()
               },[userNumsArr, isAuthenticated, darkMode])

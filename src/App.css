@@ -19,6 +19,32 @@
     background: #F1F5F4;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);width: 100vw;height: 100vh;}
 
 
+.ratingAnimationToBlackHome {
+    animation: 1.5s 0s 1 fadeToBlackHome;
+}
+
+.greenTest {
+background-color: green
+}
+
+@keyframes fadeToBlackHome{
+    0% { color: lightgreen;
+
+     }
+100% { color: lightgreen; }
+}
+
+@keyframes greenTestAnim{
+    0% { 
+    background-color: lightgreen;
+     }
+100% { 
+background-color: black; 
+}
+}
+
+
+
 /*
 .navbar {
     display: flex;

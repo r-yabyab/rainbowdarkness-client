@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
-import { actionCreators } from '../state';
+import { actionCreators } from '../../state';
 import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
 

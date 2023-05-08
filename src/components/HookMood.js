@@ -22,7 +22,7 @@ const getDatafromLS = () => {
 // const RAINBOW_DARKNESS = "http://localhost:4000"
 const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
 
-function HookMood ({ darkMode, graphRef }) {
+function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
 
     let numberList = [
         // { num: '0' },
@@ -445,7 +445,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             <button disabled={destroyer ? true : false}
                                     // for padding button width instead of setting w-[...]..... : darkMode ? 'squares md:bg-clip-text  max-md:rounded-none max-md:animate-fade max-md:bg-zinc-200  border-[2px] max-md:border-black border-slate-300 text-black rounded-lg pt-[10px] pb-[10px] pr-4 pl-4  md:mr-[8px] md:ml-[8px]' 
                                 
-                                className={booleanState ?
+                                className={`${booleanState ?
                                     // max-md:h used to prevent everything from moving up after buttons removed
                                     // ADD md:bg-clip-text TO DESTROYER FALSE TO MAKE TEXT CLIP THROUGH BG (for image gradients)
                                     `invisible 
@@ -454,12 +454,17 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     destroyer ? `hidden squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
-                                    : darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full  ratingAnimation
+                                    :
+                                    darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full  ratingAnimation
                                     w-[45px] h-[48px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
                                     :`squares  hover:bg-green-400 border-[2px] border-black text-black rounded-full ratingAnimation 
                                     w-[45px] h-[48px]  mr-[8px] ml-[8px] 
+                                    `}
+                                    ${toHookMoodClick ? 'border-green-400' : ``}
+                                    
                                     `
+                                    
                                     //"squares bg-clip-text ratingAnimation  md:mr-[8px] md:ml-[8px] btn btn-light btn-lg"
                                 }
                                 selectnums={x.num}
