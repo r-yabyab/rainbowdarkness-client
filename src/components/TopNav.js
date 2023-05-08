@@ -4,31 +4,30 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { actionCreators } from '../state';
 import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
-// import Countdown from './Countdown';
 
-export function TopNav({ pageDetect, setPageDetect, darkMode }) {
+export function TopNav({ darkMode }) {
 
-    const { user, isAuthenticated, isLoading, loginWithRedirect, logout, } = useAuth0();
+    const { isAuthenticated, isLoading, loginWithRedirect, logout, } = useAuth0();
 
     const [dropDown, setDropDown] = useState(false)
 
     const dispatch = useDispatch()
     const { setisLoadingComponent } = bindActionCreators(actionCreators, dispatch)
 
-// Auth0 shit
+// Auth0 components
     const LoginButton = () => {
 
         return <button onClick={() => loginWithRedirect()}>Log In</button>;
     };
 
-    const LogoutButton = () => {
+    // const LogoutButton = () => {
 
-        return (
-            <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-                Log Out
-            </button>
-        );
-    };
+    //     return (
+    //         <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+    //             Log Out
+    //         </button>
+    //     );
+    // };
 
     const AccountDropDown = () => {
         setDropDown(!dropDown)

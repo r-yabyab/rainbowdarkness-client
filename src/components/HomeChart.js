@@ -543,238 +543,428 @@ function HomeChart ({darkMode}) {
     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
     // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
 
-    const svgHomeRefTEST2 = useRef();
+//     const svgHomeRefTEST2 = useRef();
 
-    // const [data, setData] = useState([])
+//     // const [data, setData] = useState([])
 
-    // useEffect(() => {
-    //   if (isAuthenticated) {
-    //     const parseDate = d3.timeParse("%m/%d")
-    //     setData(userNumsArr
-    //       .slice(0,10)
-    //       .map(item => ({
-    //         x: parseDate(item.x),
-    //         y: item.y,
-    //       })))
-    //     } else {
-    //       const parseDate = d3.timeParse("%m/%d")
-    //       setData(books
-    //         // .slice(0,10)
-    //         .map(item => ({
-    //           x: parseDate(item.inputTime),
-    //           y: item.inputNumber
-    //         })))
-    //     }
-    // },[isAuthenticated])
+//     useEffect(() => {
+      
+// d3.select(svgHomeRefTEST2.current).selectAll('*').remove();
+
+// if (!isAuthenticated) {
+
+//             const parseDate = d3.timeParse("%m/%d")
+//           const data = (books
+//             // .slice(0,10)
+//             .map(item => ({
+//               x: parseDate(item.inputTime),
+//               y: item.inputNumber
+//             })))
+// // console.log('DATA DATA !#@!#$!@$!@:::::: ', JSON.stringify(data))
+//         // setting up svg
+//         const width = 400;
+//         const height = 200;
+//         const svg = d3.select(svgHomeRefTEST2.current)
+//           .attr('width', width)
+//           .attr('height', height)
+//           .style('margin-top', 0)
+//           .style('margin-left', 50)
+//           .style('overflow', 'visible')
+          
+//           // console.log("2nd useEffect Test: ", data)
+//           // .style('background', 'black')
+
+//         const margin = { top:20, right:20, bottom: 30, left: 50};
+
+//         const g = svg.append("g")
+//           // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+//           const x = d3.scaleTime()
+//             .range([0, width])
+//             .domain(d3.extent(data, function(d) { return d.x}))
+
+
+//           const y = d3.scaleLinear()
+//             .range([height, 0])
+//             // .domain(d3.extent(data, function(d) { return d.y}))
+//             .domain([0,10])
+//             // console.log(x.domain(), y.domain() + 'CONSOLE LOG !')
+
+//           const line = d3.line()
+//           .x(d => x(d.x))
+//           .y(d => y(d.y))
+//           // .curve(d3.curveCardinal);
+            
+
+//           svg.append('style').text(`
+//           .axis-x2 line,
+//           .axis-x2 path,
+//           .axis-y2 line,
+//           .axis-y2 path {
+//             stroke: ${darkMode ? "white" : "black" };
+//           }
+//         `);
+
+//             svg.append("g")
+//               // .attr('transform', 'translate(0,' + height + ")")
+//               // .call(d3.axisBottom(x))
+//               // .append('text')
+//               // .select('.domain')
+//               // .attr('fill', '#000')
+//               // .remove()
+//               .attr('class', 'axis-x2')
+//               .attr('transform', 'translate(0,' + height + ")")
+//               .call(
+//                 d3
+//                   .axisBottom(x)
+//                   .ticks(5)
+//                 )
+//               .selectAll("text")
+//                 .attr("fill", `${darkMode ? "white" : "black"}`)
+//               .selectAll("path")
+//                 .style("stroke", "white")
+
+//               svg.append("g")
+//               .attr('class', 'axis-y2')
+//               .call(
+//                 d3
+//                   .axisLeft(y)
+//                   .ticks(5)
+//                 )
+//               .selectAll('text')
+//                 .attr("fill", `${darkMode ? "white" : "black"}`)
+//               .selectAll("path")
+//                 .style('stroke', 'white')
+//                 //for putting text
+//               // .append('text')
+//               // .attr('fill' , 'white')
+//               // .attr('transform', 'rotate(-90)')
+//               // .attr('y', 6)
+//               // .attr('dy', '0.71em')
+//               // .attr('text-anchor', 'end')
+//               // .text('Your chart');
+
+//               svg.append('g')  
+//               .append('text')
+//               .attr("fill", `${darkMode ? "white" : "black"}`)
+//               // .attr('transform', 'rotate(-90)')
+//               .attr('x', 390)
+//               .attr('y', 190)
+//               // .attr('text-decoration', 'underline')
+//               .attr('dy', '0.71em')
+//               .attr('font-size', '8px')
+//               .attr('text-anchor', 'end')
+//               .text('Mood Chart @ rainbowdarkness.com')
+
+//   const tooltip = d3.select(svgHomeRefTEST2.current)
+//   .append("text")
+//   .attr("fill", `${darkMode ? "white" : "black"}`)
+
+//             const circle = svg.append('circle')
+//             .attr('r', 0)
+//             .attr('fill', `${darkMode ? "white" : "black"}`)
+//             .style('stroke', 'white')
+//             .attr('opacity', 1)
+//             .style('pointer-events', 'none')
+
+//             const listeningRect = svg.append('rect')
+//                 .attr('width', width)
+//                 .attr('height', height)
+//                 .attr('opacity', 0)
+            
+//                 listeningRect.on('mousemove', function(event) {
+//                   const [xCoord] = d3.pointer(event, this);
+//                   const bisectDate = d3.bisector(d => d.x).left;
+                
+//                   // Sort the data by x values
+//                   const sortedData = data.slice().sort((a, b) => a.x - b.x);
+                
+//                   const x0 = x.invert(xCoord);
+//                   const i = bisectDate(sortedData, x0, 1);
+//                   const d0 = sortedData[i - 1];
+//                   const d1 = sortedData[i];
+//                   const d = x0 - d0.x > d1.x - x0 ? d1 : d0;
+//                   const xPos = x(d.x);
+//                   const yPos = y(d.y);
+                
+//                   circle.attr('cx', xPos)
+//                     .attr('cy', yPos);
+                
+//                   // console.log(xPos)
+//                   // console.log("test", d.x)
+
+//                   circle.transition()
+//                   .duration(50)
+//                   .attr('r', 10);
+
+//                   // d3.select(svgHomeRefTEST2.current) 
+//                   tooltip
+//                   // .append('text')
+//                   .attr("fill", `${darkMode ? "white" : "black"}`)
+//                   .style("opacity", 1)
+//                   // .attr('transform', 'rotate(-90)')
+//                   .attr('x', 240)
+//                   // .attr('text-decoration', 'underline')
+//                   .attr('dy', '0.71em')
+//                   .attr('text-anchor', 'end')
+//                   .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')}`)
+//               });
+
+//                 listeningRect.on("mouseleave", function () {
+//                   circle.transition()
+//                     .duration(50)
+//                     .attr("r", 0);
+              
+//                   tooltip.style("opacity", 0);
+//                 });
+
+//             g.append('path')
+//               .datum(data)
+//               .attr('fill', 'none')
+//               .attr('stroke', 'steelblue')
+//               .attr('stroke-linejoin' , 'round')
+//               .attr('stroke-linecap', 'round')
+//               .attr('stroke-width' , 1.5)
+//               .attr('d', line)
+
+//             svg.selectAll("myCircles")
+//               .data(data)
+//               .enter()
+//               .append('circle')
+//                 .attr('fill', 'red')
+//                 .attr('stroke', 'none')
+//                 .attr('cx', function(d) { return x(d.x) })
+//                 .attr('cy', function(d) { return y(d.y) })
+//                 .attr('r', 3)
+              
+              
+//               //if (isAuthenticated)
+//               //if (isAuthenticated)
+//               //if (isAuthenticated)
+//               } else {
+                
+//         const parseDate = d3.timeParse("%m/%d")
+//         const data =(userNumsArr
+//           .slice(0,20)
+//           .map(item => ({
+//             x: parseDate(item.x),
+//             y: item.y,
+//           })))
+
+
+//                 const width = 400;
+//         const height = 200;
+//         const svg = d3.select(svgHomeRefTEST2.current)
+//           .attr('width', width)
+//           .attr('height', height)
+//           .style('margin-top', 0)
+//           .style('margin-left', 50)
+//           .style('overflow', 'visible')
+          
+//           // console.log("2nd useEffect Test: ", data)
+//           // .style('background', 'black')
+
+//         const margin = { top:20, right:20, bottom: 30, left: 50};
+
+//         // const g = svg.append("g")
+//           // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+//           svg.append('style').text(`
+//           .axis-x2 line,
+//           .axis-x2 path,
+//           .axis-y2 line,
+//           .axis-y2 path {
+//             stroke: ${darkMode? "white" : "black" };
+//           }
+//         `);
+
+//           const x = d3.scaleTime()
+//             .range([0, width])
+//             .domain(d3.extent(data, function(d) { return d.x}))
+
+
+//           const y = d3.scaleLinear()
+//             .range([height, 0])
+//             // .domain(d3.extent(data, function(d) { return d.y}))
+//             .domain([0,10])
+//             // console.log(x.domain(), y.domain() + 'CONSOLE LOG !')
+
+//           const line = d3.line()
+//           .x(d => x(d.x))
+//           .y(d => y(d.y))
+//           // .curve(d3.curveCardinal);
+            
+
+
+
+//             svg.append("g")
+//               // .attr('transform', 'translate(0,' + height + ")")
+//               // .call(d3.axisBottom(x))
+//               // .append('text')
+//               // .select('.domain')
+//               // .attr('fill', '#000')
+//               // .remove()
+//               .attr('class', 'axis-x2')
+//               .attr('transform', 'translate(0,' + height + ")")
+//               .call(
+//                 d3
+//                   .axisBottom(x)
+//                   .ticks(5)
+//                 )
+//               .selectAll("text")
+//                 .attr("fill", `${darkMode ? "white" : "black"}`)
+//               .selectAll("path")
+//                 .style("stroke", "white")
+              
+
+//             svg.append("g")
+//               .attr('class', 'axis-y2')
+//               .call(
+//                 d3
+//                   .axisLeft(y)
+//                   .ticks(5)
+//                 )
+//               .selectAll('text')
+//                 .attr("fill", `${darkMode ? "white" : "black"}`)
+//               .selectAll("path")
+//                 .style('stroke', 'white')
+//                 //for putting text
+              
+//             svg.append('g')  
+//               .append('text')
+//               .attr("fill", `${darkMode ? "white" : "black"}`)
+//               // .attr('transform', 'rotate(-90)')
+//               .attr('x', 390)
+//               .attr('y', 190)
+//               // .attr('text-decoration', 'underline')
+//               .attr('dy', '0.71em')
+//               .attr('font-size', '8px')
+//               .attr('text-anchor', 'end')
+//               .text('Mood Chart @ rainbowdarkness.com')
+
+//   const tooltip = d3.select(svgHomeRefTEST2.current)
+//   .append("text")
+//   .attr("fill", `${darkMode ? "white" : "black"}`)
+
+//             const circle = svg.append('circle')
+//             .attr('r', 0)
+//             .attr('fill', `${darkMode ? "white" : "black"}`)
+//             .style('stroke', 'white')
+//             .attr('opacity', 1)
+//             .style('pointer-events', 'none')
+
+//             const listeningRect = svg.append('rect')
+//                 .attr('width', width)
+//                 .attr('height', height)
+//                 .attr('opacity', 0)
+            
+//                 listeningRect.on('mousemove', function(event) {
+//                   const [xCoord] = d3.pointer(event, this);
+//                   const bisectDate = d3.bisector(d => d.x).left;
+                
+//                   // Sort the data by x values
+//                   const sortedData = data.slice().sort((a, b) => a.x - b.x);
+                
+//                   const x0 = x.invert(xCoord);
+//                   const i = bisectDate(sortedData, x0, 1);
+//                   const d0 = sortedData[i - 1];
+//                   const d1 = sortedData[i];
+//                   const d = x0 - d0.x > d1.x - x0 ? d1 : d0;
+//                   const xPos = x(d.x);
+//                   const yPos = y(d.y);
+                
+//                   circle.attr('cx', xPos)
+//                     .attr('cy', yPos);
+                
+//                   // console.log(xPos)
+//                   // console.log("test", d.x)
+
+//                   circle.transition()
+//                   .duration(50)
+//                   .attr('r', 10);
+
+//                   // d3.select(svgHomeRefTEST2.current) 
+//                   tooltip
+//                   // .append('text')
+//                   .attr("fill", `${darkMode ? "white" : "black"}`)
+//                   .style("opacity", 1)
+//                   // .attr('transform', 'rotate(-90)')
+//                   .attr('x', 240)
+//                   // .attr('text-decoration', 'underline')
+//                   .attr('dy', '0.71em')
+//                   .attr('text-anchor', 'end')
+//                   .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')}`)
+//               });
+
+//                 listeningRect.on("mouseleave", function () {
+//                   circle.transition()
+//                     .duration(50)
+//                     .attr("r", 0);
+              
+//                   tooltip.style("opacity", 0);
+//                 });
+
+
+
+//               // plots the line connecting the datapoints
+//             svg.append('path')
+//               .datum(data)
+//               .attr('fill', 'none')
+//               .attr('stroke', 'steelblue')
+//               .attr('stroke-linejoin' , 'round')
+//               .attr('stroke-linecap', 'round')
+//               .attr('stroke-width' , 1.5)
+//               .attr('d', line)
+              
+
+//               // each datapoint has a red dot
+//             svg.selectAll("myCircles")
+//               .data(data)
+//               .enter()
+//               .append('circle')
+//                 .attr('fill', 'red')
+//                 .attr('stroke', 'none')
+//                 .attr('cx', function(d) { return x(d.x) })
+//                 .attr('cy', function(d) { return y(d.y) })
+//                 .attr('r', 3)
+//               }
+
+//               // const svg = d3.select(svgHomeRefTEST2.current)
+
+//     }, [userNumsArr, isAuthenticated, darkMode])
+
+    //
+
+    const svgHomeRefTEST3 = useRef();
 
     useEffect(() => {
       
-d3.select(svgHomeRefTEST2.current).selectAll('*').remove();
+      const setGraph = async () => {
+        let data;
+      if (!isAuthenticated) {
 
-if (!isAuthenticated) {
-
-            const parseDate = d3.timeParse("%m/%d")
-          const data = (books
-            // .slice(0,10)
-            .map(item => ({
-              x: parseDate(item.inputTime),
-              y: item.inputNumber
-            })))
-// console.log('DATA DATA !#@!#$!@$!@:::::: ', JSON.stringify(data))
-        // setting up svg
-        const width = 400;
-        const height = 200;
-        const svg = d3.select(svgHomeRefTEST2.current)
-          .attr('width', width)
-          .attr('height', height)
-          .style('margin-top', 0)
-          .style('margin-left', 50)
-          .style('overflow', 'visible')
-          
-          // console.log("2nd useEffect Test: ", data)
-          // .style('background', 'black')
-
-        const margin = { top:20, right:20, bottom: 30, left: 50};
-
-        const g = svg.append("g")
-          // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-          const x = d3.scaleTime()
-            .range([0, width])
-            .domain(d3.extent(data, function(d) { return d.x}))
-
-
-          const y = d3.scaleLinear()
-            .range([height, 0])
-            // .domain(d3.extent(data, function(d) { return d.y}))
-            .domain([0,10])
-            // console.log(x.domain(), y.domain() + 'CONSOLE LOG !')
-
-          const line = d3.line()
-          .x(d => x(d.x))
-          .y(d => y(d.y))
-          // .curve(d3.curveCardinal);
-            
-
-          svg.append('style').text(`
-          .axis-x2 line,
-          .axis-x2 path,
-          .axis-y2 line,
-          .axis-y2 path {
-            stroke: ${darkMode ? "white" : "black" };
-          }
-        `);
-
-            svg.append("g")
-              // .attr('transform', 'translate(0,' + height + ")")
-              // .call(d3.axisBottom(x))
-              // .append('text')
-              // .select('.domain')
-              // .attr('fill', '#000')
-              // .remove()
-              .attr('class', 'axis-x2')
-              .attr('transform', 'translate(0,' + height + ")")
-              .call(
-                d3
-                  .axisBottom(x)
-                  .ticks(5)
-                )
-              .selectAll("text")
-                .attr("fill", `${darkMode ? "white" : "black"}`)
-              .selectAll("path")
-                .style("stroke", "white")
-
-              svg.append("g")
-              .attr('class', 'axis-y2')
-              .call(
-                d3
-                  .axisLeft(y)
-                  .ticks(5)
-                )
-              .selectAll('text')
-                .attr("fill", `${darkMode ? "white" : "black"}`)
-              .selectAll("path")
-                .style('stroke', 'white')
-                //for putting text
-              // .append('text')
-              // .attr('fill' , 'white')
-              // .attr('transform', 'rotate(-90)')
-              // .attr('y', 6)
-              // .attr('dy', '0.71em')
-              // .attr('text-anchor', 'end')
-              // .text('Your chart');
-
-              svg.append('g')  
-              .append('text')
-              .attr("fill", `${darkMode ? "white" : "black"}`)
-              // .attr('transform', 'rotate(-90)')
-              .attr('x', 390)
-              .attr('y', 190)
-              // .attr('text-decoration', 'underline')
-              .attr('dy', '0.71em')
-              .attr('font-size', '8px')
-              .attr('text-anchor', 'end')
-              .text('Mood Chart @ rainbowdarkness.com')
-
-  const tooltip = d3.select(svgHomeRefTEST2.current)
-  .append("text")
-  .attr("fill", `${darkMode ? "white" : "black"}`)
-
-            const circle = svg.append('circle')
-            .attr('r', 0)
-            .attr('fill', `${darkMode ? "white" : "black"}`)
-            .style('stroke', 'white')
-            .attr('opacity', 1)
-            .style('pointer-events', 'none')
-
-            const listeningRect = svg.append('rect')
-                .attr('width', width)
-                .attr('height', height)
-                .attr('opacity', 0)
-            
-                listeningRect.on('mousemove', function(event) {
-                  const [xCoord] = d3.pointer(event, this);
-                  const bisectDate = d3.bisector(d => d.x).left;
-                
-                  // Sort the data by x values
-                  const sortedData = data.slice().sort((a, b) => a.x - b.x);
-                
-                  const x0 = x.invert(xCoord);
-                  const i = bisectDate(sortedData, x0, 1);
-                  const d0 = sortedData[i - 1];
-                  const d1 = sortedData[i];
-                  const d = x0 - d0.x > d1.x - x0 ? d1 : d0;
-                  const xPos = x(d.x);
-                  const yPos = y(d.y);
-                
-                  circle.attr('cx', xPos)
-                    .attr('cy', yPos);
-                
-                  // console.log(xPos)
-                  // console.log("test", d.x)
-
-                  circle.transition()
-                  .duration(50)
-                  .attr('r', 10);
-
-                  // d3.select(svgHomeRefTEST2.current) 
-                  tooltip
-                  // .append('text')
-                  .attr("fill", `${darkMode ? "white" : "black"}`)
-                  .style("opacity", 1)
-                  // .attr('transform', 'rotate(-90)')
-                  .attr('x', 240)
-                  // .attr('text-decoration', 'underline')
-                  .attr('dy', '0.71em')
-                  .attr('text-anchor', 'end')
-                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')}`)
-              });
-
-                listeningRect.on("mouseleave", function () {
-                  circle.transition()
-                    .duration(50)
-                    .attr("r", 0);
-              
-                  tooltip.style("opacity", 0);
-                });
-
-            g.append('path')
-              .datum(data)
-              .attr('fill', 'none')
-              .attr('stroke', 'steelblue')
-              .attr('stroke-linejoin' , 'round')
-              .attr('stroke-linecap', 'round')
-              .attr('stroke-width' , 1.5)
-              .attr('d', line)
-
-            svg.selectAll("myCircles")
-              .data(data)
-              .enter()
-              .append('circle')
-                .attr('fill', 'red')
-                .attr('stroke', 'none')
-                .attr('cx', function(d) { return x(d.x) })
-                .attr('cy', function(d) { return y(d.y) })
-                .attr('r', 3)
-              
-              
-              //if (isAuthenticated)
-              //if (isAuthenticated)
-              //if (isAuthenticated)
-              } else {
-                
         const parseDate = d3.timeParse("%m/%d")
-        const data =(userNumsArr
-          .slice(0,20)
+        data = (books
+          // .slice(0,10)
+          .map(item => ({
+            x: parseDate(item.inputTime),
+            y: item.inputNumber
+          })))
+
+      } else {
+
+        const parseDate = d3.timeParse("%m/%d")
+        data = (userNumsArr
+          .slice(0, 20)
           .map(item => ({
             x: parseDate(item.x),
             y: item.y,
-          })))
+          })))}
 
-
+          d3.select(svgHomeRefTEST3.current).selectAll('*').remove();
                 const width = 400;
         const height = 200;
-        const svg = d3.select(svgHomeRefTEST2.current)
+        const svg = d3.select(svgHomeRefTEST3.current)
           .attr('width', width)
           .attr('height', height)
           .style('margin-top', 0)
@@ -862,7 +1052,7 @@ if (!isAuthenticated) {
               .attr('text-anchor', 'end')
               .text('Mood Chart @ rainbowdarkness.com')
 
-  const tooltip = d3.select(svgHomeRefTEST2.current)
+  const tooltip = d3.select(svgHomeRefTEST3.current)
   .append("text")
   .attr("fill", `${darkMode ? "white" : "black"}`)
 
@@ -948,11 +1138,8 @@ if (!isAuthenticated) {
                 .attr('cy', function(d) { return y(d.y) })
                 .attr('r', 3)
               }
-
-              // const svg = d3.select(svgHomeRefTEST2.current)
-
-    }, [userNumsArr, isAuthenticated, darkMode])
-
+              setGraph()
+              },[userNumsArr, isAuthenticated, darkMode])
 
     return (
         <>
@@ -986,7 +1173,8 @@ if (!isAuthenticated) {
                     </div> */}
                 {/* <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pb-4 -mt-4`}>Here are your most recent submissions:</div> */}
                 {/* <svg className="" ref={svgHomeRef} /> */}
-                <svg className='mt-4' ref={svgHomeRefTEST2} />
+                {/* <svg className='mt-4' ref={svgHomeRefTEST2} /> */}
+                <svg className='mt-4' ref={svgHomeRefTEST3} />
                 {/* <svg className=' overflow-visible' ref={svgHomeRefTEST} /> */}
                 <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pt-12`}>Please come again tomorrow to fill the graph!</div>
                 {/* <div className='text-center text-zinc-400 pt-2 m-auto hover:text-white hover:cursor-pointer'>

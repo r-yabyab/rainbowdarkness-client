@@ -9,15 +9,6 @@ import { actionCreators } from '../state';
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios';
 
-
-// redux
-
-// import * as d3 from 'd3'
-// import Gradient1 from '../photos/gradient1.png'
-// import Scuffed from '../photos/scuffed-gradient.png'
-// // import screenedGradient from '../photos/gradient-screen.png'
-// import downArrow from '../photos/red-arrow.png'
-
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
     if (moogleData) {
@@ -100,10 +91,10 @@ function HookMood ({ darkMode, graphRef }) {
         setNumberForStorage(number)
     },[number])
 
-//                                           ////////////////////////////
-//                                           ////////////////////////////
-    //                                                               ////////////////////////////
-    // need to make it a switch w/ decrement                                               ////////////////////////////
+// for mood #'s +0.5 and -0.5 incrementers
+    let btnRef = useRef();
+    let btnRef2 = useRef();
+
     const increment = () => {
         setNumber(number => number + 0.5);
         console.log(`increment, number: ${number}`);
@@ -111,17 +102,17 @@ function HookMood ({ darkMode, graphRef }) {
         if (number >= 9.5) {
             btnRef.current.setAttribute("disabled", "disabled")
         }
-        if (number >=0) {
+        if (number >= 0) {
             btnRef2.current.removeAttribute("disabled")
         }
-};
+    };
 
     const decrement = () => {
         setNumber(number => number - 0.5);
         if (number <= 0.5) {
             btnRef2.current.setAttribute("disabled", "disabled")
         }
-        if (number <=10) {
+        if (number <= 10) {
             btnRef.current.removeAttribute("disabled")
         }
     }
@@ -130,6 +121,7 @@ function HookMood ({ darkMode, graphRef }) {
 // POST to DB
     const handleSubmit = async () => {
 
+        // if anonymous, send submission to localStorage (#, date, and objId from MongoDB)
         if (!isAuthenticated) {
             const rainbow = { number }
             //fetch req to post new data
@@ -175,6 +167,7 @@ function HookMood ({ darkMode, graphRef }) {
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
         }
     } 
+    // if authenticated, store to MongoDB, skip the localStorage
     else 
     {
 
@@ -202,22 +195,6 @@ function HookMood ({ darkMode, graphRef }) {
                 // setStaticTime(Date.now())
                 setNumber('')
                 // forceUpdate()
-
-
-                // // gets data from submitbutton
-                // const moogleNew = {
-                //     inputNumber: numberForStorage,
-                //     inputTime: format(new Date(), 'MM/dd')
-                // }
-                // // if nothing saved at start, then save an empty array
-                // if (window.localStorage.getItem('_APP_moogle') == null) {
-                //     window.localStorage.setItem('_APP_moogle', '[]')
-                // }
-                // // get old data and slap it to the new data
-                // const moogleOld = JSON.parse(window.localStorage.getItem('_APP_moogle'))
-                // moogleOld.push(moogleNew)
-                // // save old + new data to localStorage
-                // window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
             }
         }
     }
@@ -290,28 +267,6 @@ function HookMood ({ darkMode, graphRef }) {
     setisLoadingComponent(false)
 }
   }, [userNums])
-
-    // const firstUserNum = () => {
-    //     const dateStringRecent = userNums && userNums[0].createdAt
-    //     const dateObj = new Date(dateStringRecent)
-    //     const timeStringRecent = Date.parse(dateObj)
-    
-    //     const localeTimeHours = dateObj.getHours()
-    //     // setLastSubmissionHour(localeTimeHours)
-    //     const localeTimeDate = dateObj.getDate()
-    //     // setLastSubmissionDate(localeTimeDate)
-    
-    
-    //     const dateNow1 = new Date()
-    //     const todayHour = dateNow1.getHours()
-    //     const todayDate = dateNow1.getDate()  
-
-    //     console.log('today:' + todayHour + todayDate)
-    //   // 24hrs = 86400000
-    //   // 23 hrs = 82800000
-    //   //the date string = 1681836958000
-    //   return timeStringRecent
-    // }
 
 //
 const [staticTime, setStaticTime] = useState(0)
@@ -461,41 +416,16 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
     },[destroyer, staticTime])
 
-//
-// LocalStorage
-//
 
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-
-
-
-    let btnRef = useRef();
-    let btnRef2 = useRef();
 
     return (
         <>
-                {/* <div className=' text-transparent text-xl bg-gradient-to-r from-purple-500 to-green-400 absolute w-full h-full bg-blend-multiply' /> */}
-                {/* <img className='absolute top-20 left-[50%] -translate-x-1/2 w-[534px]' src={Gradient1} alt='gradient' /> */}
-{/* Used for button background in Desktop */}
-{/* It clips out of element a bit, esp when magnifying browser page */}
-{/* <img className={`${booleanState ? "hidden" 
-                : destroyer ? 'hidden' 
-                : darkMode ? 'max-md:hidden'  
-                :''} max-md:hidden absolute animate-fade top-[88px] right-[50%] translate-x-1/2 mr-[1px]`} 
-                //  src={Scuffed} 
-                 src={ screenedGradient} 
-                 alt='button gradient' /> */}
+
 
 <div className='relative  '>
-{/* <div className="absolute inset-0 bg-gradient-to-r from-black to-white mix-blend-overlay " /> */}
-{/* <div className={ destroyer ? 'max-md:absolute left-[50%] font-thin text-xl max-md:-translate-x-1/2 max-md:top-14 text-white' : 'hidden'}>Please come back tomorrow!</div> */}
 
             <div 
             className='max-md:hidden'
-            // className="
-            // max-md:m-auto max-md:pl-[80px] max-md:max-w-[400px] max-md:justify-center "
-// className='max-md:grid max-md:grid-cols-3 max-md:gap-8 max-md:mt-[70px] max-md:w-[300px] max-md:m-auto'
             >
 
                     {list.filter((item, index) =>  index < 9).map((x, index) => {
@@ -503,14 +433,8 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     return (
                         
                         <div className='
-                        
                         relative text-center inline-flex md:p-0 
-                        
                         ' 
-                            // didn't work
-                        // max-md:[&>div]:c max-md:flex-wrap max-md:inline-flex max-md:flex-row max-md:text-center max-md:p-0
-
-
                                 //old, worked but boxy as hell
                             //  max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap 
                             //     max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
@@ -570,14 +494,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
                 </div>
 
-                {/* {negList.filter((item, index) => index < 9).map((x, index) => { 
-return(
-<div key={index}>
-    {x.num}
-</div>
-)
-})
-} */}
+
 <div className='flex md:hidden justify-center ratingAnimation  pt-10'>
 {list.filter((item, index) => [0,1,3,4,5,7,8].includes(index)).map((x, index) => { 
 
@@ -648,28 +565,6 @@ const buttonClasses = [
 
             </div>
 
-{/* When submitted, countdown timer */}
-            {/* {destroyer ? <>
-                <div className='
-                        absolute md:right-[30%] translate-x-1/2  text-xl pointer-events-none
-                        md:top-[40%] md:animate-fade
-                        max-md:top-[35px] max-md:left-[50%] max-md:-translate-x-1/2 max-md:w-full max-md:bg-purple-200  max-md:pt-8 max-md:pb-8 max-md:pr-10 max-md:pl-10 max-md:bg-opacity-80
-                        [&>p]:m-0
-                        '>
-                    <p className='font-extrabold md:animate-bounce'>Thank you!</p>
-                    <p>Please come again in  </p>
-                        <div className='max-md:hidden md:hidden'><span className={
-                            (
-                                // it only highlights every 2 clicks, can't figure out for every click
-                                // (reducerValue%2) > 0  &&
-                                "")}>{timeLeft}</span> milliseconds !!!
-                        </div>
-                    <p>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)}` : null} seconds </p>
-                    <p>or {timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)}` : null} Hours</p>
-                    {/* <p className=''>Click on <span className='text-yellow-400 bg-black'>Darkness</span> ^^^ for the line graph </p> */}
-                {/* </div> 
-            </> : null} */}
-
             {booleanState === true &&
                 <div className='absolute md:ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[102px]
                 max-md:top-[106px] max-md:[&>Button]:p-4 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
@@ -677,12 +572,6 @@ const buttonClasses = [
                     <Button ref={btnRef} onClick={increment} className='' variant='outline-success' size="lg">+0.5</Button>
                 </div>
             }
-
-            {/* <div className='absolute left-[50%] -translate-x-1/2 select-none
-            md:top-[113%]
-            max-md:top-[116%]'>
-                <button className={booleanState ? "block border-2 border-black max-md:hidden rounded-full pl-4 pt-2 pb-2 pr-4 text-lg font-extrabold" : "invisible"} variant='success' size='sm' disabled>{number}</button>
-            </div> */}
             
             {/* sets booleanState to false ==> initializes ALL states **resetButton */}
             {/* <div className='md:mt-[90px] max-md:mt-[150px] max-md:mr-8'> */}
