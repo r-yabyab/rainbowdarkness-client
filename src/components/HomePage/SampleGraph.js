@@ -10,10 +10,10 @@ export function SampleGraph ({ darkMode }) {
         {inputTime: '05/05', inputNumber: 5},
         {inputTime: '05/04', inputNumber: 4},
         {inputTime: '05/03', inputNumber: 2.5},
-        {inputTime: '04/30', inputNumber: 5},
+        {inputTime: '04/30', inputNumber: 5, activites: 'Netflix all day, did nothing'},
         {inputTime: '04/29', inputNumber: 5},
         {inputTime: '04/28', inputNumber: 6.5},
-        {inputTime: '04/27', inputNumber: 0, activites: 'Fell down a mineshaft again'},
+        {inputTime: '04/27', inputNumber: 0, activites: 'Fell down a mineshaft'},
         {inputTime: '04/26', inputNumber: 8, activites: 'Went hiking'},
         {inputTime: '04/25', inputNumber: 6},
         {inputTime: '04/23', inputNumber: 5},
@@ -25,7 +25,7 @@ export function SampleGraph ({ darkMode }) {
         {inputTime: '04/15', inputNumber: 2},
         {inputTime: '04/14', inputNumber: 3.5},
         {inputTime: '04/13', inputNumber: 2.5},
-        {inputTime: '04/12', inputNumber: 0, activites: 'Fell down a mineshaft'},
+        {inputTime: '04/12', inputNumber: 0, activites: 'Cat peed on my bed'},
         {inputTime: '04/10', inputNumber: 5},
 ]
 
