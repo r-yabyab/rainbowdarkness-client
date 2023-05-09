@@ -81,6 +81,7 @@ function Darkness() {
                             <p className='text-green-600'>Added Submission info box:</p>
                             <p className='ml-8 -mt-4'>Users can now add time slept, activities, or memo to their mood number.</p>
                             <p className='ml-8 -mt-4'>Registered users as of now can see this information on the chart, working on getting the info to show for non users as well</p>
+                            <p className='ml-8 -mt-4'>Need to add better error handling and confirmations.</p>
                             <div>______________</div>
 
                             <div>1.3.2 (May 7-8, 2023 midnight)</div>
