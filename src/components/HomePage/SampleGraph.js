@@ -13,19 +13,19 @@ export function SampleGraph ({ darkMode }) {
         {inputTime: '04/30', inputNumber: 5},
         {inputTime: '04/29', inputNumber: 5},
         {inputTime: '04/28', inputNumber: 6.5},
-        {inputTime: '04/27', inputNumber: 5},
-        {inputTime: '04/26', inputNumber: 8},
+        {inputTime: '04/27', inputNumber: 0, activites: 'Fell down a mineshaft again'},
+        {inputTime: '04/26', inputNumber: 8, activites: 'Went hiking'},
         {inputTime: '04/25', inputNumber: 6},
         {inputTime: '04/23', inputNumber: 5},
         {inputTime: '04/22', inputNumber: 5.5},
         {inputTime: '04/21', inputNumber: 5.5},
-        {inputTime: '04/20', inputNumber: 8.5},
-        {inputTime: '04/18', inputNumber: 4},
+        {inputTime: '04/20', inputNumber: 10, activites: 'Ate a turkey sandwich'},
+        {inputTime: '04/18', inputNumber: 2, activites: 'Didnt eat today, no money for turkey sandwich'},
         {inputTime: '04/17', inputNumber: 3},
         {inputTime: '04/15', inputNumber: 2},
         {inputTime: '04/14', inputNumber: 3.5},
         {inputTime: '04/13', inputNumber: 2.5},
-        {inputTime: '04/12', inputNumber: 0},
+        {inputTime: '04/12', inputNumber: 0, activites: 'Fell down a mineshaft'},
         {inputTime: '04/10', inputNumber: 5},
 ]
 
@@ -42,7 +42,8 @@ export function SampleGraph ({ darkMode }) {
           // .slice(0,10)
           .map(item => ({
             x: parseDate(item.inputTime),
-            y: item.inputNumber
+            y: item.inputNumber,
+            activites: item.activites
           })))
 
  
@@ -137,6 +138,7 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
             tooltipPlaceholderStatic
                 // .attr('transform', 'rotate(-90)')
                 .attr('x', 220)
+                .attr('y', -30)
                 // .attr('text-decoration', 'underline')
                 .attr('dy', '0.71em')
                 .attr('font-size', '16px')
@@ -193,10 +195,11 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
                   .style("opacity", 1)
                   // .attr('transform', 'rotate(-90)')
                   .attr('x', 240)
+                  .attr('y', -30)
                   // .attr('text-decoration', 'underline')
                   .attr('dy', '0.71em')
                   .attr('text-anchor', 'end')
-                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')}`)
+                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.activites ? `Activities: ${d.activites}` : '' }`)
 
                   tooltipPlaceholder
                   .style("opacity", 0)
@@ -216,6 +219,7 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
                     // .attr('transform', 'rotate(-90)')
                     .style('opacity', 1)
                     .attr('x', 220)
+                    .attr('y', -30)
                     // .attr('text-decoration', 'underline')
                     .attr('dy', '0.71em')
                     .attr('font-size', '16px')

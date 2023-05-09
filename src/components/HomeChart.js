@@ -69,6 +69,7 @@ function HomeChart ({darkMode}) {
                   setUserNums(json)
                   // console.log('user nums' + userNums )
                   console.log('LOGGED IN')
+                  // console.log(json)
   
                 }
               } catch (error) {
@@ -91,6 +92,9 @@ function HomeChart ({darkMode}) {
         const mappedData = userNums.map((item) => ({
           x: format(new Date(item.createdAt), 'MM/dd'),
           y: item.number,
+          sleep: item.timeSlept,
+          activities: item.activities,
+          memo: item.memo
         }));
         // console.log('mappedData', mappedData);
         setUserNumsArr(mappedData);
@@ -959,6 +963,9 @@ function HomeChart ({darkMode}) {
           .map(item => ({
             x: parseDate(item.x),
             y: item.y,
+            sleep: item.timeSlept,
+            activities: item.activities,
+            memo: item.memo
           })))}
 
           d3.select(svgHomeRefTEST3.current).selectAll('*').remove();
@@ -1103,7 +1110,7 @@ function HomeChart ({darkMode}) {
                   // .attr('text-decoration', 'underline')
                   .attr('dy', '0.71em')
                   .attr('text-anchor', 'end')
-                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')}`)
+                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.sleep ? `Sleep: ${d.sleep}hrs` : ''} ${d.activities ? `Activities: ${d.activities}` : ""} ${d.memo ? `Memo: ${d.memo}` : ''}`)
               });
 
                 listeningRect.on("mouseleave", function () {
@@ -1127,7 +1134,7 @@ function HomeChart ({darkMode}) {
               .attr('d', line)
               .style('pointer-events', 'none')
               
-              console.log(userNumsArr)
+              // console.log(userNumsArr)
 
               // each datapoint has a red dot
             svg.selectAll("myCircles")

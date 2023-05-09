@@ -77,7 +77,13 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
-                            <div>1.3.12 (May 7-8, 2023 midnight)</div>
+                            <div>1.3.3 (May 8-9, 2023 midnight)</div>
+                            <p className='text-green-600'>Added Submission info box:</p>
+                            <p className='ml-8 -mt-4'>Users can now add time slept, activities, or memo to their mood number.</p>
+                            <p className='ml-8 -mt-4'>Registered users as of now can see this information on the chart, working on getting the info to show for non users as well</p>
+                            <div>______________</div>
+
+                            <div>1.3.2 (May 7-8, 2023 midnight)</div>
                             <p>Updated frontpage's about section: Added interactive graph, cleaned up the about button toggler.</p>
                             <div>______________</div>
 

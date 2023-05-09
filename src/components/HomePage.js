@@ -110,7 +110,7 @@ export function HomePage ({ darkMode, graphRef }) {
                   dismiss
                 </div>
                 <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-square" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-up-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                     <path d="M3.544 10.705A.5.5 0 0 0 4 11h8a.5.5 0 0 0 .374-.832l-4-4.5a.5.5 0 0 0-.748 0l-4 4.5a.5.5 0 0 0-.082.537z" />
                   </svg>
@@ -127,7 +127,7 @@ export function HomePage ({ darkMode, graphRef }) {
                 Rainbow Darkness is a mental health website that helps you track your daily mood levels. This is designed to give you insight on how to approach your days / daily-stressors based on your mood fluctuations.
               </div>
             <div className='md:flex max-md:flex-col max-md:mt-16 md:justify-center md:mt-20'>
-              <div className='md:w-[300px] flex justify-center items-center max-md:mb-4'>
+              <div className='md:w-[300px] flex justify-center items-center max-md:mb-12'>
                 {/* Your mood levels will be logged to your personal graph and browser cache. */}
                 Upon submitting your number, you will be given an interactive graph to see how your mood fluctuates over time:
               </div>

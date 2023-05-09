@@ -6,6 +6,7 @@ import Loader from "./Loader";
 import * as d3 from 'd3'
 import { useAuth0 } from "@auth0/auth0-react";
 import format from "date-fns/format";
+import { PutSubmission } from "./PutSubmission";
 
 const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
@@ -156,7 +157,7 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
             const average = sum / todayRainbow.length
             const parsed = parseFloat(average).toFixed(2)
             // console.log(todayRainbow)
-            console.log ('test 1')
+            // console.log ('test 1')
             return parsed
         } 
         // else 
@@ -283,18 +284,6 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
        .attr('stroke', 'black');
    }, [lastRainbow]);
 
-
-
-
-//      // setting up the data for the svg
-//      svg.selectAll('.line')
-//        .data([dbNumber])
-//        .join('path')
-//        .attr('d', d => generateScaledLine(d))
-//        .attr('fill', 'none')
-//        .attr('stroke', 'black');
-//    }, [lastRainbow]);
-
     const scrollToGraph = () => {
         if (graphRef.current) {
             graphRef.current.scrollIntoView({ behavior: 'instant' });
@@ -320,14 +309,17 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
             {/* Absolute desktop containers */}
             <div className="relative animate-fade md:pt-[80px] pr-[100px] pl-[100px] md:mb-[900px]
-            max-w-[1000px] mr-auto ml-auto mb-[200px]
-            max-md:pt-[100px] 
-            ">
+                max-w-[1000px] mr-auto ml-auto mb-[200px]
+                max-md:pt-[100px] 
+                ">
                 <div className="max-md:hidden md:invisible">___________________________________________________________________________________</div>
                 <div className="pt-[80px]">
+                   <div className="absolute lg:w-[900px] md:w-[700px] 
+                        right-[50%] translate-x-1/2 max-md:font-normal"> <PutSubmission RAINBOW_DARKNESS={RAINBOW_DARKNESS} books={books} /></div>
+                    
                     <div className="
                         absolute lg:w-[900px] md:w-[700px] 
-                        right-[50%] translate-x-1/2
+                        right-[50%] translate-x-1/2 md:mt-[430px] max-md:mt-[430px]
                         ">
                         {/* <span className={darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Global Score</span> */}
                         {/* <Link to='/darkness' className='no-underline text-sm hover:text-blue-200 right-0  md:hidden'><div className="">(chart)</div></Link> */}
@@ -427,8 +419,8 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                     </div> */}
 
                     <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} 
-                        max-md:mt-[280px] md:pb-10 right-[50%] translate-x-1/2  md:mt-[260px] absolute md:rounded-lg 
-                        lg:w-[900px] md:w-[700px]
+                        max-md:mt-[750px] md:pb-10 right-[50%] translate-x-1/2  md:mt-[700px] absolute md:rounded-lg 
+                        lg:w-[900px] md:w-[700px] 
                         
                         `}>
                         {/* <div>Usernum Route
@@ -504,7 +496,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 </div> */}
         <div>
           <div ref={graphRef} className='  mb-10
-                    max-md:overflow-x-scroll max-md:mt-[920px] md:mt-[1260px]'>
+                    max-md:overflow-x-scroll max-md:mt-[1400px] md:mt-[1850px]'>
             <iframe title='iframe_mongoDB' className='  
                     m-auto w-[1000px] h-[740px] select-none'
               src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
