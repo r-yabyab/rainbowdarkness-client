@@ -1,3 +1,6 @@
+// fire when user posts their number,
+// deps are HookMood.js (initial fire), DataFetch.js (to refetch data when user is prompted to next page)
+
 const reducer = (state = false, action) => {
     switch (action.type) {
         // case "completed":

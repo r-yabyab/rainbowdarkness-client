@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 import { useAuth0 } from '@auth0/auth0-react';
 import format from 'date-fns/format';
+import { useSelector } from 'react-redux';
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -25,6 +26,10 @@ function HomeChart ({darkMode}) {
     const [weekRainbow, setWeekRainbow] = useState('')
     const [weekAvg, setWeekAvg] = useState('')
     // const [showTimeLeft, setShowTimeLeft] = useState(false)
+
+    // redux stuff, tied to data fetch not graph
+    const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
+
 
         useEffect(() => {
         const fetchWeekRainbow = async () => {
@@ -85,7 +90,7 @@ function HomeChart ({darkMode}) {
       } else {
         console.log('not registered')
       }
-    }, [isAuthenticated])
+    }, [isAuthenticated, editSubmissionTrigger])
   
     useEffect(() => {
       if (userNums) {

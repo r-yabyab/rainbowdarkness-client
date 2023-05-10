@@ -7,6 +7,7 @@ import * as d3 from 'd3'
 import { useAuth0 } from "@auth0/auth0-react";
 import format from "date-fns/format";
 import { PutSubmission } from "./PutSubmission";
+import { useSelector } from "react-redux";
 
 const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
@@ -30,6 +31,9 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
     const [todayRainbow, setTodayRainbow] = useState([])
     const [allUserNum, setAllUserNum] = useState([])
 
+    // redux stuff
+    const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -49,7 +53,7 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
         fetchData();
         // used to refresh on submit
     //   }, [reducerValue]);
-    }, [destroyer]);
+    }, [destroyer, editSubmissionTrigger]);
 
     useEffect(() => {
         const fetchUserNum = async () => {

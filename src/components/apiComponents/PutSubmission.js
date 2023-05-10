@@ -28,7 +28,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
     const [activitiesDbl, setActivitiesDbl] = useState(false)
     const [memoTextDbl, setMemoTextDbl] = useState(false)
     const [moodNumberDbl, setMoodNumberDbl] = useState(false)
-    // const [editSubmissionTrigger, setEditSubmissionTrigger] = useState(false)   // fires when user submits, dep for fetch
+    // const [editSubmissionTrigger, setEditSubmissionTrigger] = useState(false)   // moved to redux store
 
     useEffect(() => {
 
@@ -133,7 +133,16 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
     }
 
     const handleMoodNumberchange = (e) => {
-        setMoodNumber(e.target.value)
+        // setMoodNumber(e.target.value)
+
+        const input = e.target.value;
+        const parsedInput = parseFloat(input);
+
+        if (input === '' || (!isNaN(parsedInput) && parsedInput >= 0 && parsedInput <= 10 &&  input[0] !== '0' && input.length <= 3)) {
+            setMoodNumber(input);
+          } else {
+            console.log('error')
+          }
     }
             // Not everything needs to be added
             const handleSubmit = (e) => {
@@ -187,7 +196,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                             >
                                 <input
                                     className={`${memoError ? 'placeholder-red-400' : ''}`}
-                                    placeholder="Hours slept"
+                                    placeholder="0-10"
                                     type="number"
                                     value={moodNumber}
                                     onChange={handleMoodNumberchange}
