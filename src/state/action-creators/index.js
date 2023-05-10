@@ -44,6 +44,15 @@ export const setTimeLeft = (time) => {
     }
 }
 
+export const setEditSubmissionTrigger = (trigger) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'setEditSubmission',
+            payload: trigger
+        })
+    }
+}
+
 // export const positiveNumber = (num) => {
 //     return (dispatch) => {
 //         dispatch({
