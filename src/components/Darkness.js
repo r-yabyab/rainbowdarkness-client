@@ -83,6 +83,7 @@ function Darkness() {
                             <p className='ml-8 -mt-4'>Added error handling for number fields</p>
                             <p className='ml-8 -mt-4'>Users can now edit their mood number</p>
                             <p className='ml-8 -mt-4'>Only registered users can see their additional info on the chart.</p>
+                            <p className='ml-8 -mt-4'>Non user's charts are based off of their browser's local storage. If they edit their mood number, it won't reflect on the chart.</p>
                             <div>______________</div>
 
                             <div>1.3.3 (May 8-9, 2023 midnight)</div>
