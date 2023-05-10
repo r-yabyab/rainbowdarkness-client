@@ -176,10 +176,10 @@ export function HomePage ({ darkMode, graphRef }) {
             </button>
 
             <div className='mt-20 mb-32 text-sm'>
-                Optional<span className='invisible'>_</span>
+                {/* Optional<span className='invisible'>_</span> */}
                 <span className='text-blue-400 hover:cursor-pointer hover:underline' onClick={() => loginWithRedirect()}>
-                   registration
-                </span> to track your levels across devices.
+                   Register
+                </span> to unlock all graph features and cross-device storage.
               </div>
           </div>
         </div>
