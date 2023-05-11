@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { HomePage } from './components/HomePage';
 import { TopNav } from './components/HomePage/TopNav';
 import { Routes, Route } from 'react-router-dom'
-import Darkness from './components/Darkness';
+import Darkness from './components/AboutPage/Darkness';
 import { BottomHeader } from './components/HomePage/BottomHeader';
 // import resetArrow from './photos/resetArrow.png'
 // import GraphPic from './photos/graph-pic.png'

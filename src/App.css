@@ -44,6 +44,19 @@ background-color: black;
 }
 
 
+.slide-from-left {
+opacity: 0;
+  animation: slideFromLeft 1s ease 0.75s forwards;
+}
+
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1
+  }
+}
 
 /*
 .navbar {

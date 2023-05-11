@@ -1,7 +1,6 @@
 import React, { 
   useState, 
-  useEffect,
-  useRef
+  useEffect
   } from 'react';
 // import axios from 'axios'
 // import Button from 'react-bootstrap/Button';
@@ -12,6 +11,7 @@ import HomeChart from './HomeChart';
 // import sampleGraph from '../photos/samplehomegraph.png'
 import { LoadingComponent } from './LoadingComponent';
 import { SampleGraph } from './HomePage/SampleGraph';
+import { PublicChart } from './HomePage/PublicChart';
 // import AiComment from './AiComment';
 
 // const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
@@ -59,6 +59,21 @@ export function HomePage ({ darkMode, graphRef }) {
     }, 1000)
   }
 
+  // to move to Redux Thunk
+  const [rawNumArr, setRawNumArr] = useState([])
+
+  useEffect(() => {
+    const fetchNums = async () => {
+      const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`)
+      const json = await response.json()
+      
+      if (response.ok) {
+        setRawNumArr(json)
+      }
+    }
+    fetchNums()
+  }, [])
+
 
 
   return(
@@ -74,7 +89,7 @@ export function HomePage ({ darkMode, graphRef }) {
         relative mt-[5em] text-center select-none [&>*]:h-[40px]
         max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl 
         `}>
-          <p className={`${ toHookMoodClick ? 'ratingAnimationToBlackHome tracking-wide font-extralight' : darkMode ? 'text-zinc-200 tracking-wide font-extralight' : 'text-black  font-normal'}
+          <p className={`${ toHookMoodClick ? 'ratingAnimationToBlackHome tracking-wide font-extralight' : darkMode ? 'text-zinc-200 tracking-wide font-extralight' : 'text-black font-normal'}
             mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
             {destroyer ? null : 'How happy are you today?'}
@@ -92,7 +107,7 @@ export function HomePage ({ darkMode, graphRef }) {
             </div>
             <div>Click me for details</div>
           </div>
-          <div className={` ${destroyer ? 'hidden' : about ? 'text-center text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black'}`}>
+          <div className={` ${destroyer ? 'hidden' : about ? 'text-center slide-from-left text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black font-normal'}`}>
             <div className='md:mt-14 group relative hover:cursor-pointer flex items-center gap-2'
             onClick={AboutHandler}>
               {/* <div className='text-center border-t'> */}
@@ -124,19 +139,44 @@ export function HomePage ({ darkMode, graphRef }) {
 
             <div className='md:w-[300px] flex justify-center items-center'>
               { }
-                Rainbow Darkness is a mental health website that helps you track your daily mood levels. This is designed to give you insight on how to approach your days / daily-stressors based on your mood fluctuations.
+              Rainbow Darkness is a mental health website that helps you track your daily mood levels. This is designed to give you insight on how to approach your days / daily-stressors based on your mood fluctuations.
+            </div>
+
+            <div className='mt-20 max-md:mt-32 '>
+              {/* <div className='mb-4'>Join a growing community! Currently, we have <span className='text-red-400'>{rawNumArr.length}</span> submissions.</div> */}
+              <div className='mb-4 font-semibold'>Join a growing community of <span className='text-green-400'>{rawNumArr.length}</span> daily moods!</div>
+              <div className='flex flex-col absolute ml-16 text-sm'>
+                <div className='flex justify-center items-center gap-2'>
+                  <div className='w-[12px] h-[2px] bg-red-700'></div>
+                  <div>Avg Mood</div>
+                </div>
+                <div className='flex justify-center items-center gap-2'>
+                  <div className={`w-[12px] h-[12px] ${darkMode ? "bg-[#1f1f1f]" : "bg-[#e0e0e0]"} `}></div>
+                  <div># of Moods</div>
+                </div>
               </div>
-            <div className='md:flex max-md:flex-col max-md:mt-16 md:justify-center md:mt-20'>
+              <div className=''><PublicChart darkMode={darkMode} /></div>
+            </div>
+
+            <div className='md:flex max-md:flex-col max-md:mt-32 md:justify-center md:mt-36'>
               <div className='md:w-[300px] flex justify-center items-center max-md:mb-12'>
                 {/* Your mood levels will be logged to your personal graph and browser cache. */}
-                Upon submitting your number, you will be given an interactive graph to see how your mood fluctuates over time:
+                <div className='flex flex-col gap-2'>
+                  <div className=' font-bold underline'>How it works</div>
+                <div>
+                  Upon submitting your number, you will be given an interactive graph to see how your mood fluctuates over time:
+                  </div>
+                  </div>
               </div>
               <span className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2'>
                 <SampleGraph darkMode={darkMode} />
-                </span>
+              </span>
               {/* <img className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2' draggable={false} src={sampleGraph} alt='sample graph' /> */}
             </div>
-            <div className='mt-24'>Use the following scale to record your answer:</div>
+
+  
+
+            <div className='mt-32'>Use the following scale to record your answer:</div>
             <div>0 = Not At All Happy | 5 = Moderately Happy | 10 = Extremely Happy</div>
 
             {/* <div className='mt-16 border-t'>Having trouble choosing a number?</div>
@@ -175,7 +215,7 @@ export function HomePage ({ darkMode, graphRef }) {
                 Get Started!
             </button>
 
-            <div className='mt-20 mb-32 text-sm'>
+            <div className={`${ darkMode ? 'text-zinc-500' : 'text-zinc-400'} mt-20 mb-32 text-sm`}>
                 {/* Optional<span className='invisible'>_</span> */}
                 <span className='text-blue-400 hover:cursor-pointer hover:underline' onClick={() => loginWithRedirect()}>
                    Register
@@ -194,6 +234,7 @@ export function HomePage ({ darkMode, graphRef }) {
       
       <div className={isLoadingComponent ? 'hidden' :'absolute left-[50%] -translate-x-1/2 top-[200px]'}>{ destroyer ? <HomeChart darkMode={darkMode} /> : null}</div>
       </div>
+
       
       {/* <div className={about ? 'hidden' : isAuthenticated ? 'hidden' : isLoadingComponent ? 'hidden' : 'mt-4 absolute left-[50%] select-none -translate-x-1/2 text-zinc-500 mb-20'}><span className='text-blue-400 hover:cursor-pointer hover:underline' onClick={() => loginWithRedirect()}>Register</span> to track your mood across devices. It's currently free!</div> */}
       

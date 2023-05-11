@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import "../App.css"
+import "../../App.css"
 
-import samplegraph from '../photos/samplegraph.png'
-import prototype from '../photos/prototype.png'
-import mdd from '../photos/mdd.png'
-import sampleGraph1 from '../photos/samplehomegraph.png'
+import samplegraph from '../../photos/samplegraph.png'
+import prototype from '../../photos/prototype.png'
+import mdd from '../../photos/mdd.png'
+import sampleGraph1 from '../../photos/samplehomegraph.png'
 
 function Darkness() {
 
@@ -76,6 +76,10 @@ function Darkness() {
                     <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-zinc-200'>
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
+
+                            <div>1.3.5 (May 10-11, 2023 midnight)</div>
+                            <p><span className='text-green-600'>Added public chart to homepage.</span> It's basically the MongoDB Chart but I ported it to D3.js with the total count as bars, and it loads almost instantly compared to MongoDB Chart's slow load time (couple minutes initial load) with a refresh rate of 30 minutes.</p>
+                            <div>______________</div>
 
                             <div>1.3.4 (May 9, 2023)</div>
                             <p>Updated Submission Info:</p>
