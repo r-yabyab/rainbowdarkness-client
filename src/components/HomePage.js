@@ -146,13 +146,13 @@ export function HomePage ({ darkMode, graphRef }) {
               {/* <div className='mb-4'>Join a growing community! Currently, we have <span className='text-red-400'>{rawNumArr.length}</span> submissions.</div> */}
               <div className='mb-4 font-semibold'>Join a growing community of <span className='text-green-400'>{rawNumArr.length}</span> daily moods!</div>
               <div className='flex flex-col absolute ml-16 text-sm'>
-                <div className='flex justify-center items-center gap-2'>
+                <div className='flex float-left items-center gap-2'>
                   <div className='w-[12px] h-[2px] bg-red-700'></div>
                   <div>Avg Mood</div>
                 </div>
-                <div className='flex justify-center items-center gap-2'>
+                <div className='flex float-left items-center gap-2'>
                   <div className={`w-[12px] h-[12px] ${darkMode ? "bg-[#1f1f1f]" : "bg-[#e0e0e0]"} `}></div>
-                  <div># of Moods</div>
+                  <div>Users</div>
                 </div>
               </div>
               <div className=''><PublicChart darkMode={darkMode} /></div>

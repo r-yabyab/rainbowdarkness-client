@@ -17,7 +17,7 @@ export function TopNav({ darkMode }) {
 // Auth0 components
     const LoginButton = () => {
 
-        return <button onClick={() => loginWithRedirect()}>Log In</button>;
+        return <button onClick={() => loginWithRedirect()}>LOGIN</button>;
     };
 
     // const LogoutButton = () => {
@@ -39,7 +39,7 @@ export function TopNav({ darkMode }) {
             {/* max-md:border-y-2 max-md:-mt-2 max-md:border-[#1D4ED8] max-md:h-[40px] max-md:bg-[#1D4ED8] */}
             {/* <div className={`${darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 border-b-2 border-neutral-600' : ` */}
             <div className={`${darkMode ? 'bg-black' : `
-             bg-zinc-800`} relative pt-2 pb-2 flex overflow-hidden md:justify-center max-md:pl-4 select-none`}
+             bg-zinc-800`} relative pt-3 pb-3 flex overflow-hidden md:justify-center max-md:pl-4 select-none`}
                 draggable="false">
 
 
@@ -59,7 +59,7 @@ export function TopNav({ darkMode }) {
             <Link onClick={e => setisLoadingComponent(true)} to='/darkness' className='no-underline'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor"
                     // onClick={helpHandler} ref={helpRef}
-                    className="absolute top-0 right-0 text-gray-400  pt-[8px] mr-2 
+                    className="absolute right-0 text-gray-400  top-[16px] mr-2 
                 hover:cursor-pointer hover:text-white
                 "
                     viewBox="0 0 16 16">
@@ -80,7 +80,7 @@ export function TopNav({ darkMode }) {
                     </svg> </div>}
             </div> */}
 
-            <div className='absolute flex select-none top-2 right-0 mr-24 text-white  '>
+            <div className='absolute flex select-none top-[18px] right-0 mr-24 text-white  '>
                 <div>
                     {
                         isLoading ? <><div className="tracking-tighter text-zinc-400 animate-pulse">Loading...</div></>
@@ -119,7 +119,7 @@ export function TopNav({ darkMode }) {
                                         </div>
                                     </div>
                                 </> :
-                                <span className="hover:cursor-pointer hover:text-white text-zinc-300">{LoginButton()}</span>
+                                <span className="hover:cursor-pointer border-2 border-blue-900  rounded-md p-2 text-sm hover:text-zinc-200 font-semibold text-zinc-300">{LoginButton()}</span>
                     }
                     {/* <div className='text-white'><Countdown /></div> */}
                 </div>
