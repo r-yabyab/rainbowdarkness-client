@@ -221,12 +221,13 @@ export function HomePage ({ darkMode, graphRef }) {
                    Register
                 </span> to unlock all graph features and cross-device storage.
               </div>
+              <div className='absolute text-sm text-zinc-400 left-0'>© 2023 Rainbow Darkness</div>
           </div>
         </div>
 
-        <div className='fixed -bottom-4 text-sm text-zinc-400 flex flex-col font-thin'>
+        {/* <div className='fixed -bottom-4 text-sm text-zinc-400 flex flex-col font-thin'>
           <div>© 2023 Rainbow Darkness</div>
-        </div>
+        </div> */}
 
       </div>
       {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}

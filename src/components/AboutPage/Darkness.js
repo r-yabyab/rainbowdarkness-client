@@ -80,6 +80,7 @@ function Darkness() {
                             <div>1.3.6 (May 12, 2023 midnight)</div>
                             <p>Added a border to the Login button</p>
                             <p>Widened top navbar padding</p>
+                            <p>Fixed the copyright position to be at the bottom of the page instead of a fixed element.</p>
                             <div>______________</div>
 
                             <div>1.3.5 (May 10-11, 2023 midnight)</div>

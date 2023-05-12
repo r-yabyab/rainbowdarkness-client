@@ -506,6 +506,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
               src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
             </iframe>
           </div>
+          <div className="absolute text-sm text-zinc-400 left-0">© 2023 Rainbow Darkness</div>
 
 
         </div>
