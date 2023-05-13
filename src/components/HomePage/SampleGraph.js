@@ -89,7 +89,7 @@ export function SampleGraph ({ darkMode }) {
           const line = d3.line()
           .x(d => x(d.x))
           .y(d => y(d.y))
-          // .curve(d3.curveCardinal);
+          .curve(d3.curveMonotoneX);
             
 
 
@@ -237,7 +237,7 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
             svg.append('path')
               .datum(data)
               .attr('fill', 'none')
-              .attr('stroke', 'steelblue')
+              .attr('stroke', 'red')
               .attr('stroke-linejoin' , 'round')
               .attr('stroke-linecap', 'round')
               .attr('stroke-width' , 1.5)
@@ -250,7 +250,7 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
               .data(data)
               .enter()
               .append('circle')
-                .attr('fill', 'red')
+                .attr('fill', 'steelblue')
                 .attr('stroke', 'none')
                 .attr('cx', function(d) { return x(d.x) })
                 .attr('cy', function(d) { return y(d.y) })

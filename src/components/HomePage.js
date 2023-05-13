@@ -91,7 +91,7 @@ export function HomePage ({ darkMode, graphRef }) {
         relative mt-[5em] text-center select-none [&>*]:h-[40px]
         max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl 
         `}>
-          <p className={`${ toHookMoodClick ? 'ratingAnimationToBlackHome tracking-wide font-extralight' : darkMode ? 'text-zinc-200 tracking-wide font-extralight' : 'text-black font-normal'}
+          <p className={`${ toHookMoodClick ? 'ratingAnimationToBlackHome tracking-wide font-extralight' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-black font-normal'}
             mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
             {destroyer ? null : 'How happy are you today?'}
@@ -232,7 +232,7 @@ export function HomePage ({ darkMode, graphRef }) {
 
               <button
                 onClick={scrollToHookMood}
-                className='mt-20  bg-blue-400 rounded-lg p-2 md:hover:bg-blue-500'>
+                className='mt-20 shadow-md font-semibold text-black bg-yellow-400 rounded-lg p-2 md:hover:bg-yellow-500'>
                 Get Started!
             </button>
 

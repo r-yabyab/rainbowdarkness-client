@@ -43,7 +43,7 @@ export function TopNav({ darkMode }) {
                 draggable="false">
 
 
-                <div className={`${darkMode ? '[&>*]:text-yellow-200 group' : 'group [&>*]:text-yellow-200'} flex space-x-2 font-semibold text-xl`}>
+                <div className={`${darkMode ? '[&>*]:text-zinc-200 group' : 'group [&>*]:text-white'} flex space-x-2 font-semibold text-xl`}>
                     <Link to='/' className='no-underline '><div
                         // onClick={pageFalse}
                         className='group-hover:text-white'>Rainbow</div></Link>
@@ -119,7 +119,9 @@ export function TopNav({ darkMode }) {
                                         </div>
                                     </div>
                                 </> :
-                                <span className="hover:cursor-pointer border-2 border-blue-900  rounded-md p-2 text-sm hover:text-zinc-200 font-semibold text-zinc-300">{LoginButton()}</span>
+                                <span
+                                onClick={() => loginWithRedirect()}
+                                className="hover:cursor-pointer border-2 border-blue-900  rounded-md p-2 text-sm hover:text-zinc-200 font-semibold text-zinc-300">LOGIN</span>
                     }
                     {/* <div className='text-white'><Countdown /></div> */}
                 </div>
