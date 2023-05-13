@@ -235,11 +235,14 @@ export function HomePage ({ darkMode, graphRef }) {
 
               <button
                 onClick={scrollToHookMood}
-                className='mt-20 shadow-md z-0 overflow-hidden font-semibold relative text-black bg-blue-400 rounded-lg p-2 md:hover:bg-yellow-500'>
+                className='mt-20 shadow-md group z-0 overflow-hidden font-semibold relative text-black bg-blue-400 rounded-lg p-2 md:hover:bg-yellow-500'>
                 <div className='pr-4 pl-4 pt-2 pb-2'>Get Started!</div>
-            <img  className=' pointer-events-none opacity-80  absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
-            style={{ zIndex: -1 }}
+            <img  className=' -z-10 pointer-events-none opacity-80  absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
+            // style={{ zIndex: -1 }}
             src={sharkSmall} alt="small shark" />
+            {/* <img  className=' pointer-events-none opacity-80 absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
+            style={{ zIndex: -1 }}
+            src={sharkPNG} alt="small shark" /> */}
             </button>
 
             <div className={`${ darkMode ? 'text-zinc-500' : 'text-zinc-400'} mt-20 mb-32 text-sm`}>
