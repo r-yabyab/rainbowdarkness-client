@@ -455,13 +455,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
                                     :
-                                    darkMode ? `squares hover:bg-green-400 border-[2px]  border-slate-300 text-white  rounded-full  ratingAnimation
+                                    darkMode ? `squares hover:bg-green-400  bg-zinc-100  text-zinc-900  rounded-full  ratingAnimation
                                     w-[45px] h-[48px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
-                                    :`squares  hover:bg-green-400 border-[2px] border-black text-black rounded-full ratingAnimation 
+                                    :`squares  hover:bg-green-400   text-zinc-100 bg-zinc-900 rounded-full ratingAnimationLight
                                     w-[45px] h-[48px]  mr-[8px] ml-[8px] 
                                     `}
-                                    ${toHookMoodClick ? 'border-green-400' : ``}
+                                    ${toHookMoodClick ? 'greenTest' : ``}
                                     
                                     `
                                     

@@ -78,8 +78,10 @@ function Darkness() {
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
 
-                            <div>1.3.7 (May 12, 2023 midnight)</div>
+                            <div>1.3.7 (May 12, 2023)</div>
                             <p>Replaced MongoDB Chart with a D3.js chart (same appearance with dark mode, need to add click functionality)</p>
+                            <p>Updated topnav colors</p>
+                            <p>Updated mood number buttons and ease-in animation.</p>
                             <div>______________</div>
 
                             <div>1.3.6 (May 12, 2023 midnight)</div>

@@ -123,6 +123,10 @@ opacity:100%;
     animation: 1s 0s 1 fadeInCenter;
 }
 
+.ratingAnimationLight {
+    animation: 1s 0s 1 fadeInCenterLight;
+}
+
 .ratingAnimation2 {
     animation: 0.5s 0s 1 fadeFromYellow2;
 }
@@ -159,12 +163,35 @@ opacity:100%;
     0% {
         opacity: 30%;
         transform: translateY(-40%);
-        color:blue;
+        color:dodgerblue;
+        background-color:lightgrey;
+    }
+
+    30% {
+    color:violet;
+    }
+
+
+    50% {
+    color:maroon;
+    
+    }
+
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes fadeInCenterLight {
+    0% {
+        opacity: 30%;
+        transform: translateY(-40%);
+        color:dodgerblue;
     }
 
     100% {
         opacity: 100%;
-
     }
 }
 
