@@ -12,8 +12,10 @@ import HomeChart from './HomeChart';
 import { LoadingComponent } from './LoadingComponent';
 import { SampleGraph } from './HomePage/SampleGraph';
 import { PublicChart } from './HomePage/PublicChart';
-import { MongoChart } from './apiComponents/MongoChart';
-import { MongoRaw } from './HomePage/MongoRaw';
+import sharkPNG from '../photos/shark.png'
+import sharkSmall from '../photos/sharksmall.webp'
+// import { MongoChart } from './apiComponents/MongoChart';
+// import { MongoRaw } from './HomePage/MongoRaw';
 // import AiComment from './AiComment';
 
 // const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
@@ -89,14 +91,15 @@ export function HomePage ({ darkMode, graphRef }) {
         <link rel="shortcut icon" href="/a.png" />
         <div draggable="false" className={isLoadingComponent ? `hidden` : `
         relative mt-[5em] text-center select-none [&>*]:h-[40px]
-        max-md:mt-4 max-md:font-bold max-md:[&>p]:text-2xl 
+        max-md:mt-4 max-md:font-bold 
         `}>
-          <p className={`${ toHookMoodClick ? 'ratingAnimationToBlackHome tracking-wide font-extralight' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-black font-normal'}
+          <div className={`${ toHookMoodClick && darkMode ? 'ratingAnimationToBlackHomeDarkMode tracking-wide font-extralight' : toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeLightMode' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-black font-normal'}
             mb-[60px] text-2xl
             max-md:mt-20 max-md:mb-[10px]`}>
             {destroyer ? null : 'How happy are you today?'}
             {/* {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>} */}
-          </p>
+          <img className='absolute opacity-10 top-0 left-[50%] pointer-events-none' src={sharkPNG} alt='shark' />
+          </div>
 
           <HookMood darkMode={darkMode} graphRef={graphRef} toHookMoodClick={toHookMoodClick} />
 
@@ -110,7 +113,7 @@ export function HomePage ({ darkMode, graphRef }) {
             <div>Click me for details</div>
           </div>
           <div className={` ${destroyer ? 'hidden' : about ? 'text-center slide-from-left text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black font-normal'}`}>
-            <div className='md:mt-14 group relative hover:cursor-pointer flex items-center gap-2'
+            <div className='md:mt-14 group relative hover:cursor-pointer flex justify-center items-center gap-2'
             onClick={AboutHandler}>
               {/* <div className='text-center border-t'> */}
 
@@ -118,7 +121,7 @@ export function HomePage ({ darkMode, graphRef }) {
                 // className='absolute md:ml-[300px] max-md:hidden text-sm text-blue-400 hover:cursor-pointer hover:underline' 
                 > */}
               <div className=' group-hover:text-yellow-200 z-20 max-md:text-blue-400 -mt-8'>
-                <span className='md:hidden'>____________________________________</span>
+                <span className='md:hidden '>_________________________</span>
                 <span className='max-md:hidden'>_________________________________________________________________________</span>
               </div>
 
@@ -232,8 +235,11 @@ export function HomePage ({ darkMode, graphRef }) {
 
               <button
                 onClick={scrollToHookMood}
-                className='mt-20 shadow-md font-semibold text-black bg-yellow-400 rounded-lg p-2 md:hover:bg-yellow-500'>
-                Get Started!
+                className='mt-20 shadow-md z-0 overflow-hidden font-semibold relative text-black bg-blue-400 rounded-lg p-2 md:hover:bg-yellow-500'>
+                <div className='pr-4 pl-4 pt-2 pb-2'>Get Started!</div>
+            <img  className=' pointer-events-none opacity-80  absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
+            style={{ zIndex: -1 }}
+            src={sharkSmall} alt="small shark" />
             </button>
 
             <div className={`${ darkMode ? 'text-zinc-500' : 'text-zinc-400'} mt-20 mb-32 text-sm`}>

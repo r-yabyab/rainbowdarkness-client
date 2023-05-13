@@ -432,9 +432,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     // displays row of numbers from array
                     return (
                         
-                        <div className='
-                        relative text-center inline-flex md:p-0 
-                        ' 
+                        <div className={toHookMoodClick ? 'greenTest relative text-center inline-flex md:p-0' :
+                        'relative text-center inline-flex md:p-0 '
+                         }
                                 //old, worked but boxy as hell
                             //  max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap 
                             //     max-md:[&>button]:pt-8 max-md:[&>button]:pb-8 max-md:[&>button]:pl-10 max-md:[&>button]:pr-10
@@ -461,7 +461,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     :`squares  hover:bg-green-400   text-zinc-100 bg-zinc-900 rounded-full ratingAnimationLight
                                     w-[45px] h-[48px]  mr-[8px] ml-[8px] 
                                     `}
-                                    ${toHookMoodClick ? 'greenTest' : ``}
+                                    ${toHookMoodClick ? 'ratingAnimationToBlackHomeDarkMode' : ``}
                                     
                                     `
                                     
@@ -500,7 +500,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </div>
 
 
-<div className='flex md:hidden justify-center ratingAnimation  pt-10'>
+<div className='flex md:hidden justify-center ratingAnimationSmall  pt-10'>
 {list.filter((item, index) => [0,1,3,4,5,7,8].includes(index)).map((x, index) => { 
 
 const buttonClasses = [

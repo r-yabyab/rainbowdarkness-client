@@ -19,28 +19,62 @@
     background: #F1F5F4;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);width: 100vw;height: 100vh;}
 
 
-.ratingAnimationToBlackHome {
-    animation: 1.5s 0s 1 fadeToBlackHome;
+.ratingAnimationSmall {
+    animation: 0.75s  1 fadeToBlackHomeSmall;
+}
+
+.ratingAnimationToBlackHomeDarkMode {
+    animation: 1.5s 0s 1 fadeToBlackHomeDarkMode;
+}
+
+.ratingAnimationToBlackHomeLightMode {
+    animation: 1.5s 0s 1 fadeToBlackHomeLightMode;
 }
 
 .greenTest {
-background-color: green
+    animation: 0.8s ease 1 greenTestAnim;
+
 }
 
-@keyframes fadeToBlackHome{
-    0% { color: lightgreen;
-
-     }
-100% { color: lightgreen; }
-}
-
-@keyframes greenTestAnim{
+@keyframes fadeToBlackHomeSmall {
     0% { 
-    background-color: lightgreen;
+        transform: translateY(-20%);
      }
-100% { 
-background-color: black; 
+
+    100% { 
+    transform:translateY(0)
+    }
 }
+
+@keyframes fadeToBlackHomeDarkMode {
+    0% { 
+    color: lightgreen;
+     }
+
+    100% { 
+    color: white; 
+    }
+}
+
+@keyframes fadeToBlackHomeLightMode {
+    0% { 
+    color: green;
+     }
+
+
+    100% { 
+    color: black; 
+    }
+}
+
+@keyframes greenTestAnim {
+    0% { 
+    filter: blur(4px);
+     }
+    100% { 
+    background-color: none; 
+    filter: blur(0px)
+    }
 }
 
 
@@ -165,6 +199,7 @@ opacity:100%;
         transform: translateY(-40%);
         color:dodgerblue;
         background-color:lightgrey;
+        
     }
 
     30% {
