@@ -70,7 +70,7 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
               console.error(error)
             }
           } else {
-            console.log('not logged in')
+            // console.log('not logged in')
           }
         }
       

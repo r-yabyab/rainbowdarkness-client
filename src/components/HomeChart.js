@@ -73,7 +73,7 @@ function HomeChart ({darkMode}) {
                 if (response.ok) {
                   setUserNums(json)
                   // console.log('user nums' + userNums )
-                  console.log('LOGGED IN')
+                  // console.log('LOGGED IN')
                   // console.log(json)
   
                 }
@@ -81,14 +81,14 @@ function HomeChart ({darkMode}) {
                 console.error(error)
               }
             } else {
-              console.log('not logged in')
+              // console.log('not logged in')
             }
           }
         
           fetchUserNums()
   
       } else {
-        console.log('not registered')
+        // console.log('not registered')
       }
     }, [isAuthenticated, editSubmissionTrigger])
   

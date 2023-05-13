@@ -75,7 +75,7 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
         setBooleanState(true)
         // turns {num:} into Int
         setNumber(number = parseInt(x))
-        console.log(`selectHandler, number: ${number}`);
+        // console.log(`selectHandler, number: ${number}`);
     }
 
     // initializes for states for refresh UI
@@ -84,7 +84,7 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
         setBooleanState(false);
         setNumber('')
         // forceUpdate()
-        console.log(reducerValue)
+        // console.log(reducerValue)
     }
 
     useEffect(() => {
@@ -97,7 +97,7 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
 
     const increment = () => {
         setNumber(number => number + 0.5);
-        console.log(`increment, number: ${number}`);
+        // console.log(`increment, number: ${number}`);
         // only can be clicked once
         if (number >= 9.5) {
             btnRef.current.setAttribute("disabled", "disabled")
@@ -143,7 +143,7 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
             }
             if (response.ok) {
                 const objId = json._id;
-                console.log('Object ID:', objId);
+                // console.log('Object ID:', objId);
                 setError(null)
                 updateList(numberList);
                 setBooleanState(false);
@@ -233,14 +233,14 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
               console.error(error)
             }
           } else {
-            console.log('not logged in')
+            // console.log('not logged in')
           }
         }
       
         fetchUserNums()
 
     } else {
-      console.log('not registered')
+    //   console.log('not registered')
     }
   }, [isAuthenticated])
 
@@ -297,7 +297,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         // // 10000 == 10secs
         // for printing countdown
         const countdown = 86400000 - timePassed
-        console.log(timePassed)
+        // console.log(timePassed)
         setTimeLeft(countdown)
 
         // x => x -1000 for countdown every 1 second
@@ -381,7 +381,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
           },
         })
           setAiText(response.data.content)
-          console.log(response.data.content)
+        //   console.log(response.data.content)
         //   console.log(todayNumberForAi + "today")
         //   console.log(yesterdayNumberForAi + "yesterday")
         } catch (error) {

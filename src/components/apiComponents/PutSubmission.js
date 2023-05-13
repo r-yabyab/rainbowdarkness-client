@@ -36,7 +36,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
         if (isAuthenticated) {
 
             const yourSub = user && user.sub
-            console.log(yourSub)
+            // console.log(yourSub)
             const fetchRecent = async () => {
                 const data = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`)
                 const json = await data.json()
