@@ -12,6 +12,8 @@ import HomeChart from './HomeChart';
 import { LoadingComponent } from './LoadingComponent';
 import { SampleGraph } from './HomePage/SampleGraph';
 import { PublicChart } from './HomePage/PublicChart';
+import { MongoChart } from './apiComponents/MongoChart';
+import { MongoRaw } from './HomePage/MongoRaw';
 // import AiComment from './AiComment';
 
 // const RAINBOW_DARKNESS = "https://rainbowdarkness-server.vercel.app"
@@ -155,8 +157,27 @@ export function HomePage ({ darkMode, graphRef }) {
                   <div>Users</div>
                 </div>
               </div>
+
+
+
               <div className=''><PublicChart darkMode={darkMode} /></div>
+              {/* <div className='mt-[400px] mb-20'>
+                <MongoRaw />
+              </div> */}
+              {/* <div className='mt-[400px] mb-20 group'>
+                <div className='absolute ml-10 group-hover:text-zinc-900 hover:cursor-text tracking-tight text-zinc-100 text-sm mt-[478px]'>O Next refresh in an hour</div>
+                <MongoChart darkMode={darkMode} />
+              </div> */}
+              {/* <div>
+              <iframe title='iframe_mongoDB' className='  
+                    m-auto w-[1000px] h-[740px] select-none'
+              src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
+            </iframe>
+              </div> */}
             </div>
+
+
+
 
             <div className='md:flex max-md:flex-col max-md:mt-32 md:justify-center md:mt-36'>
               <div className='md:w-[300px] flex justify-center items-center max-md:mb-12'>

@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import format from "date-fns/format";
 import { PutSubmission } from "./PutSubmission";
 import { useSelector } from "react-redux";
+import { MongoChart } from "./MongoChart";
 
 const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
@@ -499,13 +500,19 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
     <svg ref={svgRef} />
 </div> */}
         <div>
-          <div ref={graphRef} className='  mb-10
-                    max-md:overflow-x-scroll max-md:mt-[1400px] md:mt-[1850px]'>
-            <iframe title='iframe_mongoDB' className='  
+          <div ref={graphRef} className='  mb-32
+                     max-md:mt-[1400px] md:mt-[1750px]'>
+            {/* <iframe title='iframe_mongoDB' className='  
                     m-auto w-[1000px] h-[740px] select-none'
               src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
-            </iframe>
+            </iframe> */}
+            <div className='m-auto pt-20 flex justify-center select-none'>
+                <MongoChart darkMode={darkMode} />
+                </div>
           </div>
+
+
+
           <div className="absolute text-sm text-zinc-400 left-0">© 2023 Rainbow Darkness</div>
 
 
