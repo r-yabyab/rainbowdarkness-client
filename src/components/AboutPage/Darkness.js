@@ -78,6 +78,10 @@ function Darkness() {
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
 
+                            <div>1.3.8 (May 13, 2023)</div>
+                            <p>Fixed problem where non-registered user submissions wouldn't pass info to local storage.</p>
+                            <div>______________</div>
+
                             <div>1.3.7 (May 12-13, 2023 noon-midnight)</div>
                             <p>Replaced MongoDB Chart with a D3.js chart (same appearance with dark mode, need to add click functionality)</p>
                             <p>Updated topnav colors</p>
