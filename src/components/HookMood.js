@@ -119,10 +119,120 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
 
 //
 // POST to DB
+    // const handleSubmit = async () => {
+
+    //     // if anonymous, send submission to localStorage (#, date, and objId from MongoDB)
+    //     if (!isAuthenticated) {
+    //         const rainbow = { number }
+    //         //fetch req to post new data
+    //         // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
+
+    //         const url = `${RAINBOW_DARKNESS}/api/rainbows/postnum`
+    //         const headers = { 'Content-Type': 'application/json' }
+
+    //         const response = await fetch(url, {
+    //             method: 'POST',
+    //             body: JSON.stringify(rainbow),                          // have to send number as json, not object
+    //             headers
+    //         })
+
+    //         const json = await response.json()
+
+    //         if (!response.ok) {
+    //             setError(json.error)
+    //         }
+    //         if (response.ok) {
+    //             const objId = json._id;
+    //             // console.log('Object ID:', objId);
+    //             setError(null)
+    //             updateList(numberList);
+    //             setBooleanState(false);
+    //             setDestroyer(true);
+    //             setStaticTime(Date.now())
+    //             setNumber('')
+
+    //             const moogleNew = {
+    //                 inputNumber: numberForStorage,
+    //                 inputTime: format(new Date(), 'MM/dd'),
+    //                 objId: objId
+    //             }
+    //             // if nothing saved at start, then save an empty array
+    //             if (window.localStorage.getItem('_APP_moogle') == null) {
+    //                 window.localStorage.setItem('_APP_moogle', '[]')
+    //             }
+    //             // get old data and slap it to the new data
+    //             const moogleOld = JSON.parse(window.localStorage.getItem('_APP_moogle'))
+    //             moogleOld.push(moogleNew)
+    //             // save old + new data to localStorage
+    //             window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
+    //         }
+    //     }
+    //     // if authenticated, store to MongoDB, skip the localStorage
+    //     else {
+
+    //         const rainbow = { number }
+
+    //         //user data post
+    //         const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/postnumuser?sub=${user.sub}`, {
+    //             method: 'POST',
+    //             body: JSON.stringify(rainbow),
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             }
+    //         })
+
+    //         const json = await response.json()
+
+    //         if (!response.ok) {
+    //             setError(json.error)
+    //         }
+    //         if (response.ok) {
+    //             setError(null)
+    //             updateList(numberList);
+    //             setBooleanState(false);
+    //             setDestroyer(true);
+    //             // setStaticTime(Date.now())
+    //             setNumber('')
+    //             // forceUpdate()
+    //         }
+    //     }
+    // }
+
     const handleSubmit = async () => {
 
         // if anonymous, send submission to localStorage (#, date, and objId from MongoDB)
-        if (!isAuthenticated) {
+        if (isAuthenticated) 
+        // if authenticated, store to MongoDB, skip the localStorage
+         {
+
+            const rainbow = { number }
+
+            //user data post
+            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/postnumuser?sub=${user.sub}`, {
+                method: 'POST',
+                body: JSON.stringify(rainbow),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+
+            const json = await response.json()
+
+            if (!response.ok) {
+                setError(json.error)
+            }
+            if (response.ok) {
+                setError(null)
+                updateList(numberList);
+                setBooleanState(false);
+                setDestroyer(true);
+                // setStaticTime(Date.now())
+                setNumber('')
+                // forceUpdate()
+            }
+        } 
+        else
+        {
             const rainbow = { number }
             //fetch req to post new data
             // const response = await fetch('https://rainbowdarkness-server.vercel.app/api/rainbows/postnum', {
@@ -150,51 +260,21 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
                 setDestroyer(true);
                 setStaticTime(Date.now())
                 setNumber('')
-            
-            const moogleNew = {
-                inputNumber:numberForStorage,
-                inputTime: format(new Date(),'MM/dd'),
-                objId: objId
-            }
-            // if nothing saved at start, then save an empty array
-            if(window.localStorage.getItem('_APP_moogle') == null) {
-                window.localStorage.setItem('_APP_moogle', '[]')
-            }
-            // get old data and slap it to the new data
+
+                const moogleNew = {
+                    inputNumber: numberForStorage,
+                    inputTime: format(new Date(), 'MM/dd'),
+                    objId: objId
+                }
+                // if nothing saved at start, then save an empty array
+                if (window.localStorage.getItem('_APP_moogle') == null) {
+                    window.localStorage.setItem('_APP_moogle', '[]')
+                }
+                // get old data and slap it to the new data
                 const moogleOld = JSON.parse(window.localStorage.getItem('_APP_moogle'))
                 moogleOld.push(moogleNew)
                 // save old + new data to localStorage
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
-        }
-    } 
-    // if authenticated, store to MongoDB, skip the localStorage
-    else 
-    {
-
-            const rainbow = { number }
-            
-            //user data post
-            const response = await fetch (`${RAINBOW_DARKNESS}/api/rainbows/postnumuser?sub=${user.sub}`, {
-                method: 'POST',
-                body: JSON.stringify(rainbow),
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-
-            const json = await response.json()
-
-            if (!response.ok) {
-                setError(json.error)
-            }
-            if (response.ok) {
-                setError(null)
-                updateList(numberList);
-                setBooleanState(false);
-                setDestroyer(true);
-                // setStaticTime(Date.now())
-                setNumber('')
-                // forceUpdate()
             }
         }
     }
