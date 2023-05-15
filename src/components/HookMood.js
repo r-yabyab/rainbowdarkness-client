@@ -505,7 +505,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 <div className='relative  '>
 
             <div 
-            className='max-md:hidden'
+            className=''
             >
 
                     {list.filter((item, index) =>  index < 9).map((x, index) => {
@@ -535,7 +535,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
                                     :
-                                    darkMode ? ` hover:bg-green-400  bg-zinc-100  text-zinc-900  rounded-lg  ratingAnimation
+                                    darkMode ? ` hover:bg-zinc-200 transition-colors duration-[125ms]  border-zinc-100 border-2  text-zinc-100  rounded-lg  ratingAnimation
                                     w-[45px] h-[48px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
                                     :` hover:bg-green-400   text-zinc-100 bg-zinc-900 rounded-lg ratingAnimationLight
@@ -580,7 +580,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </div>
 
 
-<div className='flex md:hidden justify-center ratingAnimationSmall  pt-10'>
+<div className='flex md:hidden hidden justify-center ratingAnimationSmall  pt-10'>
 {list.filter((item, index) => [0,1,3,4,5,7,8].includes(index)).map((x, index) => { 
 
 const buttonClasses = [
