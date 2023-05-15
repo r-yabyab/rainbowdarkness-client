@@ -535,10 +535,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
                                     :
-                                    darkMode ? `squares hover:bg-green-400  bg-zinc-100  text-zinc-900  rounded-full  ratingAnimation
+                                    darkMode ? ` hover:bg-green-400  bg-zinc-100  text-zinc-900  rounded-lg  ratingAnimation
                                     w-[45px] h-[48px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
-                                    :`squares  hover:bg-green-400   text-zinc-100 bg-zinc-900 rounded-full ratingAnimationLight
+                                    :` hover:bg-green-400   text-zinc-100 bg-zinc-900 rounded-lg ratingAnimationLight
                                     w-[45px] h-[48px]  mr-[8px] ml-[8px] 
                                     `}
                                     ${toHookMoodClick ? 'ratingAnimationToBlackHomeDarkMode' : ``}
@@ -551,7 +551,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 onClick={selectHandler}
                             // key={index}
                             >
-                                <span className={destroyer ? 'invisible' : 'max-md:text-[18px] md:text-[18px] flex justify-center items-center font-light pointer-events-none'}>
+                                <span className={destroyer ? 'invisible' : 'max-md:text-[24px] md:text-[24px] flex justify-center items-center pointer-events-none'}>
                                     {x.num}
                                 </span>
                                 {/* <span className={destroyer ? ' w-[32px] flex justify-center items-center absolute top-0 translate-y-1/2 md:-right-[1px] -translate-x-1/2 max-md:mt-3 max-md:ml-1 md:-mt-[5px]' : 'hidden'}>
