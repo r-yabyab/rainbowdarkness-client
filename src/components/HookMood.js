@@ -506,7 +506,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
             <div 
             className={`
-            max-md:grid max-md:grid-cols-3 max-md:gap-4 max-md:w-[250px] [&>*]:justify-center max-md:m-auto max-md:mt-14
+            max-md:grid max-md:grid-cols-3 max-md:gap-4 max-md:gap-y-8 max-md:w-[250px] [&>*]:justify-center max-md:m-auto max-md:mt-14
             `}
             >
 
@@ -566,12 +566,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 <div> 
                             <button
                                 className={booleanState ?
-                                    `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 border-[2px] bg-green-400 border-green-400 pr-4 pl-4 pt-[10px] text-black pb-[10px] rounded-full   
+                                    `${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ${darkMode ? "bg-zinc-200 text-zinc-900 shadow-md" : "bg-black shadow-md text-zinc-100"} ratingAnimation2 border-[2px] text-lg pr-4 pl-4 pt-[10px] pb-[10px] md:mr-[14px] rounded-lg   
                                       font-bold max-md:mt-[64px] max-md:ml-[160px]`
                                     : 'invisible'}>
-                                <span className={darkMode ? 'text-black ' : 'text-black'}>
                                     {number}
-                                </span>
                             </button>
                             </div>
                         </div>
@@ -584,73 +582,73 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </div>
 
 
-<div className='flex md:hidden hidden justify-center ratingAnimationSmall  pt-10'>
-{list.filter((item, index) => [0,1,3,4,5,7,8].includes(index)).map((x, index) => { 
+                {/* <div className='flex md:hidden hidden justify-center ratingAnimationSmall  pt-10'>
+                    {list.filter((item, index) => [0, 1, 3, 4, 5, 7, 8].includes(index)).map((x, index) => {
 
-const buttonClasses = [
-    'squares',
-    'border-2',
-    'rounded-full',
-    'w-[45px] h-[46px]  mr-[8px] ml-[8px] border-2 rounded-full text-white',
-    ];
+                        const buttonClasses = [
+                            'squares',
+                            'border-2',
+                            'rounded-full',
+                            'w-[45px] h-[46px]  mr-[8px] ml-[8px] border-2 rounded-full text-white',
+                        ];
 
-    if (index === 3) {
-        // middle button
-        buttonClasses.push('border-zinc-400 text-white w-[25px] h-[26px]');
-    } else if (index === 0) {
-        // right buttons
-        buttonClasses.push('border-red-400 text-white  w-[58px] h-[58px]');
-    } else if (index === 1) {
-        // right buttons
-        buttonClasses.push('border-red-400 text-white  w-[46px] h-[46px]');
-    } else if (index === 2) {
-        // right buttons
-        buttonClasses.push('border-red-400 text-white w-[35px] h-[36px]');
-    } else if (index === 4) {
-        // right buttons
-        buttonClasses.push('border-green-400 text-white w-[35px] h-[36px]');
-    } else if (index === 5) {
-        // right buttons
-        buttonClasses.push('border-green-400 text-white w-[46px] h-[46px]');
-    } else if (index === 6) {
-        // right buttons
-        buttonClasses.push('border-green-400 text-white w-[58px] h-[58px]');
-    } else {
-        // left buttons
-        buttonClasses.push('bg-red-400 border-red-400 text-white');
-    }
+                        if (index === 3) {
+                            // middle button
+                            buttonClasses.push('border-zinc-400 text-white w-[25px] h-[26px]');
+                        } else if (index === 0) {
+                            // right buttons
+                            buttonClasses.push('border-red-400 text-white  w-[58px] h-[58px]');
+                        } else if (index === 1) {
+                            // right buttons
+                            buttonClasses.push('border-red-400 text-white  w-[46px] h-[46px]');
+                        } else if (index === 2) {
+                            // right buttons
+                            buttonClasses.push('border-red-400 text-white w-[35px] h-[36px]');
+                        } else if (index === 4) {
+                            // right buttons
+                            buttonClasses.push('border-green-400 text-white w-[35px] h-[36px]');
+                        } else if (index === 5) {
+                            // right buttons
+                            buttonClasses.push('border-green-400 text-white w-[46px] h-[46px]');
+                        } else if (index === 6) {
+                            // right buttons
+                            buttonClasses.push('border-green-400 text-white w-[58px] h-[58px]');
+                        } else {
+                            // left buttons
+                            buttonClasses.push('bg-red-400 border-red-400 text-white');
+                        }
 
-    return (
-    <div 
-        key={index}
-        className="relative text-center inline-flex md:p-0 items-center"
-    >
-        <button 
-        selectnums={x.num}
-        onClick={selectHandler}
-        className={`
-        ${ booleanState ? 'hidden': destroyer ? 'hidden' : ''}
-        ${buttonClasses.join(' ')}  mr-[8px] ml-[8px] border-2 rounded-full text-white`}
-        >
-        
-        
-        </button>
+                        return (
+                            <div
+                                key={index}
+                                className="relative text-center inline-flex md:p-0 items-center"
+                            >
+                                <button
+                                    selectnums={x.num}
+                                    onClick={selectHandler}
+                                    className={`
+                        ${booleanState ? 'hidden' : destroyer ? 'hidden' : ''}
+                        ${buttonClasses.join(' ')}  mr-[8px] ml-[8px] border-2 rounded-full text-white`}
+                                >
 
-        <button
-                                className={booleanState ?
-                                    `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 border-[2px] bg-green-400 border-green-400 pr-4 pl-4 pt-[10px] text-black pb-[10px] rounded-full  btn-lg  
+
+                                </button>
+
+                                <button
+                                    className={booleanState ?
+                                        `squares ${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 border-[2px] bg-green-400 border-green-400 pr-4 pl-4 pt-[10px] text-black pb-[10px] rounded-full  btn-lg  
                                     absolute right-[50%] translate-x-1/2 ml-[120px] font-bold top-[20px]`
-                                    : 'invisible'}>
-                                <span className={darkMode ? 'text-black ' : 'text-black'}>
-                                    {number}
-                                </span>
-                            </button>
+                                        : 'invisible'}>
+                                    <span className={darkMode ? 'text-black ' : 'text-black'}>
+                                        {number}
+                                    </span>
+                                </button>
 
-    </div>
-)
+                            </div>
+                        )
 
-})}
-</div>
+                    })}
+                </div> */}
 
             </div>
 
@@ -681,7 +679,8 @@ const buttonClasses = [
                     ${darkMode ? 'text-zinc-500 bg-transparent border-2 border-zinc-600 md:hover:text-white' : 'md:hover:text-zinc-600 text-zinc-400 bg-white border-2 border-zinc-300'} 
                     ${booleanState? '' : 'hidden'}
                 mr-[260px] pr-4 pl-4 pt-[6px] pb-[6px] text-lg 
-                bg-zinc-800 max-md:font-normal rounded-md max-md:mt-[74px] 
+                bg-zinc-800 
+                max-md:font-normal rounded-md max-md:mt-[74px]  max-md:hidden
                 `}>
                     undo
                     {/* <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
@@ -694,16 +693,17 @@ const buttonClasses = [
                 <div
                     // [&>*]:top-[54%]
                     // className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-blue-600 [&>*]:text-zinc-100' : '[&>*]:bg-black'}
-                    className={`${destroyer ? '[&>*]:border-2 hidden' : darkMode ? '[&>*]:rounded-md max-md:[&>*]:mt-[120px] [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
+                    className={`${destroyer ? '[&>*]:border-2 hidden' : darkMode ? '[&>*]:rounded-md  [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
                      
                     [&>*]:font-semibold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-10 [&>*]:pl-10
-                    [&>*]:flex [&>*]:items-center [&>*]:gap-x-2
+                    [&>*]:flex [&>*]:items-center [&>*]:gap-x-2 
+                    max-md:[&>*]:mt-[60px]
                     `}>
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                        className={(destroyer ? 'hidden ' : (booleanState ? 'md:hover:text-yellow-200 bg-green-500' : 'bg-black opacity-30'))}
+                        className={(destroyer ? 'hidden ' : (booleanState ? 'md:hover:text-yellow-200 bg-green-500' : 'bg-black max-md:invisible opacity-30'))}
 
                     >
                         Submit
