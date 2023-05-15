@@ -117,8 +117,7 @@ export function HomePage ({ darkMode, graphRef }) {
               {destroyer ? null : 'How happy are you today?'}
               {/* {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>} */}
               <img 
-                // className='absolute opacity-10 top-0 left-[50%] pointer-events-none' 
-                className='fixed opacity-10 top-30 left-[50%] pointer-events-none' 
+                className='absolute opacity-10 top-0 left-[50%] pointer-events-none' 
                 src={sharkPNG} alt='shark' />
             </div>
             <HookMood darkMode={darkMode} graphRef={graphRef} toHookMoodClick={toHookMoodClick} />
