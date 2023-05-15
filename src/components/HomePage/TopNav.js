@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { actionCreators } from '../../state';
 import { bindActionCreators } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function TopNav({ darkMode }) {
 
@@ -13,6 +13,7 @@ export function TopNav({ darkMode }) {
 
     const dispatch = useDispatch()
     const { setisLoadingComponent } = bindActionCreators(actionCreators, dispatch)
+    const isLoadingComponent = useSelector((state) => state.isLoadingComponent )
 
 // Auth0 components
     const LoginButton = () => {
@@ -38,12 +39,12 @@ export function TopNav({ darkMode }) {
 
             {/* max-md:border-y-2 max-md:-mt-2 max-md:border-[#1D4ED8] max-md:h-[40px] max-md:bg-[#1D4ED8] */}
             {/* <div className={`${darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 border-b-2 border-neutral-600' : ` */}
-            <div className={`${darkMode ? 'bg-black' : `
+            <div className={` ${ isLoadingComponent && darkMode ? '' : 'border-b-2 border-white'} ${  darkMode ? 'bg-black ' : `
              bg-zinc-800`} relative pt-3 pb-3 flex overflow-hidden md:justify-center max-md:pl-4 select-none`}
                 draggable="false">
 
 
-                <div className={`${darkMode ? '[&>*]:text-zinc-200 group' : 'group [&>*]:text-white'} flex space-x-2 font-semibold text-xl`}>
+                <div className={`${darkMode ? '[&>*]:text-zinc-200 group ' : 'group [&>*]:text-white'} flex space-x-2 font-semibold text-xl`}>
                     <Link to='/' className='no-underline '><div
                         // onClick={pageFalse}
                         className='group-hover:text-white'>Rainbow</div></Link>

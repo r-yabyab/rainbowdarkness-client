@@ -30,28 +30,9 @@ function Darkness() {
                 md:bg-black md:bg-opacity-90
                 max-md:bg-black max-md:bg-opacity-90
                 '>
-                    {/* for above's max-md containers, depricated */}
-{/* max-md:[&>div>div>div]:m-auto max-md:[&>div>div>div]:mt-[40px] max-md:pb-[200px] */}
 
 
                 <div className=''>
-                    {/* For above's max-md, depricated */}
-                {/* max-md:text-center max-md:ml-auto max-md:mr-auto */}
-                    
-                    {/* <p className='text-black font-bold select-none'>Thank you for participating!</p> */}
-
-                    {/* <div className=' m-auto h-[200px] mt-4 bg-green-200 text-black animate-fade w-[600px] rounded-xl border-4 border-black shadow-2xl'>
-                    <p className='font-bold text-left pl-4 pt-4'>YOUR STATS</p>
-                    <p className='text-left p-4'>1, 2, 3, 4</p>
-                    </div> */}
-
-                    {/* <p className='text-black font-bold pt-4 select-none'>Public stats</p> */}
-{/* <div className='max-md:overflow-x-scroll  mb-10'>
-                    <iframe title='iframe_mongoDB' className='  
-                    m-auto w-[1000px] h-[740px] select-none' 
-                        src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
-                    </iframe>
-</div> */}
 
                     <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center items-center flex-col flex bg-black text-zinc-200 [&>div]:max-w-[800px] '>
 
@@ -77,6 +58,13 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
+                            <div>1.3.9 (May 14, 2023)</div>
+                            <p>Cleaned up UI</p>
+                            <p className='ml-8 -mt-4'>Changed circle buttons to square again</p>
+                            <p className='ml-8 -mt-4'>Mobile users get square buttons again</p>
+                            <p className='ml-8 -mt-4'>Added top background</p>
+                            <p>To fix non-user submission timer logic</p>
+                            <div>______________</div>
 
                             <div>1.3.8 (May 13, 2023)</div>
                             <p>Fixed problem where non-registered user submissions wouldn't pass info to local storage.</p>

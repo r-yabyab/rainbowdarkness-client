@@ -539,7 +539,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
                                     :
-                                    darkMode ? ` hover:bg-zinc-200 transition-colors duration-[125ms]  border-zinc-100 border-2  text-zinc-100  rounded-lg  ratingAnimation
+                                    darkMode ? `   hover:border-red-400 transition-colors duration-[125ms]  border-zinc-100 border-2  text-zinc-100  rounded-lg  ratingAnimation
                                     w-[45px] h-[48px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
                                     :` hover:bg-green-400   text-zinc-100 bg-zinc-900 rounded-lg ratingAnimationLight
@@ -567,7 +567,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             <button
                                 className={booleanState ?
                                     `${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ${darkMode ? "bg-zinc-200 text-zinc-900 shadow-md" : "bg-black shadow-md text-zinc-100"} ratingAnimation2 border-[2px] text-lg pr-4 pl-4 pt-[10px] pb-[10px] md:mr-[14px] rounded-lg   
-                                      font-bold max-md:mt-[64px] max-md:ml-[160px]`
+                                      font-bold max-md:mt-[72px] md:mt-[6px] max-md:ml-[160px]`
                                     : 'invisible'}>
                                     {number}
                             </button>
@@ -586,8 +586,24 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             {booleanState === true &&
                 <div className='absolute md:ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[102px]
                 max-md:top-[154px] max-md:[&>Button]:p-4 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
-                    <Button ref={btnRef2} onClick={decrement} variant='outline-danger' size="lg">-0.5</Button>
-                    <Button ref={btnRef} onClick={increment} className='' variant='outline-success' size="lg">+0.5</Button>
+                    <Button
+                        ref={btnRef2}
+                        onClick={decrement}
+                        variant='outline-danger'
+                        size="lg"
+                    >
+                        -0.5
+                    </Button
+                    >
+                    <Button
+                        ref={btnRef}
+                        onClick={increment}
+                        className=''
+                        variant='outline-success'
+                        size="lg"
+                    >
+                        +0.5
+                    </Button>
                 </div>
             }
             
@@ -610,7 +626,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     ${darkMode ? 'text-zinc-500 bg-transparent border-2 border-zinc-600 md:hover:text-white' : 'md:hover:text-zinc-600 text-zinc-400 bg-white border-2 border-zinc-300'} 
                     ${booleanState? '' : 'hidden'}
                 mr-[260px] pr-4 pl-4 pt-[6px] pb-[6px] text-lg 
-                bg-zinc-800 
+                bg-zinc-800 md:-mt-[10px]
                 max-md:font-normal rounded-md max-md:mt-[74px]  max-md:hidden
                 `}>
                     undo
@@ -634,7 +650,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                         value={number} onClick={handleSubmit} type="number"
                         // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                         // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                        className={(destroyer ? 'hidden ' : (booleanState ? 'md:hover:text-yellow-200 bg-green-500' : 'bg-black max-md:invisible opacity-30'))}
+                        className={(destroyer ? 'hidden ' : (booleanState ? ' md:hover:border-2 transition-colors bg-green-500' : 'bg-black hover:cursor-not-allowed border-zinc-700 border-2 max-md:invisible opacity-30'))}
 
                     >
                         Submit

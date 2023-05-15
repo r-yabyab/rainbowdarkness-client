@@ -197,20 +197,17 @@ opacity:100%;
     0% {
         opacity: 30%;
         transform: translateY(-40%);
-        color:dodgerblue;
-        background-color:lightgrey;
+        color:violet;
         
     }
 
-    30% {
-    color:violet;
-    }
-
-
     50% {
-    color:maroon;
-    
+    color:pink;
     }
+
+
+
+
 
 
     100% {
