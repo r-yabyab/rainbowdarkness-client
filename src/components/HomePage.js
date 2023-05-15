@@ -97,6 +97,10 @@ export function HomePage ({ darkMode, graphRef }) {
           style={{ padding: '0 0px', margin: '0 0px' }}
           />
           </div> */}
+                <div 
+          className={` ${ isLoadingComponent || destroyer ? 'hidden' : ''} ${ darkMode ? 'bg-black -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px] w-screen  shadow-sm `}
+          style={{ padding: '0 0px', margin: '0 0px' }}
+          />
       
       <div className='overflow-x-clip'>
  
