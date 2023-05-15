@@ -680,7 +680,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 firstFunc {firstUserNum()}
             </div> */}
 
-<DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode}/>
+<div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode}/></div>
 <div className={`${aiText  ? '' : ' animate-pulse'} ${darkMode ? 'text-zinc-200' :'text-black' } absolute left-[50%] font-normal -translate-x-1/2 top-[10px] text-zinc-200`}>{ destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
 
         </>

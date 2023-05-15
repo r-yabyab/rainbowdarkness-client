@@ -88,9 +88,18 @@ export function HomePage ({ darkMode, graphRef }) {
   : 
         null}
         
-        <div className={` ${ isLoadingComponent ? 'hidden' : ''} ${ darkMode ? 'bg-black blur-sm -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px]  min-w-[4000px] -ml-20  shadow-sm `}/>
+        {/* <div className='overflow-hidden w-full'> */}
+
+          {/* </div> */}
+          <div className={'absolute  w-full overflow-hidden h-screen'}>
+      <div 
+          className={` ${ isLoadingComponent || destroyer ? 'hidden' : ''} ${ darkMode ? 'bg-black blur-sm -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px] w-[40000px] -left-20 overflow-hidden  shadow-sm `}
+          style={{ padding: '0 0px', margin: '0 0px' }}
+          />
+          </div>
       
-      <div>
+      <div className=''>
+ 
         <link rel="shortcut icon" href="/a.png" />
         <div draggable="false" className={isLoadingComponent ? `hidden` : `
         relative mt-[5em] text-center select-none [&>*]:h-[40px]
@@ -103,7 +112,9 @@ export function HomePage ({ darkMode, graphRef }) {
             max-md:mt-20 max-md:mb-[10px]`}>
               {destroyer ? null : 'How happy are you today?'}
               {/* {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>} */}
-              <img className='absolute opacity-10 top-0 left-[50%] pointer-events-none' src={sharkPNG} alt='shark' />
+              <img 
+                className='absolute opacity-10 top-0 left-[50%] pointer-events-none' 
+                src={sharkPNG} alt='shark' />
             </div>
             <HookMood darkMode={darkMode} graphRef={graphRef} toHookMoodClick={toHookMoodClick} />
           </div>
@@ -243,23 +254,23 @@ export function HomePage ({ darkMode, graphRef }) {
                 onClick={scrollToHookMood}
                 className='mt-20 shadow-md group z-0 overflow-hidden font-semibold relative text-black bg-blue-400 rounded-lg p-2 md:hover:bg-yellow-500'>
                 <div className='pr-4 pl-4 pt-2 pb-2'>Get Started!</div>
-            <img  className=' -z-10 pointer-events-none opacity-80  absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
-            // style={{ zIndex: -1 }}
-            src={sharkSmall} alt="small shark" />
-            {/* <img  className=' pointer-events-none opacity-80 absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
-            style={{ zIndex: -1 }}
-            src={sharkPNG} alt="small shark" /> */}
-            </button>
+                <img className=' -z-10 pointer-events-none opacity-80  absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
+                  // style={{ zIndex: -1 }}
+                  src={sharkSmall} alt="small shark" />
+                {/* <img  className=' pointer-events-none opacity-80 absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
+                style={{ zIndex: -1 }}
+                src={sharkPNG} alt="small shark" /> */}
+              </button>
 
-            <div className={`${ darkMode ? 'text-zinc-500' : 'text-zinc-400'} mt-20 mb-32 text-sm`}>
+              <div className={`${darkMode ? 'text-zinc-500' : 'text-zinc-400'} mt-20 mb-32 text-sm`}>
                 {/* Optional<span className='invisible'>_</span> */}
                 <span className='text-blue-400 hover:cursor-pointer hover:underline' onClick={() => loginWithRedirect()}>
-                   Register
+                  Register
                 </span> to unlock all graph features and cross-device storage.
               </div>
               <div className='absolute text-sm text-zinc-400 left-0'>© 2023 Rainbow Darkness</div>
+            </div>
           </div>
-        </div>
 
         {/* <div className='fixed -bottom-4 text-sm text-zinc-400 flex flex-col font-thin'>
           <div>© 2023 Rainbow Darkness</div>
