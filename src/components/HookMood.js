@@ -505,7 +505,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 <div className='relative  '>
 
             <div 
-            className=''
+            className={`
+            max-md:grid max-md:grid-cols-3 max-md:gap-4 max-md:w-[250px] [&>*]:justify-center max-md:m-auto max-md:mt-14
+            `}
             >
 
                     {list.filter((item, index) =>  index < 9).map((x, index) => {
@@ -513,7 +515,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     return (
                         
                         <div className={toHookMoodClick ? 'greenTest relative text-center inline-flex md:p-0' :
-                        'relative text-center inline-flex md:p-0 '
+                        `relative text-center inline-flex md:p-0  
+                      
+                        `
                          }
                                 //old, worked but boxy as hell
                             //  max-md:inline-flex max-md:-ml-10 max-md:-mr-10 max-md:p-0 max-md:flex-wrap 
@@ -529,7 +533,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     // max-md:h used to prevent everything from moving up after buttons removed
                                     // ADD md:bg-clip-text TO DESTROYER FALSE TO MAKE TEXT CLIP THROUGH BG (for image gradients)
                                     `invisible 
-                                    max-md:h-[244px]`
+                                    `
                                      :
                                     destroyer ? `hidden squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
                                     md:mr-[8px] md:ml-[8px] 
@@ -559,17 +563,17 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 </span> */}
                             </button>
 
-
+<div> 
                             <button
                                 className={booleanState ?
-                                    `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 border-[2px] bg-green-400 border-green-400 pr-4 pl-4 pt-[10px] text-black pb-[10px] rounded-full  btn-lg  
-                                    max-md:absolute max-md:bg-black max-md:left-[0%] max-md:ml-[120px] font-bold max-md:top-[24%]`
+                                    `squares ${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ratingAnimation2 border-[2px] bg-green-400 border-green-400 pr-4 pl-4 pt-[10px] text-black pb-[10px] rounded-full   
+                                      font-bold max-md:mt-[64px] max-md:ml-[160px]`
                                     : 'invisible'}>
                                 <span className={darkMode ? 'text-black ' : 'text-black'}>
                                     {number}
                                 </span>
                             </button>
-
+                            </div>
                         </div>
                     )
                 })}
@@ -652,7 +656,7 @@ const buttonClasses = [
 
             {booleanState === true &&
                 <div className='absolute md:ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[102px]
-                max-md:top-[106px] max-md:[&>Button]:p-4 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
+                max-md:top-[154px] max-md:[&>Button]:p-4 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
                     <Button ref={btnRef2} onClick={decrement} variant='outline-danger' size="lg">-0.5</Button>
                     <Button ref={btnRef} onClick={increment} className='' variant='outline-success' size="lg">+0.5</Button>
                 </div>
@@ -677,7 +681,7 @@ const buttonClasses = [
                     ${darkMode ? 'text-zinc-500 bg-transparent border-2 border-zinc-600 md:hover:text-white' : 'md:hover:text-zinc-600 text-zinc-400 bg-white border-2 border-zinc-300'} 
                     ${booleanState? '' : 'hidden'}
                 mr-[260px] pr-4 pl-4 pt-[6px] pb-[6px] text-lg 
-                bg-zinc-800 max-md:font-normal rounded-md
+                bg-zinc-800 max-md:font-normal rounded-md max-md:mt-[74px] 
                 `}>
                     undo
                     {/* <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
@@ -690,7 +694,7 @@ const buttonClasses = [
                 <div
                     // [&>*]:top-[54%]
                     // className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-blue-600 [&>*]:text-zinc-100' : '[&>*]:bg-black'}
-                    className={`${destroyer ? '[&>*]:border-2 hidden' : darkMode ? '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
+                    className={`${destroyer ? '[&>*]:border-2 hidden' : darkMode ? '[&>*]:rounded-md max-md:[&>*]:mt-[120px] [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
                      
                     [&>*]:font-semibold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-10 [&>*]:pl-10
                     [&>*]:flex [&>*]:items-center [&>*]:gap-x-2
