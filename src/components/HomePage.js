@@ -91,7 +91,12 @@ export function HomePage ({ darkMode, graphRef }) {
         {/* <div className='overflow-hidden w-full'> */}
 
           {/* </div> */}
-
+          {/* <div className={'absolute  w-full overflow-hidden h-screen'}>
+      <div 
+          className={` ${ isLoadingComponent || destroyer ? 'hidden' : ''} ${ darkMode ? 'bg-black blur-sm -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px] w-[40000px] -left-20 overflow-hidden  shadow-sm `}
+          style={{ padding: '0 0px', margin: '0 0px' }}
+          />
+          </div> */}
       
       <div className=''>
  
