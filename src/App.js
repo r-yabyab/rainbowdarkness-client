@@ -41,7 +41,7 @@ const graphRef = useRef(null)
   return (
     <>
       {/* <div className={`${ darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 ' :  ' inset-0 bg-gradient-to-r from-zinc-400 to-zinc-300 max-md:from-zinc-400 max-md:to-zinc-300'} fixed h-full w-full`} /> */}
-      <div className={`${ darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 ' :  ' bg-white'} fixed h-full w-screen`} />
+      <div className={`${ darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 ' :  ' bg-white'} fixed h-full w-full`} />
       {/*flat colors <div className={`${ darkMode ? 'bg-[#121212]' :  ' bg-zinc-100'} fixed h-full w-full`} /> */}
       <div className={""}>
 
