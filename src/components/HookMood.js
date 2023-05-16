@@ -502,7 +502,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
         <>
 
 
-<div className='relative  '>
+            <div className='relative  '>
 
             <div 
             className={`
@@ -563,7 +563,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                 </span> */}
                             </button>
 
-<div> 
+                        <div> 
                             <button
                                 className={booleanState ?
                                     `${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ${darkMode ? "bg-zinc-200 text-zinc-900 shadow-md" : "bg-black shadow-md text-zinc-100"} ratingAnimation2 border-[2px] text-lg pr-4 pl-4 pt-[10px] pb-[10px] md:mr-[14px] rounded-lg   
@@ -655,37 +655,43 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     >
                         Submit
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-send" viewBox="0 0 16 16">
-  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-</svg>
+                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                        </svg>
                     </button>
 
                     {error && { error }}
 
 
-                </div> 
+                </div>
 
             </div>
-                    {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
-                    <div className=''>
+            {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
+            <div className=''>
 
-                        <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[388px] text-zinc-600 absolute `}>
-                            {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
+                <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[388px] text-zinc-600 absolute `}>
+                    {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
                         <div>|</div> */}
-                            {isAuthenticated ? 'Next submission @ 5PM' : <div>{timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` : null}hrs until next submission</div>}
+                    {isAuthenticated ?
+                        'Next submission @ 5PM'
+                        : <div>
+                            {timeLeft > 0 ? `${parseFloat(timeLeft / (1000 * 60 * 60)).toFixed(1)} ` 
+                            : 
+                            null}hrs until next submission
                         </div>
-                    </div>
+                    }
+                </div>
+            </div>
 
             {/* <div className='text-white top-20 bg-black absolute'>
                 {userNums && userNums[0].createdAt}
                 firstFunc {firstUserNum()}
             </div> */}
 
-<div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode}/></div>
-<div className={`${aiText  ? '' : ' animate-pulse'} ${darkMode ? 'text-zinc-200' :'text-black' } absolute left-[50%] font-normal -translate-x-1/2 top-[10px] text-zinc-200`}>{ destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
+            <div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode} /></div>
+            <div className={`${aiText ? '' : ' animate-pulse'} ${darkMode ? 'text-zinc-200' : 'text-black'} absolute left-[50%] font-normal -translate-x-1/2 top-[10px] text-zinc-200`}>{destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
 
         </>
-    )
-
+)
 }
 
 export default HookMood;

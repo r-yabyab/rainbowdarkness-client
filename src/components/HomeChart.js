@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 import { useAuth0 } from '@auth0/auth0-react';
 import format from 'date-fns/format';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadRecent } from '../state/reducers/databaseReducer';
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -29,6 +30,12 @@ function HomeChart ({darkMode}) {
 
     // redux stuff, tied to data fetch not graph
     const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
+
+    const dispatch = useDispatch()
+
+    const onLoad = () => {
+      dispatch(loadRecent())
+    }
 
 
         useEffect(() => {

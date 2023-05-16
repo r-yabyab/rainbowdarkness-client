@@ -1,0 +1,20 @@
+#How to handle time between registered users and non-registered users:
+
+#Time stored for items
+MongoDB = UTC
+localStorage = MM/DD... need to fix
+
+
+Registered Users (MongoDB pure)
+Client gets UTC (MongoDB)
+    parseLocale() => localeTime 'MM/dd'
+
+**to fix**
+    - parseLocale to full date with time, not just 'MM/dd'
+
+NonRegistered Users (localStorage + MongoDB)
+Submit locale 'MM/dd' + objId
+    Confirm(objId === MongoDBId) => Chart(locale MM/dd)
+
+**to fix**
+    - a lot of shit
