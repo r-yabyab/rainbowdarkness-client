@@ -13,6 +13,7 @@ import { LoadingComponent } from './LoadingComponent';
 import { SampleGraph } from './HomePage/SampleGraph';
 import { PublicChart } from './HomePage/PublicChart';
 import sharkPNG from '../photos/shark.png'
+import sharkPNGMobile from '../photos/sharkmobile.png'
 import sharkSmall from '../photos/sharksmall.webp'
 // import { MongoChart } from './apiComponents/MongoChart';
 // import { MongoRaw } from './HomePage/MongoRaw';
@@ -120,6 +121,11 @@ export function HomePage ({ darkMode, graphRef }) {
                 max-md:hidden
                 ' 
                 src={sharkPNG} alt='shark' />
+              <img 
+                className='absolute opacity-10 top-0 right-0 pointer-events-none
+                md:hidden
+                ' 
+                src={sharkPNGMobile} alt='shark' />
             </div>
             <HookMood darkMode={darkMode} graphRef={graphRef} toHookMoodClick={toHookMoodClick} />
           </div>
