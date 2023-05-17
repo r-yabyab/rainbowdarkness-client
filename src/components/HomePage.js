@@ -110,10 +110,10 @@ export function HomePage ({ darkMode, graphRef }) {
         max-md:mt-4 max-md:font-bold 
         `}>
 
-          <div className='relative'>
+          <div className=''>
             <div className={`${toHookMoodClick && darkMode ? 'ratingAnimationToBlackHomeDarkMode tracking-wide font-extralight' : toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeLightMode' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-black font-normal'}
-            mb-[60px] text-2xl z-10 overflow-hidden
-            max-md:mt-20 max-md:mb-[10px]`}>
+              mb-[60px] text-2xl z-10 relative overflow-clip
+              max-md:mt-20 max-md:mb-[10px]`}>
               {destroyer ? null : 'How happy are you today?'}
               <img 
                 className='absolute opacity-10 top-0 left-[50%] pointer-events-none' 
