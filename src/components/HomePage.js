@@ -110,7 +110,7 @@ export function HomePage ({ darkMode, graphRef }) {
         max-md:mt-4 max-md:font-bold 
         `}>
 
-          <div className=''>
+          <div className='relative'>
             <div className={`${toHookMoodClick && darkMode ? 'ratingAnimationToBlackHomeDarkMode tracking-wide font-extralight' : toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeLightMode' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-black font-normal'}
             mb-[60px] text-2xl z-10 overflow-hidden
             max-md:mt-20 max-md:mb-[10px]`}>
