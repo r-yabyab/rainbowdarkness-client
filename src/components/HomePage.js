@@ -112,7 +112,7 @@ export function HomePage ({ darkMode, graphRef }) {
 
           <div className=''>
             <div className={`${toHookMoodClick && darkMode ? 'ratingAnimationToBlackHomeDarkMode tracking-wide font-extralight' : toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeLightMode' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-black font-normal'}
-            mb-[60px] text-2xl z-10
+            mb-[60px] text-2xl z-10 overflow-hidden
             max-md:mt-20 max-md:mb-[10px]`}>
               {destroyer ? null : 'How happy are you today?'}
               <img 
