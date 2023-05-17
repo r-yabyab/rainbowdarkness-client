@@ -326,7 +326,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                     <div className="
                          lg:w-[900px] md:w-[700px] 
                          mr-auto ml-auto
-                         max-md:max-w-[300px] mt-32
+                         max-md:max-w-[360px] mt-32
                          relative
                         ">
                         {/* <span className={darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Global Score</span> */}
@@ -431,7 +431,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                     <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} 
                          md:rounded-lg 
                         lg:w-[900px] md:w-[700px] m-auto
-                        max-md:w-[300px]
+                        max-md:w-[360px]
                         
                         `}>
                         {/* <div>Usernum Route
@@ -458,7 +458,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
                             <div className="
-                            grid grid-cols-10 gap-4 pr-8 pl-8
+                            grid grid-cols-10 gap-4 pr-8 pl-8 m-auto
                             max-md:grid max-md:grid-cols-4 max-md:gap-4 font-semibold
                              [&>div]:pt-0 pt-4 max-md:w-[300px] [&>div]:hover:cursor-text max-md:h-[310px] max-md:overflow-y-scroll no-scrollbar
                              ">

@@ -261,7 +261,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                             </div>
                         </div>
                         <div className="mt-2">
-                            <div className="flex gap-2 items-center group"
+                            <div className="flex flex-wrap gap-2 items-center group"
                                 onClick={() => {
                                     setActivitiesDbl(true)
                                     setActivities(yourRecent.activities)
@@ -310,7 +310,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                             </div>
                         </div>
                         <div className="mt-2">
-                            <div className="flex items-center gap-2 group"
+                            <div className="flex flex-wrap items-center gap-2 group"
                                 onClick={() => {
                                     setMemoTextDbl(true)
                                     setMemoText(yourRecent.memo)
