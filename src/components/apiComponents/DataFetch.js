@@ -386,7 +386,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                             </div>
 
 
-                            <div title="Mini live graph" className="hover:cursor-text bg-black flex justify-center mt-2 mr-12 pb-4">
+                            <div title="Mini live graph" className="hover:cursor-text flex justify-center mt-2 mr-12 pb-4">
                                 <svg className="" ref={svgRef} />
                             </div>
                             {/* <Link to='/darkness' className=' no-underline text-sm hover:text-blue-200 absolute bottom-0 right-0  max-md:hidden'> */}
