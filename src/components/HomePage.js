@@ -98,7 +98,7 @@ export function HomePage ({ darkMode, graphRef }) {
           />
           </div> */}
                 <div 
-          className={` ${ isLoadingComponent || destroyer ? 'hidden' : ''} ${ darkMode ? 'bg-black -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px] w-screen  shadow-sm `}
+          className={` ${ isLoadingComponent || destroyer ? 'hidden' : ''} ${ darkMode ? 'bg-black -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px] w-full  shadow-sm `}
           style={{ padding: '0 0px', margin: '0 0px' }}
           />
       
@@ -115,7 +115,6 @@ export function HomePage ({ darkMode, graphRef }) {
             mb-[60px] text-2xl z-10
             max-md:mt-20 max-md:mb-[10px]`}>
               {destroyer ? null : 'How happy are you today?'}
-              {/* {aiText ? aiQuestion : <span className='animate-pulse'>Loading question...</span>} */}
               <img 
                 className='absolute opacity-10 top-0 left-[50%] pointer-events-none' 
                 src={sharkPNG} alt='shark' />
@@ -161,10 +160,10 @@ export function HomePage ({ darkMode, graphRef }) {
 
             </div>
 
-            { }
+            
 
             <div className='md:w-[300px] flex justify-center items-center'>
-              { }
+              
               Rainbow Darkness is a mental health website that helps you track your daily mood levels. This is designed to give you insight on how to approach your days / daily-stressors based on your mood fluctuations.
             </div>
 
