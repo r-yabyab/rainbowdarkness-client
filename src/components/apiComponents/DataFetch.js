@@ -313,18 +313,21 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
 
             {/* Absolute desktop containers */}
-            <div className="relative animate-fade md:pt-[80px] pr-[100px] pl-[100px] md:mb-[900px]
-                max-w-[1000px] mr-auto ml-auto mb-[200px]
-                max-md:pt-[100px] 
+            <div className="relative animate-fade md:pt-[80px]  
+                max-w-[1000px] mr-auto ml-auto
+                max-md:pt-[100px] max-md:pr-[100px] max-md:pl-[100px]
                 ">
                 <div className="max-md:hidden md:invisible">___________________________________________________________________________________</div>
                 <div className="pt-[80px]">
-                   <div className="absolute lg:w-[900px] md:w-[700px] 
-                        right-[50%] translate-x-1/2 max-md:font-normal"> <PutSubmission RAINBOW_DARKNESS={RAINBOW_DARKNESS} books={books} /></div>
+                   <div className=" 
+                        lg:w-[900px] md:w-[700px] 
+                         max-md:font-normal m-auto"> <PutSubmission RAINBOW_DARKNESS={RAINBOW_DARKNESS} books={books} /></div>
                     
                     <div className="
-                        absolute lg:w-[900px] md:w-[700px] 
-                        right-[50%] translate-x-1/2 md:mt-[430px] max-md:mt-[430px]
+                         lg:w-[900px] md:w-[700px] 
+                         mr-auto ml-auto
+                         max-md:max-w-[300px] mt-32
+                         relative
                         ">
                         {/* <span className={darkMode ? "text-zinc-200 tracking-wide font-thin" : "text-black font-bold"}>Global Score</span> */}
                         {/* <Link to='/darkness' className='no-underline text-sm hover:text-blue-200 right-0  md:hidden'><div className="">(chart)</div></Link> */}
@@ -385,11 +388,13 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                                 <svg className="" ref={svgRef} />
                             </div>
                             {/* <Link to='/darkness' className=' no-underline text-sm hover:text-blue-200 absolute bottom-0 right-0  max-md:hidden'> */}
-                            <div onClick={scrollToGraph} className='no-underline text-blue-600 hover:cursor-pointer text-sm hover:text-blue-200 absolute bottom-0 right-0  
-                                max-md:left-[50%] max-md:hover:bg-black max-md:-translate-x-1/2 max-md:pt-2 max-md:pb-2 max-md:bg-gray-400 max-md:w-[200px]'>
+                            <div onClick={scrollToGraph} className='no-underline text-blue-600 hover:cursor-pointer text-sm hover:text-blue-200   
+                                 hover:bg-black max-md:pt-2 max-md:pb-2 bg-gray-400 w-[200px]
+                                 absolute max-md:bottom-0 md:bottom-4 md:right-[16%] md:py-2 md:rounded-md
+                                 '>
                                 full chart
                             </div>
-                            { }
+                            
                         </div>
                     </div>
 
@@ -424,8 +429,9 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                     </div> */}
 
                     <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} 
-                        max-md:mt-[750px] md:pb-10 right-[50%] translate-x-1/2  md:mt-[700px] absolute md:rounded-lg 
-                        lg:w-[900px] md:w-[700px] 
+                         md:rounded-lg 
+                        lg:w-[900px] md:w-[700px] m-auto
+                        max-md:w-[300px]
                         
                         `}>
                         {/* <div>Usernum Route
@@ -439,7 +445,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                             })}
                             </div>
                         </div> */}
-                        <div className={`${darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 pb-2`}>
+                        <div className={`${darkMode ? "text-zinc-300 font-thin tracking-wide" : "text-black font-semibold"} pt-8 mt-32 `}>
                             {/* <div>
                                 <span className={destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses
                                 </div> */}
@@ -500,20 +506,20 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
     <svg ref={svgRef} />
 </div> */}
         <div>
-          <div ref={graphRef} className='  mb-32
-                     max-md:mt-[1400px] md:mt-[1750px]'>
+          <div ref={graphRef} className='  mb-[280px] mt-32
+                     '>
             {/* <iframe title='iframe_mongoDB' className='  
                     m-auto w-[1000px] h-[740px] select-none'
               src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
             </iframe> */}
-            <div className='m-auto pt-20 flex justify-center select-none'>
+            <div className='m-auto flex justify-center select-none'>
                 <MongoChart darkMode={darkMode} />
                 </div>
           </div>
 
 
 
-          <div className="absolute text-sm text-zinc-400 left-0">© 2023 Rainbow Darkness</div>
+          <div className="absolute text-sm font-thin text-zinc-400 left-0">© 2023 Rainbow Darkness</div>
 
 
         </div>

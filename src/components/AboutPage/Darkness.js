@@ -58,6 +58,11 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
+                            <div>1.4.0 (May 16 2023)</div>
+                            <p>Fixed issue where background shark was making a horizontal scrollbar appear for mobile users. (Mobile view on Chrome desktop doesn't 100% reflect the actual mobile view on phones, had issues with overflow-hidden and relative styles)</p>
+                            <p>Stats page design is more responsive. Before, the info boxes were absolute position'd, now it's relative & wraps and pushes other boxes down correctly (to accommodate submission info box).</p>
+                            <div>______________</div>
+
                             <div>1.3.9 (May 14, 2023)</div>
                             <p>Cleaned up UI</p>
                             <p className='ml-8 -mt-4'>Changed circle buttons to square again</p>
