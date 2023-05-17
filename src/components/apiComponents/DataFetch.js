@@ -315,13 +315,15 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
             {/* Absolute desktop containers */}
             <div className="relative animate-fade md:pt-[80px]  
                 max-w-[1000px] mr-auto ml-auto
-                max-md:pt-[100px] max-md:pr-[100px] max-md:pl-[100px]
-                ">
+                max-md:pt-[100px] 
+                "
+                // max-md:pr-[100px] max-md:pl-[100px] // for putSubmission component
+                >
                 <div className="max-md:hidden md:invisible">___________________________________________________________________________________</div>
                 <div className="pt-[80px]">
                    <div className=" 
                         lg:w-[900px] md:w-[700px] 
-                         max-md:font-normal m-auto"> <PutSubmission RAINBOW_DARKNESS={RAINBOW_DARKNESS} books={books} /></div>
+                         max-md:font-normal m-auto max-md:pr-[100px] max-md:pl-[100px]"> <PutSubmission RAINBOW_DARKNESS={RAINBOW_DARKNESS} books={books} /></div>
                     
                     <div className="
                          lg:w-[900px] md:w-[700px] 
@@ -429,7 +431,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                     </div> */}
 
                     <div className={`${darkMode ? 'md:bg-neutral-600' : 'md:bg-neutral-200'} 
-                         md:rounded-lg 
+                         md:rounded-lg relative
                         lg:w-[900px] md:w-[700px] m-auto
                         max-md:w-[360px]
                         
