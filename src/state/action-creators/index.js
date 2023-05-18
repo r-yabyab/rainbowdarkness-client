@@ -35,3 +35,12 @@ export const setEditSubmissionTrigger = (trigger) => {
         })
     }
 }
+
+export const getLoadRecent = (load) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'get_load_recent',
+            payload: load
+        })
+    }
+}

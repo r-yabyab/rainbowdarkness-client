@@ -515,7 +515,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
               src="https://charts.mongodb.com/charts-project-0-aloyz/embed/dashboards?id=577710d1-e1f2-4d9b-8216-c06878528255&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
             </iframe> */}
             <div className='m-auto flex justify-center select-none'>
-                <MongoChart darkMode={darkMode} />
+                <MongoChart lastRainbow={lastRainbow} darkMode={darkMode} />
                 </div>
           </div>
 

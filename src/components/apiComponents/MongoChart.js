@@ -6,17 +6,15 @@ import * as d3 from 'd3'
 
 const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
 
-export function MongoChart ({ darkMode }) {
+export function MongoChart ({ darkMode, lastRainbow }) {
 
     const [recentNumArr, setRecentNumArr] = useState([])
 
 
     useEffect(() => {
-        const fetchRecent = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`)
-            const json = await response.json()
+            const json = lastRainbow
 
-            if (response.ok) {
+            if (lastRainbow) {
             const dateSimplify = json.map((item) => ({
                 x: format(new Date(item.createdAt), 'dd'),
                 y: item.number,
@@ -46,10 +44,7 @@ export function MongoChart ({ darkMode }) {
               const sortedData = averageData.sort((a,b) => a.x - b.x)
               setRecentNumArr(sortedData)
             }
-        
-        }
-        fetchRecent()
-    }, [])
+    }, [lastRainbow])
 
     const publicChartRef = useRef()
 
