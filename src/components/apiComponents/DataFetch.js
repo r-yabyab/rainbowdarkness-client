@@ -37,11 +37,15 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
     // redux stuff
     const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
 
-    const number = useSelector((state) => state.rainbowLastAll)
+    const rainbowLastAll = useSelector((state) => state.rainbowLastAll)
     const dispatch = useDispatch()
     useEffect(() => {
-        setLastRainbow(number.rainbow)
-    },[number])
+        setLastRainbow(rainbowLastAll.rainbow)
+    },[rainbowLastAll])
+
+    // useEffect(() => {
+    //     dispatch(fetchLastAll())
+    // }, [])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -253,6 +257,8 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
    
    useEffect(() => {
      // setting up svg
+     d3.select(svgRef.current).selectAll('*').remove();
+      
      const w = 200;
      const h = 40;
      const svg = d3.select(svgRef.current)
@@ -298,7 +304,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
        .attr('d', generateScaledLine)
        .attr('fill', 'none')
        .attr('stroke', 'black');
-   }, [lastRainbow]);
+   }, [lastRainbow, destroyer]);
 
     const scrollToGraph = () => {
         if (graphRef.current) {
