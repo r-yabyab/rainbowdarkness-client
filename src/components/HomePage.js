@@ -5,7 +5,7 @@ import React, {
 // import axios from 'axios'
 // import Button from 'react-bootstrap/Button';
 import HookMood from './HookMood';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import HomeChart from './HomeChart';
 // import sampleGraph from '../photos/samplehomegraph.png'
@@ -15,6 +15,7 @@ import { PublicChart } from './HomePage/PublicChart';
 import sharkPNG from '../photos/shark.png'
 import sharkPNGMobile from '../photos/sharkmobile.png'
 import sharkSmall from '../photos/sharksmall.webp'
+import { fetchLastAll } from '../state/reducers/thunk-reducers/fetchLastReducer';
 // import { MongoChart } from './apiComponents/MongoChart';
 // import { MongoRaw } from './HomePage/MongoRaw';
 // import AiComment from './AiComment';
@@ -32,8 +33,14 @@ export function HomePage ({ darkMode, graphRef }) {
     document.title = 'Rainbow Darkness';
   }, [])
 
+  // redux
   const destroyer = useSelector((state) => state.destroyer)
   const isLoadingComponent = useSelector((state) => state.isLoadingComponent)
+  const dispatch = useDispatch()
+  const rainbowLastAll = useSelector((state) => state.rainbowLastAll)
+  useEffect(() => {
+    dispatch(fetchLastAll())
+  }, [])
 
   const [about, setAbout] = useState(true)
 
