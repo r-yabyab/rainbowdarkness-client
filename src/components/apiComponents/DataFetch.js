@@ -290,9 +290,8 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
     //    .ticks(11)
     //    .tickFormat(i => i);
      svg.append('g')
-       .attr('class', 'axis-x')
        .call(xAxis)
-       .attr('transform', `translate(0, ${h})`);
+       .attr('transform', `translate(0, ${h})`)
      svg.append('g')
        .call(yAxis);
      // remove the previous line
@@ -477,7 +476,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
                         <Suspense fallback={<div className="text-red-400 bg-green-300">LOADING...</div>}>
                             <div className="
-                            grid grid-cols-10 gap-4 pr-8 pl-8 m-auto
+                            grid grid-cols-10 gap-4 pr-8 pl-8 m-auto pb-10
                             max-md:grid max-md:grid-cols-4 max-md:gap-4 font-semibold
                              [&>div]:pt-0 pt-4 max-md:w-[300px] [&>div]:hover:cursor-text max-md:h-[310px] max-md:overflow-y-scroll no-scrollbar
                              ">

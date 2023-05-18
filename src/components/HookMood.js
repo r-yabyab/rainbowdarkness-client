@@ -54,6 +54,8 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
         // for localStorage, true === can't submit
         // used with setInterval && useEffect
     // let [destroyer, setDestroyer] = useState(false)
+
+    // redux
     const dispatch = useDispatch()
     const { setDestroyer, setisLoadingComponent } = bindActionCreators(actionCreators, dispatch)
     const destroyer = useSelector((state) => state.destroyer)

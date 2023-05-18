@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import format from "date-fns/format";
 import * as d3 from 'd3'
+import { useSelector } from "react-redux";
 
 const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
 
@@ -10,13 +11,12 @@ export function PublicChart ({ darkMode }) {
 
     const [recentNumArr, setRecentNumArr] = useState([])
 
+    // redux
+    const rainbowLastAll = useSelector((state) => state.rainbowLastAll)
 
     useEffect(() => {
-        const fetchRecent = async () => {
-            const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`)
-            const json = await response.json()
+      const json = rainbowLastAll.rainbow 
 
-            if (response.ok) {
             //     const dateSimplify = json
             //         .map((item) => ({
             //             x: format(new Date(item.createdAt), 'dd'),
@@ -65,13 +65,8 @@ export function PublicChart ({ darkMode }) {
               const sortedData = averageData.sort((a,b) => a.x - b.x)
             //   console.log(sortedData);
               setRecentNumArr(sortedData)
-            }
-        
 
-
-        }
-        fetchRecent()
-    }, [])
+    }, [rainbowLastAll])
 
     const publicChartRef = useRef()
 

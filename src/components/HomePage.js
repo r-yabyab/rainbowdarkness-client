@@ -36,11 +36,12 @@ export function HomePage ({ darkMode, graphRef }) {
   // redux
   const destroyer = useSelector((state) => state.destroyer)
   const isLoadingComponent = useSelector((state) => state.isLoadingComponent)
+  const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
   const dispatch = useDispatch()
   const rainbowLastAll = useSelector((state) => state.rainbowLastAll)
   useEffect(() => {
     dispatch(fetchLastAll())
-  }, [])
+  }, [editSubmissionTrigger])
 
   const [about, setAbout] = useState(true)
 

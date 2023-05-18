@@ -4,6 +4,7 @@ import format from "date-fns/format";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
+import { fetchLastAll } from "../../state/reducers/thunk-reducers/fetchLastReducer";
 
 export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
 
@@ -29,6 +30,44 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
     const [memoTextDbl, setMemoTextDbl] = useState(false)
     const [moodNumberDbl, setMoodNumberDbl] = useState(false)
     // const [editSubmissionTrigger, setEditSubmissionTrigger] = useState(false)   // moved to redux store
+
+        // REDUX, NEED TO ADD LOADER FIRST WHEN USER SUBMITS, CRASHES 
+    // useEffect(() => {
+    //     if (isAuthenticated) {
+    //         const yourSub = user && user.sub
+    //         // console.log(yourSub)
+    //                 const dataShit = rainbowLastAll.rainbow
+    //                 // const dataArr = dataShit.map(x => x)
+    //                 const firstInstance = dataShit.findIndex(item => item.userID === yourSub)
+    //                 const matchedInstance = dataShit[firstInstance]
+
+    //                 // console.log(matchedInstance, 'matched')
+    //                 // console.log(dataShit)
+    //                 // console.log(firstInstance + 'test')
+    //                 setYourRecent(matchedInstance)
+
+    //     }
+    //     else {
+
+    //                 const dataShitLocal = rainbowLastAll.rainbow
+    //                 // const bookSort = books.reverse()
+    //                 const bookSort = books.slice(-1)
+    //                 const firstInstanceLocal = dataShitLocal.findIndex(item => item._id === bookSort[0].objId)
+    //                 const matchedInstanceLocal = dataShitLocal[firstInstanceLocal]
+    //                 // console.log(firstInstanceLocal, 'FIRST INSTANCE')
+    //                 // console.log(bookSort[0].objId, 'BOOKSORT NONUSER')
+    //                 // console.log(bookSort, 'LOCAL BOOK SORT')
+    //                 // console.log(dataShitLocal)
+    //                 setYourRecent(matchedInstanceLocal)
+
+    //     }
+    //     // when user saves an edit, runs this useEffect again
+    // }, [isAuthenticated, editSubmissionTrigger, rainbowLastAll])
+
+
+
+
+
 
     useEffect(() => {
 
