@@ -13,7 +13,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
     const dispatch = useDispatch()
     const { setEditSubmissionTrigger } = bindActionCreators(actionCreators, dispatch)
     const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
-
+    const rainbowLastAll = useSelector((state) => state.rainbowLastAll)
 
     const [yourRecent, setYourRecent] = useState('')
 

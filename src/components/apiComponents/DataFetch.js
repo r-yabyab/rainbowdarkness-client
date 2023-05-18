@@ -7,8 +7,9 @@ import * as d3 from 'd3'
 import { useAuth0 } from "@auth0/auth0-react";
 import format from "date-fns/format";
 import { PutSubmission } from "./PutSubmission";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { MongoChart } from "./MongoChart";
+import { fetchLastAll } from "../../state/reducers/thunk-reducers/fetchLastReducer";
 
 const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
@@ -32,22 +33,32 @@ function DataFetch ({destroyer, books, darkMode, graphRef}) {
     const [todayRainbow, setTodayRainbow] = useState([])
     const [allUserNum, setAllUserNum] = useState([])
 
+
     // redux stuff
     const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
 
+    const number = useSelector((state) => state.rainbowLastAll)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        setLastRainbow(number.rainbow)
+    },[number])
 
     useEffect(() => {
         const fetchData = async () => {
           const responses = await Promise.all([
             fetch(`${RAINBOW_DARKNESS}/api/rainbows`,),
-            fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`,),
+            // fetch(`${RAINBOW_DARKNESS}/api/rainbows/last`,),
             fetch(`${RAINBOW_DARKNESS}/api/rainbows/week`,),
             fetch(`${RAINBOW_DARKNESS}/api/rainbows/today`,),
           ]);
           const data = await Promise.all(responses.map((response) => response.json()));
-          const [rainbowData, lastRainbowData, weekRainbowData, todayRainbowData] = data;
+          const [
+            rainbowData, 
+            // lastRainbowData, 
+            weekRainbowData, 
+            todayRainbowData] = data;
           setRainbow(rainbowData);
-          setLastRainbow(lastRainbowData);
+        //   setLastRainbow(lastRainbowData);
           setWeekRainbow(weekRainbowData);
           setTodayRainbow(todayRainbowData);
         };

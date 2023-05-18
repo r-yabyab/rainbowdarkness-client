@@ -4,15 +4,15 @@ import destroyerReducer from './destroyerReducer'
 // import staticTimeReducer from './staticTimeReducer'
 import isLoadingComponentReducer from './isLoadingComponentReducer'
 import editSubmissionTriggerReducer from './editSubmissionTriggerReducer'
-import databaseReducer from './databaseReducer'
+import fetchLastAll from './thunk-reducers/fetchLastReducer'
 
 const reducers = combineReducers({
-    // number: numberReducer,
+    // synchronous
     destroyer: destroyerReducer,
-    // staticTime: staticTimeReducer,
     isLoadingComponent: isLoadingComponentReducer,
     editSubmissionTrigger: editSubmissionTriggerReducer,
-    databaseReducer: databaseReducer
+    // async thunks
+    rainbowLastAll: fetchLastAll
 })
 
 export default reducers;
