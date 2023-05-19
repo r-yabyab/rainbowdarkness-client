@@ -17,8 +17,8 @@ const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
 
 
 // prod
-const RAINBOW_DARKNESS = 'http://localhost:4000'
-// const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
+// const RAINBOW_DARKNESS = 'http://localhost:4000'
+const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
 // staging
 // const RAINBOW_DARKNESS = 'https://rainbowdarkness-server-cayabyabrr-yahoocom.vercel.app'
 // localhost
