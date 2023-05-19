@@ -123,6 +123,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
     const [submittedInfo, setSubmittedInfo] = useState([])
     const [fieldToDelete, setFieldToDelete] = useState('')
     const [tooManyError, setTooManyError] = useState('')
+    const [submitConfirm, setSubmitConfirm] = useState('')
 
     const handleMemoSubmit = async () => {
 
@@ -137,6 +138,10 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
         if (response.ok) {
             console.log('SUBMITTED TO DB!', json)
             setEditSubmissionTrigger(!editSubmissionTrigger)
+            setSubmitConfirm('Submitted!')
+            setTimeout(() => {
+                setSubmitConfirm('')
+            }, 800)
         }
     } 
 
@@ -457,10 +462,10 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                                     </form>
                                 }
                             </div>
-                            <div 
-                                className={ yourRecent.memo ?  "md:bg-zinc-900 max-md:bg-red-600 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
+                            <div
+                                className={yourRecent.memo ? "md:bg-zinc-900 max-md:bg-red-600 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
                                 onClick={() => setFieldToDelete('memo')}
-                                >
+                            >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                 </svg>
@@ -469,9 +474,9 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                     </div>
                 </div>
                 <button
-                    className={`${memoError ? 'bg-red-400' : 'hover:bg-blue-500 bg-blue-400 text-zinc-900 hover:text-zinc-100'} left-[50%] -translate-x-1/2 absolute bottom-0   p-2 mt-4 mb-4  rounded-md w-[85%]`}
+                    className={`${memoError ? 'bg-red-400 hover:cursor-not-allowed' : 'hover:bg-blue-500 bg-blue-400 text-zinc-900 hover:text-zinc-100'} ${(submitConfirm.length > 0) ? 'bg-green-400' : ''} left-[50%] -translate-x-1/2 absolute bottom-0   p-2 mt-4 mb-4  rounded-md w-[85%]`}
                     onClick={handleSubmit}
-                > {memoError ? 'INPUT AT LEAST 1 FIELD' : (tooManyError.length > 0) ? tooManyError : 'SAVE'}</button>
+                > {memoError ? 'INPUT AT LEAST 1 FIELD' : (tooManyError.length > 0) ? tooManyError : (submitConfirm.length > 0) ? submitConfirm : 'SAVE'}</button>
             </div>
         </>
     )
