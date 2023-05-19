@@ -30,6 +30,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
     const [memoTextDbl, setMemoTextDbl] = useState(false)
     const [moodNumberDbl, setMoodNumberDbl] = useState(false)
     // const [editSubmissionTrigger, setEditSubmissionTrigger] = useState(false)   // moved to redux store
+    const [removeSubmissionFieldTrigger, setRemoveSubmissionFieldTrigger] = useState(false)
 
         // REDUX, NEED TO ADD LOADER FIRST WHEN USER SUBMITS, CRASHES 
     // useEffect(() => {
@@ -115,16 +116,19 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
             fetchRecentLocal()
         }
         // when user saves an edit, runs this useEffect again
-    }, [isAuthenticated, editSubmissionTrigger])
+    }, [isAuthenticated, editSubmissionTrigger, removeSubmissionFieldTrigger])
 
     const [submittedInfo, setSubmittedInfo] = useState([])
+    const [fieldToDelete, setFieldToDelete] = useState('')
+    const [tooManyError, setTooManyError] = useState('')
 
     const handleMemoSubmit = async () => {
+
         const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/details/${yourRecent._id}?id=${yourRecent._id}&sleepNumber=${sleepNumber}&activities=${activities}&memoText=${memoText}&moodNumber=${moodNumber}`, {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json'
-            }
+            },
           });
         
         const json = await response.json()
@@ -134,6 +138,69 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
         }
     } 
 
+        // Not everything needs to be added
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            // if (memoText.length >= 1 || (parseFloat(sleepNumber) >= 0 && parseFloat(sleepNumber) <= 24) || activities.length >= 1 || (parseFloat(moodNumber) >= 0 && parseFloat(moodNumber) <= 10 )) 
+            if (memoText || sleepNumber || activities || moodNumber ) 
+        {
+            console.log('sleep', sleepNumber, "activities", activities, "memo", memoText)
+            handleMemoSubmit()
+            setMemoText('')
+            setActivities('')
+            setSleepNumber('')
+            setMemoTextDbl(false)
+            setSleepNumberDbl(false)
+            setActivitiesDbl(false)
+            setMoodNumberDbl(false)
+        } else {
+            console.log('PUT MEMO')
+            setMemoError(true)
+            setTimeout(() => {
+                setMemoError(false)
+            }, 1000)
+        }
+        }
+
+    const handleMemoDeleteField = async () => {
+        console.log('id:', yourRecent._id)
+        console.log('fieldToDelete:', fieldToDelete)
+        const response = await fetch(`${RAINBOW_DARKNESS}/api/rainbows/details/removefield/${yourRecent._id}?id=${yourRecent._id}&fieldToDelete=${fieldToDelete}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (response.ok) {
+            const json = await response.json()
+            console.log(`REMOVED { ${fieldToDelete} } FROM YOUR SUBMISSION`, json)
+            setFieldToDelete('')
+            setRemoveSubmissionFieldTrigger(!removeSubmissionFieldTrigger)
+        } else {
+            if (response.status === 429) {
+                console.log('TOO MANY REQUERIOQEUFIEWJFEIJTWEIJI')
+                setFieldToDelete('')
+                setTooManyError('Too Many Requests!')
+                setTimeout(() => {
+                    setTooManyError('')
+                }, 1500)
+            } else {
+                console.log('Internal Server Error')
+            }
+        }
+
+    }
+
+    useEffect(() => {
+        if (fieldToDelete.length > 0) {
+            handleMemoDeleteField()
+            console.log('submitted')
+        } else {
+            console.log('waiting')
+            setFieldToDelete('')
+        }
+    }, [fieldToDelete])
 
     const [sleepNumberError, setSleepNumberError] = useState(false)
 
@@ -183,32 +250,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
             console.log('error')
           }
     }
-            // Not everything needs to be added
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                // if (memoText.length >= 1 || (parseFloat(sleepNumber) >= 0 && parseFloat(sleepNumber) <= 24) || activities.length >= 1 || (parseFloat(moodNumber) >= 0 && parseFloat(moodNumber) <= 10 )) 
-                if (memoText || sleepNumber || activities || moodNumber ) 
-            {
-                console.log('sleep', sleepNumber, "activities", activities, "memo", memoText)
 
-                handleMemoSubmit()
-
-                setMemoText('')
-                setActivities('')
-                setSleepNumber('')
-
-                setMemoTextDbl(false)
-                setSleepNumberDbl(false)
-                setActivitiesDbl(false)
-                setMoodNumberDbl(false)
-            } else {
-                console.log('PUT MEMO')
-                setMemoError(true)
-                setTimeout(() => {
-                    setMemoError(false)
-                }, 1000)
-            }
-            }
 
     return (
         <>
@@ -245,12 +287,14 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                         </div>
                     </div>
 
+
                     <div className="mb-4">Date: {yourRecent && format(new Date(yourRecent.createdAt), 'EEEE, MMM do HH:mm')}</div>
                     <div className=" font-semibold">Additional Info (optional)</div>
+
                     <div
                     // className={`${memoError ? 'bg-red-400' : ''}`}
                     >
-                        <div className="mt-2">
+                        <div className="mt-2 flex align-middle gap-x-2 items-center relative">
                             <div className="flex items-center gap-2 group"
                                 onClick={() => {
                                     setSleepNumberDbl(true)
@@ -283,6 +327,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                                                 onKeyDown={handleKeyDown}
                                             />
                                         </form>
+
                                     </>
                                     :
                                     <form>
@@ -298,8 +343,16 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                                 }
                                 {/* <div className="absolute"> {sleepNumberError && sleepNumberError}</div> */}
                             </div>
+                            <div 
+                                className={ yourRecent.timeSlept ?  "bg-zinc-900 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
+                                onClick={() => setFieldToDelete('timeSlept')}
+                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </div>
                         </div>
-                        <div className="mt-2">
+                        <div className="mt-2 flex align-middle gap-x-2 items-center relative">
                             <div className="flex flex-wrap gap-2 items-center group"
                                 onClick={() => {
                                     setActivitiesDbl(true)
@@ -347,8 +400,16 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                                     </form>
                                 }
                             </div>
+                            <div 
+                                className={ yourRecent.activities ?  "bg-zinc-900 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
+                                onClick={() => setFieldToDelete('activities')}
+                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </div>
                         </div>
-                        <div className="mt-2">
+                        <div className="mt-2 flex align-middle gap-x-2 items-center relative">
                             <div className="flex flex-wrap items-center gap-2 group"
                                 onClick={() => {
                                     setMemoTextDbl(true)
@@ -395,13 +456,21 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                                     </form>
                                 }
                             </div>
+                            <div 
+                                className={ yourRecent.memo ?  "bg-zinc-900 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
+                                onClick={() => setFieldToDelete('memo')}
+                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <button
                     className={`${memoError ? 'bg-red-400' : 'hover:bg-blue-500 bg-blue-400 text-zinc-900 hover:text-zinc-100'} left-[50%] -translate-x-1/2 absolute bottom-0   p-2 mt-4 mb-4  rounded-md w-[85%]`}
                     onClick={handleSubmit}
-                > {memoError ? 'INPUT AT LEAST 1 FIELD' : 'SAVE'}</button>
+                > {memoError ? 'INPUT AT LEAST 1 FIELD' : (tooManyError.length > 0) ? tooManyError : 'SAVE'}</button>
             </div>
         </>
     )
