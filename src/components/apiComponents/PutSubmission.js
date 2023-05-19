@@ -474,7 +474,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                     </div>
                 </div>
                 <button
-                    className={`${memoError ? 'bg-red-400 hover:cursor-not-allowed' : 'hover:bg-blue-500 bg-blue-400 text-zinc-900 hover:text-zinc-100'} ${(submitConfirm.length > 0) ? 'bg-green-400' : ''} left-[50%] -translate-x-1/2 absolute bottom-0   p-2 mt-4 mb-4  rounded-md w-[85%]`}
+                    className={`${memoError ? 'bg-red-400 md:hover:cursor-not-allowed' : 'md:hover:bg-blue-500 bg-blue-400 text-zinc-900 md:hover:text-zinc-100'} ${(submitConfirm.length > 0) ? 'bg-green-400' : ''} left-[50%] -translate-x-1/2 absolute bottom-0   p-2 mt-4 mb-4  rounded-md w-[85%]`}
                     onClick={handleSubmit}
                 > {memoError ? 'INPUT AT LEAST 1 FIELD' : (tooManyError.length > 0) ? tooManyError : (submitConfirm.length > 0) ? submitConfirm : 'SAVE'}</button>
             </div>
