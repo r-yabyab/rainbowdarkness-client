@@ -1,3 +1,5 @@
+// Lets users (non and registered) add/edit/delete fields on their submissions
+
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import format from "date-fns/format";
@@ -179,7 +181,6 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
             setRemoveSubmissionFieldTrigger(!removeSubmissionFieldTrigger)
         } else {
             if (response.status === 429) {
-                console.log('TOO MANY REQUERIOQEUFIEWJFEIJTWEIJI')
                 setFieldToDelete('')
                 setTooManyError('Too Many Requests!')
                 setTimeout(() => {
@@ -195,9 +196,9 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
     useEffect(() => {
         if (fieldToDelete.length > 0) {
             handleMemoDeleteField()
-            console.log('submitted')
+            // console.log('submitted')
         } else {
-            console.log('waiting')
+            // console.log('waiting')
             setFieldToDelete('')
         }
     }, [fieldToDelete])
@@ -344,7 +345,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                                 {/* <div className="absolute"> {sleepNumberError && sleepNumberError}</div> */}
                             </div>
                             <div 
-                                className={ yourRecent.timeSlept ?  "bg-zinc-900 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
+                                className={ yourRecent.timeSlept ?  "md:bg-zinc-900 max-md:bg-red-600 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
                                 onClick={() => setFieldToDelete('timeSlept')}
                                 >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
@@ -401,7 +402,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                                 }
                             </div>
                             <div 
-                                className={ yourRecent.activities ?  "bg-zinc-900 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
+                                className={ yourRecent.activities ?  "md:bg-zinc-900 max-md:bg-red-600 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
                                 onClick={() => setFieldToDelete('activities')}
                                 >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">
@@ -457,7 +458,7 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
                                 }
                             </div>
                             <div 
-                                className={ yourRecent.memo ?  "bg-zinc-900 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
+                                className={ yourRecent.memo ?  "md:bg-zinc-900 max-md:bg-red-600 rounded-lg text-white flex align-middle justify-center hover:bg-red-600 hover:cursor-pointer" : 'hidden'}
                                 onClick={() => setFieldToDelete('memo')}
                                 >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16">

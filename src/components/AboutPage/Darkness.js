@@ -58,6 +58,11 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
+                            <div>1.4.2 (May 18, 2023)</div>
+                            <p className='text-green-600'>Added a delete button for the submission box</p>
+                            <p>To fix bug where submitting with empty fields sets them to 'undefined'</p>
+                            <div>______________</div>
+
                             <div>1.4.1 (May 17-18, 2023 midnight)</div>
                             <p>Optimized data fetching (got redux-thunk to work - cut resources by about 30%; Components that share the same data pulls from a single data store rather than have each component fetch the same data)</p>
                             <p>To add delete button for submission info box items</p>
