@@ -5,6 +5,8 @@ import * as d3 from 'd3'
 import { useAuth0 } from '@auth0/auth0-react';
 import format from 'date-fns/format';
 import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state';
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -133,6 +135,10 @@ function HomeChart ({darkMode}) {
 
     //
 
+    // const [tooltipContent, setTooltipContent] = useState([])
+    const { setTooltipContent } = bindActionCreators(actionCreators, dispatch)
+    const tooltipContent = useSelector((state) => state.tooltipContent)
+
     const svgHomeRefTEST3 = useRef();
 
     useEffect(() => {
@@ -157,7 +163,7 @@ function HomeChart ({darkMode}) {
           .map(item => ({
             x: parseDate(item.x),
             y: item.y,
-            sleep: item.timeSlept,
+            sleep: item.sleep,
             activities: item.activities,
             memo: item.memo
           })))}
@@ -203,7 +209,7 @@ function HomeChart ({darkMode}) {
           const line = d3.line()
           .x(d => x(d.x))
           .y(d => y(d.y))
-          // .curve(d3.curveCardinal);
+          .curve(d3.curveCatmullRom);
             
 
 
@@ -300,11 +306,24 @@ function HomeChart ({darkMode}) {
                   .attr("fill", `${darkMode ? "white" : "black"}`)
                   .style("opacity", 1)
                   // .attr('transform', 'rotate(-90)')
-                  .attr('x', 240)
+                  .attr('x', xPos)
+                  .attr('y', yPos - 30)
                   // .attr('text-decoration', 'underline')
                   .attr('dy', '0.71em')
-                  .attr('text-anchor', 'end')
-                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.sleep ? `Sleep: ${d.sleep}hrs` : ''} ${d.activities ? `Activities: ${d.activities}` : ""} ${d.memo ? `Memo: ${d.memo}` : ''}`)
+                  .attr('text-anchor', 'middle')
+                  // .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.sleep ? `Sleep: ${d.sleep}hrs` : ''} ${d.activities ? `Activities: ${d.activities}` : ""} ${d.memo ? `Memo: ${d.memo}` : ''}`)
+                  .text(`${format(d.x, 'MM/dd')} - ${d.y}`)
+                  .append('rect')
+
+                  // setTooltipContent(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.sleep ? `Sleep: ${d.sleep}hrs` : ''} ${d.activities ? `Activities: ${d.activities}` : ""} ${d.memo ? `Memo: ${d.memo}` : ''}`)
+                  setTooltipContent({
+                    mood: d.y,
+                    date: format(d.x, 'MM/dd'),
+                    sleep: d.sleep,
+                    activities: d.activities,
+                    memo: d.memo,
+                  })
+                  // to display outside of this useRef:
               });
 
                 listeningRect.on("mouseleave", function () {
@@ -313,6 +332,8 @@ function HomeChart ({darkMode}) {
                     .attr("r", 0);
               
                   tooltip.style("opacity", 0);
+
+                  setTooltipContent([])
                 });
 
 
@@ -385,6 +406,7 @@ function HomeChart ({darkMode}) {
                     {showTimeLeft ? '' : 'Show time left'}
                 </div> */}
                 {/* {inputNumber} */}
+                {/* <div className='bg-white absolute'>{tooltipContent.sleep && 'date:' + tooltipContent.date}</div> */}
             </div>
             </>
     )

@@ -10,6 +10,7 @@ import { PutSubmission } from "./PutSubmission";
 import { useSelector, useDispatch } from "react-redux";
 import { MongoChart } from "./MongoChart";
 import { fetchLastAll } from "../../state/reducers/thunk-reducers/fetchLastReducer";
+import { ChartTooltips } from "./ChartTooltips";
 
 const RainbowEntries = React.lazy (() => import("./RainbowEntries"));
 const RainbowGet = React.lazy(() => import("./RainbowAvgScore"));
@@ -333,14 +334,21 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                 max-w-[1000px] mr-auto ml-auto
                 max-md:pt-[100px] 
                 "
-                // max-md:pr-[100px] max-md:pl-[100px] // for putSubmission component
-                >
+            // max-md:pr-[100px] max-md:pl-[100px] // for putSubmission component
+            >
                 <div className="max-md:hidden md:invisible">___________________________________________________________________________________</div>
                 <div className="pt-[80px]">
-                   <div className=" 
+                    <div className=" 
+                        lg:w-[900px] md:w-[700px] pb-20
+                         max-md:font-normal m-auto max-md:max-w-[360px]"><ChartTooltips /></div>
+                    <div className=" 
                         lg:w-[900px] md:w-[700px] 
-                         max-md:font-normal m-auto max-md:pr-[100px] max-md:pl-[100px]"> <PutSubmission RAINBOW_DARKNESS={RAINBOW_DARKNESS} books={books} /></div>
-                    
+                         max-md:font-normal m-auto max-md:max-w-[360px]"
+                        //  max-md:pr-[100px] max-md:pl-[100px]
+                         >
+                        <PutSubmission RAINBOW_DARKNESS={RAINBOW_DARKNESS} books={books} />
+                    </div>
+
                     <div className="
                          lg:w-[900px] md:w-[700px] 
                          mr-auto ml-auto

@@ -1,31 +1,38 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from 'd3'
 import format from "date-fns/format";
+import { useDispatch  } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../../state";
 
 export function SampleGraph ({ darkMode }) {
 
+  // redux
+  const dispatch = useDispatch()
+  const { setTooltipContent } = bindActionCreators(actionCreators, dispatch)
+
     const dummyData = [
-        {inputTime: '05/07', inputNumber: 4.5},
+        {inputTime: '05/07', inputNumber: 4.5, timeSlept: 4},
         {inputTime: '05/06', inputNumber: 4},
-        {inputTime: '05/05', inputNumber: 5},
-        {inputTime: '05/04', inputNumber: 4},
+        {inputTime: '05/05', inputNumber: 5, timeSlept: 8, activites: 'Ate McDonalds', memo: 'Need to try out the new spicy nuggets'},
+        {inputTime: '05/04', inputNumber: 4, timeSlept: 3},
         {inputTime: '05/03', inputNumber: 2.5},
         {inputTime: '04/30', inputNumber: 5, activites: 'Netflix all day, did nothing'},
         {inputTime: '04/29', inputNumber: 5},
         {inputTime: '04/28', inputNumber: 6.5},
-        {inputTime: '04/27', inputNumber: 0, activites: 'Fell down a mineshaft'},
-        {inputTime: '04/26', inputNumber: 8, activites: 'Went hiking'},
+        {inputTime: '04/27', inputNumber: 0.1, activites: 'Fell down a mineshaft'},
+        {inputTime: '04/26', inputNumber: 8, activites: 'Went hiking, ate a vegan sandwich'},
         {inputTime: '04/25', inputNumber: 6},
         {inputTime: '04/23', inputNumber: 5},
-        {inputTime: '04/22', inputNumber: 5.5},
-        {inputTime: '04/21', inputNumber: 5.5},
+        {inputTime: '04/22', inputNumber: 4, timeSlept: 8, activites: 'Eh', memo: 'bored'},
+        {inputTime: '04/21', inputNumber: 5.5, activites: 'saw a cat'},
         {inputTime: '04/20', inputNumber: 10, activites: 'Ate a turkey sandwich'},
         {inputTime: '04/18', inputNumber: 2, activites: 'Didnt eat today, no money for turkey sandwich'},
         {inputTime: '04/17', inputNumber: 3},
         {inputTime: '04/15', inputNumber: 2},
         {inputTime: '04/14', inputNumber: 3.5},
-        {inputTime: '04/13', inputNumber: 2.5},
-        {inputTime: '04/12', inputNumber: 0, activites: 'Cat peed on my bed'},
+        {inputTime: '04/13', inputNumber: 2.5, activites: 'Car broke down on my way to work, slept late last night, didnt have enough time to eat breakfast, worked on a side project for a couple hours, gym', memo: 'squats, deadlifts, a couple push ups'},
+        {inputTime: '04/12', inputNumber: 1, activites: 'Cat peed on my bed', memo: 'Woke up late'},
         {inputTime: '04/10', inputNumber: 5},
 ]
 
@@ -43,7 +50,9 @@ export function SampleGraph ({ darkMode }) {
           .map(item => ({
             x: parseDate(item.inputTime),
             y: item.inputNumber,
-            activites: item.activites
+            activites: item.activites,
+            sleep: item.timeSlept,
+            memo: item.memo,
           })))
 
  
@@ -189,46 +198,92 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
                   .duration(50)
                   .attr('r', 10);
 
+                  tooltipPlaceholderStatic.style('opacity', 0)
+
+
+
+
+
+              //     tooltip
+              //     // .append('text')
+              //     .attr("fill", `${darkMode ? "white" : "black"}`)
+              //     .style("opacity", 1)
+              //     // .attr('transform', 'rotate(-90)')
+              //     .attr('x', 240)
+              //     .attr('y', -30)
+              //     // .attr('text-decoration', 'underline')
+              //     .attr('dy', '0.71em')
+              //     .attr('text-anchor', 'end')
+              //     .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.activites ? `Activities: ${d.activites}` : '' }`)
+
+              //     tooltipPlaceholder
+              //     .style("opacity", 0)
+
+              //     tooltipPlaceholderStatic
+              //     .style("opacity", 0)
+
+  
+              // });
+
+              //   listeningRect.on("mouseleave", function () {
+              //     circle.transition()
+              //       .duration(50)
+              //       .attr("r", 0);
+
+              //       tooltipPlaceholder
+              //       // .attr('transform', 'rotate(-90)')
+              //       .style('opacity', 1)
+              //       .attr('x', 220)
+              //       .attr('y', -30)
+              //       // .attr('text-decoration', 'underline')
+              //       .attr('dy', '0.71em')
+              //       .attr('font-size', '16px')
+              //       .attr('text-anchor', 'end')
+              //       .text('Hover over me!')
+              
+              //     tooltip
+              //     .style("opacity", 0)
+
+              //   });
+
+
+
+
+
                   tooltip
                   // .append('text')
                   .attr("fill", `${darkMode ? "white" : "black"}`)
                   .style("opacity", 1)
                   // .attr('transform', 'rotate(-90)')
-                  .attr('x', 240)
-                  .attr('y', -30)
+                  .attr('x', xPos)
+                  .attr('y', yPos - 30)
                   // .attr('text-decoration', 'underline')
                   .attr('dy', '0.71em')
-                  .attr('text-anchor', 'end')
-                  .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.activites ? `Activities: ${d.activites}` : '' }`)
+                  .attr('text-anchor', 'middle')
+                  // .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.sleep ? `Sleep: ${d.sleep}hrs` : ''} ${d.activities ? `Activities: ${d.activities}` : ""} ${d.memo ? `Memo: ${d.memo}` : ''}`)
+                  .text(`${format(d.x, 'MM/dd')} - ${d.y}`)
+                  .append('rect')
 
-                  tooltipPlaceholder
-                  .style("opacity", 0)
-
-                  tooltipPlaceholderStatic
-                  .style("opacity", 0)
-
-  
+                  // setTooltipContent(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.sleep ? `Sleep: ${d.sleep}hrs` : ''} ${d.activities ? `Activities: ${d.activities}` : ""} ${d.memo ? `Memo: ${d.memo}` : ''}`)
+                  setTooltipContent({
+                    mood: d.y,
+                    date: format(d.x, 'MM/dd'),
+                    activities: d.activites,
+                    sleep: d.sleep,
+                    memo: d.memo
+                  })
+                  // to display outside of this useRef:
               });
 
                 listeningRect.on("mouseleave", function () {
                   circle.transition()
                     .duration(50)
                     .attr("r", 0);
-
-                    tooltipPlaceholder
-                    // .attr('transform', 'rotate(-90)')
-                    .style('opacity', 1)
-                    .attr('x', 220)
-                    .attr('y', -30)
-                    // .attr('text-decoration', 'underline')
-                    .attr('dy', '0.71em')
-                    .attr('font-size', '16px')
-                    .attr('text-anchor', 'end')
-                    .text('Hover over me!')
               
-                  tooltip
-                  .style("opacity", 0)
+                  tooltip.style("opacity", 0);
+                  tooltipPlaceholderStatic.style('opacity', 1)
 
+                  setTooltipContent([])
                 });
 
 

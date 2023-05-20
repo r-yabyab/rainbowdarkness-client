@@ -44,3 +44,12 @@ export const getLoadRecent = (load) => {
         })
     }
 }
+
+export const setTooltipContent = (content) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'setTooltipAction',
+            payload: content
+        })
+    }
+}

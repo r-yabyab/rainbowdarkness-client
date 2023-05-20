@@ -16,6 +16,7 @@ import sharkPNG from '../photos/shark.png'
 import sharkPNGMobile from '../photos/sharkmobile.png'
 import sharkSmall from '../photos/sharksmall.webp'
 import { fetchLastAll } from '../state/reducers/thunk-reducers/fetchLastReducer';
+import { ChartTooltips } from './apiComponents/ChartTooltips';
 // import { MongoChart } from './apiComponents/MongoChart';
 // import { MongoRaw } from './HomePage/MongoRaw';
 // import AiComment from './AiComment';
@@ -37,6 +38,7 @@ export function HomePage ({ darkMode, graphRef }) {
   const destroyer = useSelector((state) => state.destroyer)
   const isLoadingComponent = useSelector((state) => state.isLoadingComponent)
   const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
+  const tooltipContent = useSelector((state) => state.tooltipContent)
   const dispatch = useDispatch()
   const rainbowLastAll = useSelector((state) => state.rainbowLastAll)
   useEffect(() => {
@@ -228,11 +230,12 @@ export function HomePage ({ darkMode, graphRef }) {
                   </div>
                   </div>
               </div>
-              <span className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2'>
+              <div className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2'>
                 <SampleGraph darkMode={darkMode} />
-              </span>
+              </div>
               {/* <img className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2' draggable={false} src={sampleGraph} alt='sample graph' /> */}
             </div>
+                <div className={tooltipContent.mood ? 'pt-10' : 'hidden'}><ChartTooltips /></div>
 
   
 
