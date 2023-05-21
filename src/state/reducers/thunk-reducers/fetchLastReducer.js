@@ -1,3 +1,7 @@
+// used in:
+// useEffect in HomePage.js && somewhere else
+// arrow fx in PutSubmission when user removes (for the HomeChart data)
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 

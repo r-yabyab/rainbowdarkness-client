@@ -184,6 +184,8 @@ export function PutSubmission ({ RAINBOW_DARKNESS, books }) {
             console.log(`REMOVED { ${fieldToDelete} } FROM YOUR SUBMISSION`, json)
             setFieldToDelete('')
             setRemoveSubmissionFieldTrigger(!removeSubmissionFieldTrigger)
+            // refreshes data, needed for HomeChart.js
+            // dispatch(fetchLastAll())
         } else {
             if (response.status === 429) {
                 setFieldToDelete('')

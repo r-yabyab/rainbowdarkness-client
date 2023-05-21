@@ -29,7 +29,32 @@ function HomeChart ({darkMode}) {
 
     const [weekRainbow, setWeekRainbow] = useState('')
     const [weekAvg, setWeekAvg] = useState('')
+    const [expandChart, setExpandChart] = useState(false)
     // const [showTimeLeft, setShowTimeLeft] = useState(false)
+
+
+    useEffect(() => {
+      const handleResize = () => {
+        const isMaxMd = window.innerWidth <= 768; // Assuming "max-md" corresponds to 768px in Tailwind CSS
+        setExpandChart(!isMaxMd);
+      };
+  
+      // Initial check on component mount
+      handleResize();
+  
+      // Listen for window resize event
+      window.addEventListener('resize', handleResize);
+  
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+
+    const expandChartHandler = () => {
+      setExpandChart(!expandChart)
+      console.log(expandChart)
+    }
 
     // redux stuff, tied to data fetch not graph
     const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
@@ -141,6 +166,7 @@ function HomeChart ({darkMode}) {
 
     const svgHomeRefTEST3 = useRef();
 
+    // renders the graph
     useEffect(() => {
       
       const setGraph = async () => {
@@ -169,13 +195,16 @@ function HomeChart ({darkMode}) {
           })))}
 
           d3.select(svgHomeRefTEST3.current).selectAll('*').remove();
-                const width = 400;
+                // const width = 400;
+                
+                const width = `${expandChart ? 800 : 340}`
         const height = 200;
         const svg = d3.select(svgHomeRefTEST3.current)
           .attr('width', width)
           .attr('height', height)
           .style('margin-top', 0)
-          .style('margin-left', 50)
+          // .style('margin-left', 50)
+          .style('margin-left', 0)
           .style('overflow', 'visible')
           
           // console.log("2nd useEffect Test: ", data)
@@ -212,7 +241,28 @@ function HomeChart ({darkMode}) {
           .curve(d3.curveCatmullRom);
             
 
-
+        // draw grid lines
+            // vertical lines
+            svg.selectAll('xGrid')
+            .data(x.ticks(30).slice(1))
+            .join('line')
+            .attr('x1', d => x(d))
+            .attr('x2', d => x(d))
+            .attr('y1', 0)
+            .attr('y2', height)
+            .attr('stroke', `${darkMode ? "gray" : "#e0e0e0"}`)
+            .attr('stroke-width', `${expandChart ? .5 : 0}`)
+            
+            // horizontal lines
+        svg.selectAll('yGrid')
+            .data(y.ticks().slice(1))
+            .join('line')
+            .attr('x1', 0)
+            .attr('x2', width)
+            .attr('y1', d => y(d))
+            .attr('y2', d => y(d))
+            .attr('stroke', `${darkMode ? "gray" : "#e0e0e0"}`)
+            .style('stroke-width', .5)
 
             svg.append("g")
               // .attr('transform', 'translate(0,' + height + ")")
@@ -226,7 +276,7 @@ function HomeChart ({darkMode}) {
               .call(
                 d3
                   .axisBottom(x)
-                  .ticks(5)
+                  .ticks(`${expandChart ? 20 : 5}`)
                 )
               .selectAll("text")
                 .attr("fill", `${darkMode ? "white" : "black"}`)
@@ -249,9 +299,10 @@ function HomeChart ({darkMode}) {
               
             svg.append('g')  
               .append('text')
-              .attr("fill", `${darkMode ? "white" : "black"}`)
+              .attr("fill", `${darkMode ? "gray" : "gray"}`)
               // .attr('transform', 'rotate(-90)')
-              .attr('x', 390)
+              .style('position', 'absolute')
+              .attr('x', width -10)
               .attr('y', 190)
               // .attr('text-decoration', 'underline')
               .attr('dy', '0.71em')
@@ -364,7 +415,7 @@ function HomeChart ({darkMode}) {
                 .style('pointer-events', 'none')
               }
               setGraph()
-              },[userNumsArr, isAuthenticated, darkMode])
+              },[userNumsArr, isAuthenticated, darkMode, expandChart])
 
     return (
         <>
@@ -405,11 +456,24 @@ function HomeChart ({darkMode}) {
                 {/* <div className='text-center text-zinc-400 pt-2 m-auto hover:text-white hover:cursor-pointer'>
                     {showTimeLeft ? '' : 'Show time left'}
                 </div> */}
-                {/* {inputNumber} */}
-                {/* <div className='bg-white absolute'>{tooltipContent.sleep && 'date:' + tooltipContent.date}</div> */}
-            </div>
-            </>
-    )
+        {/* {inputNumber} */}
+        {/* <div className='bg-white absolute'>{tooltipContent.sleep && 'date:' + tooltipContent.date}</div> */}
+        
+        {/* <div
+          className='absolute max-md:hidden top-0 text-white bg-zinc-600 hover:bg-zinc-400 hover:cursor-pointer p-1 rounded-md  '
+          onClick={expandChartHandler}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={ expandChart ? "hidden" : "bi bi-arrows-angle-expand"} viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={ expandChart ? "bi bi-fullscreen-exit" : "hidden"} viewBox="0 0 16 16">
+            <path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zm10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4z" />
+          </svg>
+        </div> */}
+
+      </div>
+    </>
+  )
 }
 
 export default HomeChart;

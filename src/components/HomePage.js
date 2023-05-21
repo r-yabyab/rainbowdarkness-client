@@ -41,9 +41,11 @@ export function HomePage ({ darkMode, graphRef }) {
   const tooltipContent = useSelector((state) => state.tooltipContent)
   const dispatch = useDispatch()
   const rainbowLastAll = useSelector((state) => state.rainbowLastAll)
+  
+  // refreshes the data for fetchLastAll
   useEffect(() => {
     dispatch(fetchLastAll())
-  }, [editSubmissionTrigger])
+  }, [editSubmissionTrigger, destroyer])
 
   const [about, setAbout] = useState(true)
 
