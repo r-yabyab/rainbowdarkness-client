@@ -40,6 +40,7 @@ export function TopNav({ darkMode }) {
 
             {/* max-md:border-y-2 max-md:-mt-2 max-md:border-[#1D4ED8] max-md:h-[40px] max-md:bg-[#1D4ED8] */}
             {/* <div className={`${darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 border-b-2 border-neutral-600' : ` */}
+            <div className='relative z-20'>
             <div className={` ${ isLoadingComponent && darkMode ? '' : 'border-b-2 border-zinc-400'} ${  darkMode ? 'bg-black ' : `
              bg-zinc-800`} relative pt-3 pb-3 flex overflow-hidden md:justify-center max-md:pl-4 select-none`}
                 draggable="false">
@@ -129,7 +130,7 @@ export function TopNav({ darkMode }) {
                 </div>
             </div>
 
-
+            </div>
         </>
     )
 }
