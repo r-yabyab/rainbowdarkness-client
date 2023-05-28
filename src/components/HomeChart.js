@@ -127,16 +127,19 @@ function HomeChart ({darkMode}) {
   
     useEffect(() => {
       if (userNums) {
-        const mappedData = userNums.map((item) => ({
-          x: format(new Date(item.createdAt), 'MM/dd'),
+        const mappedData = userNums
+        .map((item) => ({
+          x: format(new Date(item.createdAt), 'MM/dd HH:mm yy'),
           y: item.number,
           sleep: item.timeSlept,
           activities: item.activities,
           memo: item.memo
         }));
-        // console.log('mappedData', mappedData);
+        console.log('mappedData', mappedData);
         setUserNumsArr(mappedData);
 
+        // const startingPoint = userNumsArr[0].x
+        // console.log(startingPoint)
       }
     }, [userNums]);
 
@@ -183,7 +186,8 @@ function HomeChart ({darkMode}) {
 
       } else {
 
-        const parseDate = d3.timeParse("%m/%d")
+        // parses from date-fns string of MM/dd HH:mm
+        const parseDate = d3.timeParse("%m/%d %H:%M %Y")
         data = (userNumsArr
           .slice(0, 20)
           .map(item => ({
@@ -363,7 +367,7 @@ function HomeChart ({darkMode}) {
                   .attr('dy', '0.71em')
                   .attr('text-anchor', 'middle')
                   // .text(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.sleep ? `Sleep: ${d.sleep}hrs` : ''} ${d.activities ? `Activities: ${d.activities}` : ""} ${d.memo ? `Memo: ${d.memo}` : ''}`)
-                  .text(`${format(d.x, 'MM/dd')} - ${d.y}`)
+                  .text(`${format(d.x, 'MM/dd HH:mm')} - ${d.y}`)
                   .append('rect')
 
                   // setTooltipContent(`Mood:${d.y} Date:${format(d.x, 'MM/dd')} ${d.sleep ? `Sleep: ${d.sleep}hrs` : ''} ${d.activities ? `Activities: ${d.activities}` : ""} ${d.memo ? `Memo: ${d.memo}` : ''}`)

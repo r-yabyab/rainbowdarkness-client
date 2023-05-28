@@ -43,20 +43,32 @@ function Darkness() {
                         {/* Rainbow Darkness is a mental health platform that prioritizes accessibility and anonymity for its users. Our platform recognizes that many mental health applications require users to provide personal information or complete lengthy surveys before gaining access to their services.
                         <br /><br /> At Rainbow Darkness, we believe in a simpler approach. We only ask how happy our users are at the moment, with the hope that future visits will prompt introspection and exploration of their emotional states. Additionally, our platform provides access to the moods of other users. This feature can be particularly insightful, as it reveals that others may be struggling even if they appear to be okay in person.
                         <br /><br />Our mission is to create a safe and supportive community for individuals to explore their mental health in a way that is accessible, anonymous, and free from judgment. */}
-                        Rainbow Darkness is a mental health platform that helps track your mood level. We aim to bring modern research methods of human affect to the average person that tends to be inclusive to private psychology studies.
-                        <br/> <br/> Here's a mood chart of people with major depressive disorder. They tend to hover below normal mood levels, and shows improvement after treatment. 
-                        <img className='text-white pt-8' src={mdd} alt='mdd' />
+                        Rainbow Darkness is a mental health platform that helps track your mood level. We aim to bring modern research methods on human affect to the public.
+                        {/* <br/> <br/> Here's a mood chart of people with major depressive disorder. They tend to hover below normal mood levels, and shows improvement after treatment.  */}
+                        {/* <img className='text-white pt-8' src={mdd} alt='mdd' />
                         <p className='mt-14 -mb-14'>Because people don't often have the luxury to get help, with the healthcare system being too complicated, with psychiatrists not giving quality care, this site aims to help users be mindful of themselves and others. 
+                        </p> */}
                         {/* When shit hits the fan, how do we make things better? */}
-                        </p>
                         </div>
 
 
                     </div>
 
+                    {/* <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center items-center flex-col flex bg-black text-zinc-200 [&>div]:max-w-[800px] '>
+                        <div className='text-[24px] max-md:pt-20 underline mt-[150px] w-[800px] font-semibold pl-2'>Getting Started</div>
+                        <div className='pt-4'>sdfllsdkfjsdklj</div>
+
+                    </div> */}
+
+
                     <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-zinc-200'>
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
+
+                            <div>1.4.5 (May 27, 2023)</div>
+                            <p>Mood chart shows time submitted (for registered users)</p>
+                            <p>Updated about section</p>
+                            <div>______________</div>
 
                             <div>1.4.4 (May 20, 2023)</div>
                             <p>Mood chart width changes if on desktop or mobile. Added x and y grids</p>
