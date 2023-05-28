@@ -97,36 +97,28 @@ export function HomePage ({ darkMode, graphRef }) {
   <>
   {/* <div className={isLoadingComponent ? 'bg-purple-400 absolute top-10' : 'text-black absolute top-10 bg-green-600 text-[40px]'}>test test</div> */}
   {isLoadingComponent ? 
-  <div className='flex justify-center mt-40'><LoadingComponent /></div>
+  <div className='flex justify-center'><LoadingComponent /></div>
   : 
         null}
         
-        {/* <div className='overflow-hidden w-full'> */}
-
-          {/* </div> */}
-          {/* <div className={'absolute  w-full overflow-clip h-screen'}>
-      <div 
-          className={` ${ isLoadingComponent || destroyer ? 'hidden' : ''} ${ darkMode ? 'bg-black blur-sm -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px] w-[40000px] -left-20 overflow-hidden  shadow-sm `}
-          style={{ padding: '0 0px', margin: '0 0px' }}
-          />
-          </div> */}
-                <div 
+                {/* <div 
           className={` ${ isLoadingComponent || destroyer ? 'hidden' : ''} ${ darkMode ? 'bg-black -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px] w-full  shadow-sm `}
           style={{ padding: '0 0px', margin: '0 0px' }}
-          />
+          /> */}
       
       <div className='overflow-x-clip'>
  
         <link rel="shortcut icon" href="/a.png" />
         <div draggable="false" className={isLoadingComponent ? `hidden` : `
-        relative mt-[5em] text-center select-none [&>*]:h-[40px]
-        max-md:mt-4 max-md:font-bold 
+        relative  text-center select-none [&>*]:h-[40px]
+         max-md:font-bold  
         `}>
 
-          <div className=''>
+          <div className={ destroyer ? '' : 'min-h-[100vh] flex flex-col bg-violet-400 justify-center'}>
+            {/* <div className=''> */}
             <div className={`${toHookMoodClick && darkMode ? 'ratingAnimationToBlackHomeDarkMode tracking-wide font-extralight' : toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeLightMode' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-black font-normal'}
               mb-[60px] text-2xl z-10
-              max-md:mt-20 max-md:mb-[10px]`}>
+               max-md:mb-[10px]`}>
               {destroyer ? null : 'How happy are you today?'}
               <img 
                 className='absolute opacity-10 top-0 left-[50%] pointer-events-none
@@ -142,7 +134,7 @@ export function HomePage ({ darkMode, graphRef }) {
             <HookMood darkMode={darkMode} graphRef={graphRef} toHookMoodClick={toHookMoodClick} />
           </div>
 
-          <div onClick={() => setAbout(true)} className={about || destroyer ? 'hidden' : 'max-md:mt-[440px] md:mt-[390px] flex justify-center items-center gap-2 text-zinc-500 hover:cursor-pointer hover:text-zinc-200'}>
+          <div onClick={() => setAbout(true)} className={about || destroyer ? 'hidden' : ' flex justify-center items-center gap-2 text-zinc-500 hover:cursor-pointer hover:text-zinc-200'}>
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-question-circle" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -153,7 +145,7 @@ export function HomePage ({ darkMode, graphRef }) {
           </div>
 
           <div className={` ${destroyer ? 'hidden' : about ? 'text-center slide-from-left text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black font-normal'}`}>
-            <div className='md:mt-[350px] max-md:mt-[380px] group relative hover:cursor-pointer flex justify-center items-center gap-2'
+            <div className=' group relative hover:cursor-pointer flex justify-center items-center gap-2'
             onClick={AboutHandler}>
               {/* <div className='text-center border-t'> */}
 

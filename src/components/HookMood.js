@@ -427,10 +427,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             <div className='relative  '>
 
             <div 
-            className={`
-            max-md:grid max-md:grid-cols-3 max-md:gap-4 max-md:gap-y-8 max-md:w-[250px] [&>*]:justify-center max-md:m-auto max-md:mt-14
-            `}
-            >
+                className={`
+                max-md:grid max-md:grid-cols-3 max-md:gap-4 max-md:gap-y-8 max-md:w-[250px] [&>*]:justify-center max-md:m-auto max-md:mt-14
+                `}
+                q>
 
                     {list.filter((item, index) =>  index < 9).map((x, index) => {
                     // displays row of numbers from array
@@ -489,7 +489,8 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             <button
                                 className={booleanState ?
                                     `${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ${darkMode ? "bg-zinc-200 text-zinc-900 shadow-md" : "bg-black shadow-md text-zinc-100"} ratingAnimation2 border-[2px] text-lg pr-4 pl-4 pt-[10px] pb-[10px] md:mr-[14px] rounded-lg   
-                                      font-bold max-md:mt-[72px] md:mt-[6px] max-md:ml-[160px]`
+                                      font-bold md:-mt-[4px]  
+                                      max-md:ml-[160px] max-md:mt-[56px]`
                                     : 'invisible'}>
                                     {number}
                             </button>
@@ -502,12 +503,11 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
 
                 </div>
-
-            </div>
-
-            {booleanState === true &&
-                <div className='absolute md:ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] top-[102px]
-                max-md:top-[154px] max-md:[&>Button]:p-4 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
+                {booleanState === true &&
+                <div 
+                    className='absolute 
+                    md:ratingAnimationNoY left-[50%] space-x-[100px] -translate-x-[50%] -mt-[48px]
+                    max-md:top-[154px] max-md:[&>Button]:p-4 max-md:space-x-[100px] max-md:absolute max-md:min-w-[20000px]'>
                     <Button
                         ref={btnRef2}
                         onClick={decrement}
@@ -528,10 +528,10 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     </Button>
                 </div>
             }
-            
+
             {/* sets booleanState to false ==> initializes ALL states **resetButton */}
             {/* <div className='md:mt-[90px] max-md:mt-[150px] max-md:mr-8'> */}
-            <div className='md:mt-[92px] max-md:mt-[142px] max-md:mr-2'>
+            <div className='relative md:mt-[92px] max-md:mt-[142px] max-md:mr-2'>
                 {/* <Button variant='outline-dark' className='mt-[80px] ratingAnimation p-3' onClick={clickHandlerOne}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="currentColor" className="bi bi-wind" viewBox="0 0 16 16">
                         <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z" />
@@ -542,20 +542,20 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 <button
                     onClick={clickHandlerOne}
                     // ${darkMode ? 'md:text-blue-400' : 'md:text-red-600'} 
-            //    max-md:border-black max-md:rounded-md bg-zinc-800  max-md:hover:bg-black max-md:left-[20%] max-md:top-[368px] max-md:mt-6 max-md:pb-6 max-md:absolute 
-                    className={`
+                //    max-md:border-black max-md:rounded-md bg-zinc-800  max-md:hover:bg-black max-md:left-[20%] max-md:top-[368px] max-md:mt-6 max-md:pb-6 max-md:absolute 
+                    className={` absolute
                     ${destroyer ? 'invisible' : ''} 
-                    ${darkMode ? 'text-zinc-500 bg-transparent border-2 border-zinc-600 md:hover:text-white' : 'md:hover:text-zinc-600 text-zinc-400 bg-white border-2 border-zinc-300'} 
+                    ${darkMode ? 'text-zinc-500 bg-transparent  border-zinc-600 md:hover:text-white' : 'md:hover:text-zinc-600 text-zinc-400 bg-white border-2 border-zinc-300'} 
                     ${booleanState? '' : 'hidden'}
-                mr-[260px] pr-4 pl-4 pt-[6px] pb-[6px] text-lg 
-                bg-zinc-800 md:-mt-[10px]
-                max-md:font-normal rounded-md max-md:mt-[74px]  max-md:hidden
+                pr-2 pl-2 pt-[6px] pb-[6px] text-lg 
+                bg-zinc-800 right-[50%] -translate-x-1/2 mr-[76px]
+                max-md:font-normal rounded-md 
                 `}>
-                    undo
-                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
+                    {/* undo */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
                         <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
-                    </svg> */}
+                    </svg>
                 </button>
 
                 {/* submitButton Desktop + mobile */}
@@ -564,9 +564,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     // className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-blue-600 [&>*]:text-zinc-100' : '[&>*]:bg-black'}
                     className={`${destroyer ? '[&>*]:border-2 hidden' : darkMode ? '[&>*]:rounded-md  [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
                      
-                    [&>*]:font-semibold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:top-[253px] [&>*]:-translate-y-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-10 [&>*]:pl-10
+                    [&>*]:font-semibold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-10 [&>*]:pl-10
                     [&>*]:flex [&>*]:items-center [&>*]:gap-x-2 
-                    max-md:[&>*]:mt-[60px]
+                    
                     `}>
                     <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
                         value={number} onClick={handleSubmit} type="number"
@@ -587,6 +587,11 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </div>
 
             </div>
+            </div>
+
+
+            
+            
             {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
             <div className=''>
 

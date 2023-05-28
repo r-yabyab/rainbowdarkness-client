@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { actionCreators } from '../../state';
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
+import logo from '../../photos/logo192.png'
 
 export function TopNav({ darkMode }) {
 
