@@ -475,8 +475,9 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                             {/* <div>
                                 <span className={destroyer ? "bg-yellow-400 text-black" : ""}>Yours</span> & Everyone Elses
                                 </div> */}
-                                <div>Here are everyone's daily moods (anonymous and registered users).</div>
-                                <div>User information is kept private, only <span className={destroyer ? "bg-yellow-400 text-black" : ""}>your number</span> and the date submitted will be public.</div>
+                                {/* <div>Here are everyone's daily moods (anonymous and registered users).</div> */}
+                                {/* <div>User information is kept private, only <span className={destroyer ? "bg-yellow-400 text-black" : ""}>your number</span> and the date submitted will be public.</div> */}
+                                <div>Moods</div>
                             <span className="text-blue-400 hover:text-blue-200 hover:cursor-pointer" onClick={sortClick}>
                                 ({sorted ? 'descending' : 'recent'})
                             </span>

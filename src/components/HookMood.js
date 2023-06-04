@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { actionCreators } from '../state';
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios';
+import { SadMood } from './apiComponents/SadMood';
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -587,6 +588,13 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 </div>
 
             </div>
+
+            {/* <div className='relative bg-blue-200'>
+                <div>
+                    <SadMood />
+                </div>
+            </div> */}
+
             </div>
 
 
