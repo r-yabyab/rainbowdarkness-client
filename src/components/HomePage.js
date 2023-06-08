@@ -17,6 +17,7 @@ import sharkPNGMobile from '../photos/sharkmobile.png'
 import sharkSmall from '../photos/sharksmall.webp'
 import { fetchLastAll } from '../state/reducers/thunk-reducers/fetchLastReducer';
 import { ChartTooltips } from './apiComponents/ChartTooltips';
+import { HomeChartHolder } from './apiComponents/HomeChartHolder';
 // import { MongoChart } from './apiComponents/MongoChart';
 // import { MongoRaw } from './HomePage/MongoRaw';
 // import AiComment from './AiComment';
@@ -25,8 +26,18 @@ import { ChartTooltips } from './apiComponents/ChartTooltips';
 // const RAINBOW_DARKNESS = "http://localhost:4000"
 const RAINBOW_DARKNESS = 'https://stockshapes.net/rainbowdarkness'
 
+const getDatafromLS = () => {
+  const moogleData = localStorage.getItem('_APP_moogle');
+  if (moogleData) {
+      return JSON.parse(moogleData)
+  } else {
+      return []
+  }
+}
+
 export function HomePage ({ darkMode, graphRef }) {
 
+  const books = getDatafromLS()
 
   const { loginWithRedirect, isAuthenticated, user } = useAuth0()
   
@@ -296,7 +307,8 @@ export function HomePage ({ darkMode, graphRef }) {
       {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}
 
       
-      <div className={isLoadingComponent ? 'hidden' :'absolute left-[50%] -translate-x-1/2 top-[200px]'}>{ destroyer ? <HomeChart darkMode={darkMode} /> : null}</div>
+      <div className={isLoadingComponent ? 'hidden' : books.length === 1 ? 'hidden' : 'absolute left-[50%] -translate-x-1/2 top-[200px]'}>{ destroyer ? <HomeChart darkMode={darkMode} /> : null}</div>
+      {/* <div><HomeChartHolder /></div> */}
       </div>
 
       

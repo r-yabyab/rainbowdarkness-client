@@ -65,6 +65,11 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
+                            <div>1.4.6 (June 7, 2023)</div>
+                            <p>Mood chart shows for users with more than 1 submission (Brought back local storage for registered users for this)</p>
+                            <p>Return to home button (rainbow darkness text) now can be clicked within the entire text container rather than just the individual words.</p>
+                            <div>______________</div>
+
                             <div>1.4.5 (May 27-28, 2023 midnight)</div>
                             <p>Updated frontpage UI</p>
                             <p>Mood chart shows time submitted (for registered users)</p>
@@ -409,7 +414,7 @@ function Darkness() {
                     </div>
 
 
-                    <div className='pl-4 bg-black text-white pt-[300px] pb-[20px]  
+                    <div className='pl-4 bg-black text-zinc-300 pt-[300px] pb-[20px]  
                     '>
                         {/* For above's max-md depricated */}
                     {/* max-md:absolute max-md:bottom-10 max-md:left-[50%] max-md:-translate-x-1/2 */}

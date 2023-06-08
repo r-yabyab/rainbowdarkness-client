@@ -330,17 +330,17 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
 
             {/* Absolute desktop containers */}
-            <div className="relative animate-fade md:pt-[80px]  
+            <div className={`${books.length === 1 ? '-mt-[400px]' : ''} relative animate-fade md:pt-[80px]  
                 max-w-[1000px] mr-auto ml-auto
                 max-md:pt-[10px] 
-                "
+                `}
             // max-md:pr-[100px] max-md:pl-[100px] // for putSubmission component
             >
                 <div className="max-md:hidden md:invisible">___________________________________________________________________________________</div>
                 <div className="md:pt-[80px]">
                     <div className=" 
                         lg:w-[900px] md:w-[700px] pb-20
-                         max-md:font-normal m-auto max-md:max-w-[360px]"><ChartTooltips /></div>
+                         max-md:font-normal m-auto max-md:max-w-[360px]">{books.length === 1 ? null : <ChartTooltips />}</div>
                     <div className=" 
                         lg:w-[900px] md:w-[700px] 
                          max-md:font-normal m-auto max-md:max-w-[360px]"

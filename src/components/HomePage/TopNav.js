@@ -46,17 +46,19 @@ export function TopNav({ darkMode }) {
                 draggable="false">
 
 
-                <div className={`${darkMode ? '[&>*]:text-zinc-200 group ' : 'group [&>*]:text-white'} flex space-x-2 font-semibold text-xl`}>
-                    <Link to='/' className='no-underline '><div
-                        // onClick={pageFalse}
-                        className='group-hover:text-white'>Rainbow</div></Link>
-                    {/* <Link to='/darkness' className='no-underline'> */}
-                    <Link to='/' className='no-underline'>
-                        <div
-                        // onClick={pageTrue}
-                        className=' group-hover:text-white'>Darkness</div></Link>
-                        {/* <div className='tracking-widest'> <span className='text-red-400 absolute left-0 bg-green-800 font-serif'>STAGING ENV</span> </div> */}
-                </div>
+                
+                    <Link to='/' className='no-underline '>
+                        <div className={`${darkMode ? '[&>*]:text-zinc-200 group ' : 'group [&>*]:text-white'} flex space-x-2 font-semibold text-xl`}>
+                            <div
+                                // onClick={pageFalse}
+                                className='group-hover:text-white'>Rainbow</div>
+                            {/* <Link to='/darkness' className='no-underline'> */}
+                            <div
+                                // onClick={pageTrue}
+                                className=' group-hover:text-white'>Darkness</div>
+                            {/* <div className='tracking-widest'> <span className='text-red-400 absolute left-0 bg-green-800 font-serif'>STAGING ENV</span> </div> */}
+                        </div>
+                    </Link>
             </div>
 
             <Link onClick={e => setisLoadingComponent(true)} to='/darkness' className='no-underline'>
