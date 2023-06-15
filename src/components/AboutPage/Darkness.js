@@ -65,6 +65,10 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
+                            <div>1.4.7 (June 15, 2023)</div>
+                            <p>Moved env variables off the EC2 instance, uses IAM roles and parameter store now, working on automating the deployment process</p>
+                            <div>______________</div>
+
                             <div>1.4.6 (June 7, 2023)</div>
                             <p>Mood chart shows for users with more than 1 submission (Brought back local storage for registered users for this)</p>
                             <p>Return to home button (rainbow darkness text) now can be clicked within the entire text container rather than just the individual words.</p>
