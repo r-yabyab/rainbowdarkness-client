@@ -192,7 +192,7 @@ export function HomePage ({ darkMode, graphRef }) {
 
             <div className='mt-20 max-md:mt-32 '>
               {/* <div className='mb-4'>Join a growing community! Currently, we have <span className='text-red-400'>{rawNumArr.length}</span> submissions.</div> */}
-              <div className='mb-4 font-semibold'>Join a growing community of <span className='text-green-400'>{rawNumArr.length}</span> daily moods!</div>
+              <div className='mb-4 opacity-[99%] font-semibold'>Join a growing community of <span className='text-green-400'>{rawNumArr.length}</span> daily moods!</div>
               <div className='flex flex-col absolute ml-16 text-sm'>
                 <div className='flex float-left items-center gap-2'>
                   <div className='w-[12px] h-[2px] bg-red-700'></div>
