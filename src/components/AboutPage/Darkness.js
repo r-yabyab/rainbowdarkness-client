@@ -65,6 +65,11 @@ function Darkness() {
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
 
+                            <div>1.5 (January 26, 2024 23:51)</div>
+                            <p className='mb-[2px]'>Happy new year!</p>
+                            <p><span className='text-green-600'>Updated front page About Section design</span></p>
+                            <div>______________</div>
+
                             <div>1.4.8 (October 04, 2023)</div>
                             <p>Moving data off MongoDB into my own Postgres server. SQL commands are much more simple than MongoDB's aggregate pipeline</p>
                             <div>______________</div>

@@ -89,6 +89,7 @@ export function SampleGraph ({ darkMode }) {
             .domain(d3.extent(data, function(d) { return d.x}))
 
 
+          // const y = d3.scaleLinear()
           const y = d3.scaleLinear()
             .range([height, 0])
             // .domain(d3.extent(data, function(d) { return d.y}))
@@ -99,6 +100,18 @@ export function SampleGraph ({ darkMode }) {
           .x(d => x(d.x))
           .y(d => y(d.y))
           .curve(d3.curveMonotoneX);
+          // .curve(d3.curveCardinal);
+
+      //     svg.append("path")
+      // .datum(data)
+      // .attr("fill", "dodgerblue")
+      // .attr("stroke", "dodgerblue")
+      // .attr("stroke-width", 1.5)
+      // .attr("d", d3.area()
+      //   .x(function(d) { return x(d.x) })
+      //   .y0(y(0))
+      //   .y1(function(d) { return y(d.y) })
+      //   )
             
 
 
@@ -152,7 +165,7 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
                 .attr('dy', '0.71em')
                 .attr('font-size', '16px')
                 .attr('text-anchor', 'end')
-              .text('Hover over me!')
+              // .text('Hover over me!')
 
   const tooltip = d3.select(svgSampleGraph.current)
   .append("text")
@@ -292,10 +305,10 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
             svg.append('path')
               .datum(data)
               .attr('fill', 'none')
-              .attr('stroke', 'red')
+              .attr('stroke', 'dodgerblue')
               .attr('stroke-linejoin' , 'round')
               .attr('stroke-linecap', 'round')
-              .attr('stroke-width' , 1.5)
+              .attr('stroke-width' , 1.3)
               .attr('d', line)
               .style('pointer-events', 'none')
               
@@ -309,7 +322,7 @@ const tooltipPlaceholderStatic = d3.select(svgSampleGraph.current)
                 .attr('stroke', 'none')
                 .attr('cx', function(d) { return x(d.x) })
                 .attr('cy', function(d) { return y(d.y) })
-                .attr('r', 3)
+                .attr('r', 2)
                 .style('pointer-events', 'none')
             }
             renderDummyGraph()

@@ -18,6 +18,7 @@ import sharkSmall from '../photos/sharksmall.webp'
 import { fetchLastAll } from '../state/reducers/thunk-reducers/fetchLastReducer';
 import { ChartTooltips } from './apiComponents/ChartTooltips';
 import { HomeChartHolder } from './apiComponents/HomeChartHolder';
+import PieChartHome from './HomePage/PieChartHome';
 // import { MongoChart } from './apiComponents/MongoChart';
 // import { MongoRaw } from './HomePage/MongoRaw';
 // import AiComment from './AiComment';
@@ -185,14 +186,19 @@ export function HomePage ({ darkMode, graphRef }) {
 
             
 
-            <div className='md:w-[300px] flex justify-center items-center'>
-              
-              Rainbow Darkness is a mental health website that helps you track your daily mood levels. This is designed to give you insight on how to approach your days / daily-stressors based on your mood fluctuations.
+            <div className='md:w-[300px] flex flex-col gap-4  mb-8'>
+              <div className='text-3xl font-semibold border-zinc-300 pb-2 text-left border-b-2 mt-16 md:w-[370px]'>About Rainbow Darkness</div>
+              <div className='text-left'>Rainbow Darkness is a mental health website that helps you track your daily mood levels,
+                 designed to give you insight on how to approach your days based on 
+                your mood fluctuations and daily activities. Comes with an interactive chart to help you easily track or change your mood history
+                with the option to share with others.
+              </div>
             </div>
 
-            <div className='mt-20 max-md:mt-32 '>
+            <div className='mt-24 max-md:mt-32 '>
               {/* <div className='mb-4'>Join a growing community! Currently, we have <span className='text-red-400'>{rawNumArr.length}</span> submissions.</div> */}
-              <div className='mb-4 opacity-[99%] font-semibold'>Join a growing community of <span className='text-green-400'>{rawNumArr.length}</span> daily moods!</div>
+              
+              {/* <div className='mb-4 opacity-[99%] font-semibold'>Join a growing community of <span className='text-green-400'>{rawNumArr.length}</span> daily moods!</div>
               <div className='flex flex-col absolute ml-16 text-sm'>
                 <div className='flex float-left items-center gap-2'>
                   <div className='w-[12px] h-[2px] bg-red-700'></div>
@@ -204,9 +210,15 @@ export function HomePage ({ darkMode, graphRef }) {
                 </div>
               </div>
 
+              <div className=''><PublicChart darkMode={darkMode} /></div> */}
 
-
-              <div className=''><PublicChart darkMode={darkMode} /></div>
+              <div className='md:flex max-md:flex max-md:flex-col-reverse items-center md:w-[700px] md:h-[300px]'>
+              <div className='md:-ml-28 max-md:mb-8'><PieChartHome /></div>
+              <div className='mb-4'>
+                <div className='font-bold text-2xl text-left border-zinc-400 border-b-2 pb-2 mb-4 md:w-[200px]'>Join a growing community!</div> 
+                <div className='text-left'>To date, we have <span className='text-green-500'>{rawNumArr.length}</span> submissions.</div>
+                </div>
+              </div>
               {/* <div className='mt-[400px] mb-20'>
                 <MongoRaw />
               </div> */}
@@ -229,23 +241,75 @@ export function HomePage ({ darkMode, graphRef }) {
               <div className='md:w-[300px] flex justify-center items-center max-md:mb-12'>
                 {/* Your mood levels will be logged to your personal graph and browser cache. */}
                 <div className='flex flex-col gap-2'>
-                  <div className=' font-bold underline'>How it works</div>
-                <div>
-                  Upon submitting your number, you will be given an interactive graph to see how your mood fluctuates over time:
+                  <div className=' font-bold text-2xl text-left border-zinc-400 border-b-2 w-[160px] mb-2'>How it works</div>
+                  <div className='text-left'>
+                    {/* Upon submitting your number, you will be given an interactive graph to see how your mood fluctuates over time: */}
+                  Submit your number daily (0 being not at all happy & 10 being extremely happy) and watch how your mood changes over the days. <br /><span className={darkMode ? ' text-zinc-500' : " text-zinc-400"}>Register to view your data across devices!</span>
                   </div>
-                  </div>
+                </div>
               </div>
               <div className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2'>
                 <SampleGraph darkMode={darkMode} />
               </div>
               {/* <img className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2' draggable={false} src={sampleGraph} alt='sample graph' /> */}
             </div>
-                <div className={tooltipContent.mood ? 'pt-10' : 'hidden'}><ChartTooltips /></div>
+            <div className={tooltipContent.mood ? 'pt-10' : 'hidden'}><ChartTooltips /></div>
 
+            <div className=' mt-16'>
+              <div className='text-3xl font-semibold mb-10 border-zinc-400 border-b-2 pb-2 mt-16'>Key Features</div>
+              <div className='flex gap-10
+              [&>div]:w-[300px] [&>div]:rounded-md [&>div]:p-6 
+              [&>div>svg]:m-auto
+              [&>div]:flex [&>div]:flex-col [&>div]:gap-y-3
+              max-md:flex-col [&>div]:max-md:w-full
+              [&>div>p]:mt-'>
+                <div className='bg-emerald-600'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
+                  </svg>
+                  <div className=' text-xl font-semibold'>Mood Tracking</div>
+                  <p className=' text-base'>Track your mood daily, alongside sleep, activites, and more. See how your mood changes over the days.</p>
+                </div>
+                <div className='bg-blue-600'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07" />
+                  </svg>
+                  <div className='text-xl font-semibold'>Charts</div>
+                  <p className=' text-base'>Use the interactive mood chart to see how your mood correlates with your daily activies, or edit previous entries. </p>
+                </div>
+                <div className='bg-violet-500'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" />
+                  </svg>
+                  <div className='text-xl font-semibold'>Sharing Moods</div>
+                  <p className=' text-base'>Share your mood history with your friends by downloading your mood chart as a PNG.</p>
+                </div>
+              </div>
+            </div>
   
 
-            <div className='mt-32'>Use the following scale to record your answer:</div>
-            <div>0 = Not At All Happy | 5 = Moderately Happy | 10 = Extremely Happy</div>
+
+
+            {/* <div className='mt-32'>Use the following scale to record your answer:</div>
+            <div>0 = Not At All Happy | 5 = Moderately Happy | 10 = Extremely Happy</div> */}
+            
+            <div>
+            <div className='text-4xl mt-28'>Ready to start?</div>
+            <div className='mt-3'>Start tracking your mood today. No registration required!</div>
+            <button
+              onClick={scrollToHookMood}
+              className='rounded-lg mt-12 bg-orange-500 p-2 w-[160px]'>
+              <svg 
+              xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16"
+              className='m-auto'
+              >
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+              </svg>
+            </button>
+            </div>
+
+
+
 
             {/* <div className='mt-16 border-t'>Having trouble choosing a number?</div>
             <div>Consider these items that correlates to joviality alongside happiness:</div>
@@ -277,17 +341,18 @@ export function HomePage ({ darkMode, graphRef }) {
               {/* <div>Notes from https://www2.psychology.uiowa.edu/faculty/clark/panas-x.pdf</div> */}
               {/* <div>For a more accurate estimate of your mood, try submitting during the evening.</div> */}
 
-              <button
+              {/* <button
                 onClick={scrollToHookMood}
                 className='mt-20 shadow-md group z-0 overflow-hidden font-semibold relative text-black bg-blue-400 rounded-lg p-2 md:hover:bg-yellow-500'>
                 <div className='pr-4 pl-4 pt-2 pb-2'>Get Started!</div>
                 <img className=' -z-10 pointer-events-none opacity-80  absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
                   // style={{ zIndex: -1 }}
                   src={sharkSmall} alt="small shark" />
+              </button> */}
+
                 {/* <img  className=' pointer-events-none opacity-80 absolute top-0 -mt-1 ml-10 text-clip overflow-hidden'
                 style={{ zIndex: -1 }}
                 src={sharkPNG} alt="small shark" /> */}
-              </button>
 
               <div className={`${darkMode ? 'text-zinc-500' : 'text-zinc-400'} mt-20 mb-32 text-sm`}>
                 {/* Optional<span className='invisible'>_</span> */}
@@ -295,9 +360,10 @@ export function HomePage ({ darkMode, graphRef }) {
                   Register
                 </span> to unlock all graph features and cross-device storage.
               </div>
-              <div className='absolute text-sm text-zinc-400 left-0'>© 2023 Rainbow Darkness</div>
+              <div className='absolute text-sm text-zinc-400 left-0'>© 2024 Rainbow Darkness</div>
             </div>
           </div>
+
 
         {/* <div className='fixed -bottom-4 text-sm text-zinc-400 flex flex-col font-thin'>
           <div>© 2023 Rainbow Darkness</div>
