@@ -171,7 +171,7 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
                 // save old + new data to localStorage
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
 
-                navigate('/progress');
+                // navigate('/progress');
             }
         } 
         else
@@ -219,7 +219,7 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
                 // save old + new data to localStorage
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
 
-                navigate('/progress');
+                // navigate('/progress');
             }
         }
     }
