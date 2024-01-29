@@ -626,7 +626,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
             <div className=''>
 
-                <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[496px] text-zinc-600 absolute `}>
+                <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[526px] text-zinc-600 absolute `}>
                     {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
                         <div>|</div> */}
                     {isAuthenticated ?
@@ -646,7 +646,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             </div> */}
 
             <div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode} /></div>
-            <div className={`${aiText ? '' : ' animate-pulse'} ${darkMode ? 'text-zinc-200' : 'text-black'} absolute left-[50%] font-normal -translate-x-1/2 top-[140px] text-zinc-200`}>{destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
+            <div className={`${aiText ? '' : ' animate-pulse'} ${darkMode ? 'text-zinc-200' : 'text-black'} absolute left-[50%] font-normal -translate-x-1/2 top-[80px] text-zinc-200`}>{destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
 
         </>
 )
