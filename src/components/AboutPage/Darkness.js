@@ -26,7 +26,7 @@ function Darkness() {
             <div
                 // absolute top-[50%] -translate-y-1/2 left-[50%] -translate-x-1/2
                 className='
-                relative mt-14 
+                relative 
                 md:bg-black md:bg-opacity-90
                 max-md:bg-black max-md:bg-opacity-90
                 '>
@@ -34,21 +34,35 @@ function Darkness() {
 
                 <div className=''>
 
-                    <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center items-center flex-col flex bg-black text-zinc-200 [&>div]:max-w-[800px] '>
+                    <div className='bg-black md:hidden h-[140px] ' />
 
-                        <div className='text-[36px] mt-[150px] text-black bg-zinc-200 w-[800px] font-semibold pl-2'>About Rainbow Darkness</div>
-                        <div className='pt-4'>
+                    <div className='max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto justify-center 
+                    items-center flex-col flex bg-black text-zinc-200 md:[&>div]:max-w-[1200px] 
+                    md:px-16'>
+
+                        {/* <div className='text-[36px] mt-[150px] text-black bg-zinc-200 w-[800px] font-semibold pl-2'>About Rainbow Darkness</div> */}
+                        
                             {/* Rainbow Darkness is a mental health platform that puts accessibility and anonyminity first. As someone with a background in psychology, I find it kind of dumb that mental health applications tend to require users to fill out personal information before hitting a paywall, or take long surveys that tells you overly positive things about your personality.
                             <br /> Here, we only ask about how happy you are at the moment, in hopes that proceeding visits will bring some introspection on what made you so sad/happy in the past. You also have access to everyone else's moods; Often you'll see that others are having a much worse day than you, which I find interesting because no matter who you talk to in person, they always appear O.K. */}
                         {/* Rainbow Darkness is a mental health platform that prioritizes accessibility and anonymity for its users. Our platform recognizes that many mental health applications require users to provide personal information or complete lengthy surveys before gaining access to their services.
                         <br /><br /> At Rainbow Darkness, we believe in a simpler approach. We only ask how happy our users are at the moment, with the hope that future visits will prompt introspection and exploration of their emotional states. Additionally, our platform provides access to the moods of other users. This feature can be particularly insightful, as it reveals that others may be struggling even if they appear to be okay in person.
                         <br /><br />Our mission is to create a safe and supportive community for individuals to explore their mental health in a way that is accessible, anonymous, and free from judgment. */}
-                        Rainbow Darkness is a mental health platform that lets you track your mood level. We aim to bring modern research methods on human affect to the public.
+                        
+                        {/* Rainbow Darkness is a mental health platform that lets you track your mood level. We aim to bring modern research methods on human affect to the public. */}
+                        
+                        
                         {/* <br/> <br/> Here's a mood chart of people with major depressive disorder. They tend to hover below normal mood levels, and shows improvement after treatment.  */}
                         {/* <img className='text-white pt-8' src={mdd} alt='mdd' />
                         <p className='mt-14 -mb-14'>Because people don't often have the luxury to get help, with the healthcare system being too complicated, with psychiatrists not giving quality care, this site aims to help users be mindful of themselves and others. 
                         </p> */}
                         {/* When shit hits the fan, how do we make things better? */}
+
+                        <div className='text-[36px] mt-[150px] md:w-full text-black md:text-center bg-zinc-200 max-md:w-[800px] font-semibold pl-2'>
+                            DevLog
+                        </div>
+                        <div className='pt-4'>Hello, here you can find dev updates for this website. For a quick rundown, I created Rainbow Darkness with the intention of tracking my journey with SSRIs, specifically with the mood fluctuations that come with its withdrawals. Nowadays, I just use it casually alongside users that come and go. 
+                        <br /><br />As for tech stack, it started off as a simple HTML page hosted on AWS with an unsecure HTTP connection. It's grown a lot since then-- pages are more interactive with React & various libraries for styling and state management, moved the backend from Vercel to AWS where I learned a lot about cloud infrastructure and how it stacks against quick hosting solutions in terms of scalability and pricing, data has been moved between databases, interface changes, etc.
+                        <br /><br />Overall, it's a neat little project good for helping people out and helping me test out new technologies.
                         </div>
 
 
@@ -64,6 +78,12 @@ function Darkness() {
                     <div className='pt-[150px]   max-md:[&>div]:max-w-[340px] max-md:[&>div]:m-auto [&>div]:max-w-[800px]  items-center flex-col flex bg-black text-zinc-200'>
                         <div className='text-[36px]  w-[800px] text-black bg-zinc-200 font-semibold mb-4 pl-2'>ChangeLog</div>
                         <div className=' max-h-[800px] lg:border-2 lg:pr-4 lg:pl-4 lg:-mt-6 lg:pt-4 no-scrollbar overflow-y-scroll'>
+
+                            <div>1.5.1 (January 29, 2024 23:51)</div>
+                            <p>Changed homepage design</p>
+                            <p>Changed navigation bar</p>
+                            <p>Working on giving mood history its own page</p>
+                            <div>______________</div>
 
                             <div>1.5 (January 26, 2024 23:51)</div>
                             <p className='mb-[2px]'>Happy new year!</p>
@@ -427,13 +447,13 @@ function Darkness() {
                     </div>
 
 
-                    <div className='pl-4 bg-black text-zinc-300 pt-[300px] pb-[20px]  
+                    <div className='text-center bg-black text-sm text-zinc-500 pt-[300px] pb-[20px]  
                     '>
                         {/* For above's max-md depricated */}
                     {/* max-md:absolute max-md:bottom-10 max-md:left-[50%] max-md:-translate-x-1/2 */}
 
                         Got feedback? Please let me know!
-                <div className=''>© 2023 All Rights Reserved.</div>
+                <div className=''>© 2024 Rainbow Darkness</div>
 
                         </div>
                 </div>

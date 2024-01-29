@@ -10,7 +10,7 @@ export function ChartTooltips () {
     return (
         <>
             <div className='bg-zinc-100 rounded-md  text-zinc-900'>
-            <div className="pt-2 font-bold bg-zinc-400 pb-2 rounded-t-md">Chart Info </div>
+            <div className="pt-2 mt-28 font-bold bg-zinc-400 pb-2 rounded-t-md">Chart Info </div>
 
                     {
                         tooltipContent.mood ?

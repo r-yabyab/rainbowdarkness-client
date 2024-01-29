@@ -9,6 +9,7 @@ import { actionCreators } from '../state';
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios';
 import { SadMood } from './apiComponents/SadMood';
+import { useNavigate } from 'react-router-dom';
 
 const getDatafromLS = () => {
     const moogleData = localStorage.getItem('_APP_moogle');
@@ -120,6 +121,7 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
         }
     }
 
+    const navigate = useNavigate();
 
     const handleSubmit = async () => {
 
@@ -168,6 +170,8 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
                 moogleOld.push(moogleNew)
                 // save old + new data to localStorage
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
+
+                navigate('/progress');
             }
         } 
         else
@@ -214,6 +218,8 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
                 moogleOld.push(moogleNew)
                 // save old + new data to localStorage
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
+
+                navigate('/progress');
             }
         }
     }
@@ -445,7 +451,8 @@ let [timeLeft, setTimeLeft] = useState(86400000)
 
             <div 
                 className={`
-                max-md:grid max-md:grid-cols-3 max-md:gap-4 max-md:gap-y-8 max-md:w-[250px] [&>*]:justify-center max-md:m-auto max-md:mt-14
+                max-md:grid max-md:grid-cols-3 max-md:gap-4 max-md:gap-y-8 max-md:w-[250px] [&>*]:justify-center max-md:m-auto 
+                ${destroyer ? '' : 'max-md:mt-[66px]'}
                 `}
                 q>
 
@@ -478,7 +485,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     md:mr-[8px] md:ml-[8px] 
                                     max-md:rounded-none max-md:animate-fade`
                                     :
-                                    darkMode ? `   hover:border-red-400 transition-colors duration-[125ms]  border-zinc-100 border-2  text-zinc-100  rounded-lg  ratingAnimation
+                                    !darkMode ? `   hover:border-red-400 transition-colors duration-[125ms]  border-orange-100 border-2  text-zinc-100  rounded-lg  ratingAnimation
                                     w-[45px] h-[48px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
                                     ` 
                                     :` hover:bg-green-400   text-zinc-100 bg-zinc-900 rounded-lg ratingAnimationLight
@@ -505,7 +512,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                         <div> 
                             <button
                                 className={booleanState ?
-                                    `${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFast'} ${darkMode ? "bg-zinc-200 text-zinc-900 shadow-md" : "bg-black shadow-md text-zinc-100"} ratingAnimation2 border-[2px] text-lg pr-4 pl-4 pt-[10px] pb-[10px] md:mr-[14px] rounded-lg   
+                                    `${[0,1,2,3,4,5,6,7,8,9,10].includes(number) && 'ratingAnimationYellowFastREMOVE'} ${!darkMode ? "bg-zinc-200 text-zinc-900 shadow-md" : "bg-black shadow-md text-zinc-100"} ratingAnimation2REMOVE border-[2px] text-lg pr-4 pl-4 pt-[10px] pb-[10px] md:mr-[14px] rounded-lg   
                                       font-bold md:-mt-[4px]  
                                       max-md:ml-[160px] max-md:mt-[56px]`
                                     : 'invisible'}>
@@ -555,57 +562,57 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     </svg>
                 </Button> */}
 
-                {/* THIS ONE RESETS */}
-                <button
-                    onClick={clickHandlerOne}
-                    // ${darkMode ? 'md:text-blue-400' : 'md:text-red-600'} 
-                //    max-md:border-black max-md:rounded-md bg-zinc-800  max-md:hover:bg-black max-md:left-[20%] max-md:top-[368px] max-md:mt-6 max-md:pb-6 max-md:absolute 
-                    className={` absolute
+                    {/* THIS ONE RESETS */}
+                    <button
+                        onClick={clickHandlerOne}
+                        // ${darkMode ? 'md:text-blue-400' : 'md:text-red-600'} 
+                        //    max-md:border-black max-md:rounded-md bg-zinc-800  max-md:hover:bg-black max-md:left-[20%] max-md:top-[368px] max-md:mt-6 max-md:pb-6 max-md:absolute 
+                        className={` absolute
                     ${destroyer ? 'invisible' : ''} 
-                    ${darkMode ? 'text-zinc-500 bg-transparent  border-zinc-600 md:hover:text-white' : 'md:hover:text-zinc-600 text-zinc-400 bg-white border-2 border-zinc-300'} 
-                    ${booleanState? '' : 'hidden'}
+                    ${!darkMode ? 'text-zinc-500 bg-transparent  border-zinc-600 md:hover:text-white' : 'md:hover:text-zinc-600 text-zinc-400 bg-white border-2 border-zinc-300'} 
+                    ${booleanState ? '' : 'hidden'}
                 pr-2 pl-2 pt-[6px] pb-[6px] text-lg 
                 bg-zinc-800 right-[50%] -translate-x-1/2 mr-[76px]
                 max-md:font-normal rounded-md 
                 `}>
-                    {/* undo */}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
-                        <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
-                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
-                    </svg>
-                </button>
+                        {/* undo */}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 16 16">
+                            <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+                        </svg>
+                    </button>
 
-                {/* submitButton Desktop + mobile */}
-                <div
-                    // [&>*]:top-[54%]
-                    // className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-blue-600 [&>*]:text-zinc-100' : '[&>*]:bg-black'}
-                    className={`${destroyer ? '[&>*]:border-2 hidden' : darkMode ? '[&>*]:rounded-md  [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
+                    {/* submitButton Desktop + mobile */}
+                    <div
+                        // [&>*]:top-[54%]
+                        // className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-blue-600 [&>*]:text-zinc-100' : '[&>*]:bg-black'}
+                        className={`${destroyer ? '[&>*]:border-2 hidden' : !darkMode ? '[&>*]:rounded-md  [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
                      
                     [&>*]:font-semibold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-10 [&>*]:pl-10
                     [&>*]:flex [&>*]:items-center [&>*]:gap-x-2 
                     
                     `}>
-                    <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
-                        value={number} onClick={handleSubmit} type="number"
-                        // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
-                        // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                        className={(destroyer ? 'hidden ' : (booleanState ? ' md:hover:border-2 transition-colors bg-green-500' : 'bg-black hover:cursor-not-allowed border-zinc-700 border-2 max-md:invisible opacity-30'))}
+                        <button disabled={(booleanState ? false : true) || (destroyer ? true : false)}
+                            value={number} onClick={handleSubmit} type="number"
+                            // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
+                            // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
+                            className={(destroyer ? 'hidden ' : (booleanState ? ' md:hover:border-2 transition-colors bg-green-500' : 'bg-black hover:cursor-not-allowed border-zinc-700 border-2 max-md:invisible opacity-30'))}
 
-                    >
-                        Submit
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-send" viewBox="0 0 16 16">
-                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
-                        </svg>
-                    </button>
+                        >
+                            Submit
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-send" viewBox="0 0 16 16">
+                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                            </svg>
+                        </button>
 
-                    {error && { error }}
+                        {error && { error }}
 
+
+                    </div>
 
                 </div>
 
-            </div>
-
-            {/* <div className='relative bg-blue-200'>
+                {/* <div className='relative bg-blue-200'>
                 <div>
                     <SadMood />
                 </div>
@@ -619,7 +626,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
             <div className=''>
 
-                <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[388px] text-zinc-600 absolute `}>
+                <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[496px] text-zinc-600 absolute `}>
                     {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
                         <div>|</div> */}
                     {isAuthenticated ?
@@ -639,7 +646,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             </div> */}
 
             <div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode} /></div>
-            <div className={`${aiText ? '' : ' animate-pulse'} ${darkMode ? 'text-zinc-200' : 'text-black'} absolute left-[50%] font-normal -translate-x-1/2 top-[10px] text-zinc-200`}>{destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
+            <div className={`${aiText ? '' : ' animate-pulse'} ${darkMode ? 'text-zinc-200' : 'text-black'} absolute left-[50%] font-normal -translate-x-1/2 top-[140px] text-zinc-200`}>{destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
 
         </>
 )

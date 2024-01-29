@@ -36,7 +36,7 @@ const getDatafromLS = () => {
   }
 }
 
-export function HomePage ({ darkMode, graphRef }) {
+export function HomePage ({ darkMode, graphRef, infoRef }) {
 
   const books = getDatafromLS()
 
@@ -82,7 +82,7 @@ export function HomePage ({ darkMode, graphRef }) {
   const scrollToHookMood = () => {
     window.scrollTo({top: 0, behavior: 'instant'})
     setToHookMoodClick(true)
-    setAbout(false)
+    // setAbout(false)
     setTimeout(() => {
       setToHookMoodClick(false)
     }, 1000)
@@ -117,6 +117,7 @@ export function HomePage ({ darkMode, graphRef }) {
           className={` ${ isLoadingComponent || destroyer ? 'hidden' : ''} ${ darkMode ? 'bg-black -mt-2 ' : 'bg-zinc-200'} z-0 absolute min-h-[480px] w-full  shadow-sm `}
           style={{ padding: '0 0px', margin: '0 0px' }}
           /> */}
+      <div className="bg-zinc-100 bg-gradient-to-b fixed h-full w-full " />
       
       <div className='overflow-x-clip'>
  
@@ -126,13 +127,17 @@ export function HomePage ({ darkMode, graphRef }) {
          max-md:font-bold  
         `}>
 
-          <div className={ destroyer ? '' : 'min-h-[100vh] flex flex-col bg-violet-400 justify-center'}>
+          <div className={ destroyer ? '' : 'min-h-[100vh] flex flex-col bg-zinc-100 bg-gradient-to-b from-blue-800 to-transparent justify-center'}>
+            
             {/* <div className=''> */}
-            <div className={`${toHookMoodClick && darkMode ? 'ratingAnimationToBlackHomeDarkMode tracking-wide font-extralight' : toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeLightMode' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-black font-normal'}
-              mb-[60px] text-2xl z-10
-               max-md:mb-[10px]`}>
+            <div className={`${toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeDarkMode tracking-wide font-extralight' : toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeLightMode' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-zinc-100 tracking-wide font-light'}
+               text-2xl z-10
+               max-md:mb-[0px]
+               ${destroyer ? '' : 'mb-[60px]'}
+               `
+               }>
               {destroyer ? null : 'How happy are you today?'}
-              <img 
+              {/* <img 
                 className='absolute opacity-10 top-0 left-[50%] pointer-events-none
                 max-md:hidden
                 ' 
@@ -141,12 +146,15 @@ export function HomePage ({ darkMode, graphRef }) {
                 className='absolute opacity-10 top-0 right-0 pointer-events-none
                 md:hidden
                 ' 
-                src={sharkPNGMobile} alt='shark' />
+                src={sharkPNGMobile} alt='shark' /> */}
             </div>
             <HookMood darkMode={darkMode} graphRef={graphRef} toHookMoodClick={toHookMoodClick} />
           </div>
 
-          <div onClick={() => setAbout(true)} className={about || destroyer ? 'hidden' : ' flex justify-center items-center gap-2 text-zinc-500 hover:cursor-pointer hover:text-zinc-200'}>
+          <div
+            onClick={() => setAbout(true)}
+            className={about || destroyer ? 'hidden' : ' flex justify-center items-center gap-2 text-zinc-500 hover:cursor-pointer hover:text-zinc-200'}
+          >
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-question-circle" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -156,14 +164,10 @@ export function HomePage ({ darkMode, graphRef }) {
             <div>Click me for details</div>
           </div>
 
-          <div className={` ${destroyer ? 'hidden' : about ? 'text-center slide-from-left text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black font-normal'}`}>
-            <div className=' group relative hover:cursor-pointer flex justify-center items-center gap-2'
+          <div className={` ${destroyer ? 'hidden' : about ? 'text-center slide-from-leftREMOVE text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black font-normal'}`}>
+            {/* <div className=' group relative hover:cursor-pointer flex justify-center items-center gap-2'
             onClick={AboutHandler}>
-              {/* <div className='text-center border-t'> */}
 
-              {/* <span
-                // className='absolute md:ml-[300px] max-md:hidden text-sm text-blue-400 hover:cursor-pointer hover:underline' 
-                > */}
               <div className=' group-hover:text-yellow-200 z-20 max-md:text-blue-400 -mt-8'>
                 <span className='md:hidden '>_________________________</span>
                 <span className='max-md:hidden'>_________________________________________________________________________</span>
@@ -182,12 +186,12 @@ export function HomePage ({ darkMode, graphRef }) {
               </div>
               <span className='max-md:hidden group-hover:text-yellow-200 z-20 -mt-8'>_________</span>
 
-            </div>
+            </div> */}
 
             
 
             <div className='md:w-[300px] flex flex-col gap-4  mb-8'>
-              <div className='text-3xl font-semibold border-zinc-300 pb-2 text-left border-b-2 mt-16 md:w-[370px]'>About Rainbow Darkness</div>
+              <div ref={infoRef} className='text-3xl font-semibold border-zinc-300 pb-2 text-left border-b-2 mt-16 md:w-[370px]'>About Rainbow Darkness</div>
               <div className='text-left'>Rainbow Darkness is a mental health website that helps you track your daily mood levels,
                  designed to give you insight on how to approach your days based on 
                 your mood fluctuations and daily activities. Comes with an interactive chart to help you easily track or change your mood history
@@ -256,28 +260,28 @@ export function HomePage ({ darkMode, graphRef }) {
             <div className={tooltipContent.mood ? 'pt-10' : 'hidden'}><ChartTooltips /></div>
 
             <div className=' mt-16'>
-              <div className='text-3xl font-semibold mb-10 border-zinc-400 border-b-2 pb-2 mt-16'>Key Features</div>
+              <div className='text-3xl font-semibold  mb-10 border-zinc-400 border-b-2 pb-2 mt-16'>Key Features</div>
               <div className='flex gap-10
               [&>div]:w-[300px] [&>div]:rounded-md [&>div]:p-6 
               [&>div>svg]:m-auto
               [&>div]:flex [&>div]:flex-col [&>div]:gap-y-3
-              max-md:flex-col [&>div]:max-md:w-full
+              max-md:flex-col [&>div]:max-md:w-full text-zinc-900
               [&>div>p]:mt-'>
-                <div className='bg-emerald-600'>
+                <div className='bg-emerald-500'>
                   <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                     <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                   </svg>
                   <div className=' text-xl font-semibold'>Mood Tracking</div>
                   <p className=' text-base'>Track your mood daily, alongside sleep, activites, and more. See how your mood changes over the days.</p>
                 </div>
-                <div className='bg-blue-600'>
+                <div className='bg-blue-500'>
                   <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07" />
                   </svg>
                   <div className='text-xl font-semibold'>Charts</div>
                   <p className=' text-base'>Use the interactive mood chart to see how your mood correlates with your daily activies, or edit previous entries. </p>
                 </div>
-                <div className='bg-violet-500'>
+                <div className='bg-violet-400'>
                   <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
                     <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" />
                   </svg>
@@ -294,18 +298,18 @@ export function HomePage ({ darkMode, graphRef }) {
             <div>0 = Not At All Happy | 5 = Moderately Happy | 10 = Extremely Happy</div> */}
             
             <div>
-            <div className='text-4xl mt-28'>Ready to start?</div>
-            <div className='mt-3'>Start tracking your mood today. No registration required!</div>
-            <button
-              onClick={scrollToHookMood}
-              className='rounded-lg mt-12 bg-orange-500 p-2 w-[160px]'>
-              <svg 
-              xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16"
-              className='m-auto'
-              >
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-              </svg>
-            </button>
+              <div className='text-4xl mt-28'>Ready to start?</div>
+              <div className='mt-3'>Start tracking your mood today. No registration required!</div>
+              <button
+                onClick={scrollToHookMood}
+                className='rounded-lg mt-12 bg-orange-500 p-2 w-[160px]'>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16"
+                  className='m-auto'
+                >
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                </svg>
+              </button>
             </div>
 
 
@@ -369,12 +373,14 @@ export function HomePage ({ darkMode, graphRef }) {
           <div>© 2023 Rainbow Darkness</div>
         </div> */}
 
-      </div>
-      {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}
+        </div>
+        {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}
 
-      
-      <div className={isLoadingComponent ? 'hidden' : books.length === 1 ? 'hidden' : 'absolute left-[50%] -translate-x-1/2 top-[200px]'}>{ destroyer ? <HomeChart darkMode={darkMode} /> : null}</div>
-      {/* <div><HomeChartHolder /></div> */}
+        {/* HOMECHART */}
+        <div className={isLoadingComponent ? 'hidden' : books.length === 1 ? 'hidden' : 'absolute left-[50%] -translate-x-1/2 top-[200px]'}>
+          {destroyer ? <HomeChart darkMode={darkMode} /> : null}
+        </div>
+        {/* <div><HomeChartHolder /></div> */}
       </div>
 
       
