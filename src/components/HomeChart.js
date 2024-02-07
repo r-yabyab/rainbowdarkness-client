@@ -224,7 +224,7 @@ function HomeChart ({darkMode}) {
           .axis-x2 path,
           .axis-y2 line,
           .axis-y2 path {
-            stroke: ${darkMode? "white" : "black" };
+            stroke: ${darkMode? "white" : "white" };
           }
         `);
 
@@ -256,6 +256,7 @@ function HomeChart ({darkMode}) {
             .attr('y2', height)
             .attr('stroke', `${darkMode ? "gray" : "#e0e0e0"}`)
             .attr('stroke-width', `${expandChart ? .5 : 0}`)
+            .style('opacity', 0.0)
             
             // horizontal lines
         svg.selectAll('yGrid')
@@ -267,6 +268,7 @@ function HomeChart ({darkMode}) {
             .attr('y2', d => y(d))
             .attr('stroke', `${darkMode ? "gray" : "#e0e0e0"}`)
             .style('stroke-width', .5)
+            .style('opacity', 0.3)
 
             svg.append("g")
               // .attr('transform', 'translate(0,' + height + ")")
@@ -280,10 +282,12 @@ function HomeChart ({darkMode}) {
               .call(
                 d3
                   .axisBottom(x)
-                  .ticks(`${expandChart ? 20 : 5}`)
+                  .ticks(`${expandChart ? 12 : 5}`)
                 )
               .selectAll("text")
-                .attr("fill", `${darkMode ? "white" : "black"}`)
+                .attr("fill", `${darkMode ? "white" : "white"}`)
+                  // .attr('transform', 'rotate(-45)')
+
               .selectAll("path")
                 .style("stroke", "white")
               
@@ -296,14 +300,14 @@ function HomeChart ({darkMode}) {
                   .ticks(5)
                 )
               .selectAll('text')
-                .attr("fill", `${darkMode ? "white" : "black"}`)
+                .attr("fill", `${darkMode ? "white" : "white"}`)
               .selectAll("path")
                 .style('stroke', 'white')
                 //for putting text
               
             svg.append('g')  
               .append('text')
-              .attr("fill", `${darkMode ? "gray" : "gray"}`)
+              .attr("fill", `${darkMode ? "gray" : "white"}`)
               // .attr('transform', 'rotate(-90)')
               .style('position', 'absolute')
               .attr('x', width -10)
@@ -320,7 +324,7 @@ function HomeChart ({darkMode}) {
 
             const circle = svg.append('circle')
             .attr('r', 0)
-            .attr('fill', `${darkMode ? "white" : "black"}`)
+            .attr('fill', `${darkMode ? "white" : "white"}`)
             .style('stroke', 'white')
             .attr('opacity', 1)
             .style('pointer-events', 'none')
@@ -358,7 +362,7 @@ function HomeChart ({darkMode}) {
                   // d3.select(svgHomeRefTEST2.current) 
                   tooltip
                   // .append('text')
-                  .attr("fill", `${darkMode ? "white" : "black"}`)
+                  .attr("fill", `${darkMode ? "white" : "limegreen"}`)
                   .style("opacity", 1)
                   // .attr('transform', 'rotate(-90)')
                   .attr('x', xPos)
@@ -397,10 +401,10 @@ function HomeChart ({darkMode}) {
             svg.append('path')
               .datum(data)
               .attr('fill', 'none')
-              .attr('stroke', 'steelblue')
+              .attr('stroke', 'white')
               .attr('stroke-linejoin' , 'round')
               .attr('stroke-linecap', 'round')
-              .attr('stroke-width' , 1.5)
+              .attr('stroke-width' , 2)
               .attr('d', line)
               .style('pointer-events', 'none')
               
@@ -411,7 +415,7 @@ function HomeChart ({darkMode}) {
               .data(data)
               .enter()
               .append('circle')
-                .attr('fill', 'red')
+                .attr('fill', 'orange')
                 .attr('stroke', 'none')
                 .attr('cx', function(d) { return x(d.x) })
                 .attr('cy', function(d) { return y(d.y) })
@@ -456,7 +460,7 @@ function HomeChart ({darkMode}) {
                 {/* <svg className='mt-4' ref={svgHomeRefTEST2} /> */}
                 <svg className='mt-4' ref={svgHomeRefTEST3} />
                 {/* <svg className=' overflow-visible' ref={svgHomeRefTEST} /> */}
-                <div className={`${darkMode ? 'text-zinc-200' :'text-black' } text-center pt-12`}>Please come again tomorrow to fill the graph!</div>
+                <div className={`${darkMode ? 'text-zinc-200' :'text-zinc-100' } text-center pt-12`}>Please come again tomorrow to fill the graph!</div>
                 {/* <div className='text-center text-zinc-400 pt-2 m-auto hover:text-white hover:cursor-pointer'>
                     {showTimeLeft ? '' : 'Show time left'}
                 </div> */}

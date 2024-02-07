@@ -76,7 +76,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
             .style('overflow', 'visible')
 
         svg.append('rect')
-        .attr("fill", `${darkMode ? "white" : "black"}`)
+        .attr("fill", `${!darkMode ? "white" : "black"}`)
         .attr('x',-60)
         .attr('y', -124)
         .attr('width', 930)
@@ -124,7 +124,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
             .attr('x2', d => x(d))
             .attr('y1', 0)
             .attr('y2', height)
-            .attr('stroke', `${darkMode ? "lightgray" : "#e0e0e0"}`)
+            .attr('stroke', `${!darkMode ? "lightgray" : "#e0e0e0"}`)
             .attr('stroke-width', .5)
             
             // horizontal lines
@@ -135,7 +135,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
             .attr('x2', width)
             .attr('y1', d => y(d))
             .attr('y2', d => y(d))
-            .attr('stroke', `${darkMode ? "lightgray" : "#e0e0e0"}`)
+            .attr('stroke', `${!darkMode ? "lightgray" : "#e0e0e0"}`)
             .style('stroke-width', .5)
 
         // const barWidth = width / (data.length - 1) -1; // Adjusting for the last bar
@@ -194,7 +194,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
                 .attr('transform', 'translate(0,' + height + ")")
                 .call(d3.axisBottom(x).ticks(30))
                 .selectAll("text")
-                    .attr("fill", `${!darkMode ? "white" : "black"}`)
+                    .attr("fill", `${darkMode ? "white" : "black"}`)
                     .attr('transform', 'rotate(-90)')
                     .attr('x',-8)
                     .attr('font-size', '14px')
@@ -207,7 +207,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
                 .attr('class', 'axis-y')
                 .call(d3.axisLeft(y))
                 .selectAll("text")
-                    .attr("fill", `${!darkMode ? "white" : "black"}`)
+                    .attr("fill", `${darkMode ? "white" : "black"}`)
                     .attr('font-size', '14px')
                     .attr('text-anchor', 'end')
                 .selectAll('path')
@@ -217,7 +217,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
         // axis labelling
         svg.append('g')
             .append('text')
-            .attr("fill", `${!darkMode ? "white" : "black"}`)
+            .attr("fill", `${darkMode ? "white" : "black"}`)
             .attr('x', -220)
             .attr('y', -30)
             .attr('transform', 'rotate(-90)')
@@ -228,7 +228,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
 
         svg.append('g')
             .append('text')
-            .attr("fill", `${!darkMode ? "white" : "black"}`)
+            .attr("fill", `${darkMode ? "white" : "black"}`)
             .attr('x', 396)
             .attr('y', 450)
             .attr('font-size', '20px')
@@ -238,7 +238,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
         // header labels
         svg.append('g')
             .append('text')
-            .attr("fill", `${!darkMode ? "white" : "black"}`)
+            .attr("fill", `${darkMode ? "white" : "black"}`)
             .attr('x', 320)
             .attr('y', -92)
             .attr('font-size', '16px')
@@ -247,7 +247,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
 
         svg.append('g')
             .append('text')
-            .attr("fill", `${!darkMode ? "white" : "black"}`)
+            .attr("fill", `${darkMode ? "white" : "black"}`)
             .attr('x', 220)
             .attr('y', -70)
             .attr('font-size', '14px')
@@ -255,7 +255,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
 
         svg.append('g')
             .append('text')
-            .attr("fill", `${!darkMode ? "white" : "black"}`)
+            .attr("fill", `${darkMode ? "white" : "black"}`)
             .attr('x', 220)
             .attr('y', -70)
             .attr('font-size', '14px')
@@ -264,7 +264,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
         // legend
         svg.append('g')
             .append('text')
-            .attr("fill", `${!darkMode ? "white" : "black"}`)
+            .attr("fill", `${darkMode ? "white" : "black"}`)
             .attr('x', 0)
             .attr('y', -40)
             .attr('font-weight', '600')
@@ -274,7 +274,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
         // Average mood label
         svg.append('g')
             .append('text')
-            .attr("fill", `${!darkMode ? "white" : "black"}`)
+            .attr("fill", `${darkMode ? "white" : "black"}`)
             .attr('class', 'hoverable-text')
             .attr('x', 26)
             .attr('y', -24)
@@ -297,7 +297,7 @@ export function MongoChart ({ darkMode, lastRainbow }) {
         // unique visitors label
         svg.append('g')
             .append('text')
-            .attr("fill", `${!darkMode ? "white" : "black"}`)
+            .attr("fill", `${darkMode ? "white" : "black"}`)
             .attr('x', 156)
             .attr('y', -24)
             .attr('font-size', '14px')

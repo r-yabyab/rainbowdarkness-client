@@ -154,7 +154,7 @@ function PieChartHome () {
                   .attr("stroke-width", 3); // You can adjust the width of the border as needed
 
                   tooltip
-                  .attr('fill', 'white')
+                  .attr('fill', 'black')
                   .style('opacity', 1)
                   .attr('dy', '0.71em')
                   .attr('x', 0)

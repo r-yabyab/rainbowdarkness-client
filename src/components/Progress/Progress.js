@@ -34,6 +34,8 @@ export function Progress ({ darkMode, graphRef }) {
   const editSubmissionTrigger = useSelector((state) => state.editSubmissionTrigger)
   const [reducerValue, forceUpdate] = useReducer(x => x + 1, 0);
 
+  const navigate = useNavigate();
+
   const [diffMs, setDiffMs] = useState(0)
   // 0-23 hours
 //   const [lastSubmissionHour, setLastSubmissionHour] = useState(0)
@@ -53,11 +55,11 @@ export function Progress ({ darkMode, graphRef }) {
 
   useEffect(() => {
     dispatch(fetchLastAll())
-  }, [editSubmissionTrigger, destroyer])
+  }, [editSubmissionTrigger])
 
-  useEffect(() => {
-    dispatch(fetchLastAll());
-  }, [])
+  // useEffect(() => {
+  //   dispatch(fetchLastAll());
+  // }, [])
 
 
 
@@ -247,38 +249,51 @@ export function Progress ({ darkMode, graphRef }) {
 
     return (
         <>
-            {/* <div className={'min-h-[100vh] flex flex-col bg-zinc-100 bg-gradient-to-b from-blue-800 to-transparent justify-center'}>
-            test
-          </div> */}
-
-            {/* <div className="bg-red-500 absolute text-blue-300 h-[400px] text-blue p-20 z-50">
-            test
-            <div>test</div>
-          </div> */}
-            <div className="absolute text-black bg-blue-400">test</div>
-
-            <div className='relative'>
-                <div className={`${aiText ? '' : ' animate-pulse'} pt-20 text-center  font-normal -translate-x-1/2 text-zinc-200`}>{destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
-                <div className={isLoadingComponent ? 'hidden' : books.length === 1 ? 'hidden' : ''}>
-                    {<HomeChart />}
-                </div>
-                <div title='Please come again tomorrow!' className="text-zinc-600">
-                    {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
+        <div className='min-h-[100vh] w-full fixed -z-50 bg-zinc-100 bg-gradient-to-b  from-blue-800 to-transparent ' />
+        
+        <div className='relative text-center z-30 bg-transparent '>
+          <div className='pt-32 text-zinc-100 text-2xl flex align-middle items-center justify-center gap-2'>
+            <div>Your Progress</div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-walking" viewBox="0 0 16 16">
+              <path d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z" />
+              <path d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z" />
+            </svg>
+          </div>
+          <div className={`${aiText ? '' : ' animate-pulse'} pt-20 text-zinc-200`}>{destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
+          <div className={isLoadingComponent ? 'hidden' : books.length < 1 ? 'hidden' : 'pt-10 flex justify-center'}>
+            {destroyer ? <HomeChart darkMode={darkMode} /> : null}
+          </div>
+          <div title='Please come again tomorrow!' className="text-zinc-200">
+            {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
                         <div>|</div> */}
-                    'Next submission @ 5PM'
+            {destroyer ? 
+              <div className='hidden'>"Next submission @ 5PM"</div> :
+              <div onClick={() => navigate('/')} className='flex justify-center items-center gap-2'>
+                <div className='text-zinc-100 hover:cursor-pointer'>Please submit for today!</div>
+                <button
+                  className='rounded-md border-orange-500 border-2 animate-pulse  p-2 w-[40px]'>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16"
+                    className='m-auto'
+                  >
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                  </svg>
+                </button>
+              </div>}
 
-                </div>
+          </div>
 
-            <div className={tooltipContent.mood ? 'pt-10' : 'hidden'}><ChartTooltips /></div>
+          {/* <div className={tooltipContent.mood ? 'pt-40' : 'hidden'}><ChartTooltips /></div> */}
 
-            {/* <div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode} /></div> */}
-            <div className='pt-40'>
-                <DataFetch graphRef={graphRef} darkMode={darkMode} destroyer={destroyer} books={books}/></div>
- 
+          {/* <div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode} /></div> */}
+          <div className='md:pt-0 max-md:pt-32'>
+            <DataFetch graphRef={graphRef} darkMode={darkMode} destroyer={destroyer} books={books} />
+          </div>
 
 
-            </div>
 
-        </>
+        </div>
+
+      </>
     )
 }

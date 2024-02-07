@@ -11,7 +11,7 @@ return(
             {/* mainUL */}
             <div className='text-center'>
                 {/* <div className='text-gray-500'>Powered by Node, React, Express, MongoDB</div> */}
-            <div className="tracking-tighter text-gray-500">© 2023 All Rights Reserved.</div>
+            <div className="tracking-tighter text-gray-500">© 2024 All Rights Reserved.</div>
 
             </div>
 

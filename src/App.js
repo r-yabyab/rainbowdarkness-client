@@ -76,7 +76,7 @@ const scrollToInfo = () => {
           <Route path='/test' element={<UserProfile darkMode={darkMode} />} />
           {/* <Route path='/memo' element={<Memos />} /> */}
           <Route path='/profile' element={<UserProfile />} />
-          {/* <Route path='/progress' element={<Progress graphRef={graphRef} darkMode={darkMode} />} /> */}
+          <Route path='/progress' element={<Progress graphRef={graphRef} darkMode={darkMode} />} />
         </Routes>
 
 

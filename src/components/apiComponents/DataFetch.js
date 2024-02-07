@@ -330,7 +330,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
 
             {/* Absolute desktop containers */}
-            <div className={`${books.length === 1 ? '-mt-[400px]' : ''} relative animate-fade md:pt-[80px]  
+            <div className={`${books.length < 0 ? '-mt-[400px]' : ''} relative animate-fade md:pt-[80px]  
                 max-w-[1000px] mr-auto ml-auto
                 max-md:pt-[10px] 
                 `}
@@ -340,10 +340,10 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                 <div className="md:pt-[80px]">
                     <div className=" 
                         lg:w-[900px] md:w-[700px] pb-20
-                         max-md:font-normal m-auto max-md:max-w-[360px]">{books.length === 1 ? null : <ChartTooltips />}</div>
+                         max-md:font-normal m-auto max-md:max-w-[360px]">{books.length < 1 ? null : <ChartTooltips />}</div>
                     <div className=" 
                         lg:w-[900px] md:w-[700px] 
-                         max-md:font-normal m-auto max-md:max-w-[360px]"
+                         max-md:font-normal max-md:pt-48 m-auto max-md:max-w-[360px]"
                         //  max-md:pr-[100px] max-md:pl-[100px]
                          >
                         <PutSubmission RAINBOW_DARKNESS={RAINBOW_DARKNESS} books={books} />
@@ -508,12 +508,10 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
                                                             : x.number === 5 ? 'text-blue-500'
                                                                 : 'text-red-700'
                                                 } ${matched ? 'bg-yellow-400' : ''}`}
-                                            // title={new Date(x.createdAt).toLocaleDateString()}
                                             title={matched ? `${new Date(x.createdAt).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })} (YOURS)` : new Date(x.createdAt).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}
 
                                         >
                                             {x.number}
-                                            {/* {x.createdAt} */}
 
                                         </div>
                                     );
@@ -546,7 +544,7 @@ const dbCreatedAt = lastRainbow &&  lastRainbow
 
 
 
-          <div className="absolute text-sm font-thin text-zinc-400 left-0">© 2023 Rainbow Darkness</div>
+          <div className="absolute text-sm font-thin text-zinc-400 left-0">© 2024 Rainbow Darkness</div>
 
 
         </div>

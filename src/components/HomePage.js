@@ -127,16 +127,17 @@ export function HomePage ({ darkMode, graphRef, infoRef }) {
          max-md:font-bold  
         `}>
 
-          <div className={ destroyer ? '' : 'min-h-[100vh] flex flex-col bg-zinc-100 bg-gradient-to-b from-blue-800 to-transparent justify-center'}>
+          {/* <div className={ destroyer ? '' : 'min-h-[100vh] flex flex-col bg-zinc-100 bg-gradient-to-b from-blue-800 to-transparent justify-center'}> */}
+          <div className={ 'min-h-[100vh] flex flex-col bg-zinc-100 bg-gradient-to-b from-blue-800 to-transparent justify-center'}>
             
             {/* <div className=''> */}
             <div className={`${toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeDarkMode tracking-wide font-extralight' : toHookMoodClick && !darkMode ? 'ratingAnimationToBlackHomeLightMode' : darkMode ? 'text-zinc-100 tracking-wide font-extralight' : 'text-zinc-100 tracking-wide font-light'}
                text-2xl z-10
                max-md:mb-[0px]
-               ${destroyer ? '' : 'mb-[60px]'}
+               ${destroyer ? 'mb-[60px]' : 'mb-[60px]'}
                `
                }>
-              {destroyer ? null : 'How happy are you today?'}
+              {destroyer ? 'Please come back tomorrow!' : 'How happy are you today?'}
               {/* <img 
                 className='absolute opacity-10 top-0 left-[50%] pointer-events-none
                 max-md:hidden
@@ -164,7 +165,8 @@ export function HomePage ({ darkMode, graphRef, infoRef }) {
             <div>Click me for details</div>
           </div>
 
-          <div className={` ${destroyer ? 'hidden' : about ? 'text-center slide-from-leftREMOVE text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black font-normal'}`}>
+          {/* <div className={` ${destroyer ? 'hidden' : about ? 'text-center slide-from-leftREMOVE text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black font-normal'}`}> */}
+          <div className={` ${ about ? 'text-center slide-from-leftREMOVE text-lg [&>*]:max-md:w-[360px] flex flex-col items-center m-auto md:[&>*]:w-[700px] md:pt-14 max-md:pt-20  ' : 'hidden'} ${darkMode ? 'font-extralight text-zinc-200 ' : 'text-black font-normal'}`}>
             {/* <div className=' group relative hover:cursor-pointer flex justify-center items-center gap-2'
             onClick={AboutHandler}>
 
@@ -257,7 +259,7 @@ export function HomePage ({ darkMode, graphRef, infoRef }) {
               </div>
               {/* <img className='w-[330px] md:w-[400px] max-md:m-auto md:ml-8 max-md:mt-2' draggable={false} src={sampleGraph} alt='sample graph' /> */}
             </div>
-            <div className={tooltipContent.mood ? 'pt-10' : 'hidden'}><ChartTooltips /></div>
+            <div className={tooltipContent.mood ? 'pt-32' : 'hidden'}><ChartTooltips /></div>
 
             <div className=' mt-16'>
               <div className='text-3xl font-semibold  mb-10 border-zinc-400 border-b-2 pb-2 mt-16'>Key Features</div>
@@ -377,9 +379,9 @@ export function HomePage ({ darkMode, graphRef, infoRef }) {
         {/* <div className='absolute left-[50%] -translate-x-1/2 top-[140px] text-zinc-200'>{ destroyer ? <AiComment /> : null}</div> */}
 
         {/* HOMECHART */}
-        <div className={isLoadingComponent ? 'hidden' : books.length === 1 ? 'hidden' : 'absolute left-[50%] -translate-x-1/2 top-[200px]'}>
+        {/* <div className={isLoadingComponent ? 'hidden' : books.length === 1 ? 'hidden' : 'absolute left-[50%] -translate-x-1/2 top-[200px]'}>
           {destroyer ? <HomeChart darkMode={darkMode} /> : null}
-        </div>
+        </div> */}
         {/* <div><HomeChartHolder /></div> */}
       </div>
 

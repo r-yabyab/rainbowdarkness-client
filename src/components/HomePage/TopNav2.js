@@ -65,7 +65,7 @@ export function TopNav2({ darkMode, scrollToInfo }) {
 
             {/* max-md:border-y-2 max-md:-mt-2 max-md:border-[#1D4ED8] max-md:h-[40px] max-md:bg-[#1D4ED8] */}
             {/* <div className={`${darkMode ? 'inset-0 bg-gradient-to-r to-[#121212] from-zinc-700 border-b-2 border-neutral-600' : ` */}
-            <div className='relative z-20'>
+            <div className='relative z-50'>
                 <div className={` ${isLoadingComponent && darkMode ? '' : 'border-b- border-zinc-400'} ${darkMode ? 'bg-zinc-800 ' : `
              bg-transparent`} absolute md:pt-3 pb-3 max-md:left-[50%] max-md:-translate-x-1/2 max-md:pt-5 flex overflow-hidden pl-4 select-none`}
                     draggable="false">
@@ -94,9 +94,9 @@ export function TopNav2({ darkMode, scrollToInfo }) {
                     <Link onClick={e => setisLoadingComponent(true)} to='/darkness' className='no-underline hover:text-gray-300'>
                         DevLog
                     </Link>
-                    <div>
-                        Stats
-                    </div>
+                    <Link onClick={e => setisLoadingComponent(true)} to='/progress' className='no-underline hover:text-gray-300'>
+                        Progress
+                    </Link>
 
                 </div>
 
@@ -162,10 +162,10 @@ export function TopNav2({ darkMode, scrollToInfo }) {
                                                         <p>Progress updates for the website.</p>
                                                     </Link>
                                                     <Link 
-                                                    // onClick={handleNavigateCustomRoute('/progress')} 
-                                                    className='hover:cursor-default [&>*]:text-zinc-400'>
+                                                    onClick={handleNavigateCustomRoute('/progress')} 
+                                                    className='hover:cursor-pointer [&>div]:hover:text-black [&>p]:hover:text-zinc-600'>
                                                         <div className='text-zinc-400'>Progress</div>
-                                                        <p className='text-zinc-400'>Coming soon!</p>
+                                                        <p className='text-zinc-400'>Check your mood history.</p>
                                                     </Link>
                                                     <div
                                                         onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
@@ -188,6 +188,21 @@ export function TopNav2({ darkMode, scrollToInfo }) {
                                             </div>
 
                                         </div>
+
+                                        <div className='max-md:hidden top-[14px] flex gap-4 absolute right-6 align-middle justify-center hover:text-zinc-200 font-semibold text-zinc-300'>
+                                            <div
+                                                onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+                                                className="hover:cursor-pointer   rounded-md p-2 text-sm hover:text-zinc-200 font-semibold text-zinc-300">
+                                                Logout
+                                            </div>
+                                            <div className='h-[30px] border-r-2 border-zinc-400' />
+                                            <Link to='/' className='no-underline text-zinc-300 hover:text-zinc-200'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">
+                                                    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                                                </svg>
+                                            </Link>
+                                        </div>
+                                        
                                     </> :
                                     <div>
                                         {/* Desktop topnav */}
@@ -224,10 +239,10 @@ export function TopNav2({ darkMode, scrollToInfo }) {
                                                     <div>DevLog</div>
                                                     <p>Progress updates for the website.</p>
                                                 </Link>
-                                                <div className='hover:cursor-default'>
-                                                    <div>Stats</div>
-                                                    <p>Coming soon.</p>
-                                                </div>
+                                                <Link onClick={handleNavigateCustomRoute('/progress')} className='hover:cursor-pointer [&>div]:hover:text-black [&>p]:hover:text-zinc-600'>
+                                                    <div>Progress</div>
+                                                    <p>Check your mood history.</p>
+                                                </Link>
                                                 <div onClick={() => loginWithRedirect()} className='hover:cursor-pointer [&>div]:hover:text-black [&>p]:hover:text-zinc-600'>
                                                     <div>Login</div>
                                                     <p>Not registered? Create an account for free.</p>

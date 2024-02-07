@@ -171,7 +171,10 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
                 // save old + new data to localStorage
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
 
-                // navigate('/progress');
+                setTimeout(() => {
+
+                    navigate('/progress');
+                }, [500])
             }
         } 
         else
@@ -219,7 +222,10 @@ function HookMood ({ darkMode, graphRef, toHookMoodClick }) {
                 // save old + new data to localStorage
                 window.localStorage.setItem('_APP_moogle', JSON.stringify(moogleOld))
 
-                // navigate('/progress');
+                setTimeout(() => {
+
+                    navigate('/progress');
+                }, [500])
             }
         }
     }
@@ -481,9 +487,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                                     `invisible 
                                     `
                                      :
-                                    destroyer ? `hidden squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
-                                    md:mr-[8px] md:ml-[8px] 
-                                    max-md:rounded-none max-md:animate-fade`
+                                    destroyer ? ` squares  hover:cursor-not-allowed   border-[2px] border-black text-black bg-black pt-[10px] pb-[10px] pr-4 pl-4 
+                                    md:mr-[8px] md:ml-[8px]  ratingAnimationLight w-[45px] h-[48px] rounded-lg
+                                    `
                                     :
                                     !darkMode ? `   hover:border-red-400 transition-colors duration-[125ms]  border-orange-100 border-2  text-zinc-100  rounded-lg  ratingAnimation
                                     w-[45px] h-[48px] mr-[8px] ml-[8px] max-md:mr-[4px] max-md:ml-[4px]
@@ -586,7 +592,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                     <div
                         // [&>*]:top-[54%]
                         // className={`${destroyer ? '[&>*]:border-2' : darkMode ? '[&>*]:border-2 [&>*]:border-zinc-200 [&>*]:bg-blue-600 [&>*]:text-zinc-100' : '[&>*]:bg-black'}
-                        className={`${destroyer ? '[&>*]:border-2 hidden' : !darkMode ? '[&>*]:rounded-md  [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
+                        className={`${destroyer ? '[&>*]:border-2 ' : !darkMode ? '[&>*]:rounded-md  [&>*]:bg-blue-500 [&>*]:text-zinc-100' : '[&>*]:rounded-md [&>*]:bg-blue-500 [&>*]:text-zinc-100'}
                      
                     [&>*]:font-semibold [&>*]:tracking-wider [&>*]:absolute [&>*]:left-[50%] [&>*]:-translate-x-1/2 [&>*]:text-white [&>*]:pt-2 [&>*]:pb-2 [&>*]:pr-10 [&>*]:pl-10
                     [&>*]:flex [&>*]:items-center [&>*]:gap-x-2 
@@ -596,7 +602,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                             value={number} onClick={handleSubmit} type="number"
                             // className={(booleanState ? 'hover:text-yellow-300' : 'opacity-30') 
                             // || (destroyer ? 'opacity-30 ' : 'hover:text-yellow-200')}
-                            className={(destroyer ? 'hidden ' : (booleanState ? ' md:hover:border-2 transition-colors bg-green-500' : 'bg-black hover:cursor-not-allowed border-zinc-700 border-2 max-md:invisible opacity-30'))}
+                            className={(destroyer ? 'opacity-30' : (booleanState ? ' md:hover:border-2 transition-colors bg-green-500' : 'bg-black hover:cursor-not-allowed border-zinc-700 border-2 max-md:invisible opacity-30'))}
 
                         >
                             Submit
@@ -626,7 +632,7 @@ let [timeLeft, setTimeLeft] = useState(86400000)
             {/* DISPLAYS TIME LEFT BEFORE ANOTHER SUBMISSION */}
             <div className=''>
 
-                <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[526px] text-zinc-600 absolute `}>
+                <div title='Please come again tomorrow!' className={`${destroyer ? '' : 'hidden'} right-[50%] font-normal translate-x-1/2 top-[650px] text-zinc-600 absolute `}>
                     {/* <div>{timeLeft > 0 ? `${(timeLeft / 1000).toFixed(0)} ` : null}sec</div>
                         <div>|</div> */}
                     {isAuthenticated ?
@@ -645,9 +651,9 @@ let [timeLeft, setTimeLeft] = useState(86400000)
                 firstFunc {firstUserNum()}
             </div> */}
 
-            <div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode} /></div>
+            {/* <div className='pt-40'><DataFetch graphRef={graphRef} destroyer={destroyer} books={books} darkMode={darkMode} /></div>
             <div className={`${aiText ? '' : ' animate-pulse'} ${darkMode ? 'text-zinc-200' : 'text-black'} absolute left-[50%] font-normal -translate-x-1/2 top-[80px] text-zinc-200`}>{destroyer ? `AI: ${aiText && (aiText || 'Loading...')}` : null}</div>
-
+ */}
         </>
 )
 }
